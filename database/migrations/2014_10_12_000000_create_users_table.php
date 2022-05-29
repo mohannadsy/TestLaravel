@@ -19,10 +19,20 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('branch_name');
+            $table->string('role');
+            $table->string('branch_id');
+            $table->string( 'first_name');
+            $table->string( 'middle_name');
+            $table->string( 'last_name');
+            $table->string( 'phone');
+            $table->string( 'mobile');
+            $table->unsignedBigInteger( 'id_number');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
+
         });
     }
 
