@@ -30,6 +30,7 @@ class User extends Authenticatable
         'branch_name',
         'role', // الصفة
         'branch_id',
+        'photo',
 
 
         //

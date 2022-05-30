@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('branshes', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('name') ;
-            $table->unsignedBigInteger('main_bransh_id');
-            $table->string('resposability');
+            $table->unsignedBigInteger('main_branch_id');
+            $table->string('responsibility');
             $table->string('address');
             $table->string('website');
             $table->string('email') ->unique();
