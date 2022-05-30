@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bransh extends Model
+class Branch extends Model
 {
     protected $fillable=[
         'name'           ,
-        'main_bransh_id'    , //الفرع الرئيسي للفرح الحالي
-        'resposability'  ,
+        'main_branch_id'    , //الفرع الرئيسي للفرح الحالي
+        'responsibility'  ,
         'address'        ,
         'website'        ,
         'email'          ,

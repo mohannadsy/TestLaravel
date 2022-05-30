@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Bransh;
+use App\Models\Branch;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BranshSeeder extends Seeder
+class BranchSeeder extends Seeder
 {
 
     public function run()
     {
-        Bransh::create([
+        Branch::create([
             'name' => 'Main Branch',
-            'main_branch_id' => '1',
+            'main_branch_id' => ' ',
             'responsibility' => '',
             'address' => '',
             'website' => 'mainbranch.com',

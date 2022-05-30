@@ -27,7 +27,7 @@ class StoreUserRequest extends FormRequest
         return $rules = [
             'name' => 'required | max:100 | unique:users,name',
             'email' => 'required | email | unique:users,email',
-            'password' => 'required |\'min:6\'| unique:users,password',
+            'password' => 'required |min:6| unique:users,password',
             'password_confirm' => 'required|same:password',
             '' => 'required | max:100 | unique:products,name_en',
             '' => 'required | numeric ',

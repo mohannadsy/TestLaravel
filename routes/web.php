@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Branch\BranchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,13 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('delete/{id}', [\App\Http\Controllers\User\UserController::class,'destroy']);
 });
 /////////////////////////
+//BranchRoute//
+Route::group(['namespace' => 'Branch'], function () {
+    Route::get('index', [\App\Http\Controllers\Branch\BranchController::class,'index']);
+    Route::get('create', [\App\Http\Controllers\Branch\BranchController::class,'create']);
+    Route::get('show/{id}', [\App\Http\Controllers\Branch\BranchController::class,'show']);
+    Route::get('store', [\App\Http\Controllers\Branch\BranchController::class,'store']);
+    Route::get('edit', [\App\Http\Controllers\Branch\BranchController::class,'edit']);
+    Route::get('update', [\App\Http\Controllers\Branch\BranchController::class,'update']);
+    Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class,'destroy']);
+});
