@@ -25,7 +25,7 @@ class StoreUserRequest extends FormRequest
     {
 
         return $rules = [
-            'name' => 'required | max:100 | unique:users,name',
+//            'name' => 'required | max:100 | string:user,name',
             'email' => 'required | email | unique:users,email',
             'password' => 'required |\'min:6\'| unique:users,password',
             'password_confirm' => 'required|same:password',
@@ -39,7 +39,7 @@ class StoreUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'الاسم يجب أن يكون موجود ',
+//            'name.required' => 'الاسم يجب أن يكون موجود ',
             'name.unique' => 'الاسم يجب ألا يتكرر',
             'email.required' => 'البريد الالكتروني يجب أن يكون موجود',
             'email.unique' => 'البريد الالكتروني يجب ألا يتكر',
