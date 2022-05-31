@@ -102,4 +102,15 @@ class BranchController extends Controller
     public function isNotMainBranch($id){
         return !$this->isMainBranch($id);
     }
+
+    public function getLastCharacterInString ($string)
+    {
+        return [strlen($string)-1];
+    }
+
+    public function testLastCharacterInStringIsNumeric ($string)
+    {
+        return (is_numeric([strlen($string)-1]));
+    }
+
 }
