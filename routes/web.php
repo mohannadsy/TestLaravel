@@ -53,12 +53,12 @@ Route::group(['namespace' => 'User'], function () {
 });
 /////////////////////////
 //BranchRoute//
-Route::group(['namespace' => 'Branch'], function () {
-    Route::get('index', [\App\Http\Controllers\Branch\BranchController::class,'index']);
-    Route::get('create', [\App\Http\Controllers\Branch\BranchController::class,'create']);
-    Route::get('show/{id}', [\App\Http\Controllers\Branch\BranchController::class,'show']);
-    Route::get('store', [\App\Http\Controllers\Branch\BranchController::class,'store']);
-    Route::get('edit', [\App\Http\Controllers\Branch\BranchController::class,'edit']);
-    Route::get('update', [\App\Http\Controllers\Branch\BranchController::class,'update']);
-    Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class,'destroy']);
+Route::group(['namespace' => 'Branch' , 'prefix' => 'branch'], function () {
+    Route::get('index', [\App\Http\Controllers\Branch\BranchController::class,'index'])->name('branch.index');
+    Route::get('create', [\App\Http\Controllers\Branch\BranchController::class,'create'])->name('branch.create');
+    Route::get('show/{id}', [\App\Http\Controllers\Branch\BranchController::class,'show'])->name('branch.show');
+    Route::post('store', [\App\Http\Controllers\Branch\BranchController::class,'store'])->name('branch.store');
+    Route::get('edit/{id}', [\App\Http\Controllers\Branch\BranchController::class,'edit'])->name('branch.edit');
+    Route::post('update/{id}', [\App\Http\Controllers\Branch\BranchController::class,'update'])->name('branch.update');
+    Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class,'destroy'])->name('branch.delete');
 });

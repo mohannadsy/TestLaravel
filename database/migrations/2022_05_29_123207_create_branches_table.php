@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('name') ;
-            $table->unsignedBigInteger('main_branch_id')->nullable();
+            $table->unsignedBigInteger('branch_id')->nullable();
             $table->string('responsibility')->nullable();
             $table->string('address')->nullable();
             $table->string('website')->nullable();

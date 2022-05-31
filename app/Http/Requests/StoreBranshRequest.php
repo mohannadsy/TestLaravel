@@ -24,8 +24,9 @@ class StoreBranshRequest extends FormRequest
     public function rules()
     {
         return $rules=[
+            'code'                   =>'required|unique|string:branches,code',
             'name'                   =>'required|max:50|unique|string:branches,name' ,
-            'main_branch_id'         =>'max:50|numeric:branches,main_branch_id' ,
+            'branch_id'              =>'max:50|numeric:branches,branch_id' ,
             'responsibility'         =>'max:250|string:branches,responsibility',
             'address'                =>'max:100|string:branches,address',
             'website'                =>'unique|string:branches,website',
@@ -38,12 +39,15 @@ class StoreBranshRequest extends FormRequest
     public function messages()
     {
         return $messages= [
+            'code.required'          => 'رمز الفرع يجب أن يُدخل',
+            'code.unique'            => 'رمز الفرع موجود سابقاً ',
+            'code.string'            => 'رمز الفرع يجب أن يكون محارف ',
             'name.required'          => 'اسم الفرع يجب أن يُدخل',
             'name.max'               => 'اسم الفرع تجاوز 50 محرف ',
             'name.unique'            => 'اسم الفرع موجود سابقاً ',
             'name.string'            => 'اسم الفرع يجب أن يكون محارف ',
-            'main_branch_id.max'     => 'رمز الفرع الرئيسي تجاوز 50 رقم ',
-            'main_branch_id.numeric' => 'رمز الفرع الرئيسي يجب أن يكون ارقام  ',
+            'branch_id.max'          => 'رمز الفرع الرئيسي تجاوز 50 رقم ',
+            'branch_id.numeric'      => 'رمز الفرع الرئيسي يجب أن يكون ارقام  ',
             'responsibility.max'     => 'معلومات الفرع(الصفة) تجاوز 250 محرف ',
             'responsibility.string'  => 'معلومات الفرع يجب أن يكون محارف ',
             'address.max'            =>  'عنوان الفرع تجاوز 100 محرف ',
