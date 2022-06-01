@@ -15,6 +15,12 @@ class UserController extends Controller
 {
     use UserTrait;
 
+    public function generateCode()
+    {
+
+//        $userCodec = User::
+    }
+
     public function index() // getAllUsers
     {
         if (Auth::user()) {
@@ -29,54 +35,21 @@ class UserController extends Controller
     {
         // render to Vue
 
-
-        User::create([
-            'name' => 'Super Admin 22',
-            'email' => 'superAdmin222@gmail.com',
-            'password' => bcrypt('12345s222uperadmin'),
-            'branch_name' => 'Main Branch',
-            'role' => 'Super Admin',// مدير عام
-            'branch_id' => '1',
-            'first_name' => '',
-            'middle_name' => '',
-            'last_name' => '',
-            'phone' => '09913646374',
-            'mobile' => '0414949494',
-            'id_number' => '001123938373774',
-
-
-        ]);
-        return 'user stored successfully';
-
     }
 
     public function store(StoreUserRequest $request)
     {
-   if( $file = $request->file('image') ) {
-             $path = 'Images/users';
-             $url = $this->saveImage($file,$path,300,400);
-         }
-    //    $file_name = $this->saveImage($request->photo, 'images/users');
+        if ($file = $request->file('photo')) {
+            $path = 'photos/users';
+            $url = $this->file($file, $path, 300, 400);
+        }
+        $input = $request->all();
+        $input->photo = $url;
+        $input->branch_name == null ? $input->branch_name = 'Main Branch' : $input->branch_name = $request->branch_name;
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->name,
-            'password' => Hash::make($request->branch_name),
-            'photo' => $url,
-            'branch_name' => $request->branch_name,
-            'role' => $request->role,
-            'branch_id' => $request->branch_id,
-            'first_name' => $request->first_name,
-            'middle_name' => $request->middle_name,
-            'last_name' => $request->last_name,
-            'phone' => $request->phone,
-            'mobile' => $request->mobile,
-            'id_number' => $request->id_number,
-        ]);
+        User::create($input);
+        return "User Stored Successfully ";
 
-
-
-        return $request['branch_name'] = null ? $request['branch_name'] = 'Main Branch' : $request['branch_name'] = $request->branch_name;
 
     }
 
@@ -90,55 +63,49 @@ class UserController extends Controller
         // render to Vue
     }
 
-    public function update(UpdateUserRequest $request)
+    public function update(UpdateUserRequest $request, $id)
     {
-        $file_name = $this->saveImage($request->photo, 'images/users');
 
-        User::update([
-            'name' => $request->name,
-            'email' => $request->name,
-            'password' => Hash::make($request->branch_name),
-            'branch_name' => $request->branch_name,
-            'role' => $request->role,
-            'photo' => $file_name,
-            'branch_id' => $request->branch_id,
-            'first_name' => $request->first_name,
-            'middle_name' => $request->middle_name,
-            'last_name' => $request->last_name,
-            'phone' => $request->phone,
-            'mobile' => $request->mobile,
-            'id_number' => $request->id_number,
-        ]);
-        return $request['branch_name'] = null ? $request['branch_name'] = 'Main Branch' : $request['branch_name'] = $request->branch_name;
+        if ($file = $request->file('photo')) {
+            $path = 'photos/users';
+            $url = $this->file($file, $path, 300, 400);
+        }
+        $input = $request->all();
+        $input->photo = $url;
+        $input->branch_name == null ? $input->branch_name = 'Main Branch' : $input->branch_name = $request->branch_name;
 
-
+        $user = User::find($id)->update($input);
+        if ($user)
+            return ' User updated successfully';
     }
-
 
     public function destroy($id)
     {
-
-
-        User::find($id)->where('id', '!=', '1')->delete();
-
-//        if (!$this->isAdmin(1)) {
-        // 1 = super admin id
-
-
-//            return 'user deleted';
-        //
-//        }
-//        return 'user cannot be deleted Admin';
-
-
-    }
-
-    public function isAdmin($id)
-    {
-        if ($id = 1) {
-            return true;
-        } else {
-            return false;
+        if ($this->isNotSuperAdmin($id)) {
+            User::find($id)->delete();
+            return "User is deleted successfully";
         }
+        return "Super Admin Can not be  deleted";
     }
+
+    public function isSuperAdmin($id)
+    {
+        return $id == 1;
+    }
+
+    public function isNotSuperAdmin($id)
+    {
+        return !$this->isSuperAdmin($id);
+    }
+
+    public function getLastCharacterInString($string)
+    {
+        return $string[strlen($string) - 1];
+    }
+
+    public function isLastCharacterInStringIsNumeric($string)
+    {
+        return is_numeric($this->getLastCharacterInString($string));
+    }
+
 }

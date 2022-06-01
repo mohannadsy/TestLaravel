@@ -185,8 +185,9 @@ return [
         /*
          * Package Service Providers...
          */
-		 
+
 	    Intervention\Image\ImageServiceProvider::class,
+
 
 
         /*
@@ -204,7 +205,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
 
 
-        
+
 
     ],
 

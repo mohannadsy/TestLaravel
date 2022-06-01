@@ -103,12 +103,12 @@ class BranchController extends Controller
         return !$this->isMainBranch($id);
     }
 
-    public function getLastCharacterInString ($string)
+    public function getLastCharacterInString($string)
     {
         return $string[strlen($string)-1];
     }
 
-    public function isLastCharacterInStringIsNumeric ($string)
+    public function isLastCharacterInStringIsNumeric($string)
     {
         return is_numeric($this->getLastCharacterInString($string));
     }
