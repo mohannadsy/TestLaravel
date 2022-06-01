@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -15,11 +16,6 @@ class UserController extends Controller
 {
     use UserTrait;
 
-    public function generateCode()
-    {
-
-//        $userCodec = User::
-    }
 
     public function index() // getAllUsers
     {
@@ -34,6 +30,7 @@ class UserController extends Controller
     public function create()
     {
         // render to Vue
+
 
     }
 
@@ -98,6 +95,7 @@ class UserController extends Controller
         return !$this->isSuperAdmin($id);
     }
 
+
     public function getLastCharacterInString($string)
     {
         return $string[strlen($string) - 1];
@@ -108,4 +106,32 @@ class UserController extends Controller
         return is_numeric($this->getLastCharacterInString($string));
     }
 
+    public function increaseNumberByOne($number)
+    {
+        return $number = $number + 1;
+    }
+
+
+    public function generateCodesInSpecificBranch($id)
+    {
+        $mainBranch = Branch::with('users', 'branches')->find($id);
+        $users = $mainBranch->users;
+        $branches = $mainBranch->branches;
+        foreach ($users as $user) {
+            foreach ($branches as $branch) {
+                $maxBranchCode = Branch::with('users')->max('code');
+                $maxUserCode = User::with('branches')->max('code');
+                $maxCode = max($maxBranchCode, $maxUserCode);
+                if ($this->isLastCharacterInStringIsNumeric($this->getLastCharacterInString($maxCode))) {
+                    $maxCode = $this->increaseNumberByOne($maxCode);
+
+                    return "New Code : " . $mainBranch->code . $maxCode;
+                }
+            }
+        }
+    }
 }
+
+
+
+

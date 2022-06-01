@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Branch extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'code',
         'name',
@@ -19,5 +22,15 @@ class Branch extends Model
         'mobile',
     ];
 
-    use HasFactory;
+    public function users()
+    {
+        return $this->hasMany('App\Models\User','branch_id');
+    }
+
+    public function branches()
+    {
+        return $this->hasMany('App\Models\Branch','branch_id');
+    }
+
+
 }
