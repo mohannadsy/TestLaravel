@@ -13,16 +13,18 @@
                 {{ status }}
             </div>
 
-            <div class="mb-3">
-                <div class="text-white bg-dark">
-                    <label>
+            <div class="log-div mb-3 px-4">
+               <div>
+                    <label class="log-in fs-2">
                        تسجيل الدخول
                     </label>
-                </div>
+
+               </div>
+                
             </div>
             <div class="mb-5">
                 <div>
-                    <label class="custom-control-label">
+                    <label class="custom-control-label fs-5">
                         الرجاء إدخال معلومات الحساب
                     </label>
                 </div>
@@ -100,8 +102,7 @@
                         class="d-flex justify-content-center align-items-baseline"
                     >
                         <label class="custom-control-label">
-                            يمكنك تجربة البرنامج مجانا من خلال الضغط على تجربة
-                            المستخدم
+                            يمكنك تجربة البرنامج مجانا من خلال الضغط على <button class="bold">التجربة الآن</button>
                         </label>
                     </div>
                 </div>
@@ -166,5 +167,16 @@ export default defineComponent({
 <style>
 * {
     direction: rtl;
+    margin: 0;
+    font-size: 1em;
+}
+.log-div{
+    color: white;
+    background-color: black;
+    font-weight: bold;
+
+}
+.bold{
+    font-weight: bold;
 }
 </style>
