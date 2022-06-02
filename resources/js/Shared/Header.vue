@@ -2,7 +2,7 @@
     <header>
         <nav>
             <ul>
-                <li :href="$route('users.create')"><router-link to="/createBranch">إنشاء قرع</router-link></li>
+                <li><router-link to="/createBranch">إنشاء قرع</router-link></li>
             </ul>
         </nav>
     </header>
