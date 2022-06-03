@@ -1,13 +1,25 @@
 <template>
     <header>
         <nav>
-            <ul>
-                <li><router-link to="/createBranch">إنشاء قرع</router-link></li>
-            </ul>
+            <!-- <ul>
+                <li>إنشاء فرع</li>
+                <jet-nav-link :href="route('dashboard')">إنشاء فرع</jet-nav-link>
+            </ul> -->
+            <Link href="branch">إنشاء فرع</Link>
+            <Link href="user">إنشاء مستخدم</Link>
         </nav>
     </header>
 </template>
 
+<script>
+import JetNavLink from '@/Jetstream/NavLink.vue';
+import {Link} from "@inertiajs/inertia-vue3";
+export default {
+    components:{
+        JetNavLink,Link
+    }
+}
+</script>
 
 <style scoped>
 header {

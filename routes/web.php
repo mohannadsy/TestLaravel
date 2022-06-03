@@ -35,5 +35,8 @@ use Inertia\Inertia;
 // });
 
 Route::get('/' , function(){
-    return Inertia::render('Auth/Login');
+    return Inertia::render('Home');
 });
+
+Route::inertia('branch','Branches/Index');
+Route::inertia('user','Users/Index');
