@@ -11,6 +11,7 @@ use App\Traits\UserTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 
 class UserController extends Controller
@@ -29,6 +30,8 @@ class UserController extends Controller
     public function create()
     {
         // render to Vue
+
+        return  Inertia::render('Users/index');
 
         return $user = User::create([
             'code' => '1',
@@ -58,7 +61,10 @@ class UserController extends Controller
         $input = $request->all();
         $input->photo = $url;
         User::create($input);
-        return "User Stored Successfully ";
+
+        return Inertia::render('Users/index',compact($input));
+
+
     }
 
     public function show($id)
