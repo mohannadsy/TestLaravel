@@ -40,3 +40,4 @@ Route::get('/' , function(){
 
 Route::inertia('branch','Branches/Index');
 Route::inertia('user','Users/Index');
+Route::inertia('login','Auth/Login');

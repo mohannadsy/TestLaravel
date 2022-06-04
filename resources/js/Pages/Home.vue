@@ -63,7 +63,6 @@ h1 a.router-link-active {
 header nav {
   width: 90%;
   margin: auto;
-  display: flex;
   justify-content: space-between;
   align-items: center;
 }
