@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Traits\UserTrait;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -51,10 +52,9 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        if ($file = $request->file('photo')) {
-            $path = 'photos/users';
-            $url = $this->file($file, $path, 300, 400);
-        }
+
+        $url = $this->getImageURL($request);
+
         $input = $request->all();
         $input->photo = $url;
         User::create($input);
@@ -71,12 +71,16 @@ class UserController extends Controller
         // render to Vue
     }
 
-    public function update(UpdateUserRequest $request, $id)
-    {
+
+    public function getImageURL(Request $request){
         if ($file = $request->file('photo')) {
             $path = 'photos/users';
             $url = $this->file($file, $path, 300, 400);
         }
+    }
+    public function update(UpdateUserRequest $request, $id)
+    {
+        $url = $this->getImageURL($request);
         $input = $request->all();
         $input->photo = $url;
         $user = User::find($id)->update($input);
@@ -120,10 +124,10 @@ class UserController extends Controller
     }
 
 
-    public function generateNextCode($branch_id){
+    public function generateNextCode($branch_id)
+    {
 
-      return  $user = User::where('branch_id' , $branch_id)->last()->code +1 ;
-
+        return $user = User::where('branch_id', $branch_id)->last()->code + 1;
 
 
     }
