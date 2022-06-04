@@ -42,7 +42,7 @@ class UserController extends Controller
         }
         $input = $request->all();
         $input->photo = $url;
-        $input->branch_name == null ? $input->branch_name = 'Main Branch' : $input->branch_name = $request->branch_name;
+//        $input->branch_id == null ? $input->branch_id = 1 : $input->branch_id = $request->branch_id;
 
         User::create($input);
         return "User Stored Successfully ";
@@ -69,7 +69,7 @@ class UserController extends Controller
         }
         $input = $request->all();
         $input->photo = $url;
-        $input->branch_name == null ? $input->branch_name = 'Main Branch' : $input->branch_name = $request->branch_name;
+//        $input->branch_id == null ? $input->branch_id = 1 : $input->branch_id = $request->branch_id;
 
         $user = User::find($id)->update($input);
         if ($user)
@@ -112,24 +112,23 @@ class UserController extends Controller
     }
 
 
-    public function generateCodesInSpecificBranch($id)
-    {
-        $mainBranch = Branch::with('users', 'branches')->find($id);
-        $users = $mainBranch->users;
-        $branches = $mainBranch->branches;
-        foreach ($users as $user) {
-            foreach ($branches as $branch) {
-                $maxBranchCode = Branch::with('users')->max('code');
-                $maxUserCode = User::with('branches')->max('code');
-                $maxCode = max($maxBranchCode, $maxUserCode);
-                if ($this->isLastCharacterInStringIsNumeric($this->getLastCharacterInString($maxCode))) {
-                    $maxCode = $this->increaseNumberByOne($maxCode);
-
-                    return "New Code : " . $mainBranch->code . $maxCode;
-                }
-            }
-        }
-    }
+//    public function generateCodesInSpecificBranch($id)
+//    {
+//        $mainBranch = Branch::with('users', 'branches')->find($id);
+//        $users = $mainBranch->users;
+//        $branches = $mainBranch->branches;
+//        foreach ($users as $user) {
+//            foreach ($branches as $branch) {
+//                $maxBranchCode = Branch::with('users')->max('code');
+//                $maxUserCode = User::with('branches')->max('code');
+//                $maxCode = max($maxBranchCode, $maxUserCode);
+//                if ($this->isLastCharacterInStringIsNumeric($this->getLastCharacterInString($maxCode))) {
+//                    $maxCode = $this->increaseNumberByOne($maxCode);
+//                    return "New Code : " . $mainBranch->code . $maxCode;
+//                }
+//            }
+//        }
+//    }
 }
 
 
