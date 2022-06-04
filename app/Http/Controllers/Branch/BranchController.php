@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Branch;
 
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
-use App\Http\Requests\StoreBranshRequest;
-use App\Http\Requests\UpdateBranshRequest;
+use App\Http\Requests\StoreBranchRequest;
+use App\Http\Requests\UpdateBranchRequest;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -34,10 +34,10 @@ class BranchController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\StoreBranshRequest $request
+     * @param \App\Http\Requests\StoreBranchRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBranshRequest $request)
+    public function store(StoreBranchRequest $request)
     {
         //insert to Database
         Branch::create($request->all());
@@ -47,7 +47,7 @@ class BranchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Branch $bransh
+     * @param \App\Models\Branch $branch
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -58,10 +58,10 @@ class BranchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Branch $bransh
+     * @param \App\Models\Branch $branch
      * @return \Illuminate\Http\Response
      */
-    public function edit(Branch $bransh)
+    public function edit(Branch $branch)
     {
 //         render to Vue 'branches.edit'
     }
@@ -69,11 +69,11 @@ class BranchController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\UpdateBranshRequest $request
-     * @param \App\Models\Branch $bransh
+     * @param \App\Http\Requests\UpdateBranchRequest $request
+     * @param \App\Models\Branch $branch
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBranshRequest $request, $id)
+    public function update(UpdateBranchRequest $request, $id)
     {
         return $branch = Branch::find($id)->update($request->all());
         if ($branch)
@@ -83,7 +83,7 @@ class BranchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Branch $bransh
+     * @param \App\Models\Branch $branch
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
