@@ -7,6 +7,7 @@ use App\Models\Branch;
 use App\Http\Requests\StoreBranshRequest;
 use App\Http\Requests\UpdateBranshRequest;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class BranchController extends Controller
 {
@@ -27,7 +28,7 @@ class BranchController extends Controller
      */
     public function create()
     {
-        // render to Vue 'branches.create'
+        return  Inertia::render('Branches/Index');
     }
 
     /**
@@ -62,7 +63,7 @@ class BranchController extends Controller
      */
     public function edit(Branch $bransh)
     {
-        // render to Vue 'branches.edit'
+//         render to Vue 'branches.edit'
     }
 
     /**
@@ -115,8 +116,16 @@ class BranchController extends Controller
     }
 
 
-    public function generateNextCode($branch_id)
+    public function generateNextCodeOfPartialBranch($branch_id)
     {
-        return $beanch = Branch::where('branch_id', $branch_id)->last()->code + 1;
+        return $branch = Branch::where('branch_id', $branch_id)->last()->code + 1;
+    }
+    public function getMainBranch()
+    {
+        return $mainBranches=Branch::where('branch_id','null');
+    }
+    public function generateNextCodeOfMainBranch()
+    {
+        return $branch = $this->getMainBranch()->last()->code + 1;
     }
 }

@@ -11,6 +11,7 @@ use App\Traits\UserTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 
 class UserController extends Controller
@@ -123,14 +124,20 @@ class UserController extends Controller
         return $number = $number + 1;
     }
 
-
     public function generateNextCode($branch_id)
     {
-
         return $user = User::where('branch_id', $branch_id)->last()->code + 1;
-
-
     }
+
+    public function assignRoleToUser($userId,$roleId)
+    {
+       $user= User::find($userId)->get();
+       $roleName=Role::find($roleId)->get()->name;
+       $user->hasRole($roleName);
+       return 'done';
+    }
+
+
 
 }
 
