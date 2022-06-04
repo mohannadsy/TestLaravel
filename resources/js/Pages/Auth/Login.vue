@@ -53,6 +53,10 @@
                         autocomplete="current-password"
                     />
                 </div>
+                <div class="mb-3">
+                    <base-input variant="input-green">label</base-input>
+
+                </div>
 
                 <div class="mb-3">
                     <div class="custom-control custom-checkbox">
@@ -121,6 +125,7 @@ import JetCheckbox from "@/Jetstream/Checkbox.vue";
 import JetLabel from "@/Jetstream/Label.vue";
 import JetValidationErrors from "@/Jetstream/ValidationErrors.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import BaseInput from "../../Shared/BaseInput.vue";
 
 export default defineComponent({
     components: {
@@ -133,6 +138,7 @@ export default defineComponent({
         JetLabel,
         JetValidationErrors,
         Link,
+        BaseInput,
     },
 
     props: {
