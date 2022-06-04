@@ -42,6 +42,18 @@
                         autofocus
                     />
                 </div>
+                <!-- <div class="mb-3">
+                    
+                    <element-form-input
+                    label="number"
+                        id="num"
+                        type="number"
+                        placeholder="اسم المستخدم أو البريد الالكتروني"
+                        v-model="form.number"
+                        required
+                        autofocus
+                    />
+                </div> -->
 
                 <div class="mb-3">
                     <jet-label for="password" value="كلمة المرور" />
@@ -122,6 +134,7 @@ import JetCheckbox from "@/Jetstream/Checkbox.vue";
 import JetLabel from "@/Jetstream/Label.vue";
 import JetValidationErrors from "@/Jetstream/ValidationErrors.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import ElementFormInput from "../../Shared/ElementFormInput.vue"
 
 
 export default defineComponent({
@@ -135,6 +148,7 @@ export default defineComponent({
         JetLabel,
         JetValidationErrors,
         Link,
+        ElementFormInput,
     },
 
     props: {
@@ -147,6 +161,7 @@ export default defineComponent({
             form: this.$inertia.form({
                 email: "",
                 password: "",
+                number:"",
                 remember: false,
             }),
         };
