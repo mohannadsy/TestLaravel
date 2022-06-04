@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345clauda'),
             'branch_name' => 'Main Branch',
             'role' => 'Casher',
-            'photo'=>'qqq',
+//            'photo'=>'qqq',
             'branch_id' => '1',
             'first_name' => 's',
             'middle_name' => 's',

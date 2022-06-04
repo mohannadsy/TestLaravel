@@ -16,7 +16,6 @@ class UserController extends Controller
 {
     use UserTrait;
 
-
     public function index() // getAllUsers
     {
         if (Auth::user()) {
@@ -24,13 +23,29 @@ class UserController extends Controller
         } else {
             return 'you are not allowed to do this';
         }
-
     }
 
     public function create()
     {
         // render to Vue
 
+        return $user = User::create([
+            'code' => '1',
+            'name' => 'Clauda Al-Rakkad',
+            'email' => 'claudaaa@gmail.com',
+            'password' => bcrypt('12345aaclauda'),
+            'branch_name' => 'Main Branch',
+            'role' => 'Casher',
+//            'photo'=>'qqq',
+            'branch_id' => 'Clauda',
+            'first_name' => 's',
+            'middle_name' => 'Al-Rakkad',
+            'last_name' => 's',
+            'phone' => '09913646374',
+            'mobile' => '0414949494',
+            'id_number' => '001123938373774',
+
+        ]);
 
     }
 
@@ -42,12 +57,8 @@ class UserController extends Controller
         }
         $input = $request->all();
         $input->photo = $url;
-//        $input->branch_id == null ? $input->branch_id = 1 : $input->branch_id = $request->branch_id;
-
         User::create($input);
         return "User Stored Successfully ";
-
-
     }
 
     public function show($id)
@@ -62,15 +73,12 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, $id)
     {
-
         if ($file = $request->file('photo')) {
             $path = 'photos/users';
             $url = $this->file($file, $path, 300, 400);
         }
         $input = $request->all();
         $input->photo = $url;
-//        $input->branch_id == null ? $input->branch_id = 1 : $input->branch_id = $request->branch_id;
-
         $user = User::find($id)->update($input);
         if ($user)
             return ' User updated successfully';
@@ -112,23 +120,14 @@ class UserController extends Controller
     }
 
 
-//    public function generateCodesInSpecificBranch($id)
-//    {
-//        $mainBranch = Branch::with('users', 'branches')->find($id);
-//        $users = $mainBranch->users;
-//        $branches = $mainBranch->branches;
-//        foreach ($users as $user) {
-//            foreach ($branches as $branch) {
-//                $maxBranchCode = Branch::with('users')->max('code');
-//                $maxUserCode = User::with('branches')->max('code');
-//                $maxCode = max($maxBranchCode, $maxUserCode);
-//                if ($this->isLastCharacterInStringIsNumeric($this->getLastCharacterInString($maxCode))) {
-//                    $maxCode = $this->increaseNumberByOne($maxCode);
-//                    return "New Code : " . $mainBranch->code . $maxCode;
-//                }
-//            }
-//        }
-//    }
+    public function generateNextCode($branch_id){
+
+      return  $user = User::where('branch_id' , $branch_id)->last()->code +1 ;
+
+
+
+    }
+
 }
 
 

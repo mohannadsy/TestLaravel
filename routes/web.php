@@ -45,7 +45,10 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('index', [\App\Http\Controllers\User\UserController::class, 'index']);
     Route::get('create', [\App\Http\Controllers\User\UserController::class, 'create']);
     Route::get('show/{id}', [\App\Http\Controllers\User\UserController::class, 'show']);
-    Route::get('generateCodesInSpecificBranch/{id}', [\App\Http\Controllers\User\UserController::class, 'generateCodesInSpecificBranch']);
+//    Route::get('generateCodesInSpecificBranch/{id}', [\App\Http\Controllers\User\UserController::class, 'generateCodesInSpecificBranch']);
+//    Route::get('mainGenerateCode/{id}', [\App\Http\Controllers\User\UserController::class, 'mainGenerateCode']);
+
+
 
     Route::get('store', [\App\Http\Controllers\User\UserController::class, 'store']);
     Route::get('edit', [\App\Http\Controllers\User\UserController::class, 'edit']);

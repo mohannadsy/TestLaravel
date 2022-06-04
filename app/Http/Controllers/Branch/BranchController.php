@@ -114,4 +114,12 @@ class BranchController extends Controller
         return is_numeric($this->getLastCharacterInString($string));
     }
 
+
+    public function generateNextCode($branch_id)
+    {
+
+        return $beanch = Branch::where('branch_id', $branch_id)->last()->code + 1;
+
+
+    }
 }
