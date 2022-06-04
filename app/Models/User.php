@@ -8,10 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
+use App\Models\Branch;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+
+
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -24,9 +27,24 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+        'code',
         'name',
         'email',
         'password',
+        'branch_name',
+        'role', // الصفة
+        'branch_id',
+        'photo',
+
+
+        //
+        'first_name',
+        'middle_name',
+        'last_name',
+        'phone',
+        'mobile',
+        'id_number'
+
     ];
 
     /**
@@ -55,6 +73,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+
+    public function branch()
+    {
+        return $this->belongsTo('App\Models\Branch', 'branch_id');
+    }
+
     protected $appends = [
         'profile_photo_url',
     ];
