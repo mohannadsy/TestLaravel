@@ -23,7 +23,6 @@ class StoreUserRequest extends FormRequest
      */
     public function rules()
     {
-
         return $rules = [
             'code' => 'required|unique|string:users,code',
             'name' => 'required|max:50|unique|string:users,name',
@@ -67,10 +66,8 @@ class StoreUserRequest extends FormRequest
             'branch_name.string' => 'اسم الفرع يجب أن يكون محارف',
             'role.string' => 'صفة لامستخدم يجب أن تكون محارف',
 
-
             'branch_id.max' => 'رمز الفرع الرئيسي تجاوز 50 رقم',
             'branch_id.numeric' => 'رمز الفرع الرئيسي يجب أن يكون ارقام',
-
 
             'phone.max' => 'رقم الهاتف تجاوز 50 رقم',
             'phone.unique' => 'رقم الهاتف مُدخل سابقاً لمستخدم آخر',
