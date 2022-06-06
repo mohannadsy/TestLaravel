@@ -1,20 +1,20 @@
 <template>
     <div class="row">
         <div class="col-6">
-            <create-branch></create-branch>
+            <branch-tree></branch-tree>
         </div>
         <div class="col-6">
-            <show-branch></show-branch>
+            <create-branch></create-branch>
         </div>
     </div>
 </template>
 
 <script>
 import CreateBranch from './CreateBranch.vue';
-import ShowBranch from './ShowBranch.vue';
+import BranchTree from '../Tree/BranchTree.vue';
 export default {
     components:{
-        CreateBranch,ShowBranch
+        CreateBranch,BranchTree
     },
     computed:{
         showPara(){

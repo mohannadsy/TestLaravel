@@ -7,12 +7,7 @@ use App\Models\Branch;
 use App\Http\Requests\StoreBranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-use Illuminate\Http\Request;
-
-=======
 use Inertia\Inertia;
->>>>>>> 0f4f04cb782188aa9d1c7ab3b069ea85cf00551f
 
 class BranchController extends Controller
 {
