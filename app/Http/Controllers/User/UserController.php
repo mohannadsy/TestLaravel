@@ -11,6 +11,8 @@ use App\Traits\UserTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Inertia\Inertia;
 
 
 class UserController extends Controller
@@ -29,6 +31,8 @@ class UserController extends Controller
     public function create()
     {
         // render to Vue
+
+        return  Inertia::render('Users/index');
 
         return $user = User::create([
             'code' => '1',
@@ -52,13 +56,15 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-
-        $url = $this->getImageURL($request);
-
-        $input = $request->all();
-        $input->photo = $url;
+        $input = $request->validated();
+        $input->photo = $this->getImageURL($request);;
+        $input->role=$this->assignRole($request->role);
+        $this->givePermissionTo($request->$permissions);
         User::create($input);
-        return "User Stored Successfully ";
+
+        return Inertia::render('Users/index',compact($input));
+
+
     }
 
     public function show($id)
@@ -123,14 +129,20 @@ class UserController extends Controller
         return $number = $number + 1;
     }
 
-
     public function generateNextCode($branch_id)
     {
-
         return $user = User::where('branch_id', $branch_id)->last()->code + 1;
-
-
     }
+
+    public function assignRoleToUser($userId,$roleId)
+    {
+       $userName= User::find($userId);
+       $roleName=Role::find($roleId)->name;
+        $userName->assignRole($roleName);
+       return 'done';
+    }
+
+
 
 }
 

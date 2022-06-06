@@ -82,6 +82,9 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('edit', [\App\Http\Controllers\User\UserController::class, 'edit']);
     Route::get('update', [\App\Http\Controllers\User\UserController::class, 'update']);
     Route::get('delete/{id}', [\App\Http\Controllers\User\UserController::class, 'destroy']);
+    Route::get('assignRoleToUser/{userid}/{roleid}', [\App\Http\Controllers\User\UserController::class, 'assignRoleToUser']);
+
+
 });
 /////////////////////////
 //BranchRoute//

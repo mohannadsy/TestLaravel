@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateBranshRequest extends FormRequest
+class StoreBranchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateBranshRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,17 +23,17 @@ class UpdateBranshRequest extends FormRequest
      */
     public function rules()
     {
-             return $rules=[
-                 'code'                   =>'required|unique|string:branches,code',
-                 'name'                   =>'required|max:50|unique|string:branches,name' ,
-                 'branch_id'              =>'max:50|numeric:branches,branch_id' ,
-                 'responsibility'         =>'max:250|string:branches,responsibility',
-                 'address'                =>'max:100|string:branches,address',
-                 'website'                =>'unique|string:branches,website',
-                 'email'                  =>'unique|string|email:branches,email',
-                 'phone'                  =>'max:50|unique|string:branches,phone',
-                 'mobile'                 =>'max:50|unique|string:branches,mobile',
-             ];
+        return $rules=[
+            // 'code'                   =>'required|unique|string:branches,code',
+            // 'name'                   =>'required|max:50|unique|string:branches,name' ,
+            // 'branch_id'              =>'max:50|numeric:branches,branch_id' ,
+            // 'responsibility'         =>'max:250|string:branches,responsibility',
+            // 'address'                =>'max:100|string:branches,address',
+            // 'website'                =>'unique|string:branches,website',
+            // 'email'                  =>'unique|string|email:branches,email',
+            // 'phone'                  =>'max:50|unique|string:branches,phone',
+            // 'mobile'                 =>'max:50|unique|string:branches,mobile',
+        ];
     }
 
     public function messages()
