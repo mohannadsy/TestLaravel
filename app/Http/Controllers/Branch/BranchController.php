@@ -7,6 +7,8 @@ use App\Models\Branch;
 use App\Http\Requests\StoreBranshRequest;
 use App\Http\Requests\UpdateBranshRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 class BranchController extends Controller
 {
