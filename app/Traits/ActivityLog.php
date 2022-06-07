@@ -3,13 +3,13 @@
 
 namespace App\Traits;
 
-use App\Models\ActivityLog;
+use App\Models\Activity;
 use Illuminate\Support\Facades\Auth;
 
 trait  ActivityLog{
     public function makeActivity ($activity){
         if($activity['operation'] == 'update')
-        ActivityLog::create([
+        Activity::create([
                 'name' => $activity['model'],
                 'operations' => $activity['operation'],
                 'user_id' => Auth::id(),
@@ -17,7 +17,7 @@ trait  ActivityLog{
                 'old_data' => 'data'
             ]);
         else
-        ActivityLog::create([
+        Activity::create([
                 'name' => $activity['model'],
                 'operations' => $activity['operation'],
                 'user_id' => Auth::id(),
