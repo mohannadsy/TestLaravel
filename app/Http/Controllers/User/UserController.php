@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Traits\UserTrait;
+use App\Traits\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +18,7 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    use UserTrait;
+    use UserTrait , ActivityLog;
 
     public function index() // getAllUsers
     {
@@ -31,27 +32,10 @@ class UserController extends Controller
     public function create()
     {
         // render to Vue
-
+        $this->__call('create',null);
         return  Inertia::render('Users/index');
 
-        return $user = User::create([
-            'code' => '1',
-            'name' => 'Clauda Al-Rakkad',
-            'email' => 'claudaaa@gmail.com',
-            'password' => bcrypt('12345aaclauda'),
-            'branch_name' => 'Main Branch',
-            'role' => 'Casher',
-//            'photo'=>'qqq',
-            'branch_id' => 'Clauda',
-            'first_name' => 's',
-            'middle_name' => 'Al-Rakkad',
-            'last_name' => 's',
-            'phone' => '09913646374',
-            'mobile' => '0414949494',
-            'id_number' => '001123938373774',
-
-        ]);
-
+        
     }
 
     public function store(StoreUserRequest $request)
@@ -59,7 +43,7 @@ class UserController extends Controller
         $input = $request->validated();
         $input->photo = $this->getImageURL($request);;
         $input->role=$this->assignRole($request->role);
-        $this->givePermissionTo($request->$permissions);
+        $this->givePermissionTo($request->permissions);
         User::create($input);
 
         return Inertia::render('Users/index',compact($input));
@@ -142,7 +126,17 @@ class UserController extends Controller
        return 'done';
     }
 
-
+    public function __call($method, $parameters)
+    {
+        if(method_exists($this , $method)){
+            $this->makeActivity([
+                'model' => 'User',
+                'operation' => $method,
+                'parameters' => $parameters
+            ]);
+            return call_user_func_array(array($this , $method) , $parameters);
+        }
+    }
 
 }
 
