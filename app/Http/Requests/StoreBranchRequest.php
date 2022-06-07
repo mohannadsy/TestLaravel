@@ -13,7 +13,7 @@ class StoreBranchRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,15 +24,15 @@ class StoreBranchRequest extends FormRequest
     public function rules()
     {
         return $rules=[
-            'code'                   =>'required|unique|string:branches,code',
-            'name'                   =>'required|max:50|unique|string:branches,name' ,
-            'branch_id'              =>'max:50|numeric:branches,branch_id' ,
-            'responsibility'         =>'max:250|string:branches,responsibility',
-            'address'                =>'max:100|string:branches,address',
-            'website'                =>'unique|string:branches,website',
-            'email'                  =>'unique|string|email:branches,email',
-            'phone'                  =>'max:50|unique|string:branches,phone',
-            'mobile'                 =>'max:50|unique|string:branches,mobile',
+            // 'code'                   =>'required|unique|string:branches,code',
+            // 'name'                   =>'required|max:50|unique|string:branches,name' ,
+            // 'branch_id'              =>'max:50|numeric:branches,branch_id' ,
+            // 'responsibility'         =>'max:250|string:branches,responsibility',
+            // 'address'                =>'max:100|string:branches,address',
+            // 'website'                =>'unique|string:branches,website',
+            // 'email'                  =>'unique|string|email:branches,email',
+            // 'phone'                  =>'max:50|unique|string:branches,phone',
+            // 'mobile'                 =>'max:50|unique|string:branches,mobile',
         ];
     }
 
