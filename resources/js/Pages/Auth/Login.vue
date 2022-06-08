@@ -13,15 +13,10 @@
                 {{ status }}
             </div>
 
-            <div class="log-div mb-3 px-4">
-               <div>
-                    <label class="log-in fs-2">
-                       تسجيل الدخول
-                    </label>
-
-               </div>
-                
+            <div class="mb-3">
+               <page-title>تسجيل الدخول</page-title> 
             </div>
+            
             <div class="mb-5">
                 <div>
                     <label class="custom-control-label fs-5">
@@ -42,18 +37,18 @@
                         autofocus
                     />
                 </div>
-                <!-- <div class="mb-3">
+                <div class="mb-3">
                     
                     <element-form-input
-                    label="number"
+                        label="اسم المستخدم أو البريد الاكتروني"
                         id="num"
                         type="number"
-                        placeholder="اسم المستخدم أو البريد الالكتروني"
+                        placeholder=""
                         v-model="form.number"
                         required
                         autofocus
                     />
-                </div> -->
+                </div>
 
                 <div class="mb-3">
                     <jet-label for="password" value="كلمة المرور" />
@@ -67,7 +62,7 @@
                 </div>
         
 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <div class="custom-control custom-checkbox">
                         <jet-checkbox
                             id="remember_me"
@@ -76,6 +71,17 @@
                         />
 
                         <label class="custom-control-label" for="remember_me">
+                            تذكر كلمة المرور
+                        </label>
+                    </div>
+                </div> -->
+                <div class="mb-3">
+                    <div class="custom-control custom-checkbox">
+                        <check-box id="remember_me"
+                                    name="remember"
+                                    v-model:checked="form.remember"
+                        />
+                        <label for="remember_me" class="custom-control-label" >
                             تذكر كلمة المرور
                         </label>
                     </div>
@@ -135,6 +141,8 @@ import JetLabel from "@/Jetstream/Label.vue";
 import JetValidationErrors from "@/Jetstream/ValidationErrors.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import ElementFormInput from "../../Shared/ElementFormInput.vue"
+import PageTitle from "../../Shared/PageTitle.vue";
+import CheckBox from "../../Shared/CheckBox.vue";
 
 
 export default defineComponent({
@@ -149,6 +157,8 @@ export default defineComponent({
         JetValidationErrors,
         Link,
         ElementFormInput,
+        PageTitle,
+        CheckBox,
     },
 
     props: {
@@ -187,12 +197,7 @@ export default defineComponent({
     margin: 0;
     font-size: 1em;
 }
-.log-div{
-    color: white;
-    background-color: black;
-    font-weight: bold;
 
-}
 .bold{
     font-weight: bold;
 }
