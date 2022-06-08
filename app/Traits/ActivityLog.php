@@ -13,7 +13,7 @@ trait  ActivityLog{
                 'name' => $activity['model'],
                 'operations' => $activity['operation'],
                 'user_id' => Auth::id(),
-//                'table_id'=>$activity['parameters']->id,
+                'table_id'=>$activity[id],
                 'old_data' => 'data'
             ]);
         else

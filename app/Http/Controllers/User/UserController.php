@@ -80,6 +80,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        $this->callActivity('create',$id);
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->delete();
             return "User is deleted successfully";
