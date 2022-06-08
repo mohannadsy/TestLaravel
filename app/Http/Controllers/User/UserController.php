@@ -32,10 +32,10 @@ class UserController extends Controller
     public function create()
     {
         // render to Vue
-        $this->__call('create',null);
+        $this->callActivity('create',null);
         return  Inertia::render('Users/index');
 
-        
+
     }
 
     public function store(StoreUserRequest $request)
@@ -126,16 +126,13 @@ class UserController extends Controller
        return 'done';
     }
 
-    public function __call($method, $parameters)
+    public function callActivity($method, $parameters)
     {
-        if(method_exists($this , $method)){
             $this->makeActivity([
                 'model' => 'User',
                 'operation' => $method,
                 'parameters' => $parameters
             ]);
-            return call_user_func_array(array($this , $method) , $parameters);
-        }
     }
 
 }
