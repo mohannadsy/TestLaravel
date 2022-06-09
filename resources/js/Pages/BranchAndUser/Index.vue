@@ -1,9 +1,14 @@
 <template>
     <div class="row">
         <div class="col-4">
-            <tree-view  id="my-tree" :load-nodes-async="loadNodesAsync" :model-defaults="modelDefaults"  ></tree-view>
+            <tree-view
+             :load-nodes-async="loadNodesAsync"
+             v-for="data in dataModel"
+             :key="data.id"
+             >
+             </tree-view>
         </div>
-        <div class="col-4">
+        <div class="col-8">
             <create-branch @add-branch="addBranch"></create-branch>
         </div>
     </div>
@@ -19,38 +24,31 @@ export default {
     },
     data() {
         return {
-            modelDefaults: {
-            loadNodesAsync: this.loadNodesAsync,
-          },
             dataModel: [
           {
             id: '123',
             label: 'الفرع الرئيسي',
-            children: [
-                {
-                  id: '1',
-                  label: "اللاذقية",
-                }]
-          },{
-              id:'123',
-              label:'جبلة'
           }
           ]
         }
     },
+    // mounted(){
+    //   this.loadNodesAsync();
+    // },
     methods:{
      async loadNodesAsync() {
-          return new Promise(resolve => setTimeout(resolve.bind(null, this.dataModel), 1000));
+          return new Promise(resolve => setTimeout(resolve(this.dataModel), 1000));
         },
     addBranch(code,name){
-      console.log('Yesss');
       const newBranch={
         id: code,
-        label: name
+        label: name,
         };
-    this.dataModel.push(newBranch);
-    console.log('Nooo');
-    console.log(this.dataModel)
+        const index = this.dataModel.findIndex(object => object.id === newBranch.id);
+        if (index === -1) {
+          this.dataModel.push(newBranch);
+        }
+        //this.dataModel.push(newBranch);
     }
     }
 }
