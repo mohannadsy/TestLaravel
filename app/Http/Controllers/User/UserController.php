@@ -18,7 +18,7 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    use UserTrait , ActivityLog;
+    use UserTrait, ActivityLog;
 
     public function index() // getAllUsers
     {
@@ -32,8 +32,8 @@ class UserController extends Controller
     public function create()
     {
         // render to Vue
-        $this->callActivity('create',null);
-        return  Inertia::render('Users/index');
+        $this->callActivity('create', null);
+        return Inertia::render('Users/index');
 
 
     }
@@ -41,12 +41,12 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $input = $request->validated();
-        $input->photo = $this->getImageURL($request);;
-        $input->role=$this->assignRole($request->role);
+        $input->profile_photo_path = $this->getImageURL($request);;
+        $input->role = $this->assignRole($request->role);
         $this->givePermissionTo($request->permissions);
         User::create($input);
 
-        return Inertia::render('Users/index',compact($input));
+        return Inertia::render('Users/index', compact($input));
 
 
     }
@@ -62,26 +62,43 @@ class UserController extends Controller
     }
 
 
-    public function getImageURL(Request $request){
-        if ($file = $request->file('photo')) {
+    public function getImageURL(Request $request)
+    {
+        if ($file = $request->file('profile_photo_path')) {
             $path = 'photos/users';
             $url = $this->file($file, $path, 300, 400);
         }
     }
+
     public function update(UpdateUserRequest $request, $id)
     {
         $url = $this->getImageURL($request);
         $input = $request->all();
-        $input->photo = $url;
+        $input->profile_photo_path = $url;
         $user = User::find($id)->update($input);
         if ($user)
             return ' User updated successfully';
     }
 
-    public function destroy($id)
+    public function destroy($id) //  delete - can be restored
     {
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->delete();
+            return "User is deleted successfully";
+        }
+        return "Super Admin Can not be  deleted";
+    }
+
+
+    public function restore($id) // from recycle bin
+    {
+        User::withTrashed()->find($id)->restore();
+    }
+
+    public function forcedelete($id) //can not be restored
+    {
+        if ($this->isNotSuperAdmin($id)) {
+            User::find($id)->forceDelete();
             return "User is deleted successfully";
         }
         return "Super Admin Can not be  deleted";
@@ -117,22 +134,22 @@ class UserController extends Controller
     {
         return $user = User::where('branch_id', $branch_id)->last()->code + 1;
     }
-
-    public function assignRoleToUser($userId,$roleId)
-    {
-       $userName= User::find($userId);
-       $roleName=Role::find($roleId)->name;
-        $userName->assignRole($roleName);
-       return 'done';
-    }
+//
+//    public function assignRoleToUser($userId,$roleId)
+//    {
+//       $userName= User::find($userId);
+//       $roleName=Role::find($roleId)->name;
+//        $userName->assignRole($roleName);
+//       return 'done';
+//    }
 
     public function callActivity($method, $parameters)
     {
-            $this->makeActivity([
-                'model' => 'User',
-                'operation' => $method,
-                'parameters' => $parameters
-            ]);
+        $this->makeActivity([
+            'model' => 'User',
+            'operation' => $method,
+            'parameters' => $parameters
+        ]);
     }
 
 }

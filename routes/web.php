@@ -37,13 +37,13 @@ use App\Http\Controllers\Branch\BranchController;
 //     })->name('dashboard');
 // });
 
-Route::get('/' , function(){
+Route::get('/', function () {
     return Inertia::render('Home');
 });
 
-Route::inertia('branch','Branches/Index');
-Route::inertia('user','Users/Index');
-Route::inertia('login','Auth/Login');
+Route::inertia('branch', 'Branches/Index');
+Route::inertia('user', 'Users/Index');
+Route::inertia('login', 'Auth/Login');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -77,12 +77,12 @@ Route::group(['namespace' => 'User'], function () {
 //    Route::get('mainGenerateCode/{id}', [\App\Http\Controllers\User\UserController::class, 'mainGenerateCode']);
 
 
-
     Route::get('store', [\App\Http\Controllers\User\UserController::class, 'store']);
     Route::get('edit', [\App\Http\Controllers\User\UserController::class, 'edit']);
     Route::get('update', [\App\Http\Controllers\User\UserController::class, 'update']);
     Route::get('delete/{id}', [\App\Http\Controllers\User\UserController::class, 'destroy']);
-    Route::get('assignRoleToUser/{userid}/{roleid}', [\App\Http\Controllers\User\UserController::class, 'assignRoleToUser']);
+    Route::get('restore/{id}', [\App\Http\Controllers\User\UserController::class, 'restore']);
+    Route::get('forcedelete/{id}', [\App\Http\Controllers\User\UserController::class, 'forcedelete']);
 
 
 });
