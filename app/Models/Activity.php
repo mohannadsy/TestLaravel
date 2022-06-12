@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     use HasFactory;
-    protected $fillable=['name','operations','table_id','old_data'];
+    protected $fillable=['table','user_id','table_id','operations','old_data'];
 
 }

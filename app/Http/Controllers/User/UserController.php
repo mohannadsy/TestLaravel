@@ -43,7 +43,7 @@ class UserController extends Controller
         $input = $request->validated();
         $input->profile_photo_path = $this->getImageURL($request);;
         $input->role = $this->assignRole($request->role);
-        $this->givePermissionTo($request->permissions);
+//        $this->givePermissionTo($request->permissions);
         User::create($input);
 
         return Inertia::render('Users/index', compact($input));
@@ -80,14 +80,14 @@ class UserController extends Controller
             return ' User updated successfully';
     }
 
-    public function destroy($id) //  delete - can be restored
+    public function delete($id) //  delete - can be restored
     {
-        $this->callActivity('create',$id);
+        $this->callActivity('delete', $id);
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->delete();
             return "User is deleted successfully";
         }
-        return "Super Admin Can not be  deleted";
+        return "Super Admin Can not be deleted";
     }
 
 
@@ -115,40 +115,11 @@ class UserController extends Controller
         return !$this->isSuperAdmin($id);
     }
 
-
-    public function getLastCharacterInString($string)
-    {
-        return $string[strlen($string) - 1];
-    }
-
-    public function isLastCharacterInStringIsNumeric($string)
-    {
-        return is_numeric($this->getLastCharacterInString($string));
-    }
-
-    public function increaseNumberByOne($number)
-    {
-        return $number = $number + 1;
-    }
-
-    public function generateNextCode($branch_id)
-    {
-        return $user = User::where('branch_id', $branch_id)->last()->code + 1;
-    }
-//
-//    public function assignRoleToUser($userId,$roleId)
-//    {
-//       $userName= User::find($userId);
-//       $roleName=Role::find($roleId)->name;
-//        $userName->assignRole($roleName);
-//       return 'done';
-//    }
-
     public function callActivity($method, $parameters)
     {
         $this->makeActivity([
-            'model' => 'User',
-            'operation' => $method,
+            'table' => 'User',
+            'operations' => $method,
             'parameters' => $parameters
         ]);
     }

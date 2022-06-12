@@ -9,5 +9,5 @@ class Trash extends Model
 {
     use HasFactory;
 
-    protected $fillable=['item_id','user_id','table'];
+    protected $fillable=['table','user_id','table_id'];
 }

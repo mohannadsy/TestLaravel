@@ -14,9 +14,11 @@ return new class extends Migration {
     {
         Schema::create('trashes', function (Blueprint $table) {
             $table->id();
-            $table->integerIncrements('item_id');
-            $table->string('user_id');
             $table->string('table');
+            $table->integer('user_id');
+            $table->integer('table_id');
+
+
             $table->timestamps();
         });
     }

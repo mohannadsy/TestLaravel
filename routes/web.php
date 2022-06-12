@@ -80,7 +80,7 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('store', [\App\Http\Controllers\User\UserController::class, 'store']);
     Route::get('edit', [\App\Http\Controllers\User\UserController::class, 'edit']);
     Route::get('update', [\App\Http\Controllers\User\UserController::class, 'update']);
-    Route::get('delete/{id}', [\App\Http\Controllers\User\UserController::class, 'destroy']);
+    Route::get('delete/{id}', [\App\Http\Controllers\User\UserController::class, 'delete']);
     Route::get('restore/{id}', [\App\Http\Controllers\User\UserController::class, 'restore']);
     Route::get('forcedelete/{id}', [\App\Http\Controllers\User\UserController::class, 'forcedelete']);
 

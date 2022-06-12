@@ -15,10 +15,10 @@ return new class extends Migration {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
+            $table->string('table');
             $table->string('operations');
-            $table->text('old_data')->nullable();
-//            $table->integer('table_id')->nullable;
+            $table->integer('user_id');
+            $table->integer('table_id')->nullable;
             $table->json('old_data')->nullable();
             $table->timestamps();
         });
