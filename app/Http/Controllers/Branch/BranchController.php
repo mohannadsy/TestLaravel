@@ -40,7 +40,8 @@ class BranchController extends Controller
      */
     public function store(StoreBranchRequest $request)
     {
-        $this->callActivity('insertBranch',$request);
+        $parameters = ['request'=>$request];
+        $this->callActivity('insertBranch',$parameters);
         //insert to Database
         Branch::create($request->all());
         return 'saved successfuly';
@@ -54,7 +55,8 @@ class BranchController extends Controller
      */
     public function show($id)
     {
-        $this->callActivity('showBranch',$id);
+        $parameters = ['id'=>$id];
+        $this->callActivity('showBranch',$parameters);
         return Branch::find($id);
     }
 
@@ -78,7 +80,7 @@ class BranchController extends Controller
      */
     public function update(UpdateBranchRequest $request, $id)
     {
-        $paramters=[$request,$id];
+        $paramters=['request'=>$request,'id'=>$id];
         $this->callActivity('update',$paramters);
         return $branch = Branch::find($id)->update($request->all());
         if ($branch)
@@ -93,7 +95,8 @@ class BranchController extends Controller
      */
     public function delete($id) //  delete - can be restored
     {
-        $this->callActivity('delete', $id);
+        $paramters=['id'=>$id];
+        $this->callActivity('delete', $paramters);
         if ($this->isNotMainBranch($id)) {
             Branch::find($id)->delete();
             return "Branch is deleted successfully";
@@ -103,7 +106,8 @@ class BranchController extends Controller
 
     public function forceDelete($id) //can not be restored
     {
-        $this->callActivity('forceDeleteBranch', $id);
+        $paramters=['id'=>$id];
+        $this->callActivity('forceDeleteBranch', $paramters);
         if ($this->isNotMainBranch($id)) {
             Branch::find($id)->forceDelete();
             return "Branch is deleted successfully";
@@ -113,7 +117,8 @@ class BranchController extends Controller
 
     public function restore($id) // from recycle bin
     {
-        $this->callActivity('restoreBranch', $id);
+        $paramters=['id'=>$id];
+        $this->callActivity('restoreBranch', $paramters);
         Branch::withTrashed()->find($id)->restore();
     }
 

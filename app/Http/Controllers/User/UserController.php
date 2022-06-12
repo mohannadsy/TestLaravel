@@ -51,8 +51,11 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
+
         $this->callActivity('store', $request);
 
+        $parameters = ['request'=>$request];
+        $this->callActivity('Insert User', $parameters);
         $input = $request->validated();
         $input->profile_photo_path = $this->getImageURL($request);;
         $input->role = $this->assignRole($request->role);
@@ -66,8 +69,11 @@ class UserController extends Controller
 
     public function show($id)
     {
+
         $this->callActivity('show', $id);
 
+        $parameters = ['id'=>$id];
+        $this->callActivity('Show User', $id);
         return User::find($id);
     }
 
@@ -87,7 +93,11 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, $id)
     {
+
         $parameters = ['Request' => $request, "Id" => $id];
+
+        $parameters = ['request'=>$request,'id'=> $id];
+
         $this->callActivity('update', $parameters);
 
         $url = $this->getImageURL($request);
@@ -100,7 +110,11 @@ class UserController extends Controller
 
     public function delete($id) //  delete - can be restored
     {
+
 //        $parameters = [$id];
+
+        $parameters = ['id'=>$id];
+
 
         $this->callActivity('delete', ['id' => $id]);
         if ($this->isNotSuperAdmin($id)) {
@@ -113,13 +127,23 @@ class UserController extends Controller
 
     public function restore($id) // from recycle bin
     {
+
         $this->callActivity('restore', $id);
+
+        $parameters = ['id'=>$id];
+        $this->callActivity('Restore User', $parameters);
+
         User::withTrashed()->find($id)->restore();
     }
 
     public function forceDelete($id) //can not be restored
     {
+
         $this->callActivity('forceDelete', $id);
+
+        $parameters = ['id'=>$id];
+        $this->callActivity('Force Delete User', $parameters);
+
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->forceDelete();
             return "User is deleted successfully";
