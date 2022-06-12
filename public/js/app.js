@@ -27495,22 +27495,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      modelDefaults: {
-        loadNodesAsync: this.loadNodesAsync
-      },
       dataModel: [{
         id: '123',
-        label: 'الفرع الرئيسي',
-        children: [{
-          id: '1',
-          label: "اللاذقية"
-        }]
-      }, {
-        id: '123',
-        label: 'جبلة'
+        label: 'الفرع الرئيسي'
       }]
     };
   },
+  // mounted(){
+  //   this.loadNodesAsync();
+  // },
   methods: {
     loadNodesAsync: function loadNodesAsync() {
       var _this = this;
@@ -27521,7 +27514,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 return _context.abrupt("return", new Promise(function (resolve) {
-                  return setTimeout(resolve.bind(null, _this.dataModel), 1000);
+                  return setTimeout(resolve(_this.dataModel), 1000);
                 }));
 
               case 1:
@@ -27533,14 +27526,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     addBranch: function addBranch(code, name) {
-      console.log('Yesss');
       var newBranch = {
         id: code,
         label: name
       };
-      this.dataModel.push(newBranch);
-      console.log('Nooo');
-      console.log(this.dataModel);
+      var index = this.dataModel.findIndex(function (object) {
+        return object.id === newBranch.id;
+      });
+
+      if (index === -1) {
+        this.dataModel.push(newBranch);
+      } //this.dataModel.push(newBranch);
+
     }
   }
 });
@@ -31496,20 +31493,23 @@ var _hoisted_2 = {
   "class": "col-4"
 };
 var _hoisted_3 = {
-  "class": "col-4"
+  "class": "col-8"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_tree_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("tree-view");
 
   var _component_create_branch = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("create-branch");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tree_view, {
-    id: "my-tree",
-    "load-nodes-async": $options.loadNodesAsync,
-    "model-defaults": $data.modelDefaults
-  }, null, 8
-  /* PROPS */
-  , ["load-nodes-async", "model-defaults"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_create_branch, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.dataModel, function (data) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_tree_view, {
+      "load-nodes-async": $options.loadNodesAsync,
+      key: data.id
+    }, null, 8
+    /* PROPS */
+    , ["load-nodes-async"]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_create_branch, {
     onAddBranch: $options.addBranch
   }, null, 8
   /* PROPS */

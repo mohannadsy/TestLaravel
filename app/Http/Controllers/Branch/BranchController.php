@@ -28,7 +28,7 @@ class BranchController extends Controller
      */
     public function create()
     {
-        return  Inertia::render('Branches/Index');
+        return Inertia::render('Branches/Index');
     }
 
     /**
@@ -120,10 +120,12 @@ class BranchController extends Controller
     {
         return $branch = Branch::where('branch_id', $branch_id)->last()->code + 1;
     }
+
     public function getMainBranch()
     {
-        return $mainBranches=Branch::where('branch_id','null');
+        return $mainBranches = Branch::where('branch_id', 'null');
     }
+
     public function generateNextCodeOfMainBranch()
     {
         return $branch = $this->getMainBranch()->last()->code + 1;
