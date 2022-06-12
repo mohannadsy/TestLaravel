@@ -95,7 +95,7 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::post('store', [\App\Http\Controllers\Branch\BranchController::class, 'store'])->name('branch.store');
     Route::get('edit/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'edit'])->name('branch.edit');
     Route::post('update/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'update'])->name('branch.update');
-    Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'destroy'])->name('branch.delete');
+    Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'delete'])->name('branch.delete');
     Route::get('isLastCharacterInStringIsNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
 
 

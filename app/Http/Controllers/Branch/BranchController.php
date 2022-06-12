@@ -86,7 +86,7 @@ class BranchController extends Controller
      * @param \App\Models\Branch $branch
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         if ($this->isNotMainBranch($id)) {
             Branch::find($id)->delete();
