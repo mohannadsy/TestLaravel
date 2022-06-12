@@ -51,7 +51,8 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $this->callActivity('Insert User', $request);
+        $parameters = ['request'=>$request];
+        $this->callActivity('Insert User', $parameters);
 
         $input = $request->validated();
         $input->profile_photo_path = $this->getImageURL($request);;
@@ -66,6 +67,7 @@ class UserController extends Controller
 
     public function show($id)
     {
+        $parameters = ['id'=>$id];
         $this->callActivity('Show User', $id);
 
         return User::find($id);
@@ -87,7 +89,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, $id)
     {
-        $parameters = [$request, $id];
+        $parameters = ['request'=>$request,'id'=> $id];
         $this->callActivity('update', $parameters);
 
         $url = $this->getImageURL($request);
@@ -100,7 +102,7 @@ class UserController extends Controller
 
     public function delete($id ) //  delete - can be restored
     {
-        $parameters = [',',$id];
+        $parameters = ['id'=>$id];
 
         $this->callActivity('delete', $parameters);
         if ($this->isNotSuperAdmin($id)) {
@@ -113,13 +115,15 @@ class UserController extends Controller
 
     public function restore($id) // from recycle bin
     {
-        $this->callActivity('Restore User', $id);
+        $parameters = ['id'=>$id];
+        $this->callActivity('Restore User', $parameters);
         User::withTrashed()->find($id)->restore();
     }
 
     public function forcedelete($id) //can not be restored
     {
-        $this->callActivity('Force Delete User', $id);
+        $parameters = ['id'=>$id];
+        $this->callActivity('Force Delete User', $parameters);
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->forceDelete();
             return "User is deleted successfully";
