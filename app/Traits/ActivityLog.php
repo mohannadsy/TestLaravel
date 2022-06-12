@@ -11,7 +11,8 @@ trait  ActivityLog
 {
     public function makeActivity($activity)
     {
-        if ($activity['operation'] == 'update')
+        if ($activity['operation'] == 'update') {
+            dd($activity);
             Activity::create([
                 'table' => $activity['model'],
                 'operation' => $activity['operation'],
@@ -19,12 +20,15 @@ trait  ActivityLog
                 'table_id' => $activity['id'],
                 'old_data' => 'data'
             ]);
-        elseif ($activity['operation'] == 'delete')
+        }
+        elseif ($activity['operation'] == 'delete') {
+//            dd($activity);
             Trash::create([
                 'table' => $activity['table'],
                 'user_id' => Auth::id(),
-                'table_id' => $activity['id'],
+                'table_id' => $activity['parameters']['id'],
             ]);
+        }
         else
             Activity::create([
                 'table' => $activity['table'],

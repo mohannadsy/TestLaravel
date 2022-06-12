@@ -32,7 +32,6 @@ class UserController extends Controller
 
     public function callActivity($method, $parameters)
     {
-
         $this->makeActivity([
             'table' => 'User',
             'operation' => $method,
@@ -99,13 +98,9 @@ class UserController extends Controller
             return ' User updated successfully';
     }
 
-    public function delete($id) //  delete - can be restored
+    public function delete($id , $id2) //  delete - can be restored
     {
-
-        $parameter = [
-            'id' => $id
-        ];
-        $this->callActivity('delete', $parameter['id']);
+        $this->callActivity('delete', ['id' => $id , 'id2'=>$id2]);
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->delete();
             return "User is deleted successfully";
