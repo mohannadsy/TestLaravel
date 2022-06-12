@@ -30,6 +30,18 @@ class UserController extends Controller
         }
     }
 
+    public function callActivity($method, $parameters)
+    {
+
+        $this->makeActivity([
+            'table' => 'User',
+            'operation' => $method,
+            'parameters' => $parameters
+        ]);
+
+
+    }
+
     public function create()
     {
         // render to Vue
@@ -89,8 +101,11 @@ class UserController extends Controller
 
     public function delete($id) //  delete - can be restored
     {
-        $this->callActivity('delete', $id);
-        $this->callActivity('delete', $id);
+
+        $parameter = [
+            'id' => $id
+        ];
+        $this->callActivity('delete', $parameter['id']);
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->delete();
             return "User is deleted successfully";
@@ -123,15 +138,6 @@ class UserController extends Controller
     public function isNotSuperAdmin($id)
     {
         return !$this->isSuperAdmin($id);
-    }
-
-    public function callActivity($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'User',
-            'operations' => $method,
-            'parameters' => $parameters
-        ]);
     }
 
 }

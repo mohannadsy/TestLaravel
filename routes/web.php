@@ -36,10 +36,12 @@ use App\Http\Controllers\Branch\BranchController;
 //         return Inertia::render('Dashboard');
 //     })->name('dashboard');
 // });
+//
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
+
+//Route::get('/', function () {
+//    return Inertia::render('Home');
+//});
 
 Route::inertia('branch', 'Branches/Index');
 Route::inertia('user', 'Users/Index');
@@ -71,6 +73,7 @@ Route::middleware([
 ///////////////////////
 Route::group(['namespace' => 'User'], function () {
     Route::get('index', [\App\Http\Controllers\User\UserController::class, 'index']);
+    Route::get('callActivity/{m}/{p}', [\App\Http\Controllers\User\UserController::class, 'callActivity']);
     Route::get('create', [\App\Http\Controllers\User\UserController::class, 'create']);
     Route::get('show/{id}', [\App\Http\Controllers\User\UserController::class, 'show']);
 //    Route::get('generateCodesInSpecificBranch/{id}', [\App\Http\Controllers\User\UserController::class, 'generateCodesInSpecificBranch']);

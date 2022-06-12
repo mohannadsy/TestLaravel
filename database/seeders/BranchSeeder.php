@@ -14,7 +14,7 @@ class BranchSeeder extends Seeder
         Branch::create([
             'code' => '1',
             'name' => 'Main Branch',
-//            'branch_id'      => ' ',
+//          'branch_id'      => ' ',
             'responsibility' => '',
             'address' => '',
             'website' => 'mainbranch.com',

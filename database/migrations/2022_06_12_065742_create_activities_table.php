@@ -15,11 +15,11 @@ return new class extends Migration {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
 
-            $table->string('table');
-            $table->string('operation');
-            $table->integer('user_id');
-            $table->integer('table_id')->nullable;
-            $table->json('old_data')->nullable();
+            $table->string('table')->nullable();
+            $table->string('operation')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('table_id')->nullable();
+            $table->json('old_data');
             $table->timestamps();
         });
     }

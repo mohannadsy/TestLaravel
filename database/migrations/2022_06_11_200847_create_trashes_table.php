@@ -14,9 +14,9 @@ return new class extends Migration {
     {
         Schema::create('trashes', function (Blueprint $table) {
             $table->id();
-            $table->string('table');
-            $table->integer('user_id');
-            $table->integer('table_id');
+            $table->string('table')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('table_id')->nullable();
 
 
             $table->timestamps();

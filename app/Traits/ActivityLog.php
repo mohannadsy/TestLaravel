@@ -16,7 +16,7 @@ trait  ActivityLog
                 'table' => $activity['model'],
                 'operation' => $activity['operation'],
                 'user_id' => Auth::id(),
-                'table_id' => $activity[id],
+                'table_id' => $activity['id'],
                 'old_data' => 'data'
             ]);
         elseif ($activity['operation'] == 'delete')
@@ -30,7 +30,7 @@ trait  ActivityLog
                 'table' => $activity['table'],
                 'operation' => $activity['operation'],
                 'user_id' => Auth::id(),
-                'table_id' => $activity['id'],
+//                'table_id' => $activity['id'],
 
             ]);
     }

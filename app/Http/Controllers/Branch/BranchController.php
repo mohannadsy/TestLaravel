@@ -18,7 +18,7 @@ class BranchController extends Controller
      */
     public function index() //getAllBranches
     {
-        $this->callActivity('getAllBranches');
+        $this->callActivity('getAllBranches',null);
         return $Branches = Branch::all();
     }
 
