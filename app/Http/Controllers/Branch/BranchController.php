@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Http\Requests\StoreBranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
+use App\Traits\ActivityLog;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class BranchController extends Controller
 {
+    use  ActivityLog;
     /**
      * Display a listing of the resource.
      *
@@ -162,7 +164,7 @@ class BranchController extends Controller
     {
         $this->makeActivity([
             'table' => 'Branch',
-            'operations' => $method,
+            'operation' => $method,
             'parameters' => $parameters
         ]);
     }

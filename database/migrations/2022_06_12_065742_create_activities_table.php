@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('operation')->nullable();
             $table->integer('user_id')->nullable();
             $table->integer('table_id')->nullable();
-            $table->json('old_data');
+            $table->json('old_data')->nullable();
             $table->timestamps();
         });
     }
