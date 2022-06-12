@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function index() // getAllUsers
     {
-        $this->callActivity('Get All Users', null);
+        $this->callActivity('index', null);
         if (Auth::user()) {
             return User::all();
         } else {
@@ -51,7 +51,7 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $this->callActivity('Insert User', $request);
+        $this->callActivity('store', $request);
 
         $input = $request->validated();
         $input->profile_photo_path = $this->getImageURL($request);;
@@ -66,7 +66,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $this->callActivity('Show User', $id);
+        $this->callActivity('show', $id);
 
         return User::find($id);
     }
@@ -87,7 +87,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, $id)
     {
-        $parameters = [$request, $id];
+        $parameters = ['Request' => $request, "Id" => $id];
         $this->callActivity('update', $parameters);
 
         $url = $this->getImageURL($request);
@@ -98,11 +98,11 @@ class UserController extends Controller
             return ' User updated successfully';
     }
 
-    public function delete($id ) //  delete - can be restored
+    public function delete($id) //  delete - can be restored
     {
-        $parameters = [',',$id];
+//        $parameters = [$id];
 
-        $this->callActivity('delete', $parameters);
+        $this->callActivity('delete', ['id' => $id]);
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->delete();
             return "User is deleted successfully";
@@ -113,13 +113,13 @@ class UserController extends Controller
 
     public function restore($id) // from recycle bin
     {
-        $this->callActivity('Restore User', $id);
+        $this->callActivity('restore', $id);
         User::withTrashed()->find($id)->restore();
     }
 
-    public function forcedelete($id) //can not be restored
+    public function forceDelete($id) //can not be restored
     {
-        $this->callActivity('Force Delete User', $id);
+        $this->callActivity('forceDelete', $id);
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->forceDelete();
             return "User is deleted successfully";
