@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'branch_name' => 'Main Branch',
             'role' => 'Super Admin',// مدير عام
             'branch_id' => '1',
-            'photo'=>'qqq',
+            'profile_photo_path'=>'qqq',
             'first_name' => 's',
             'middle_name' => 's',
             'last_name' => 's',
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345noor'),
             'branch_name' => 'Main Branch',
             'role' => 'Accountant',
-            'photo'=>'qqq',
+            'profile_photo_path'=>'qqq',
             'branch_id' => '1',
             'first_name' => 'a',
             'middle_name' => 's',

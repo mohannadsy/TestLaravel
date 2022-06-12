@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
 
             $table->string('table');
-            $table->string('operations');
+            $table->string('operation');
             $table->integer('user_id');
             $table->integer('table_id')->nullable;
             $table->json('old_data')->nullable();

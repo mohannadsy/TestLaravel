@@ -14,21 +14,21 @@ trait  ActivityLog
         if ($activity['operation'] == 'update')
             Activity::create([
                 'table' => $activity['model'],
-                'operations' => $activity['operation'],
+                'operation' => $activity['operation'],
                 'user_id' => Auth::id(),
                 'table_id' => $activity[id],
                 'old_data' => 'data'
             ]);
         elseif ($activity['operation'] == 'delete')
             Trash::create([
-                'table' => $activity['model'],
+                'table' => $activity['table'],
                 'user_id' => Auth::id(),
                 'table_id' => $activity['id'],
             ]);
         else
             Activity::create([
-                'table' => $activity['model'],
-                'operations' => $activity['operation'],
+                'table' => $activity['table'],
+                'operation' => $activity['operation'],
                 'user_id' => Auth::id(),
                 'table_id' => $activity['id'],
 
