@@ -26,7 +26,7 @@ trait  ActivityLog
             Trash::create([
                 'table' => $activity['table'],
                 'user_id' => Auth::id(),
-                'table_id' => $activity['parameters']['id'],
+                'table_id' => $activity['parameters'][1],
             ]);
         }
         else
