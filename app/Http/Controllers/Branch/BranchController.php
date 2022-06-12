@@ -18,6 +18,7 @@ class BranchController extends Controller
      */
     public function index() //getAllBranches
     {
+        $this->callActivity('getAllBranches');
         return $Branches = Branch::all();
     }
 
@@ -39,6 +40,7 @@ class BranchController extends Controller
      */
     public function store(StoreBranchRequest $request)
     {
+        $this->callActivity('insertBranch',$request);
         //insert to Database
         Branch::create($request->all());
         return 'saved successfuly';
@@ -52,6 +54,7 @@ class BranchController extends Controller
      */
     public function show($id)
     {
+        $this->callActivity('showBranch',$id);
         return Branch::find($id);
     }
 
@@ -75,6 +78,8 @@ class BranchController extends Controller
      */
     public function update(UpdateBranchRequest $request, $id)
     {
+        $paramters=[$request,$id];
+        $this->callActivity('update',$paramters);
         return $branch = Branch::find($id)->update($request->all());
         if ($branch)
             return 'updated successfully';
@@ -86,13 +91,30 @@ class BranchController extends Controller
      * @param \App\Models\Branch $branch
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id) //  delete - can be restored
     {
+        $this->callActivity('delete', $id);
         if ($this->isNotMainBranch($id)) {
             Branch::find($id)->delete();
             return "Branch is deleted successfully";
         }
         return "Main Branch isn't deleted";
+    }
+
+    public function forceDelete($id) //can not be restored
+    {
+        $this->callActivity('forceDeleteBranch', $id);
+        if ($this->isNotMainBranch($id)) {
+            Branch::find($id)->forceDelete();
+            return "Branch is deleted successfully";
+        }
+        return "Main Branch isn't deleted";
+    }
+
+    public function restore($id) // from recycle bin
+    {
+        $this->callActivity('restoreBranch', $id);
+        Branch::withTrashed()->find($id)->restore();
     }
 
     public function isMainBranch($id)
@@ -129,5 +151,14 @@ class BranchController extends Controller
     public function generateNextCodeOfMainBranch()
     {
         return $branch = $this->getMainBranch()->last()->code + 1;
+    }
+
+    public function callActivity($method, $parameters)
+    {
+        $this->makeActivity([
+            'table' => 'Branch',
+            'operations' => $method,
+            'parameters' => $parameters
+        ]);
     }
 }
