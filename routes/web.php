@@ -79,4 +79,3 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('restore/{id}', [\App\Http\Controllers\User\UserController::class, 'restore'])->name('branch.restore');
     Route::get('isLastCharacterInStringIsNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
 });
-

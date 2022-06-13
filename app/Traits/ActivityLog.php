@@ -13,28 +13,17 @@ trait  ActivityLog
     {
         if ($activity['operation'] == 'update') {
             Activity::create([
-                'table' => $activity['table'],
+                'table' => $activity['model'],
                 'operation' => $activity['operation'],
                 'user_id' => Auth::id(),
                 'table_id' => $activity['parameters']['id'],
-
                 'old_data' => 'data',
-
-//                'old_data' => 'data',
             ]);
         } elseif ($activity['operation'] == 'delete') {
             Trash::create([
                 'table' => $activity['table'],
                 'user_id' => Auth::id(),
                 'table_id' => $activity['parameters']['id'],
-
-            ]);
-            Activity::create([
-                'table' => $activity['table'],
-                'operation' => $activity['operation'],
-                'user_id' => Auth::id(),
-                'table_id' => $activity['parameters']['id'],
-//                'old_data' => 'data',
             ]);
         } else
             Activity::create([
@@ -45,5 +34,3 @@ trait  ActivityLog
             ]);
     }
 }
-
-
