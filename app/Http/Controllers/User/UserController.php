@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $id =  User::latest()->first()->id + 1;
+        $id = User::latest()->first()->id + 1;
         $parameters = ['id' => $id];
         $this->callActivity('create', $parameters);
         return Inertia::render('Users/index');
@@ -50,7 +50,7 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $id = User::last()->id;
+        $id = User::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
         $this->callActivity('store', $parameters);
         $input = $request->validated();
