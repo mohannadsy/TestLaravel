@@ -26,12 +26,12 @@ class Branch extends Model
 
     public function users()
     {
-        return $this->hasMany('App\Models\User','branch_id');
+        return $this->hasMany('App\Models\User', 'branch_id');
     }
 
     public function branches()
     {
-        return $this->hasMany('App\Models\Branch','branch_id');
+        return $this->hasMany('App\Models\Branch', 'branch_id');
     }
 
 
