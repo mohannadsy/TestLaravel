@@ -3,7 +3,7 @@
 
 namespace App\Traits;
 
-trait  UserTrait
+trait  ImageTrait
 {
 //    function saveImage($photo, $folder)
 //    {

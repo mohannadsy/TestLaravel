@@ -13,7 +13,7 @@ trait  ActivityLog
     {
         if ($activity['operation'] == 'update') {
             Activity::create([
-                'table' => $activity['model'],
+                'table' => $activity['table'],
                 'operation' => $activity['operation'],
                 'user_id' => Auth::id(),
                 'table_id' => $activity['parameters']['id'],

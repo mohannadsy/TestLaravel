@@ -7,7 +7,7 @@ use App\Models\Branch;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Traits\UserTrait;
+use App\Traits\ImageTrait;
 use App\Traits\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +18,7 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    use UserTrait, ActivityLog;
+    use ImageTrait, ActivityLog;
 
     public function callActivity($method, $parameters)
     {
