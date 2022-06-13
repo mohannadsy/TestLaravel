@@ -38,10 +38,6 @@ Route::middleware([
 });
 
 
-//Route::get('/', function () {
-//    return Inertia::render('Home');
-//});
-
 Route::inertia('branch', 'Branches/Index');
 Route::inertia('user', 'Users/Index');
 Route::inertia('login', 'Auth/Login');
@@ -51,8 +47,7 @@ Route::inertia('login', 'Auth/Login');
 
 Route::group(['namespace' => 'User'], function () {
     Route::get('index', [\App\Http\Controllers\User\UserController::class, 'index']);
-//    Route::get('callActivity/{m}/{p}', [\App\Http\Controllers\User\UserController::class, 'callActivity']);
-//    Route::get('create', [\App\Http\Controllers\User\UserController::class, 'create']);
+    Route::get('create', [\App\Http\Controllers\User\UserController::class, 'create']);
     Route::post('store', [\App\Http\Controllers\User\UserController::class, 'store']);
     Route::get('show/{id}', [\App\Http\Controllers\User\UserController::class, 'show']);
     Route::get('edit', [\App\Http\Controllers\User\UserController::class, 'edit']);
@@ -79,3 +74,4 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('restore/{id}', [\App\Http\Controllers\User\UserController::class, 'restore'])->name('branch.restore');
     Route::get('isLastCharacterInStringIsNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
 });
+

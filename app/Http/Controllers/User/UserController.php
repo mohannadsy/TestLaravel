@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $id = User::last()->id;
+        $id =  User::latest()->first()->id + 1;
         $parameters = ['id' => $id];
         $this->callActivity('create', $parameters);
         return Inertia::render('Users/index');
