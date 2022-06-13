@@ -57,6 +57,9 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('forceDelete/{id}', [\App\Http\Controllers\User\UserController::class, 'forceDelete']);
 
 
+    Route::get('TreeOfMainPage', [\App\Http\Controllers\User\UserController::class, 'TreeOfMainPage']);
+
+
 });
 
 

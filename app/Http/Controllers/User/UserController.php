@@ -133,5 +133,14 @@ class UserController extends Controller
     {
         return !$this->isSuperAdmin($id);
     }
+
+    public function TreeOfMainPage()
+    {
+
+//        return $result = Branch::with('users')->with('permissions')->get();
+
+        return Branch::with('users, users.permissions')->get();
+
+    }
 }
 

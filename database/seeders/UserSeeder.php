@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
         ]);
         $userMohannad->assignRole('Admin');
         $userMohannad->assignRole('Accountant');
+        $userMohannad->givePermissionTo('store-user');
 
         // user 2
         $userNoor = User::create([
