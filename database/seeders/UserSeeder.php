@@ -65,7 +65,6 @@ class UserSeeder extends Seeder
             'phone' => '09913646374',
             'mobile' => '0414949494',
             'id_number' => '001123938373774',
-
         ]);
         $userClauda->assignRole('Cacher');
     }

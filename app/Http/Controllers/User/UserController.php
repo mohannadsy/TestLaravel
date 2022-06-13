@@ -91,7 +91,7 @@ class UserController extends Controller
         $input->profile_photo_path = $url;
         $user = User::find($id)->update($input);
         if ($user)
-            return ' User Updated Successfully';
+            return 'User Updated Successfully';
     }
 
     public function delete($id) //  delete - can be restored
