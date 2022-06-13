@@ -12,9 +12,14 @@ return new class extends Migration {
             $table->id();
             $table->string('table')->nullable();
             $table->string('operation')->nullable();
+
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('table_id')->nullable();
             $table->json('old_data');
+
+            $table->integer('user_id')->nullable();
+            $table->integer('table_id')->nullable();
+            $table->json('old_data')->nullable();
             $table->timestamps();
         });
     }
