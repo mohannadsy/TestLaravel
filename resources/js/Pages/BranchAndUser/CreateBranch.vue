@@ -40,8 +40,11 @@ export default {
     emits:['add-branch'],
     data() {
         return {
-            code:'',
-            name:''
+            branch:{
+                code:'',
+                name:''
+            }
+
         }
     },
     components:{
@@ -62,8 +65,9 @@ export default {
     //     return {form};
     // },
     methods: {
-        submit() {
-             this.$emit('add-branch',this.code,this.name);
+        async submit() {
+            //let response = await this.$inertia.post('\store',this.branch);
+            this.$emit('add-branch',this.code,this.name);
         },
     },
 }

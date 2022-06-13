@@ -8,14 +8,14 @@
 export default {
     name: "baseInputFeild",
     props: {
-        type: {
-            type: string,
-            default: "text",
-        },
-        variant: {
-            type: string,
-            default: "input--green",
-        },
+        // type: {
+        //     type: string,
+        //     default: "text",
+        // },
+        // variant: {
+        //     type: string,
+        //     default: "input--green",
+        // },
     },
     computed: {
         setStyle() {
@@ -40,7 +40,7 @@ export default {
     box-shadow: inset 0 -1px 0 rgba(#000, 0.3);
     border-radius: 3px 3px 0 0;
     width: 100%;
-    
+
     &-Wrapper {
         position: relative;
         display: flex;
