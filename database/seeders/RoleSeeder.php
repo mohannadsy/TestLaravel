@@ -7,11 +7,7 @@ use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         $roleAdmin = Role::create(['name' => 'Admin']);
@@ -43,6 +39,5 @@ class RoleSeeder extends Seeder
         $roleCacher->givePermissionTo('delete-user');
         $roleCacher->givePermissionTo('show-user');
         //-----give permissions to User Role-----//
-
     }
 }

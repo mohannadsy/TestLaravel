@@ -18,25 +18,24 @@ use App\Http\Controllers\Branch\BranchController;
 */
 
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified',
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return Inertia::render('Dashboard');
-//     })->name('dashboard');
-// });
-//
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+});
 
 
 //Route::get('/', function () {
@@ -47,50 +46,27 @@ Route::inertia('branch', 'Branches/Index');
 Route::inertia('user', 'Users/Index');
 Route::inertia('login', 'Auth/Login');
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
 
-});
+//-------User------//
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-
-
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-});
-
-
-///////////////////////
 Route::group(['namespace' => 'User'], function () {
     Route::get('index', [\App\Http\Controllers\User\UserController::class, 'index']);
-    Route::get('callActivity/{m}/{p}', [\App\Http\Controllers\User\UserController::class, 'callActivity']);
-    Route::get('create', [\App\Http\Controllers\User\UserController::class, 'create']);
+//    Route::get('callActivity/{m}/{p}', [\App\Http\Controllers\User\UserController::class, 'callActivity']);
+//    Route::get('create', [\App\Http\Controllers\User\UserController::class, 'create']);
+    Route::post('store', [\App\Http\Controllers\User\UserController::class, 'store']);
     Route::get('show/{id}', [\App\Http\Controllers\User\UserController::class, 'show']);
-//    Route::get('generateCodesInSpecificBranch/{id}', [\App\Http\Controllers\User\UserController::class, 'generateCodesInSpecificBranch']);
-//    Route::get('mainGenerateCode/{id}', [\App\Http\Controllers\User\UserController::class, 'mainGenerateCode']);
-
-
-    Route::get('store', [\App\Http\Controllers\User\UserController::class, 'store']);
     Route::get('edit', [\App\Http\Controllers\User\UserController::class, 'edit']);
-    Route::get('update', [\App\Http\Controllers\User\UserController::class, 'update']);
+    Route::post('update', [\App\Http\Controllers\User\UserController::class, 'update']);
     Route::get('delete/{id}', [\App\Http\Controllers\User\UserController::class, 'delete']);
     Route::get('restore/{id}', [\App\Http\Controllers\User\UserController::class, 'restore']);
-    Route::get('forcedelete/{id}', [\App\Http\Controllers\User\UserController::class, 'forcedelete']);
+    Route::get('forceDelete/{id}', [\App\Http\Controllers\User\UserController::class, 'forceDelete']);
 
 
 });
-/////////////////////////
-//BranchRoute//
+
+
+//-------Branch------//
+
 Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('index', [\App\Http\Controllers\Branch\BranchController::class, 'index'])->name('branch.index');
     Route::get('create', [\App\Http\Controllers\Branch\BranchController::class, 'create'])->name('branch.create');
@@ -102,7 +78,5 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('forceDelete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'forceDelete'])->name('branch.forceDelete');
     Route::get('restore/{id}', [\App\Http\Controllers\User\UserController::class, 'restore'])->name('branch.restore');
     Route::get('isLastCharacterInStringIsNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
-
-
 });
 

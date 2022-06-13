@@ -20,16 +20,6 @@ class UserController extends Controller
 {
     use UserTrait, ActivityLog;
 
-    public function index() // getAllUsers
-    {
-        $this->callActivity('index', null);
-        if (Auth::user()) {
-            return User::all();
-        } else {
-            return 'you are not allowed to do this';
-        }
-    }
-
     public function callActivity($method, $parameters)
     {
         $this->makeActivity([
@@ -37,25 +27,27 @@ class UserController extends Controller
             'operation' => $method,
             'parameters' => $parameters
         ]);
+    }
 
-
+    public function index() // getAllUsers
+    {
+        $this->callActivity('index', null);
+        if (Auth::user()) {
+            return User::all();
+        } else {
+            return 'You are not allowed to do this';
+        }
     }
 
     public function create()
     {
-        // render to Vue
         return Inertia::render('Users/index');
-
-
     }
 
     public function store(StoreUserRequest $request)
     {
-
-        $this->callActivity('store', $request);
-
-        $parameters = ['request'=>$request];
-        $this->callActivity('Insert User', $parameters);
+        $parameters = ['request' => $request];
+        $this->callActivity('store', $parameters);
         $input = $request->validated();
         $input->profile_photo_path = $this->getImageURL($request);;
         $input->role = $this->assignRole($request->role);
@@ -63,17 +55,12 @@ class UserController extends Controller
         User::create($input);
 
         return Inertia::render('Users/index', compact($input));
-
-
     }
 
     public function show($id)
     {
-
+        $parameters = ['id' => $id];
         $this->callActivity('show', $id);
-
-        $parameters = ['id'=>$id];
-        $this->callActivity('Show User', $id);
         return User::find($id);
     }
 
@@ -81,7 +68,6 @@ class UserController extends Controller
     {
         // render to Vue
     }
-
 
     public function getImageURL(Request $request)
     {
@@ -93,62 +79,44 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, $id)
     {
-
-        $parameters = ['Request' => $request, "Id" => $id];
-
-        $parameters = ['request'=>$request,'id'=> $id];
-
+        $parameters = ['request' => $request, 'id' => $id];
         $this->callActivity('update', $parameters);
-
         $url = $this->getImageURL($request);
         $input = $request->all();
         $input->profile_photo_path = $url;
         $user = User::find($id)->update($input);
         if ($user)
-            return ' User updated successfully';
+            return ' User Updated Successfully';
     }
 
     public function delete($id) //  delete - can be restored
     {
-
-//        $parameters = [$id];
-
-        $parameters = ['id'=>$id];
-
-
-        $this->callActivity('delete', ['id' => $id]);
+        $parameters = ['id' => $id];
+        $this->callActivity('delete', $parameters);
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->delete();
-            return "User is deleted successfully";
+            return "User is Deleted successfully";
         }
-        return "Super Admin Can not be deleted";
+        return "Super Admin Can not be Deleted";
     }
 
 
     public function restore($id) // from recycle bin
     {
-
-        $this->callActivity('restore', $id);
-
-        $parameters = ['id'=>$id];
-        $this->callActivity('Restore User', $parameters);
-
+        $parameters = ['id' => $id];
+        $this->callActivity('restore', $parameters);
         User::withTrashed()->find($id)->restore();
     }
 
     public function forceDelete($id) //can not be restored
     {
-
-        $this->callActivity('forceDelete', $id);
-
-        $parameters = ['id'=>$id];
-        $this->callActivity('Force Delete User', $parameters);
-
+        $parameters = ['id' => $id];
+        $this->callActivity('forceDelete', $parameters);
         if ($this->isNotSuperAdmin($id)) {
             User::find($id)->forceDelete();
-            return "User is deleted successfully";
+            return "User is Deleted successfully";
         }
-        return "Super Admin Can not be  deleted";
+        return "Super Admin Can not be Deleted";
     }
 
     public function isSuperAdmin($id)
@@ -160,7 +128,6 @@ class UserController extends Controller
     {
         return !$this->isSuperAdmin($id);
     }
-
 }
 
 

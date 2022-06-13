@@ -7,11 +7,7 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         //---------------users--------------------------//
@@ -29,6 +25,5 @@ class PermissionSeeder extends Seeder
         $updatePermission = Permission::create(['name' => 'update-permission']);
         $deletePermission = Permission::create(['name' => 'delete-permission']);
         $showPermission = Permission::create(['name' => 'show-permission']);
-
     }
 }

@@ -5,30 +5,20 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-
             $table->string('table')->nullable();
             $table->string('operation')->nullable();
-            $table->integer('user_id')->nullable();
-            $table->integer('table_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('table_id')->nullable();
             $table->json('old_data');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('activities');

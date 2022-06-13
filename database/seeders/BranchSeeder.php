@@ -8,7 +8,6 @@ use Illuminate\Database\Seeder;
 
 class BranchSeeder extends Seeder
 {
-
     public function run()
     {
         Branch::create([
