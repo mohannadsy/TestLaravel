@@ -138,12 +138,12 @@ class UserController extends Controller
     {
 
 
-//        return $result = Branch::with('users')->with('users.permissions')->get();
+        return $result = Branch::with(['branches', 'users'])->with('users.permissions')->get();
 
-        return $branch = Branch::with(['branches', 'users' => function ($query) {
-                $query->with('permissions');
-            }]
-        )->get();
+//        return $branch = Branch::with(['branches', 'users' => function ($query) {
+//                $query->with('permissions');
+//            }]
+//        )->get();
 
 
     }
