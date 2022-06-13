@@ -168,4 +168,9 @@ class BranchController extends Controller
             'parameters' => $parameters
         ]);
     }
+
+    public function TreeOfMainPage()
+    {
+        return $result = Branch::with('users')->with('users.roles')->get();
+    }
 }
