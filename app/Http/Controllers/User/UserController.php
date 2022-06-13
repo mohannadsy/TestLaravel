@@ -9,6 +9,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Traits\ImageTrait;
 use App\Traits\ActivityLog;
+use Dotenv\Repository\Adapter\PutenvAdapter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -41,12 +42,16 @@ class UserController extends Controller
 
     public function create()
     {
+        $id = User::last()->id;
+        $parameters = ['id' => $id];
+        $this->callActivity('create', $parameters);
         return Inertia::render('Users/index');
     }
 
     public function store(StoreUserRequest $request)
     {
-        $parameters = ['request' => $request];
+        $id = User::last()->id;
+        $parameters = ['request' => $request, 'id' => $id];
         $this->callActivity('store', $parameters);
         $input = $request->validated();
         $input->profile_photo_path = $this->getImageURL($request);;
@@ -60,7 +65,7 @@ class UserController extends Controller
     public function show($id)
     {
         $parameters = ['id' => $id];
-        $this->callActivity('show', $id);
+        $this->callActivity('show', $parameters);
         return User::find($id);
     }
 
