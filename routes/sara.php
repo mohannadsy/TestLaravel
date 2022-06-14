@@ -6,4 +6,4 @@ use Inertia\Inertia;
 
 
 Route::inertia('sara','BranchAndUser/Index');
-Route::inertia('sara1','Auth/Login');
+Route::inertia('sara1','Home');
