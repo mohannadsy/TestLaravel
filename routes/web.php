@@ -16,9 +16,11 @@ use App\Http\Controllers\Branch\BranchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/', function () {
+//         return Inertia::render('Auth/Login');
+//     });
 
-
-Route::get('/', function () {
+Route::get('/login', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),

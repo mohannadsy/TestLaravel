@@ -33401,12 +33401,241 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _modules_branches_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/branches/index.js */ "./resources/js/store/modules/branches/index.js");
+/* harmony import */ var _modules_users_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/users/index.js */ "./resources/js/store/modules/users/index.js");
 
-var store = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createStore)({
-  modules: {}
+
+
+var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
+  modules: {
+    branches: _modules_branches_index_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+    users: _modules_users_index_js__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/branches/actions.js":
+/*!********************************************************!*\
+  !*** ./resources/js/store/modules/branches/actions.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/branches/getters.js":
+/*!********************************************************!*\
+  !*** ./resources/js/store/modules/branches/getters.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  branches: function branches(state) {
+    return state.branches;
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/branches/index.js":
+/*!******************************************************!*\
+  !*** ./resources/js/store/modules/branches/index.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mutation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mutation.js */ "./resources/js/store/modules/branches/mutation.js");
+/* harmony import */ var _actions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions.js */ "./resources/js/store/modules/branches/actions.js");
+/* harmony import */ var _getters_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getters.js */ "./resources/js/store/modules/branches/getters.js");
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    branches: [{
+      id: '',
+      code: '',
+      name: '',
+      branch_id: '',
+      responsibility: '',
+      address: '',
+      website: '',
+      email: '',
+      phone: '',
+      mobile: ''
+    }];
+  },
+  mutations: _mutation_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+  actions: _actions_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  getters: _getters_js__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/branches/mutation.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/store/modules/branches/mutation.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  addBranch: function addBranch(state, newBranch) {
+    state.branches.push({
+      id: newBranch.id,
+      code: newBranch.code,
+      name: newBranch.name,
+      branch_id: newBranch.branch_id,
+      responsibility: newBranch.responsibility,
+      address: newBranch.address,
+      website: newBranch.website,
+      email: newBranch.email,
+      phone: newBranch.phone,
+      mobile: newBranch.mobile
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/users/actions.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/store/modules/users/actions.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/users/getters.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/store/modules/users/getters.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  users: function users(state) {
+    return state.users;
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/users/index.js":
+/*!***************************************************!*\
+  !*** ./resources/js/store/modules/users/index.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mutation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mutation.js */ "./resources/js/store/modules/users/mutation.js");
+/* harmony import */ var _actions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions.js */ "./resources/js/store/modules/users/actions.js");
+/* harmony import */ var _getters_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getters.js */ "./resources/js/store/modules/users/getters.js");
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    users: [{
+      id: '',
+      name: '',
+      code: '',
+      email: '',
+      email_verified_at: '',
+      password: '',
+      branch_name: '',
+      role: '',
+      branch_id: '',
+      first_name: '',
+      middle_name: '',
+      last_name: '',
+      phone: '',
+      id_number: '',
+      current_team_id: '',
+      profile_photo_path: '',
+      mobile: ''
+    }];
+  },
+  mutations: _mutation_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+  actions: _actions_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  getters: _getters_js__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/users/mutation.js":
+/*!******************************************************!*\
+  !*** ./resources/js/store/modules/users/mutation.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  addBranch: function addBranch(state, newUser) {
+    state.users.push({
+      id: newUser.id,
+      name: newUser.name,
+      code: newUser.code,
+      email: newUser.email,
+      email_verified_at: newUser.email_verified_at,
+      password: newUser.password,
+      branch_name: newUser.branch_name,
+      role: newUser.role,
+      branch_id: newUser.branch_id,
+      first_name: newUser.first_name,
+      middle_name: newUser.middle_name,
+      last_name: newUser.last_name,
+      phone: newUser.phone,
+      id_number: newUser.id_number,
+      current_team_id: newUser.current_team_id,
+      profile_photo_path: newUser.profile_photo_path,
+      mobile: newUser.mobile
+    });
+  }
+});
 
 /***/ }),
 
