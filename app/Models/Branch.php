@@ -33,6 +33,4 @@ class Branch extends Model
     {
         return $this->hasMany('App\Models\Branch', 'branch_id');
     }
-
-
 }
