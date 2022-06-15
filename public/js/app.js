@@ -27765,7 +27765,7 @@ __webpack_require__.r(__webpack_exports__);
     BranchForm: _components_branches_BranchForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
-    saveData: function saveData() {
+    saveData: function saveData(data) {
       this.$store.dispatch('branches/registerBranch', data);
     }
   }
@@ -28494,17 +28494,18 @@ __webpack_require__.r(__webpack_exports__);
     TreeView: _grapoza_vue_tree__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
-    return {//dataModel:[]
-      // dataModel: [
-      //   {
-      //       id: "numberOrString",
-      //       label: "Root Node"
-      //   },
-      //   {
-      //       id: "numberOrString",
-      //       label:"second Node"
-      //   }
-      //   ]
+    return {
+      dataModel: [{
+        id: "numberOrString",
+        label: "Root Node",
+        children: [{
+          id: 1,
+          label: "Child Node"
+        }, {
+          id: "node2",
+          label: "Second Child"
+        }]
+      }]
     };
   }
 });
@@ -33127,12 +33128,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
-  id: "app-custom-gray",
-  "class": "demo-tree"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"col-md-12\"><label class=\"labels\">الفرع الرئيسي</label><input type=\"text\" class=\"form-control\" v-model=\"model[0].label\"></div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <h1>{{dataModel[0].label}}</h1> ")]);
+  var _component_tree_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("tree-view");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_tree_view, {
+    id: "my-tree",
+    "initial-model": $data.dataModel
+  }, null, 8
+  /* PROPS */
+  , ["initial-model"]);
 }
 
 /***/ }),
@@ -33723,7 +33727,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   registerBranch: function registerBranch(context, data) {
     var branchData = {
-      //id: context.rootGetters.userId,
+      id: new Date().toISOString,
       code: data.code,
       name: data.name,
       branch_id: data.branch_id,

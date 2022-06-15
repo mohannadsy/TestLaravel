@@ -1,6 +1,6 @@
 <template>
     <div>
-        <branch-form  @save-data="saveData"></branch-form>
+        <branch-form @save-data="saveData"></branch-form>
     </div>
 </template>
 
@@ -11,8 +11,8 @@ export default {
         BranchForm
     },
     methods:{
-        saveData(){
-             this.$store.dispatch('branches/registerBranch',data);
+        saveData(data){
+            this.$store.dispatch('branches/registerBranch',data);
         }
     }
 }
