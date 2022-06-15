@@ -1,7 +1,7 @@
 export default {
     registerBranch(context, data) {
         const branchData = {
-            //id: context.rootGetters.userId,
+            id: new Date().toISOString,
             code: data.code,
             name: data.name,
             branch_id: data.branch_id,

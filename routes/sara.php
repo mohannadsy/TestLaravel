@@ -7,3 +7,4 @@ use Inertia\Inertia;
 
 Route::inertia('sara','BranchAndUser/Index');
 Route::inertia('sara1','Home');
+Route::inertia('tree','Tree/BranchTree');

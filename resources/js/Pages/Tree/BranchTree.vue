@@ -1,31 +1,27 @@
 <template>
-    <div id="app-custom-gray" class="demo-tree">
-        <!-- <div class="col-md-12"><label class="labels">الفرع الرئيسي</label><input type="text" class="form-control" v-model="model[0].label"></div> -->
-
-       <!-- <h1>{{dataModel[0].label}}</h1> -->
-    </div>
+    <tree-view  id="my-tree" :initial-model="dataModel"></tree-view>
 </template>
 
-  <script type='module'>
-  import TreeView from "@grapoza/vue-tree"
- export default {
+<script>
+import TreeView from "@grapoza/vue-tree"
+export default {
     components: {
       TreeView
     },
     data() {
       return {
-          //dataModel:[]
-        // dataModel: [
-        //   {
-        //       id: "numberOrString",
-        //       label: "Root Node"
-        //   },
-        //   {
-        //       id: "numberOrString",
-        //       label:"second Node"
-        //   }
-        //   ]
+        dataModel: [
+          {id: "numberOrString",
+          label: "Root Node",
+          children: [
+            {id: 1,
+            label: "Child Node"
+            },
+            {id: "node2",
+            label: "Second Child"
+            }]
+          }]
       }
     }
-  }
-  </script>
+}
+</script>
