@@ -24,13 +24,13 @@ class Branch extends Model
         'mobile',
     ];
 
-    public function users()
-    {
-        return $this->hasMany('App\Models\User', 'branch_id');
-    }
-
     public function branches()
     {
-        return $this->hasMany('App\Models\Branch', 'branch_id');
+        return $this->hasMany('App\Models\Branch', 'branch_id')->with(['branches', 'users']);
+    }
+
+    public function users()
+    {
+        return $this->hasMany('App\Models\User', 'branch_id')->with('permissions');
     }
 }
