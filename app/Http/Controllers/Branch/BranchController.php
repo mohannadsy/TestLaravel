@@ -8,11 +8,13 @@ use App\Http\Requests\StoreBranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
 use App\Traits\ActivityLog;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class BranchController extends Controller
 {
     use  ActivityLog;
+
     /**
      * Display a listing of the resource.
      *
@@ -152,7 +154,10 @@ class BranchController extends Controller
 
     public function getMainBranch()
     {
-        return $mainBranches = Branch::where('branch_id', 'null');
+        return $mainBranch =  DB::table('branches')
+            ->whereNull('branch_id')
+            ->get();
+
     }
 
     public function generateNextCodeOfMainBranch()
@@ -169,8 +174,39 @@ class BranchController extends Controller
         ]);
     }
 
-    public function TreeOfMainPage()
+//    public function TreeOfMainPage()
+//    {
+////         $result = Branch::whereNull('branch_id')->with(['branches.branches.users','users'])->get();
+////        return $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
+//
+//    }
+
+//    public function TreeOfMainPage()
+//    {
+//        $mainbranches = Branch::whereNull('branch_id')->get();
+//        foreach ($mainbranches as $branch)
+//             $result=$branch->with(['branches','users'])->get();
+//                return $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
+//
+////            $branch->TreeOfMainPage();
+//    }
+    public function treeOfPartialBranch($ArrayBranches)
     {
-        return $result = Branch::with('users')->with('users.roles')->get();
+        $result='';
+        foreach ($ArrayBranches as $branch)
+        {
+
+            $result = $branch->with(['branches.users', 'users'])->get();
+            return $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
+        }
+        treeOfPartialBranch($result->with(['branches']));
     }
+
+
+    public function TreeOfMainBranch()
+    {
+         $mainbranches = Branch::whereNull('branch_id')->get();
+            $this-> treeOfPartialBranch($mainbranches);
+    }
+
 }

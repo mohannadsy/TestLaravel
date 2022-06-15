@@ -16,9 +16,11 @@ use App\Http\Controllers\Branch\BranchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/', function () {
+//         return Inertia::render('Auth/Login');
+//     });
 
-
-Route::get('/', function () {
+Route::get('/login', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -76,7 +78,7 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('forceDelete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'forceDelete'])->name('branch.forceDelete');
     Route::get('restore/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'restore'])->name('branch.restore');
     Route::get('isLastCharacterInStringIsNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
-    Route::get('TreeOfMainPage', [\App\Http\Controllers\Branch\BranchController::class, 'TreeOfMainPage'])->name('branch.TreeOfMainPage');
+    Route::get('TreeOfMainBranch', [\App\Http\Controllers\Branch\BranchController::class, 'TreeOfMainBranch'])->name('branch.TreeOfMainBranch');
 
 });
 
