@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345superadmin'),
             'branch_name' => 'Main Branch',
             'role' => 'Super Admin',// مدير عام
-            'branch_id' => '1',
+            'branch_id' => '3',
             'profile_photo_path' => 'qqq',
             'first_name' => 's',
             'middle_name' => 's',
@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
         ]);
         $userMohannad->assignRole('Admin');
         $userMohannad->assignRole('Accountant');
+        $userMohannad->givePermissionTo('store-user');
 
         // user 2
         $userNoor = User::create([
@@ -39,7 +40,7 @@ class UserSeeder extends Seeder
             'branch_name' => 'Main Branch',
             'role' => 'Accountant',
             'profile_photo_path' => 'qqq',
-            'branch_id' => '1',
+            'branch_id' => '3',
             'first_name' => 'a',
             'middle_name' => 's',
             'last_name' => 's',
@@ -65,8 +66,8 @@ class UserSeeder extends Seeder
             'phone' => '09913646374',
             'mobile' => '0414949494',
             'id_number' => '001123938373774',
-
         ]);
         $userClauda->assignRole('Cacher');
+        $userClauda->givePermissionTo('store-user');
     }
 }

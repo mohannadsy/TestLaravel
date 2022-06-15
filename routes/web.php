@@ -16,9 +16,11 @@ use App\Http\Controllers\Branch\BranchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/', function () {
+//         return Inertia::render('Auth/Login');
+//     });
 
-
-Route::get('/', function () {
+Route::get('/login', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -38,10 +40,6 @@ Route::middleware([
 });
 
 
-//Route::get('/', function () {
-//    return Inertia::render('Home');
-//});
-
 Route::inertia('branch', 'Branches/Index');
 Route::inertia('user', 'Users/Index');
 Route::inertia('login', 'Auth/Login');
@@ -51,8 +49,7 @@ Route::inertia('login', 'Auth/Login');
 
 Route::group(['namespace' => 'User'], function () {
     Route::get('index', [\App\Http\Controllers\User\UserController::class, 'index']);
-//    Route::get('callActivity/{m}/{p}', [\App\Http\Controllers\User\UserController::class, 'callActivity']);
-//    Route::get('create', [\App\Http\Controllers\User\UserController::class, 'create']);
+    Route::get('create', [\App\Http\Controllers\User\UserController::class, 'create']);
     Route::post('store', [\App\Http\Controllers\User\UserController::class, 'store']);
     Route::get('show/{id}', [\App\Http\Controllers\User\UserController::class, 'show']);
     Route::get('edit', [\App\Http\Controllers\User\UserController::class, 'edit']);
@@ -60,6 +57,9 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('delete/{id}', [\App\Http\Controllers\User\UserController::class, 'delete']);
     Route::get('restore/{id}', [\App\Http\Controllers\User\UserController::class, 'restore']);
     Route::get('forceDelete/{id}', [\App\Http\Controllers\User\UserController::class, 'forceDelete']);
+
+
+    Route::get('TreeOfMainPage', [\App\Http\Controllers\User\UserController::class, 'TreeOfMainPage']);
 
 
 });
@@ -76,6 +76,9 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::post('update/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'update'])->name('branch.update');
     Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'delete'])->name('branch.delete');
     Route::get('forceDelete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'forceDelete'])->name('branch.forceDelete');
-    Route::get('restore/{id}', [\App\Http\Controllers\User\UserController::class, 'restore'])->name('branch.restore');
+    Route::get('restore/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'restore'])->name('branch.restore');
     Route::get('isLastCharacterInStringIsNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
+    Route::get('TreeOfMainPage', [\App\Http\Controllers\Branch\BranchController::class, 'TreeOfMainPage'])->name('branch.TreeOfMainPage');
+
 });
+

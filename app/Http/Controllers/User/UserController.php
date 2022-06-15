@@ -9,6 +9,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Traits\ImageTrait;
 use App\Traits\ActivityLog;
+use Dotenv\Repository\Adapter\PutenvAdapter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -41,12 +42,16 @@ class UserController extends Controller
 
     public function create()
     {
+        $id = User::latest()->first()->id + 1;
+        $parameters = ['id' => $id];
+        $this->callActivity('create', $parameters);
         return Inertia::render('Users/index');
     }
 
     public function store(StoreUserRequest $request)
     {
-        $parameters = ['request' => $request];
+        $id = User::latest()->first()->id + 1;
+        $parameters = ['request' => $request, 'id' => $id];
         $this->callActivity('store', $parameters);
         $input = $request->validated();
         $input->profile_photo_path = $this->getImageURL($request);;
@@ -60,7 +65,7 @@ class UserController extends Controller
     public function show($id)
     {
         $parameters = ['id' => $id];
-        $this->callActivity('show', $id);
+        $this->callActivity('show', $parameters);
         return User::find($id);
     }
 
@@ -86,7 +91,7 @@ class UserController extends Controller
         $input->profile_photo_path = $url;
         $user = User::find($id)->update($input);
         if ($user)
-            return ' User Updated Successfully';
+            return 'User Updated Successfully';
     }
 
     public function delete($id) //  delete - can be restored
@@ -127,6 +132,26 @@ class UserController extends Controller
     public function isNotSuperAdmin($id)
     {
         return !$this->isSuperAdmin($id);
+    }
+
+    public function TreeOfMainPage()
+    {
+
+
+        return $result = Branch::with(['branches', 'users'])->with('users.permissions')->get();
+
+
+//     or
+//        return $result = Branch::with(['branches', 'users', 'users.permissions'])->get();
+
+
+//    or
+//        return $branch = Branch::with(['branches', 'users' => function ($query) {
+//                $query->with('permissions');
+//            }]
+//        )->get();
+
+
     }
 }
 
