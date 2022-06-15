@@ -31722,14 +31722,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  "class": "row"
+};
+var _hoisted_2 = {
+  "class": "col-12"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_branch_form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("branch-form");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_branch_form, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_branch_form, {
     onSaveData: $options.saveData
   }, null, 8
   /* PROPS */
-  , ["onSaveData"])]);
+  , ["onSaveData"])])]);
 }
 
 /***/ }),
@@ -33783,18 +33789,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   namespaced: true,
   state: function state() {
-    branches: [{
-      id: '',
-      code: '',
-      name: '',
-      branch_id: '',
-      responsibility: '',
-      address: '',
-      website: '',
-      email: '',
-      phone: '',
-      mobile: ''
-    }];
+    return {
+      branches: [{
+        id: '',
+        code: '',
+        name: '',
+        branch_id: '',
+        responsibility: '',
+        address: '',
+        website: '',
+        email: '',
+        phone: '',
+        mobile: ''
+      }]
+    };
   },
   mutations: _mutation_js__WEBPACK_IMPORTED_MODULE_0__["default"],
   actions: _actions_js__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -33876,25 +33884,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   namespaced: true,
   state: function state() {
-    users: [{
-      id: '',
-      name: '',
-      code: '',
-      email: '',
-      email_verified_at: '',
-      password: '',
-      branch_name: '',
-      role: '',
-      branch_id: '',
-      first_name: '',
-      middle_name: '',
-      last_name: '',
-      phone: '',
-      id_number: '',
-      current_team_id: '',
-      profile_photo_path: '',
-      mobile: ''
-    }];
+    return {
+      users: [{
+        id: '',
+        name: '',
+        code: '',
+        email: '',
+        email_verified_at: '',
+        password: '',
+        branch_name: '',
+        role: '',
+        branch_id: '',
+        first_name: '',
+        middle_name: '',
+        last_name: '',
+        phone: '',
+        id_number: '',
+        current_team_id: '',
+        profile_photo_path: '',
+        mobile: ''
+      }]
+    };
   },
   mutations: _mutation_js__WEBPACK_IMPORTED_MODULE_0__["default"],
   actions: _actions_js__WEBPACK_IMPORTED_MODULE_1__["default"],
