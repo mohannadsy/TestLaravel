@@ -136,20 +136,16 @@ class UserController extends Controller
 
     public function TreeOfMainPage()
     {
+//        return $result = Branch::with(['branches', 'users'])->with('users.permissions')->get();
 
-
-        return $result = Branch::with(['branches', 'users'])->with('users.permissions')->get();
-
-
-//     or
+        //     or
 //        return $result = Branch::with(['branches', 'users', 'users.permissions'])->get();
-
-
-//    or
-//        return $branch = Branch::with(['branches', 'users' => function ($query) {
-//                $query->with('permissions');
-//            }]
-//        )->get();
+//
+//        //    or
+        return $branch = Branch::with(['branches', 'users' => function ($query) {
+                $query->with('permissions');
+            }]
+        )->get();
 
 
     }
