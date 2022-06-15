@@ -65074,9 +65074,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Login_vue_vue_type_template_id_a2ac2cea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=a2ac2cea */ "./resources/js/Pages/Auth/Login.vue?vue&type=template&id=a2ac2cea");
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* harmony import */ var _Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&lang=js */ "./resources/js/Pages/Auth/Login.vue?vue&type=script&lang=js");
 /* harmony import */ var _Login_vue_vue_type_style_index_0_id_a2ac2cea_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login.vue?vue&type=style&index=0&id=a2ac2cea&lang=css */ "./resources/js/Pages/Auth/Login.vue?vue&type=style&index=0&id=a2ac2cea&lang=css");
 /* harmony import */ var C_Users_asus_Desktop_Laravel_9_Projects_UltraTestApp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+=======
+/* harmony import */ var _Login_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&setup=true&lang=js */ "./resources/js/Pages/Auth/Login.vue?vue&type=script&setup=true&lang=js");
+/* harmony import */ var E_TestLaravel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+>>>>>>> 53abfabd1fca84bdb45accf512d171384cf4392f
 =======
 /* harmony import */ var _Login_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&setup=true&lang=js */ "./resources/js/Pages/Auth/Login.vue?vue&type=script&setup=true&lang=js");
 /* harmony import */ var E_TestLaravel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
@@ -65087,9 +65092,13 @@ __webpack_require__.r(__webpack_exports__);
 
 ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 const __exports__ = /*#__PURE__*/(0,C_Users_asus_Desktop_Laravel_9_Projects_UltraTestApp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Login_vue_vue_type_template_id_a2ac2cea__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/Auth/Login.vue"]])
+=======
+const __exports__ = /*#__PURE__*/(0,E_TestLaravel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Login_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Login_vue_vue_type_template_id_a2ac2cea__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/Auth/Login.vue"]])
+>>>>>>> 53abfabd1fca84bdb45accf512d171384cf4392f
 =======
 const __exports__ = /*#__PURE__*/(0,E_TestLaravel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Login_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Login_vue_vue_type_template_id_a2ac2cea__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/Auth/Login.vue"]])
 >>>>>>> 53abfabd1fca84bdb45accf512d171384cf4392f
@@ -65732,10 +65741,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* harmony import */ var _BaseInput_vue_vue_type_template_id_eeefe966_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BaseInput.vue?vue&type=template&id=eeefe966&scoped=true */ "./resources/js/Shared/BaseInput.vue?vue&type=template&id=eeefe966&scoped=true");
 /* harmony import */ var _BaseInput_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseInput.vue?vue&type=script&lang=js */ "./resources/js/Shared/BaseInput.vue?vue&type=script&lang=js");
 /* harmony import */ var _BaseInput_vue_vue_type_style_index_0_id_eeefe966_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BaseInput.vue?vue&type=style&index=0&id=eeefe966&lang=scss&scoped=true */ "./resources/js/Shared/BaseInput.vue?vue&type=style&index=0&id=eeefe966&lang=scss&scoped=true");
 /* harmony import */ var C_Users_asus_Desktop_Laravel_9_Projects_UltraTestApp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+=======
+/* harmony import */ var _BranchForm_vue_vue_type_template_id_6e057aca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BranchForm.vue?vue&type=template&id=6e057aca */ "./resources/js/components/branches/BranchForm.vue?vue&type=template&id=6e057aca");
+/* harmony import */ var _BranchForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BranchForm.vue?vue&type=script&lang=js */ "./resources/js/components/branches/BranchForm.vue?vue&type=script&lang=js");
+/* harmony import */ var E_TestLaravel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+>>>>>>> 53abfabd1fca84bdb45accf512d171384cf4392f
 =======
 /* harmony import */ var _BranchForm_vue_vue_type_template_id_6e057aca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BranchForm.vue?vue&type=template&id=6e057aca */ "./resources/js/components/branches/BranchForm.vue?vue&type=template&id=6e057aca");
 /* harmony import */ var _BranchForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BranchForm.vue?vue&type=script&lang=js */ "./resources/js/components/branches/BranchForm.vue?vue&type=script&lang=js");
@@ -65747,9 +65762,13 @@ __webpack_require__.r(__webpack_exports__);
 
 ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 const __exports__ = /*#__PURE__*/(0,C_Users_asus_Desktop_Laravel_9_Projects_UltraTestApp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_BaseInput_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_BaseInput_vue_vue_type_template_id_eeefe966_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-eeefe966"],['__file',"resources/js/Shared/BaseInput.vue"]])
+=======
+const __exports__ = /*#__PURE__*/(0,E_TestLaravel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_BranchForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_BranchForm_vue_vue_type_template_id_6e057aca__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/branches/BranchForm.vue"]])
+>>>>>>> 53abfabd1fca84bdb45accf512d171384cf4392f
 =======
 const __exports__ = /*#__PURE__*/(0,E_TestLaravel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_BranchForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_BranchForm_vue_vue_type_template_id_6e057aca__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/branches/BranchForm.vue"]])
 >>>>>>> 53abfabd1fca84bdb45accf512d171384cf4392f
