@@ -61,6 +61,9 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Branch', 'branch_id');
     }
 
+
+
+
     protected $appends = [
         'profile_photo_url',
     ];
