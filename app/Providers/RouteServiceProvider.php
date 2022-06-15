@@ -50,6 +50,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/noor.php'));
             Route::middleware('web')
                 ->group(base_path('routes/clauda.php'));
+            Route::middleware('web')
+                ->group(base_path('routes/mohannad.php'));
         });
     }
 
