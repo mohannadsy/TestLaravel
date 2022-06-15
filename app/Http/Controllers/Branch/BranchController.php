@@ -197,9 +197,11 @@ class BranchController extends Controller
         {
 
             $result = $branch->with(['branches.users', 'users'])->get();
-            return $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
+//            $this->treeOfPartialBranch($result);
+            echo $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
+
         }
-        treeOfPartialBranch($result->with(['branches']));
+
     }
 
 
