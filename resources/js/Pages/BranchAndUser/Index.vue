@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <branch-form @save-data="saveData"></branch-form>
+    <div class="row">
+        <div class="col-12">
+            <branch-form @save-data="saveData"></branch-form>
+        </div>
     </div>
 </template>
 
