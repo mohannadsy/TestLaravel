@@ -188,7 +188,7 @@ return [
 
 	    Intervention\Image\ImageServiceProvider::class,
 
-
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -224,5 +224,5 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
     'Image' => Intervention\Image\Facades\Image::class,
-
+    'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
 ];
