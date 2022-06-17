@@ -33730,10 +33730,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   registerBranch: function registerBranch(context, data) {
     var branchData = {
-      id: new Date().toISOString,
+      //id: new Date().toISOString,
       code: data.code,
       name: data.name,
       branch_id: data.branch_id,
@@ -33743,8 +33751,16 @@ __webpack_require__.r(__webpack_exports__);
       email: data.email,
       phone: data.phone,
       mobile: data.mobile
-    };
-    context.commit('registerBranch', branchData);
+    }; // const response = await fetch(route('branch.store'), {
+    //     method: 'POST',
+    //     body: branchData
+    // })
+
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__.Inertia.post(route('branch.store'), branchData);
+    console.log(branchData); //branchData.post(route('branch.store'));
+    //this.$inertia.post('branch.store', branchData);
+
+    context.commit('registerBranch', _objectSpread({}, branchData));
   }
 });
 
