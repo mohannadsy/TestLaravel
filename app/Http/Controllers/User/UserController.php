@@ -32,7 +32,8 @@ class UserController extends Controller
 
     public function index() // getAllUsers
     {
-        $this->callActivity('index', null);
+        $parameters = [ 'id' => null];
+        $this->callActivity('index', $parameters);
         if (Auth::user()) {
             return User::all();
         } else {
