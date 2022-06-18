@@ -32071,11 +32071,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSaveData: $options.saveData
   }, null, 8
   /* PROPS */
+<<<<<<< HEAD
   , ["onSaveData"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.loadBranches && $options.loadBranches.apply($options, arguments);
     })
   }, "Get")]);
+=======
+  , ["onSaveData"])])]);
+>>>>>>> cd065931e9d1ac000fdaca503d64cc5508b53b98
 }
 
 /***/ }),

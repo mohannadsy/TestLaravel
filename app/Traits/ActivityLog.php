@@ -7,6 +7,7 @@ use App\Models\Activity;
 use App\Models\Branch;
 use App\Models\Trash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 trait  ActivityLog
 {
@@ -26,12 +27,19 @@ trait  ActivityLog
                 'user_id' => Auth::id(),
                 'table_id' => $activity['parameters']['id'],
             ]);
+            Activity::create([
+                'table' => $activity['table'],
+                'operation' => $activity['operation'],
+                'user_id' => Auth::id(),
+                'table_id' => $activity['parameters']['id'],
+            ]);
         } else
             Activity::create([
                 'table' => $activity['table'],
                 'operation' => $activity['operation'],
                 'user_id' => Auth::id(),
-                'table_id' => Branch::all()->last()->id + 1,
+                'table_id' => $activity['parameters']['id'],
+
             ]);
     }
 }
