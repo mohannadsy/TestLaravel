@@ -174,39 +174,9 @@ class BranchController extends Controller
         ]);
     }
 
-//    public function TreeOfMainPage()
-//    {
-////         $result = Branch::whereNull('branch_id')->with(['branches.branches.users','users'])->get();
-////        return $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
-//
-//    }
-
-//    public function TreeOfMainPage()
-//    {
-//        $mainbranches = Branch::whereNull('branch_id')->get();
-//        foreach ($mainbranches as $branch)
-//             $result=$branch->with(['branches','users'])->get();
-//                return $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
-//
-////            $branch->TreeOfMainPage();
-//    }
-    public function treeOfPartialBranch($ArrayBranches)
-    {
-        $result='';
-        foreach ($ArrayBranches as $branch)
-        {
-
-            $result = $branch->with(['branches.users', 'users'])->get();
-            return $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
-        }
-        treeOfPartialBranch($result->with(['branches']));
-    }
-
-
     public function TreeOfMainBranch()
     {
-         $mainbranches = Branch::whereNull('branch_id')->get();
-            $this-> treeOfPartialBranch($mainbranches);
+        return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
     }
 
 }

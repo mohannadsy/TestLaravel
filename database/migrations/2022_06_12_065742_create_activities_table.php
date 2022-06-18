@@ -9,12 +9,12 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('activities', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             $table->string('table')->nullable();
             $table->string('operation')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('table_id')->nullable();
-            $table->json('old_data');
+            $table->json('old_data')->default('null');
             $table->timestamps();
         });
     }
