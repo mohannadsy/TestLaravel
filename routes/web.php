@@ -77,6 +77,8 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'delete'])->name('branch.delete');
     Route::get('forceDelete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'forceDelete'])->name('branch.forceDelete');
     Route::get('restore/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'restore'])->name('branch.restore');
+    Route::get('getMainBranch', [\App\Http\Controllers\Branch\BranchController::class, 'getMainBranch'])->name('branch.getMainBranch');
+
     Route::get('isLastCharacterInStringIsNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
     Route::get('TreeOfMainBranch', [\App\Http\Controllers\Branch\BranchController::class, 'TreeOfMainBranch'])->name('branch.TreeOfMainBranch');
 

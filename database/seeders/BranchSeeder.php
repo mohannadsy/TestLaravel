@@ -66,5 +66,16 @@ class BranchSeeder extends Seeder
             'phone' => '041078875',
             'mobile' => '09944935736',
         ]);
+        Branch::create([
+            'code' => '5',
+            'name' => 'Branch4',
+//            'branch_id' => '3' ,
+            'responsibility' => '',
+            'address' => '',
+            'website' => 'branch4.com',
+            'email' => 'branch4@gmail.com',
+            'phone' => '041078875',
+            'mobile' => '09944935736',
+        ]);
     }
 }
