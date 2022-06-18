@@ -37,7 +37,7 @@
                         autofocus
                     />
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     
                     <element-form-input
                         label="اسم المستخدم أو البريد الاكتروني"
@@ -48,7 +48,7 @@
                         required
                         autofocus
                     />
-                </div>
+                </div> -->
 
                 <div class="mb-3">
                     <jet-label for="password" value="كلمة المرور" />
@@ -62,7 +62,7 @@
                 </div>
         
 
-                <!-- <div class="mb-3">
+                <div class="mb-3">
                     <div class="custom-control custom-checkbox">
                         <jet-checkbox
                             id="remember_me"
@@ -74,10 +74,14 @@
                             تذكر كلمة المرور
                         </label>
                     </div>
+                </div>
+                <!-- <div class="mb-3">
+                    <select :options="lang"></select>
+
                 </div> -->
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <div class="custom-control custom-checkbox">
-                        <check-box id="remember_me"
+                        <checkbox id="remember_me"
                                     name="remember"
                                     v-model:checked="form.remember"
                         />
@@ -85,7 +89,16 @@
                             تذكر كلمة المرور
                         </label>
                     </div>
-                </div>
+                </div> -->
+
+                <!-- <div class="mb-3">
+                    <checkbox-switched-label id="remember_me"
+                                    name="remember"
+                                    v-model:checked="form.remember"
+                                    label="تذكر كلمة المرور"
+
+                    />
+                </div> -->
 
                 <div class="mb-3">
                     <div
@@ -143,23 +156,33 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 import ElementFormInput from "../../Shared/ElementFormInput.vue"
 import PageTitle from "../../Shared/PageTitle.vue";
 import CheckBox from "../../Shared/CheckBox.vue";
+import CheckboxLabeled from "../../Shared/CheckboxLabeled.vue"
+import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue"
+import CheckboxSwitchedLabel from "../../Shared/CheckboxSwitchedLabel.vue";
+import Select from "../../Shared/Select.vue"
+import Select1 from "../../Shared/Select.vue"
 
 
 export default defineComponent({
     components: {
-        Head,
-        JetAuthenticationCard,
-        JetAuthenticationCardLogo,
-        JetButton,
-        JetInput,
-        JetCheckbox,
-        JetLabel,
-        JetValidationErrors,
-        Link,
-        ElementFormInput,
-        PageTitle,
-        CheckBox,
-    },
+    Head,
+    JetAuthenticationCard,
+    JetAuthenticationCardLogo,
+    JetButton,
+    JetInput,
+    JetCheckbox,
+    JetLabel,
+    JetValidationErrors,
+    Link,
+    ElementFormInput,
+    PageTitle,
+    CheckBox,
+    CheckboxLabeled,
+    CheckboxSwitch,
+    CheckboxSwitchedLabel,
+    Select,
+    Select1
+},
 
     props: {
         canResetPassword: Boolean,
@@ -174,6 +197,7 @@ export default defineComponent({
                 number:"",
                 remember: false,
             }),
+            lang :["bos","nsn","sls"]
         };
     },
 
