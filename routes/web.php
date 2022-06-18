@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Branch\BranchController;
+use Barryvdh\Debugbar\Facades;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,9 @@ use App\Http\Controllers\Branch\BranchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/', function () {
-//         return Inertia::render('Auth/Login');
-//     });
+Route::get('/', function () {
+    return Inertia::render('Home');
+});
 
 Route::get('/login', function () {
     return Inertia::render('Welcome', [
@@ -39,10 +40,10 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
-Route::inertia('branch', 'Branches/Index');
-Route::inertia('user', 'Users/Index');
-Route::inertia('login', 'Auth/Login');
+//
+//Route::inertia('branch', 'Branches/Index');
+//Route::inertia('user', 'Users/Index');
+//Route::inertia('login', 'Auth/Login');
 
 
 //-------User------//
@@ -62,6 +63,27 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('TreeOfMainPage', [\App\Http\Controllers\User\UserController::class, 'TreeOfMainPage']);
 
 
+    Route::get('/debudbar', function () {
+
+        Facades\Debugbar::startMeasure('render', 'Time for rendering');
+
+        $user = \App\Models\User::find(2);
+        Facades\Debugbar::info($user);
+
+        Facades\Debugbar::stopMeasure('render');
+
+        return 'Debugbar';
+    });
+
+});
+
+Route::get('/debug', function () {
+    try {
+        throw new Exception('foobar');
+    } catch (Exception $e) {
+        Facades\Debugbar::addThrowable($e);
+    }
+    return 'debug';
 });
 
 
@@ -77,7 +99,11 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'delete'])->name('branch.delete');
     Route::get('forceDelete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'forceDelete'])->name('branch.forceDelete');
     Route::get('restore/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'restore'])->name('branch.restore');
+    Route::get('getMainBranch', [\App\Http\Controllers\Branch\BranchController::class, 'getMainBranch'])->name('branch.getMainBranch');
+
     Route::get('isLastCharacterInStringIsNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
+
+
     Route::get('TreeOfMainBranch', [\App\Http\Controllers\Branch\BranchController::class, 'TreeOfMainBranch'])->name('branch.TreeOfMainBranch');
 
 });

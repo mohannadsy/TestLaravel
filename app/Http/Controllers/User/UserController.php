@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Inertia\Inertia;
+use function Illuminate\Session\userId;
 
 
 class UserController extends Controller
@@ -32,7 +33,8 @@ class UserController extends Controller
 
     public function index() // getAllUsers
     {
-        $this->callActivity('index', null);
+        $parameters = ['id' => null];
+        $this->callActivity('index', $parameters);
         if (Auth::user()) {
             return User::all();
         } else {
@@ -66,7 +68,11 @@ class UserController extends Controller
     {
         $parameters = ['id' => $id];
         $this->callActivity('show', $parameters);
-        return User::find($id);
+
+        $user = User::find($id);
+
+        return ($user) ? $user = User::find($id) : 'User not Found';
+
     }
 
     public function edit(User $user)
@@ -99,8 +105,10 @@ class UserController extends Controller
         $parameters = ['id' => $id];
         $this->callActivity('delete', $parameters);
         if ($this->isNotSuperAdmin($id)) {
-            User::find($id)->delete();
-            return "User is Deleted successfully";
+          $user =  User::find($id);
+
+            return ($user) ?    $user =  User::find($id)->delete() : 'User not Found';
+
         }
         return "Super Admin Can not be Deleted";
     }

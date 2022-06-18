@@ -22,7 +22,8 @@ class BranchController extends Controller
      */
     public function index() //getAllBranches
     {
-        $this->callActivity('getAllBranches', null);
+        $parameters = ['id'=> null];
+        $this->callActivity('getAllBranches', $parameters);
         return $Branches = Branch::all();
     }
 
@@ -44,7 +45,8 @@ class BranchController extends Controller
      */
     public function store(StoreBranchRequest $request)
     {
-        $parameters = ['request' => $request];
+        $id=Branch::latest()->first()->id+1;
+        $parameters = ['request' => $request ,'id'=> $id];
         $this->callActivity('insertBranch', $parameters);
         //insert to Database
         Branch::create($request->all());
@@ -61,7 +63,13 @@ class BranchController extends Controller
     {
         $parameters = ['id' => $id];
         $this->callActivity('showBranch', $parameters);
-        return Branch::find($id);
+        $branch =Branch::find($id);
+        return $this->isFindBranch($branch);
+
+    }
+    public function isFindBranch($branch)
+    {
+        return ($branch) ?  $branch : "branch not found";
     }
 
     /**
@@ -101,11 +109,26 @@ class BranchController extends Controller
     {
         $paramters = ['id' => $id];
         $this->callActivity('delete', $paramters);
-        if ($this->isNotMainBranch($id)) {
-            Branch::find($id)->delete();
-            return "Branch is deleted successfully";
-        }
-        return "Main Branch isn't deleted";
+        return $this->isFindBranchToDelete($id);
+
+//        if ($this->isNotMainBranch($id)) {
+//            Branch::find($id)->delete();
+//            return "Branch is deleted successfully";
+//        }
+//        return "Main Branch isn't deleted";
+    }
+    public function isFindBranchToDelete($id)
+    {
+        $branch =Branch::find($id);
+        if ($branch )
+            if($this->isNotMainBranch($id))
+            {
+                $branch->delete();
+                return "Branch is deleted successfully";
+            }
+            else
+                return "Main Branch isn't deleted";
+        return "branch not found";
     }
 
     public function forceDelete($id) //can not be restored
@@ -174,39 +197,9 @@ class BranchController extends Controller
         ]);
     }
 
-//    public function TreeOfMainPage()
-//    {
-////         $result = Branch::whereNull('branch_id')->with(['branches.branches.users','users'])->get();
-////        return $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
-//
-//    }
-
-//    public function TreeOfMainPage()
-//    {
-//        $mainbranches = Branch::whereNull('branch_id')->get();
-//        foreach ($mainbranches as $branch)
-//             $result=$branch->with(['branches','users'])->get();
-//                return $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
-//
-////            $branch->TreeOfMainPage();
-//    }
-    public function treeOfPartialBranch($ArrayBranches)
-    {
-        $result='';
-        foreach ($ArrayBranches as $branch)
-        {
-
-            $result = $branch->with(['branches.users', 'users'])->get();
-            return $json_beautified = str_replace(array("{", "}", '","'), array("{<br />&nbsp;&nbsp;&nbsp;&nbsp;", "<br />}", '",<br />&nbsp;&nbsp;&nbsp;&nbsp;"'), $result);
-        }
-        treeOfPartialBranch($result->with(['branches']));
-    }
-
-
     public function TreeOfMainBranch()
     {
-         $mainbranches = Branch::whereNull('branch_id')->get();
-            $this-> treeOfPartialBranch($mainbranches);
+        return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
     }
 
 }
