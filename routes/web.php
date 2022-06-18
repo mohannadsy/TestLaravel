@@ -16,9 +16,9 @@ use App\Http\Controllers\Branch\BranchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/', function () {
-//         return Inertia::render('Auth/Login');
-//     });
+Route::get('/', function () {
+    return Inertia::render('Home');
+});
 
 Route::get('/login', function () {
     return Inertia::render('Welcome', [
@@ -39,10 +39,10 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
-Route::inertia('branch', 'Branches/Index');
-Route::inertia('user', 'Users/Index');
-Route::inertia('login', 'Auth/Login');
+//
+//Route::inertia('branch', 'Branches/Index');
+//Route::inertia('user', 'Users/Index');
+//Route::inertia('login', 'Auth/Login');
 
 
 //-------User------//
