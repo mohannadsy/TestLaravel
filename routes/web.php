@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Branch\BranchController;
+use Barryvdh\Debugbar\Facades;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,11 +60,30 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('forceDelete/{id}', [\App\Http\Controllers\User\UserController::class, 'forceDelete']);
 
 
-
-
     Route::get('TreeOfMainPage', [\App\Http\Controllers\User\UserController::class, 'TreeOfMainPage']);
 
 
+    Route::get('/debudbar', function () {
+
+        Facades\Debugbar::startMeasure('render', 'Time for rendering');
+
+        $user = \App\Models\User::find(2);
+        Facades\Debugbar::info($user);
+
+        Facades\Debugbar::stopMeasure('render');
+
+        return 'Debugbar';
+    });
+
+});
+
+Route::get('/debug', function () {
+    try {
+        throw new Exception('foobar');
+    } catch (Exception $e) {
+        Facades\Debugbar::addThrowable($e);
+    }
+    return 'debug';
 });
 
 
