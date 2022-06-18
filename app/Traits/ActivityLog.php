@@ -27,6 +27,12 @@ trait  ActivityLog
                 'user_id' => Auth::id(),
                 'table_id' => $activity['parameters']['id'],
             ]);
+            Activity::create([
+                'table' => $activity['table'],
+                'operation' => $activity['operation'],
+                'user_id' => Auth::id(),
+                'table_id' => $activity['parameters']['id'],
+            ]);
         } else
             Activity::create([
                 'table' => $activity['table'],
