@@ -22,7 +22,8 @@ class BranchController extends Controller
      */
     public function index() //getAllBranches
     {
-        $this->callActivity('getAllBranches', null);
+        $parameters = ['id'=> null];
+        $this->callActivity('getAllBranches', $parameters);
         return $Branches = Branch::all();
     }
 
@@ -62,7 +63,13 @@ class BranchController extends Controller
     {
         $parameters = ['id' => $id];
         $this->callActivity('showBranch', $parameters);
-        return Branch::find($id);
+        $branch =Branch::find($id);
+        return $this->isFindBranch($branch);
+
+    }
+    public function isFindBranch($branch)
+    {
+        return ($branch) ?  $branch : "branch not found";
     }
 
     /**
@@ -102,11 +109,26 @@ class BranchController extends Controller
     {
         $paramters = ['id' => $id];
         $this->callActivity('delete', $paramters);
-        if ($this->isNotMainBranch($id)) {
-            Branch::find($id)->delete();
-            return "Branch is deleted successfully";
-        }
-        return "Main Branch isn't deleted";
+        return $this->isFindBranchToDelete($id);
+
+//        if ($this->isNotMainBranch($id)) {
+//            Branch::find($id)->delete();
+//            return "Branch is deleted successfully";
+//        }
+//        return "Main Branch isn't deleted";
+    }
+    public function isFindBranchToDelete($id)
+    {
+        $branch =Branch::find($id);
+        if ($branch )
+            if($this->isNotMainBranch($id))
+            {
+                $branch->delete();
+                return "Branch is deleted successfully";
+            }
+            else
+                return "Main Branch isn't deleted";
+        return "branch not found";
     }
 
     public function forceDelete($id) //can not be restored
