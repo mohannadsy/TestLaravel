@@ -44,7 +44,8 @@ class BranchController extends Controller
      */
     public function store(StoreBranchRequest $request)
     {
-        $parameters = ['request' => $request];
+        $id=Branch::latest()->first()->id+1;
+        $parameters = ['request' => $request ,'id'=> $id];
         $this->callActivity('insertBranch', $parameters);
         //insert to Database
         Branch::create($request->all());
