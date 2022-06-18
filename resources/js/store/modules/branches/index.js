@@ -5,18 +5,20 @@ import getters from './getters.js';
 export default {
     namespaced: true,
     state() {
-        branches: [{
-            id: '',
-            code: '',
-            name: '',
-            branch_id: '',
-            responsibility: '',
-            address: '',
-            website: '',
-            email: '',
-            phone: '',
-            mobile: ''
-        }]
+        return {
+            branches: [{
+                id: '',
+                code: '',
+                name: '',
+                branch_id: '',
+                responsibility: '',
+                address: '',
+                website: '',
+                email: '',
+                phone: '',
+                mobile: ''
+            }]
+        };
     },
     mutations,
     actions,

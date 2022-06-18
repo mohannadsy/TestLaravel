@@ -4,6 +4,7 @@
 namespace App\Traits;
 
 use App\Models\Activity;
+use App\Models\Branch;
 use App\Models\Trash;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +31,7 @@ trait  ActivityLog
                 'table' => $activity['table'],
                 'operation' => $activity['operation'],
                 'user_id' => Auth::id(),
-                'table_id' => $activity['parameters']['id'],
+                'table_id' => Branch::all()->last()->id + 1,
             ]);
     }
 }
