@@ -120,9 +120,8 @@ class UserController extends Controller
     {
         $parameters = ['id' => $id];
         if ($this->isNotSuperAdmin($id)) {
-            User::find($id)->forceDelete();
-            $this->callActivityMethod('forceDelete', $parameters);
-            return "User is Deleted successfully";
+            $user = User::find($id);
+            return  $user ? $user->forceDelete() && $this->callActivityMethod('forceDelete', $parameters) : 'User not Found';
         }
         return "Super Admin Can not be Deleted";
     }
