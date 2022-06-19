@@ -123,5 +123,6 @@ class UserController extends Controller
         }
         return "Super Admin Can not be Deleted";
     }
+
 }
 
