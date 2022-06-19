@@ -40,6 +40,7 @@ trait  ActivityLog
                 'user_id' => Auth::id(),
                 'table_id' => $activity['parameters']['id'],
 
+
             ]);
     }
 }

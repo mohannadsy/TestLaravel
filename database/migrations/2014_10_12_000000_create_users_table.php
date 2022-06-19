@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('code');
+            $table->string('name')->unique();
+            $table->string('code')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('branch_id');
             $table->string('first_name');
             $table->string('middle_name');
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
             $table->string('phone');
             $table->unsignedBigInteger('id_number');
             $table->rememberToken();

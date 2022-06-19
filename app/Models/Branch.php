@@ -11,6 +11,7 @@ class Branch extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $table = "branches";
 
     protected $fillable = [
@@ -33,5 +34,16 @@ class Branch extends Model
     public function users()
     {
         return $this->hasMany('App\Models\User', 'branch_id')->with('permissions');
+    }
+
+
+    public function onlyBranches()
+    {
+        return $this->hasMany('App\Models\Branch', 'branch_id');
+    }
+
+    public function onlyUsers()
+    {
+        return $this->hasMany('App\Models\User', 'branch_id');
     }
 }
