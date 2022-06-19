@@ -47,7 +47,7 @@ class UpdateBranchRequest extends FormRequest
             'name.unique'            => 'اسم الفرع موجود سابقاً ',
             'name.string'            => 'اسم الفرع يجب أن يكون محارف ',
             'branch_id.max'          => 'رمز الفرع الرئيسي تجاوز 50 رقم ',
-            'branch_id.numeric'      => 'رمز الفرع الرئيسي يجب أن يكون ارقام  ',
+            'branch_id.numeric'      => 'رمز الفرع الرئيسي يجب أن يكون ارقام ',
             'responsibility.max'     => 'معلومات الفرع(الصفة) تجاوز 250 محرف ',
             'responsibility.string'  => 'معلومات الفرع يجب أن يكون محارف ',
             'address.max'            =>  'عنوان الفرع تجاوز 100 محرف ',
