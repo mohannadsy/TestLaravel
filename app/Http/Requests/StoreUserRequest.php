@@ -24,20 +24,20 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return $rules = [
-            'code' => 'required|unique|string:users,code',
-            'name' => 'required|max:50|unique|string:users,name',
-            'email' => 'unique|string|email::users,email',
-            'password' => 'required|min:6|unique|password:users,password',
+            'code' => 'required|string|unique:users,code',
+            'name' => 'required|max:50|string|unique:users,name',
+            'email' => 'string|email|unique:users,email',
+            'password' => 'required|min:6|password|unique:users,password',
 //          'password_confirm' => 'required|same:password:users,password_confirm',
             'branch_name' => 'string:users,branch_name',
             'role' => 'string:users,role',
             'branch_id' => 'max:50|numeric:users,branch_id',
             'photo' => 'string|image:users,photo',
-            'first_name' => 'required|max:50|unique|string:users,first_name',
-            'middle_name' => 'required|max:50|unique|string:users,middle_name',
-            'last_name' => 'required|max:50|unique|string:users,last_name',
-            'phone' => 'max:50|unique|string:users,phone',
-            'mobile' => 'max:50|unique|string:users,mobile',
+            'first_name' => 'required|max:50|string|unique:users,first_name',
+            'middle_name' => 'required|max:50|string|unique:users,middle_name',
+            'last_name' => 'required|max:50|string|unique:users,last_name',
+            'phone' => 'max:50|string|unique:users,phone',
+            'mobile' => 'max:50|string|unique:users,mobile',
             'id_number' => 'max:50|numeric:users,id_number',
         ];
     }
