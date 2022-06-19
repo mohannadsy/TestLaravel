@@ -110,13 +110,14 @@ class BranchController extends Controller
     public function restore($id) // from recycle bin
     {
         $paramters = ['id' => $id];
-        $branch =Trash::where('table_id','=',$id)->get();
-        if ($branch) {
-            $branch->restore();
+        $branchinTrash =Trash::where('table_id','=',$id)->where('table','branches')->get();
+        $branchinBranch=Branch::withTrashed()->find($id);
+
+        if ($branchinBranch) {
+            $branchinBranch->restore();
             $this->callActivityMethod('restoreBranch', $paramters);
-            $branch->delete();
-            $this->callActivityMethod('restoreBranch', $paramters);
-            return $branch;
+            $branchinTrash->delete();
+            return $branchinBranch;
         }
         return "branch not found";
     }
