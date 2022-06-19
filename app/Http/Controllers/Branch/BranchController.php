@@ -64,10 +64,9 @@ class BranchController extends Controller
         $parameters = ['id' => $id];
         $this->callActivity('showBranch', $parameters);
         $branch =Branch::find($id);
-        return $this->isFindBranch($branch);
-
+        return $this->isBranchExisted($branch);
     }
-    public function isFindBranch($branch)
+    public function isBranchExisted($branch)
     {
         return ($branch) ?  $branch : "branch not found";
     }

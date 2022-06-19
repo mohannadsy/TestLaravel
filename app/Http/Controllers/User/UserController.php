@@ -106,9 +106,7 @@ class UserController extends Controller
         $this->callActivity('delete', $parameters);
         if ($this->isNotSuperAdmin($id)) {
           $user =  User::find($id);
-
             return ($user) ?    $user =  User::find($id)->delete() : 'User not Found';
-
         }
         return "Super Admin Can not be Deleted";
     }
