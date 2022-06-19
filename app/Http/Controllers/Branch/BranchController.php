@@ -197,9 +197,8 @@ class BranchController extends Controller
         ]);
     }
 
-    public function TreeOfMainBranch()
+    public function TreeOfMainPage()
     {
         return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
     }
-
 }
