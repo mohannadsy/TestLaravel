@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Trash;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -24,7 +25,7 @@ class UserController extends Controller
     public function callActivityMethod($method, $parameters)
     {
         $this->makeActivity([
-            'table' => 'User',
+            'table' => 'users',
             'operation' => $method,
             'parameters' => $parameters
         ]);
@@ -33,8 +34,8 @@ class UserController extends Controller
     public function index() // getAllUsers
     {
         $parameters = ['id' => null];
-        $this->callActivityMethod('index', $parameters);
         if (Auth::user()) {
+            $this->callActivityMethod('index', $parameters);
             return User::all();
         } else {
             return 'You are not allowed to do this';
@@ -53,13 +54,12 @@ class UserController extends Controller
     {
         $id = User::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $this->callActivityMethod('store', $parameters);
         $input = $request->validated();
         $input->profile_photo_path = $this->getImageURL($request);;
         $input->role = $this->assignRole($request->role);
-//        $this->givePermissionTo($request->permissions);
+//      $this->givePermissionTo($request->permissions);
         User::create($input);
-
+        $this->callActivityMethod('store', $parameters);
         return Inertia::render('Users/index', compact($input));
     }
 
@@ -86,40 +86,42 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
-        $this->callActivityMethod('update', $parameters);
         $url = $this->getImageURL($request);
         $input = $request->all();
         $input->profile_photo_path = $url;
         $user = User::find($id)->update($input);
         if ($user)
+            $this->callActivityMethod('update', $parameters);
             return 'User Updated Successfully';
     }
 
     public function delete($id) //  delete - can be restored
     {
         $parameters = ['id' => $id];
-        $this->callActivityMethod('delete', $parameters);
         if ($this->isNotSuperAdmin($id)) {
             $user = User::find($id);
-            return ($user) ? $user = User::find($id)->delete() : 'User not Found';
+            return  $user? $user->delete() && $this->callActivityMethod('delete', $parameters) : 'User not Found';
         }
         return "Super Admin Can not be Deleted";
     }
 
+
     public function restore($id) // from recycle bin
     {
         $parameters = ['id' => $id];
-        $this->callActivityMethod('restore', $parameters);
-        User::withTrashed()->find($id)->restore();
+        $user =  User::withTrashed()->find($id);
+        return  $user ? $user->restore()
+            && Trash::where('table_id',$id)->delete()
+            && $this->callActivityMethod('restore', $parameters)
+            : 'User not Found in Trash';
     }
 
     public function forceDelete($id) //can not be restored
     {
         $parameters = ['id' => $id];
-        $this->callActivityMethod('forceDelete', $parameters);
         if ($this->isNotSuperAdmin($id)) {
-            User::find($id)->forceDelete();
-            return "User is Deleted successfully";
+            $user = User::find($id);
+            return  $user ? $user->forceDelete() && $this->callActivityMethod('forceDelete', $parameters) : 'User not Found';
         }
         return "Super Admin Can not be Deleted";
     }
