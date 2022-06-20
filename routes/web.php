@@ -18,17 +18,17 @@ use Barryvdh\Debugbar\Facades;
 |
 */
 Route::get('/', function () {
-    return Inertia::render('Home');
+    return Inertia::render('Auth/Login');
 });
 
-Route::get('/login', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
 Route::middleware([
     'auth:sanctum',
@@ -57,13 +57,13 @@ Route::group(['namespace' => 'User'], function () {
     Route::post('update', [\App\Http\Controllers\User\UserController::class, 'update']);
     Route::get('delete/{id}', [\App\Http\Controllers\User\UserController::class, 'delete']);
     Route::get('restore/{id}', [\App\Http\Controllers\User\UserController::class, 'restore']);
-    Route::get('forceDelete/{id}', [\App\Http\Controllers\User\UserController::class, 'forceDelete']);
+    Route::get('force-delete/{id}', [\App\Http\Controllers\User\UserController::class, 'forceDelete']);
 
 
-    Route::get('TreeOfMainPage', [\App\Http\Controllers\User\UserController::class, 'TreeOfMainPage']);
+    Route::get('tree-of-main-page', [\App\Http\Controllers\User\UserController::class, 'TreeOfMainPage']);
 
 
-    Route::get('/debudbar', function () {
+    Route::get('/debugbar', function () {
 
         Facades\Debugbar::startMeasure('render', 'Time for rendering');
 

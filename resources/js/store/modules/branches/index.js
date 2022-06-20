@@ -17,7 +17,8 @@ export default {
                 email: '',
                 phone: '',
                 mobile: ''
-            }]
+            }],
+            results: 'hello from vuex'
         };
     },
     mutations,
