@@ -18,7 +18,7 @@ use Barryvdh\Debugbar\Facades;
 |
 */
 Route::get('/', function () {
-    return Inertia::render('Home');
+    return Inertia::render('Auth/Login');
 });
 
 Route::get('/login', function () {
@@ -57,13 +57,13 @@ Route::group(['namespace' => 'User'], function () {
     Route::post('update', [\App\Http\Controllers\User\UserController::class, 'update']);
     Route::get('delete/{id}', [\App\Http\Controllers\User\UserController::class, 'delete']);
     Route::get('restore/{id}', [\App\Http\Controllers\User\UserController::class, 'restore']);
-    Route::get('forceDelete/{id}', [\App\Http\Controllers\User\UserController::class, 'forceDelete']);
+    Route::get('force-delete/{id}', [\App\Http\Controllers\User\UserController::class, 'forceDelete']);
 
 
-    Route::get('TreeOfMainPage', [\App\Http\Controllers\User\UserController::class, 'TreeOfMainPage']);
+    Route::get('tree-of-main-page', [\App\Http\Controllers\User\UserController::class, 'TreeOfMainPage']);
 
 
-    Route::get('/debudbar', function () {
+    Route::get('/debugbar', function () {
 
         Facades\Debugbar::startMeasure('render', 'Time for rendering');
 
@@ -84,27 +84,5 @@ Route::get('/debug', function () {
         Facades\Debugbar::addThrowable($e);
     }
     return 'debug';
-});
-
-
-//-------Branch------//
-
-Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
-    Route::get('index', [\App\Http\Controllers\Branch\BranchController::class, 'index'])->name('branch.index');
-    Route::get('create', [\App\Http\Controllers\Branch\BranchController::class, 'create'])->name('branch.create');
-    Route::get('show/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'show'])->name('branch.show');
-    Route::post('store', [\App\Http\Controllers\Branch\BranchController::class, 'store'])->name('branch.store');
-    Route::get('edit/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'edit'])->name('branch.edit');
-    Route::post('update/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'update'])->name('branch.update');
-    Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'delete'])->name('branch.delete');
-    Route::get('forceDelete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'forceDelete'])->name('branch.forceDelete');
-    Route::get('restore/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'restore'])->name('branch.restore');
-    Route::get('getMainBranch', [\App\Http\Controllers\Branch\BranchController::class, 'getMainBranch'])->name('branch.getMainBranch');
-
-    Route::get('isLastCharacterInStringIsNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
-
-
-    Route::get('TreeOfMainBranch', [\App\Http\Controllers\Branch\BranchController::class, 'TreeOfMainBranch'])->name('branch.TreeOfMainBranch');
-
 });
 

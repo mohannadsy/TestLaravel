@@ -4,5 +4,9 @@ export default {
     },
     setBranches(state, payload) {
         state.branches = payload;
+    },
+    setResults(state, payload) {
+        state.results = payload;
     }
+
 };
