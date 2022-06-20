@@ -96,27 +96,24 @@
                 </div> -->
 
                 <div class="mb-3">
-                    <div
-                        class="d-flex justify-content-end align-items-baseline"
-                    >
+                    <div class="d-flex justify-content-end align-items-baseline">
                         <Link
                             v-if="canResetPassword"
                             :href="route('password.request')"
-                            class="text-muted me-3"
-                        >
-                            Forgot your password?
+                            class="text-muted me-3">
+
+                            هل نسيت كلمة المرور؟
                         </Link>
 
                         <jet-button
                             class="ms-4 btn-lg"
                             :class="{ 'text-white-50': form.processing }"
-                            :disabled="form.processing"
-                        >
+                            :disabled="form.processing" >
+                            
                             <div
                                 v-show="form.processing"
                                 class="spinner-border spinner-border-sm"
-                                role="status"
-                            >
+                                role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
 
@@ -137,14 +134,14 @@
                 <div class="mb-3">
                     <!-- <tbody>
                         <tr>
-                            <td> <label  >الصفة</label></td>
+                            <td> <label>الصفة</label></td>
                             <td><v-select :value="form.value" :options="lang" ></v-select></td>
                         </tr>
                     </tbody> -->
-                    <text-area
+                    <!-- <text-area
                         placeholder="ملاحظات"
                         v-model="form.notes"
-                    ></text-area>
+                    ></text-area> -->
                 </div>
             </form>
         </div>
