@@ -78,60 +78,48 @@ class BranchController extends Controller
     {
         $paramters = ['id' => $id];
         $branch =Branch::find($id);
-        if ($branch )
-            if($this->isNotMainBranch($id))
-            {
-                $branch->delete();
-                $this->callActivityMethod('delete', $paramters);
-                return "Branch is deleted successfully";
-            }
-            else
-                return "Main Branch isn't deleted";
-        return "branch not found";
-
+        if($this->isMainBranch($id))
+            return "Main Branch isn't deleted";
+        if (!$this->numOfSubBranches($id)>0 )
+        {
+            $branch->delete();
+            $this->callActivityMethod('delete', $paramters);
+            return "Branch is deleted successfully";
+        }
+        else
+            return "it is not possible to delete a branch that contains branches within it";
     }
 
     public function forceDelete($id) //can not be restored
     {
         $paramters = ['id' => $id];
         $branch =Branch::find($id);
-        if ($branch )
-            if($this->isNotMainBranch($id))
-            {
-                $branch->forceDelete();
-                $this->callActivityMethod('forceDelete', $paramters);
-                return "Branch is deleted successfully";
-            }
-            else
-                return "Main Branch isn't deleted";
-        return "branch not found";
+        if($this->isMainBranch($id))
+            return "Main Branch isn't deleted";
+        if (!$this->numOfSubBranches($id)>0 )
+        {
+            $branch->forceDelete();
+            $this->callActivityMethod('forceDelete', $paramters);
+            return "Branch is deleted successfully";
+        }
+        else
+            return "it is not possible to delete a branch that contains branches within it";
     }
 
     public function restore($id) // from recycle bin
     {
-
-
-//        $parameters = ['id' => $id];
-//        $user =  User::withTrashed()->find($id);
-//        return  $user ? $user->restore()
-//            && Trash::where('table_id',$id)->delete()
-//            && $this->callActivityMethod('restore', $parameters)
-//            : 'User not Found in Trash';
-
-
         $paramters = ['id' => $id];
-//        $branchinTrash =Trash::where('table_id','=',$id)->where('table','branches')->get();
-        $branchinBranch=Branch::withTrashed()->find($id);
-
-        if ($branchinBranch->is) {
-            $branchinBranch->restore();
-            $this->callActivityMethod('restore', $paramters);
-            Trash::where('table_id',$id)->where('table','branches')->delete();
-            return $branchinBranch;
-        }
-        return "branch not found";
+        $branchinBranch=Branch::onlyTrashed()->find($id);
+         return $branchinBranch ? $branchinBranch->restore()
+            && $this->callActivityMethod('restore', $paramters)
+            && Trash::where('table_id',$id)->where('table','branches')->delete()
+        : 'branch not found';
     }
-
+    public  function numOfSubBranches($id)
+    {
+        $SubBranches=Branch::where('branch_id',$id)->get();
+        return count($SubBranches);
+    }
     public function isMainBranch($id)
     {
         return $id == 1;
@@ -151,36 +139,29 @@ class BranchController extends Controller
     {
         return is_numeric($this->getLastCharacterInString($string));
     }
-
-
     public function generateNextCodeOfPartialBranch($branch_id)
     {
         return $branch = Branch::where('branch_id', $branch_id)->last()->code + 1;
     }
-
     public function getMainBranch()
     {
         return $mainBranch =  DB::table('branches')
             ->whereNull('branch_id')
             ->get();
-
     }
-
     public function generateNextCodeOfMainBranch()
     {
         return $branch = $this->getMainBranch()->last()->code + 1;
     }
-
     public function callActivityMethod($method, $parameters)
     {
         $this->makeActivity([
-            'table' => 'Branch',
+            'table' => 'branches',
             'operation' => $method,
             'parameters' => $parameters
         ]);
     }
-
-    public function TreeOfMainBranch()
+    public function treeOfMainBranch()
     {
         return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
     }
