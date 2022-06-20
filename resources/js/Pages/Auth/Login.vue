@@ -30,7 +30,7 @@
                     <jet-label for="email" value="البريد الالكتروني" />
                     <jet-input
                         id="email"
-                        type="email"
+                        type="text"
                         placeholder="اسم المستخدم أو البريد الالكتروني"
                         v-model="form.email"
                         required
@@ -38,7 +38,7 @@
                     />
                 </div>
                 <!-- <div class="mb-3">
-                    
+
                     <element-form-input
                         label="اسم المستخدم أو البريد الاكتروني"
                         id="num"
