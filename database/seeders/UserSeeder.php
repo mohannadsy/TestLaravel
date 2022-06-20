@@ -51,10 +51,11 @@ class UserSeeder extends Seeder
         $userNoor->assignRole('Accountant');
 
         // user 3
+        for($i = 0 ; $i < 10 ; $i++)
         $userClauda = User::create([
-            'code' => '3',
-            'name' => 'Clauda Al-Rakkad',
-            'email' => 'clauda@gmail.com',
+            'code' => $i + 5,
+            'name' => 'Clauda Al-Rakkad'.$i,
+            'email' => "clauda@gmail$i.com",
             'password' => bcrypt('12345clauda'),
             'branch_name' => 'Main Branch',
             'role' => 'Casher',

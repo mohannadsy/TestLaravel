@@ -34,12 +34,8 @@ class UserController extends Controller
     public function index()
     {
         $parameters = ['id' => null];
-        if (Auth::user()) {
             $this->callActivityMethod('index', $parameters);
             return User::all();
-        } else {
-            return 'You are not allowed to do this';
-        }
     }
 
     public function create()
