@@ -39,7 +39,7 @@ class BranchController extends Controller
         $storeBranch=Branch::create($request->all());
         if($storeBranch)
         {
-          $this->callActivityMethod('insertBranch', $parameters);
+          $this->callActivityMethod('store', $parameters);
           return 'store is succesfully';
         }
 
@@ -54,7 +54,7 @@ class BranchController extends Controller
         $parameters = ['id' => $id];
         $branch =Branch::find($id);
         if ($branch) {
-            $this->callActivityMethod('showBranch', $parameters);
+            $this->callActivityMethod('show', $parameters);
             return $branch;
         }
             return "branch not found";
@@ -99,7 +99,7 @@ class BranchController extends Controller
             if($this->isNotMainBranch($id))
             {
                 $branch->forceDelete();
-                $this->callActivityMethod('forceDeleteBranch', $paramters);
+                $this->callActivityMethod('forceDelete', $paramters);
                 return "Branch is deleted successfully";
             }
             else
@@ -109,14 +109,24 @@ class BranchController extends Controller
 
     public function restore($id) // from recycle bin
     {
+
+
+//        $parameters = ['id' => $id];
+//        $user =  User::withTrashed()->find($id);
+//        return  $user ? $user->restore()
+//            && Trash::where('table_id',$id)->delete()
+//            && $this->callActivityMethod('restore', $parameters)
+//            : 'User not Found in Trash';
+
+
         $paramters = ['id' => $id];
-        $branchinTrash =Trash::where('table_id','=',$id)->where('table','branches')->get();
+//        $branchinTrash =Trash::where('table_id','=',$id)->where('table','branches')->get();
         $branchinBranch=Branch::withTrashed()->find($id);
 
-        if ($branchinBranch) {
+        if ($branchinBranch->is) {
             $branchinBranch->restore();
-            $this->callActivityMethod('restoreBranch', $paramters);
-            $branchinTrash->delete();
+            $this->callActivityMethod('restore', $paramters);
+            Trash::where('table_id',$id)->where('table','branches')->delete();
             return $branchinBranch;
         }
         return "branch not found";
