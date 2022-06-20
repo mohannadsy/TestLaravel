@@ -31,7 +31,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function index() // getAllUsers
+    public function index()
     {
         $parameters = ['id' => null];
         if (Auth::user()) {
@@ -71,9 +71,7 @@ class UserController extends Controller
         return ($user) ? $user = User::find($id) : 'User not Found';
     }
 
-    public function edit(User $user)
-    {
-    }
+    public function edit(User $user){}
 
     public function getImageURL(Request $request)
     {
@@ -104,7 +102,6 @@ class UserController extends Controller
         }
         return "Super Admin Can not be Deleted";
     }
-
 
     public function restore($id) // from recycle bin
     {
