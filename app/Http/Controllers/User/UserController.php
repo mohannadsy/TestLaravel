@@ -119,5 +119,16 @@ class UserController extends Controller
         return "Super Admin Can not be Deleted";
     }
 
+
+    public function testForceDelete($id) //can not be restored
+    {
+        $parameters = ['id' => $id];
+        if ($this->isNotSuperAdmin($id)) {
+            $branch = User::with('branch')->get();
+            $user = User::whereNull('branch')->find($id);
+            return  $user ? $user->forceDelete() && $this->callActivityMethod('forceDelete', $parameters) : 'User not Found';
+        }
+        return "Super Admin Can not be Deleted";
+    }
 }
 
