@@ -27842,19 +27842,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 return _context.abrupt("return", new Promise(function (resolve) {
-                  return setTimeout(resolve.bind(null, [{
-                    id: _this.results[0].id,
-                    label: _this.results[0].branches[0].users[0].name + ' ' + id,
-                    treeNodeSpec: {
-                      deletable: true
-                    }
-                  }, {
-                    id: _this.results[0].id,
-                    label: _this.results[0].branches[0].name,
-                    treeNodeSpec: {
-                      deletable: true
-                    }
-                  }]), 500);
+                  return setTimeout(resolve.bind(null, !parentModel.isUser ? _this.getChilds(parentModel) : []), 100);
                 }));
 
               case 1:
@@ -27874,10 +27862,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 return _context2.abrupt("return", new Promise(function (resolve) {
-                  return setTimeout(resolve.bind(null, [{
-                    id: _this2.results[0].id,
-                    label: _this2.results[0].name
-                  }]), 500);
+                  return setTimeout(resolve.bind(null, _this2.getParents()), 100);
                 }));
 
               case 1:
@@ -27887,10 +27872,140 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    getParents: function getParents() {
+      var tempBranches = [];
+      this.branches.forEach(function (branch) {
+        tempBranches.push({
+          id: branch.id,
+          label: branch.name,
+          branches: branch.branches,
+          users: branch.users
+        });
+      });
+      return tempBranches;
+    },
+    getChilds: function getChilds(parent) {
+      var tempBranches = []; // Add branches to tree
+
+      parent.branches.forEach(function (branch) {
+        tempBranches.push({
+          id: branch.id,
+          label: branch.name,
+          branches: branch.branches,
+          users: branch.users
+        });
+      }); // Add users with permissions to tree
+
+      parent.users.forEach(function (user) {
+        tempBranches.push({
+          id: user.id,
+          label: user.name,
+          permissions: user.permisssions,
+          isUser: true
+        });
+      });
+      return tempBranches;
     }
   },
   props: {
-    results: Array
+    branches: Array
+  },
+  components: {
+    BranchForm: _components_branches_BranchForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    TreeView: _grapoza_vue_tree__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=script&lang=js":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=script&lang=js ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _components_branches_BranchForm_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/branches/BranchForm.vue */ "./resources/js/components/branches/BranchForm.vue");
+/* harmony import */ var _grapoza_vue_tree__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @grapoza/vue-tree */ "./node_modules/@grapoza/vue-tree/index.js");
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      model: [{
+        id: 'node1',
+        label: 'My First Node',
+        children: [],
+        treeNodeSpec: {
+          input: {
+            type: 'checkbox',
+            name: 'checkbox1'
+          }
+        }
+      }, {
+        id: 'node2',
+        label: 'My Second Node',
+        children: [{
+          id: 'subnode1',
+          label: 'This is a subnode',
+          children: [],
+          treeNodeSpec: {
+            title: 'Even non-input nodes should get a title.'
+          }
+        }, {
+          id: 'subnode2',
+          label: 'This is a checkable, checked subnode',
+          children: [{
+            id: 'subsubnode1',
+            label: 'An even deeper node',
+            children: []
+          }],
+          treeNodeSpec: {
+            input: {
+              type: 'checkbox',
+              name: 'checkbox3'
+            }
+          }
+        }],
+        treeNodeSpec: {
+          title: 'My second node, and its fantastic title',
+          input: {
+            type: 'checkbox',
+            name: 'checkbox2'
+          },
+          state: {
+            expanded: true
+          }
+        }
+      }],
+      modelDefaults: {
+        selectable: true,
+        expanderTitle: 'Expand this node'
+      },
+      selectionMode: 'single',
+      selectedNodes: []
+    };
+  },
+  computed: {
+    normalizedSelectionMode: function normalizedSelectionMode() {
+      return this.selectionMode === '' ? null : this.selectionMode;
+    }
+  },
+  methods: {
+    saveData: function saveData(data) {
+      this.$store.dispatch('branches/registerBranch', data);
+    },
+    refreshSelectedList: function refreshSelectedList() {
+      this.selectedNodes = this.$refs.treeSelection.getSelected();
+    }
+  },
+  props: {
+    branches: Array
   },
   components: {
     BranchForm: _components_branches_BranchForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -32293,6 +32408,124 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["load-nodes-async", "model-defaults"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_branch_form, {
+    onSaveData: $options.saveData
+  }, null, 8
+  /* PROPS */
+  , ["onSaveData"])])]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=template&id=7ddff4e2":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=template&id=7ddff4e2 ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "row"
+};
+var _hoisted_2 = {
+  "class": "col-6"
+};
+var _hoisted_3 = {
+  id: "app-selection",
+  "class": "demo-tree"
+};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "modeSelect"
+}, "Selection Mode", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "single"
+}, "Single", -1
+/* HOISTED */
+);
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "selectionFollowsFocus"
+}, "Selection Follows Focus", -1
+/* HOISTED */
+);
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "multiple"
+}, "Multiple", -1
+/* HOISTED */
+);
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: ""
+}, "No Selection", -1
+/* HOISTED */
+);
+
+var _hoisted_9 = [_hoisted_5, _hoisted_6, _hoisted_7, _hoisted_8];
+var _hoisted_10 = {
+  id: "selected-stuff"
+};
+var _hoisted_11 = {
+  id: "selectedList"
+};
+var _hoisted_12 = {
+  "class": "col-6"
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_tree = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("tree");
+
+  var _component_tree_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("tree-view");
+
+  var _component_branch_form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("branch-form");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tree, {
+    id: "customtree-selection",
+    "initial-model": $data.model,
+    "model-defaults": $data.modelDefaults,
+    "selection-mode": $options.normalizedSelectionMode,
+    ref: "treeSelection"
+  }, null, 8
+  /* PROPS */
+  , ["initial-model", "model-defaults", "selection-mode"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.selectionMode = $event;
+    }),
+    id: "modeSelect",
+    style: {
+      "margin-bottom": "2rem"
+    }
+  }, _hoisted_9, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectionMode]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tree_view, {
+    id: "customtree-selection",
+    "initial-model": $data.model,
+    "model-defaults": $data.modelDefaults,
+    "selection-mode": $options.normalizedSelectionMode,
+    ref: "treeSelection"
+  }, null, 8
+  /* PROPS */
+  , ["initial-model", "model-defaults", "selection-mode"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    type: "button",
+    "class": "tree-processor-trigger",
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.refreshSelectedList && $options.refreshSelectedList.apply($options, arguments);
+    })
+  }, "What's selected?"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.selectedNodes, function (selectedNode) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(selectedNode.id), 1
+    /* TEXT */
+    );
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_branch_form, {
     onSaveData: $options.saveData
   }, null, 8
   /* PROPS */
@@ -66744,6 +66977,34 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _IndexTestTreeSelection_vue_vue_type_template_id_7ddff4e2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IndexTestTreeSelection.vue?vue&type=template&id=7ddff4e2 */ "./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=template&id=7ddff4e2");
+/* harmony import */ var _IndexTestTreeSelection_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IndexTestTreeSelection.vue?vue&type=script&lang=js */ "./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=script&lang=js");
+/* harmony import */ var C_Users_asus_Desktop_Laravel_9_Projects_UltraTestApp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,C_Users_asus_Desktop_Laravel_9_Projects_UltraTestApp_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_IndexTestTreeSelection_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_IndexTestTreeSelection_vue_vue_type_template_id_7ddff4e2__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/BranchAndUser/ShowBranch.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/Pages/BranchAndUser/ShowBranch.vue ***!
@@ -68028,6 +68289,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=script&lang=js":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=script&lang=js ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_IndexTestTreeSelection_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_IndexTestTreeSelection_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./IndexTestTreeSelection.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/BranchAndUser/ShowBranch.vue?vue&type=script&lang=js":
 /*!*********************************************************************************!*\
   !*** ./resources/js/Pages/BranchAndUser/ShowBranch.vue?vue&type=script&lang=js ***!
@@ -69064,6 +69341,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Index_vue_vue_type_template_id_5b0bec8a__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Index_vue_vue_type_template_id_5b0bec8a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Index.vue?vue&type=template&id=5b0bec8a */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/BranchAndUser/Index.vue?vue&type=template&id=5b0bec8a");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=template&id=7ddff4e2":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=template&id=7ddff4e2 ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_IndexTestTreeSelection_vue_vue_type_template_id_7ddff4e2__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_IndexTestTreeSelection_vue_vue_type_template_id_7ddff4e2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./IndexTestTreeSelection.vue?vue&type=template&id=7ddff4e2 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue?vue&type=template&id=7ddff4e2");
 
 
 /***/ }),
@@ -71841,6 +72134,7 @@ var map = {
 	"./BranchAndUser/CreateBranch.vue": "./resources/js/Pages/BranchAndUser/CreateBranch.vue",
 	"./BranchAndUser/CreateUser.vue": "./resources/js/Pages/BranchAndUser/CreateUser.vue",
 	"./BranchAndUser/Index.vue": "./resources/js/Pages/BranchAndUser/Index.vue",
+	"./BranchAndUser/IndexTestTreeSelection.vue": "./resources/js/Pages/BranchAndUser/IndexTestTreeSelection.vue",
 	"./BranchAndUser/ShowBranch.vue": "./resources/js/Pages/BranchAndUser/ShowBranch.vue",
 	"./BranchAndUser/TestGetBranches.vue": "./resources/js/Pages/BranchAndUser/TestGetBranches.vue",
 	"./BranchAndUser/TestMuhannadSara.vue": "./resources/js/Pages/BranchAndUser/TestMuhannadSara.vue",

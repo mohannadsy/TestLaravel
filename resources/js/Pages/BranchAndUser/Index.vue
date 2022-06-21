@@ -27,30 +27,49 @@ export default {
             this.$store.dispatch('branches/registerBranch',data);
         },
         async loadChildrenAsync(parentModel) {
-          return new Promise(resolve => setTimeout(resolve.bind(null, [
-            {
-              id: this.results[0].id,
-              label: this.results[0].branches[0].users[0].name + ' '+ id,
-              treeNodeSpec: { deletable: true },
-            },
-            {
-              id: this.results[0].id,
-              label: this.results[0].branches[0].name,
-              treeNodeSpec: { deletable: true }
-            }
-          ]), 500));
+          return new Promise(resolve => setTimeout(resolve.bind(null, !parentModel.isUser ? this.getChilds(parentModel) : []
+          ), 100));
         },
         async loadNodesAsync() {
-          return new Promise(resolve => setTimeout(resolve.bind(null, [
-            {
-              id: this.results[0].id,
-              label: this.results[0].name
-            }
-          ]), 500));
+          return new Promise(resolve => setTimeout(resolve.bind(null, this.getParents()), 100));
+        },
+        getParents(){
+          let tempBranches = [];
+          this.branches.forEach(branch => {
+            tempBranches.push({
+              id : branch.id,
+              label : branch.name,
+              branches : branch.branches,
+              users : branch.users
+            });
+          });
+          return tempBranches;
+        },
+        getChilds(parent){
+          let tempBranches = [];
+          // Add branches to tree
+          parent.branches.forEach(branch => {
+            tempBranches.push({
+              id : branch.id,
+              label : branch.name,
+              branches : branch.branches,
+              users : branch.users
+            });
+          });
+          // Add users with permissions to tree
+          parent.users.forEach(user => {
+              tempBranches.push({
+              id : user.id,
+              label : user.name,
+              permissions : user.permisssions,
+              isUser : true
+            });
+          });
+          return tempBranches;
         }
       },
     props:{
-        results: Array
+        branches: Array
     },
     components:{
         BranchForm,TreeView
