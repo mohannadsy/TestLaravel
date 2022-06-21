@@ -17,14 +17,12 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('edit/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'edit'])->name('branch.edit');
     Route::post('update/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'update'])->name('branch.update');
     Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'delete'])->name('branch.delete');
-    Route::get('forceDelete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'forceDelete'])->name('branch.forceDelete');
+    Route::get('force-delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'forceDelete'])->name('branch.forceDelete');
     Route::get('restore/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'restore'])->name('branch.restore');
-    Route::get('getMainBranch', [\App\Http\Controllers\Branch\BranchController::class, 'getMainBranch'])->name('branch.getMainBranch');
-
-    Route::get('isLastCharacterInStringIsNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
-
-
-    Route::get('TreeOfMainBranch', [\App\Http\Controllers\Branch\BranchController::class, 'TreeOfMainBranch'])->name('branch.TreeOfMainBranch');
+    Route::get('get-main-branch', [\App\Http\Controllers\Branch\BranchController::class, 'getMainBranch'])->name('branch.getMainBranch');
+    Route::get('is-last-character-in-string-isNumeric/{string}', [\App\Http\Controllers\Branch\BranchController::class, 'isLastCharacterInStringIsNumeric'])->name('branch.isLastCharacterInStringIsNumeric');
+    Route::get('tree-of-main-branch', [\App\Http\Controllers\Branch\BranchController::class, 'treeOfMainBranch'])->name('branch.treeOfMainBranch');
+    Route::get('num-of-sub-branches/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'numOfSubBranches'])->name('branch.numOfSubBranches');
 
 });
 
