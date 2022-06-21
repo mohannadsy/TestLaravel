@@ -31,7 +31,7 @@
                     <jet-input
                         id="email"
                         type="text"
-                        name="identity"
+                        name="email"
                         placeholder="اسم المستخدم أو البريد الالكتروني"
                         v-model="form.email"
                         required
