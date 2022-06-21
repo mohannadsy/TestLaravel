@@ -1,11 +1,12 @@
 <template>
     <div class="row">
         <div class="col-6">
-            <tree-view id="customtree-async" :load-nodes-async="loadNodesAsync" :model-defaults="modelDefaults"></tree-view>
+            <tree-view ref="tree" id="customtree-async" :load-nodes-async="loadNodesAsync" :model-defaults="modelDefaults"></tree-view>
         </div>
         <div class="col-6">
             <branch-form @save-data="saveData"></branch-form>
         </div>
+        <button @click="hide">Hide</button>
     </div>
 </template>
 
@@ -23,6 +24,9 @@ export default {
         };
       },
       methods: {
+        hide(){
+          this.$refs.tree.show()
+        },
          saveData(data){
             this.$store.dispatch('branches/registerBranch',data);
         },

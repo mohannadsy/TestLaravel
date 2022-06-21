@@ -1,4 +1,6 @@
 import { Inertia } from "@inertiajs/inertia";
+import axios from "axios";
+
 
 export default {
     registerBranch(context, data) {
@@ -18,7 +20,9 @@ export default {
         //     method: 'POST',
         //     body: branchData
         // })
+        // axios.post('branch.store', branchData);
         Inertia.post(route('branch.store'), branchData);
+
         console.log(branchData);
         //branchData.post(route('branch.store'));
         //this.$inertia.post('branch.store', branchData);
