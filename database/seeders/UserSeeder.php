@@ -50,24 +50,23 @@ class UserSeeder extends Seeder
         ]);
         $userNoor->assignRole('Accountant');
 
-        // user 3
-        for($i = 0 ; $i < 10 ; $i++)
-        $userClauda = User::create([
-            'code' => $i + 5,
-            'name' => 'Clauda Al-Rakkad'.$i,
-            'email' => "clauda@gmail$i.com",
-            'password' => bcrypt('12345clauda'),
-            'branch_name' => 'Main Branch',
-            'role' => 'Casher',
-//            'photo'=>'qqq',
-            'branch_id' => '3',
-            'first_name' => 's',
-            'middle_name' => 's',
-            'last_name' => 's',
-            'phone' => '09913646374',
-            'mobile' => '0414949494',
-            'id_number' => '001123938373774',
-        ]);
+        // user 3 -> 10
+        for ($i = 3; $i < 10; $i++)
+            $userClauda = User::create([
+                'code' => $i,
+                'name' => 'Clauda Al-Rakkad' . $i,
+                'email' => "clauda@gmail$i.com",
+                'password' => bcrypt('12345clauda'),
+                'branch_name' => 'Main Branch',
+                'role' => 'Casher',
+                'branch_id' => '3',
+                'first_name' => 's',
+                'middle_name' => 's',
+                'last_name' => 's',
+                'phone' => '09913646374',
+                'mobile' => '0414949494',
+                'id_number' => '001123938373774',
+            ]);
         $userClauda->assignRole('Cacher');
         $userClauda->givePermissionTo('store-user');
     }

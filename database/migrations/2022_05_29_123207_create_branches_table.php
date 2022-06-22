@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('name');
+            $table->string('code')->default(null);
+            $table->string('name')->default(null);
             $table->unsignedBigInteger('branch_id')->nullable()->default(null);
             $table->string('responsibility')->nullable()->default(null);
             $table->string('address')->nullable()->default(null);
@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->string('email')->nullable()->default(null);
             $table->string('phone')->nullable()->default(null);
             $table->string('mobile')->nullable()->default(null);
-            $table->softDeletes();
             $table->timestamps();
         });
     }

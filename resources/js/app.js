@@ -16,6 +16,7 @@ const appName = window.document.getElementsByTagName('title')[0];
 // import { App, plugin } from '@inertiajs/inertia-vue3';
 // import { InertiaProgress } from '@inertiajs/progress';
 import store from './store/index.js';
+import style from './../assets/style.css'
 
 // const el = document.getElementById('app');
 
@@ -41,6 +42,7 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .use(store)
+            .use(style)
             .component('fa',FontAwesomeIcon)
             .mixin({ methods: { route } })
             .mount(el);
