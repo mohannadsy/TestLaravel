@@ -1,9 +1,9 @@
 <template>
     <div class="log-div ">
-        <h1  class="  px-3">
+        <h3  class="  px-3">
             <span v-if="value">{{ value }}</span>
             <span v-else><slot></slot></span>
-        </h1>
+        </h3>
     </div>
 </template>
 
