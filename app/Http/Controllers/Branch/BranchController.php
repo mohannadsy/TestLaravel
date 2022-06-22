@@ -8,6 +8,7 @@ use App\Http\Requests\StoreBranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
 use App\Models\Trash;
 use App\Traits\ActivityLog;
+use App\Traits\Branch\BranchTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -15,6 +16,7 @@ use Inertia\Inertia;
 class BranchController extends Controller
 {
     use  ActivityLog;
+    use  BranchTrait;
 
     public function index() //getAllBranches
     {

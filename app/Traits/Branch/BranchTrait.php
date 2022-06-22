@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace App\Traits\Branch;
 
 use App\Models\Branch;
 use App\Models\Trash;
