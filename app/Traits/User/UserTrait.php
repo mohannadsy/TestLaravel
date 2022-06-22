@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Traits;
+namespace App\Traits\User;
 
 use App\Models\Trash;
+use App\Models\User;
 
 
 trait  UserTrait {

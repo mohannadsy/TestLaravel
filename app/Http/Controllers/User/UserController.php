@@ -6,16 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Traits\AdminTrait;
-use App\Traits\ImageTrait;
-use App\Traits\ActivityLog;
-use App\Traits\UserTrait;
+use App\Traits\ActivityLog\ActivityLog;
+use App\Traits\Image\ImageTrait;
+use App\Traits\User\AdminTrait;
+use App\Traits\User\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
 class UserController extends Controller
 {
     use ImageTrait, ActivityLog, AdminTrait, UserTrait;
+
+
+    public function callActivityMethod($method, $parameters)
+    {
+        $this->makeActivity([
+            'table' => 'users',
+            'operation' => $method,
+            'parameters' => $parameters
+        ]);
+    }
 
     public function index()
     {
