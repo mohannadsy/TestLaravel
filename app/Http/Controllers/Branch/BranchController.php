@@ -8,7 +8,6 @@ use App\Http\Requests\StoreBranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
 use App\Traits\Branch\BranchTrait;
 
-
 class BranchController extends Controller
 {
     use  ActivityLog;

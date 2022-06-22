@@ -10,6 +10,7 @@ use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
 use App\Traits\User\AdminTrait;
 use App\Traits\User\UserTrait;
+use http\Message;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
@@ -45,7 +46,7 @@ class UserController extends Controller
 //      $this->givePermissionTo($request->permissions);
         User::create($input);
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('Users/index', compact($input));
+        return Inertia::render('Users/index', compact('input'));;
     }
 
     public function update(UpdateUserRequest $request, $id)
@@ -72,9 +73,8 @@ class UserController extends Controller
     public function show($id)
     {
         $parameters = ['id' => $id];
-        $this->callActivityMethod('show', $parameters);
         $user = User::find($id);
-        return $user ? $user = User::find($id) : 'User not Found';
+        return $user ? $user &&  $this->callActivityMethod('show', $parameters): 'User not Found';
     }
 }
 
