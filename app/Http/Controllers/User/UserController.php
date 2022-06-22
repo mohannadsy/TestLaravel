@@ -3,24 +3,19 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Trash;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Traits\AdminTrait;
 use App\Traits\ImageTrait;
 use App\Traits\ActivityLog;
-use Dotenv\Repository\Adapter\PutenvAdapter;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Traits\UserTrait;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 use Inertia\Inertia;
-use function Illuminate\Session\userId;
 
 class UserController extends Controller
 {
-    use ImageTrait, ActivityLog, AdminTrait;
+    use ImageTrait, ActivityLog, AdminTrait, UserTrait;
 
     public function index()
     {

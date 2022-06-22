@@ -15,8 +15,6 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-
-
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -44,7 +42,6 @@ class User extends Authenticatable
 
     ];
 
-
     protected $hidden = [
         'password',
         'remember_token',
@@ -60,10 +57,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Branch', 'branch_id');
     }
-
-
-
-
 
     protected $appends = [
         'profile_photo_url',

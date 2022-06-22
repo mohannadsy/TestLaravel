@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
         ]);
         $userNoor->assignRole('Accountant');
 
-        // user 3
+        // user 3 -> 10
         for($i = 3 ; $i < 10 ; $i++)
         $userClauda = User::create([
             'code' => $i ,
@@ -59,7 +59,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345clauda'),
             'branch_name' => 'Main Branch',
             'role' => 'Casher',
-//            'photo'=>'qqq',
             'branch_id' => '3',
             'first_name' => 's',
             'middle_name' => 's',
