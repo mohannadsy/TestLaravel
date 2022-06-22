@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->string('email')->nullable()->default(null);
             $table->string('phone')->nullable()->default(null);
             $table->string('mobile')->nullable()->default(null);
-            $table->softDeletes();
             $table->timestamps();
         });
     }
