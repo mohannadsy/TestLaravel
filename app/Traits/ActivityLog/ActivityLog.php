@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Traits;
+namespace App\Traits\ActivityLog;
 
 use App\Models\Activity;
 use App\Models\Branch;
@@ -43,12 +43,5 @@ trait  ActivityLog
             ]);
     }
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'users',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
+
 }
