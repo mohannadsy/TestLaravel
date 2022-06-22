@@ -57,7 +57,8 @@ class UserController extends Controller
         $input->password = Hash::make($input['password']);
         $input->profile_photo_path = $url;
         $user = User::find($id)->update($input);
-        return $user ? $user->update($input) && $this->callActivityMethod('update', $parameters) : "User Not Found";
+        $user->update($input);
+        $this->callActivityMethod('update', $parameters);
     }
 
     public function delete($id)
