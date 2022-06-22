@@ -27,10 +27,11 @@
 
             <form @submit.prevent="submit">
                 <div class="mb-3">
-                    <jet-label for="email" value="البريد الالكتروني" />
+                    <jet-label for="email"  value="البريد الالكتروني" />
                     <jet-input
                         id="email"
-                        type="email"
+                        type="text"
+                        name="email"
                         placeholder="اسم المستخدم أو البريد الالكتروني"
                         v-model="form.email"
                         required
@@ -38,7 +39,7 @@
                     />
                 </div>
                 <!-- <div class="mb-3">
-                    
+
                     <element-form-input
                         label="اسم المستخدم أو البريد الاكتروني"
                         id="num"
@@ -109,7 +110,7 @@
                             class="ms-4 btn-lg"
                             :class="{ 'text-white-50': form.processing }"
                             :disabled="form.processing" >
-                            
+
                             <div
                                 v-show="form.processing"
                                 class="spinner-border spinner-border-sm"
