@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Http\Requests\StoreBranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
+use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
-
 
 class BranchController extends Controller
 {
@@ -17,41 +17,31 @@ class BranchController extends Controller
     public function index() //getAllBranches
     {
         $parameters = ['id'=> null];
-        $Branches = Branch::all();
         $this->callActivityMethod('getAllBranches', $parameters);
-        return $Branches;
+        return    Branch::all();;
 //        return Inertia::render('',compact($Branches));
-
     }
     public function store(StoreBranchRequest $request)
     {
         $id=Branch::orderBy('id','desc')->first()->id+1;
         $parameters = ['request' => $request ,'id'=> $id];
         //insert to Database
-        $storeBranch=Branch::create($request->all());
-        if($storeBranch)
-        {
-          $this->callActivityMethod('store', $parameters);
-          return 'store is succesfully';
-        }
-//        Inertia::render('',compact($data));
+        $storeBranch=Branch::create($request->validated());
+        $this->callActivityMethod('store', $parameters);
+        return $data='store is succesfully';
+//         return Inertia::render('',compact($data));
     }
     public function show($id)
     {
         $parameters = ['id' => $id];
         $branch =Branch::find($id);
-        if ($branch) {
-            $this->callActivityMethod('show', $parameters);
-            return $branch;
-        }
-            return "branch not found";
+        return $branch ? $branch &&  $this->callActivityMethod('show', $parameters):"branch not found" ;
     }
     public function update(UpdateBranchRequest $request, $id)
     {
         $paramters = ['request' => $request, 'id' => $id];
         return $branch = Branch::find($id)->update($request->all());
         $this->callActivityMethod('update', $paramters);
-        if ($branch)
             return 'updated successfully';
     }
     public function delete($id) //  delete - can be restored
