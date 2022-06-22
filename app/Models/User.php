@@ -23,7 +23,7 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
     use TwoFactorAuthenticatable;
-    use SoftDeletes;
+//    use SoftDeletes;
 
 
     protected $fillable = [

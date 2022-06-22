@@ -42,4 +42,13 @@ trait  ActivityLog
 
             ]);
     }
+
+    public function callActivityMethod($method, $parameters)
+    {
+        $this->makeActivity([
+            'table' => 'users',
+            'operation' => $method,
+            'parameters' => $parameters
+        ]);
+    }
 }

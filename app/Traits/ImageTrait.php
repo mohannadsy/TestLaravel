@@ -1,29 +1,27 @@
 <?php
 
-
 namespace App\Traits;
+
+use Illuminate\Http\Request;
+use Intervention\Image\Image;
 
 trait  ImageTrait
 {
-//    function saveImage($photo, $folder)
-//    {
-//
-//        $file_extension = $photo->getClientOriginalExtension();
-//        $file_name = time() . '.' . $file_extension;
-//        $path = $folder;
-//        $photo->move($path, $file_name);
-//
-//        return $file_name;
-//    }
-
 
     public $public_path = "/public/Images/users";
     public $storage_path = "/storage/Images/users";
 
+    public function getImageURL(Request $request)
+    {
+        if ($file = $request->file('profile_photo_path')) {
+            $path = 'photos/users';
+            $url = $this->saveImage($file, $path, 300, 400);
+        }
+    }
+
     public function saveImage($file, $path, $width, $height): string
     {
         if ($file) {
-
             $extension = $file->getClientOriginalExtension();
             $file_name = $path . '-' . Str::random(30) . '.' . $extension;
             $url = $file->storeAs($this->public_path, $file_name);

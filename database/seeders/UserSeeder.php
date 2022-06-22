@@ -51,9 +51,9 @@ class UserSeeder extends Seeder
         $userNoor->assignRole('Accountant');
 
         // user 3
-        for($i = 0 ; $i < 10 ; $i++)
+        for($i = 3 ; $i < 10 ; $i++)
         $userClauda = User::create([
-            'code' => $i + 5,
+            'code' => $i ,
             'name' => 'Clauda Al-Rakkad'.$i,
             'email' => "clauda@gmail$i.com",
             'password' => bcrypt('12345clauda'),
