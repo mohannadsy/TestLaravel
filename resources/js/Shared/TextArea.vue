@@ -1,7 +1,7 @@
 <template>
     <textarea
-        rows="5"
-        cols="30"
+        rows="4"
+        cols="15"
         class="form-control"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
