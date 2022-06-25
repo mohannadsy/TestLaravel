@@ -28,9 +28,9 @@ class BranchController extends Controller
         //insert to Database
         $storeBranch=Branch::create($request->all());
         $this->callActivityMethod('store', $parameters);
-         $data='store is succesfully';
+         return $data='store is succesfully';
 //        return redirect()->back()->with(['store is succesfully']);
-         return Inertia::render('Branches/Index',compact($data));
+//         return Inertia::render('Branches/Index',compact($data));
     }
     public function show($id)
     {
