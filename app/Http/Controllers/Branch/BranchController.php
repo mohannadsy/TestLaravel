@@ -26,7 +26,7 @@ class BranchController extends Controller
         $id=Branch::orderBy('id','desc')->first()->id+1;
         $parameters = ['request' => $request ,'id'=> $id];
         //insert to Database
-        $storeBranch=Branch::create($request->validate());
+        $storeBranch=Branch::create($request->validated());
         $this->callActivityMethod('store', $parameters);
         return $data='store is succesfully';
 //         return Inertia::render('',compact($data));
