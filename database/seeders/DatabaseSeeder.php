@@ -19,7 +19,7 @@ DatabaseSeeder extends Seeder
             RoleSeeder::class,
             BranchSeeder::class,
             UserSeeder::class,
-
+            CurrenctSeeder::class,
         ]);
 
     }

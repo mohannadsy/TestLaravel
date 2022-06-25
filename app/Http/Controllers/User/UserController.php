@@ -4,8 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UserRequest;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
 use App\Traits\User\AdminTrait;
@@ -34,7 +33,7 @@ class UserController extends Controller
         return User::all();
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(UserRequest $request)
     {
         $id = User::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
@@ -48,7 +47,7 @@ class UserController extends Controller
         return Inertia::render('Users/index', compact('input'));;
     }
 
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $url = $this->getImageURL($request);

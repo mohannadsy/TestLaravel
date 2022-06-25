@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Currency\CurrencyController;
 use Barryvdh\Debugbar\Facades;
 
 
@@ -13,6 +14,16 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('show/{id}', [UserController::class, 'show']);
     Route::post('update', [UserController::class, 'update']);
     Route::get('delete/{id}', [UserController::class, 'delete']);
+});
+
+//------- Currency ------//
+
+Route::group(['namespace' => 'Currency','prefix'=>'currency'], function () {
+    Route::get('index', [CurrencyController::class, 'index']);
+    Route::post('store', [CurrencyController::class, 'store']);
+    Route::get('show/{id}', [CurrencyController::class, 'show']);
+    Route::post('update', [CurrencyController::class, 'update']);
+    Route::get('delete/{id}', [CurrencyController::class, 'delete']);
 });
 
 //------- Debug bar ------//

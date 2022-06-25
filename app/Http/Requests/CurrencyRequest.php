@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends FormRequest
+class CurrencyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,16 +33,14 @@ class UpdateUserRequest extends FormRequest
             'role' => 'string:users,role',
             'branch_id' => 'max:50|numeric:users,branch_id',
             'photo' => 'string|image:users,photo',
-            'first_name' => 'required|max:50|string|unique:users,first_name',
-            'middle_name' => 'required|max:50|string|unique:users,middle_name',
+            'first_name' => 'max:50|string|unique:users,first_name',
+            'middle_name' => 'max:50|string|unique:users,middle_name',
             'last_name' => 'required|max:50|string|unique:users,last_name',
             'phone' => 'max:50|string|unique:users,phone',
             'mobile' => 'max:50|string|unique:users,mobile',
             'id_number' => 'max:50|numeric:users,id_number',
         ];
-
     }
-
 
     public function messages()
     {
@@ -80,8 +78,8 @@ class UpdateUserRequest extends FormRequest
             'id_number.max' => 'الرقم الوطني تجاوز 50 محرف ',
             'id_number.numeric' => 'الرقم الوطني يجب أن يكون أرقام'
 
-
         ];
     }
+
 
 }
