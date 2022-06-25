@@ -5,10 +5,12 @@
         <li v-for="branch in branches" :key="branch.id">
             <span class="rightAngle"></span>
             <span class="ti ti-folder"></span>&nbsp;&nbsp;
-            <span  @click="getDataToForm(branch)">{{branch.name}}</span>
+            <span  @click="printTree(branch)">{{branch.name}}</span>
             <ul class="nested-tree" v-for="insideBranch in branch.branches" :key="insideBranch.id">
-                <li><span class="ti ti-image"></span>&nbsp;&nbsp;<span @click="getDataToForm(insideBranch)">{{insideBranch.name}}</span></li>
+                <li><span class="ti ti-image"></span>&nbsp;&nbsp;<span @click="printTree(insideBranch)">{{insideBranch.name}}</span></li>
+                <li v-for="user in insideBranch.users" :key="user.id"><span class="ti ti-File"></span>&nbsp;&nbsp;<span @click="getDataToForm(user , 'user')">{{user.name}}</span></li>
             </ul>
+            
             <!-- <span class="rightAngle"></span>
             <span class="ti ti-folder"></span>&nbsp;&nbsp;Main Folder
             <ul class="nested-tree">
@@ -65,8 +67,20 @@ export default {
         saveData(data){
           this.$store.dispatch('branches/registerBranch',data);
         },
-        getDataToForm(data){
-          console.log(data);
+        getDataToForm(data , dataType){
+          console.log(data.name + "," + dataType);
+        },
+        printTree(object){
+            for (var key in object) {
+                if(typeof object[key] === "object"){
+                    this.printTree(object[key]);
+                    if(key == "users"){
+                        console.log(object.name + "  : " + typeof object[key] + "; key : " + key);
+                    }
+                    if(key == 'permissions')
+                        console.log(object.name + "  : " + typeof object[key] + "; key : " + key);
+                }
+            }
         }
       },
     props:{
