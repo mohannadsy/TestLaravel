@@ -24,21 +24,17 @@ class CurrencyRequest extends FormRequest
     public function rules()
     {
         return $rules = [
-            'code' => 'required|string|unique:users,code',
-            'name' => 'required|max:50|string|unique:users,name',
-            'email' => 'string|email|unique:users,email',
-            'password' => 'required|min:6|password|unique:users,password',
-//          'password_confirm' => 'required|same:password:users,password_confirm',
-            'branch_name' => 'string:users,branch_name',
-            'role' => 'string:users,role',
-            'branch_id' => 'max:50|numeric:users,branch_id',
-            'photo' => 'string|image:users,photo',
-            'first_name' => 'max:50|string|unique:users,first_name',
-            'middle_name' => 'max:50|string|unique:users,middle_name',
-            'last_name' => 'required|max:50|string|unique:users,last_name',
-            'phone' => 'max:50|string|unique:users,phone',
-            'mobile' => 'max:50|string|unique:users,mobile',
-            'id_number' => 'max:50|numeric:users,id_number',
+            'code' => 'required|string|unique:currencies,code',
+            'name' => 'required|max:50|string|unique:currencies,name',
+            'role' => 'string:currencies,role',
+            'branch_id' => 'max:50|numeric:currencies,branch_id',
+            'photo' => 'string|image:currencies,photo',
+            'first_name' => 'max:50|string|unique:currencies,first_name',
+            'middle_name' => 'max:50|string|unique:currencies,middle_name',
+            'last_name' => 'required|max:50|string|unique:currencies,last_name',
+            'phone' => 'max:50|string|unique:currencies,phone',
+            'mobile' => 'max:50|string|unique:currencies,mobile',
+            'id_number' => 'max:50|numeric:currencies,id_number',
         ];
     }
 
@@ -46,14 +42,14 @@ class CurrencyRequest extends FormRequest
     {
         return $messages = [
 
-            'code.required' => 'رمز المستخدم يجب أن يُدخل',
-            'code.unique' => 'رمز المستخدم موجود سابقاً ',
-            'code.string' => 'رمز المستخدم يجب أن يكون محارف ',
+            'code.required' => 'رمز  العملة يجب أن يُدخل',
+            'code.unique' => 'رمز  العملة موجود سابقاً ',
+            'code.string' => 'رمز  العملة يجب أن يكون محارف ',
 
-            'name.required' => 'اسم المستخدم يجب أن يُدخل',
-            'name.max' => 'اسم المستخدم تجاوز 50 محرف',
-            'name.unique' => 'اسم المستخدم موجود سابقا',
-            'name.string' => 'اسم المستخدم يجب أن يكون محارف',
+            'name.required' => 'اسم  العملة يجب أن يُدخل',
+            'name.max' => 'اسم  العملة تجاوز 50 محرف',
+            'name.unique' => 'اسم  العملة موجود سابقا',
+            'name.string' => 'اسم  العملة يجب أن يكون محارف',
 
             'email.required' => 'البريد الالكتروني يجب أن يكون موجود',
             'email.unique' => 'البريد الالكتروني مُدخل سابقاً لمستخدم آخر',
