@@ -26,15 +26,17 @@ class CurrencyRequest extends FormRequest
         return $rules = [
             'code' => 'required|string|unique:currencies,code',
             'name' => 'required|max:50|string|unique:currencies,name',
-            'role' => 'string:currencies,role',
+
             'branch_id' => 'max:50|numeric:currencies,branch_id',
-            'photo' => 'string|image:currencies,photo',
-            'first_name' => 'max:50|string|unique:currencies,first_name',
-            'middle_name' => 'max:50|string|unique:currencies,middle_name',
-            'last_name' => 'required|max:50|string|unique:currencies,last_name',
-            'phone' => 'max:50|string|unique:currencies,phone',
-            'mobile' => 'max:50|string|unique:currencies,mobile',
-            'id_number' => 'max:50|numeric:currencies,id_number',
+
+            'latin_name' => 'max:50|string|unique:currencies,latin_name',
+
+            'equality' => 'numeric:currencies,equality',
+            'match' => 'numeric:currencies,match',
+            'lain_part_name' => 'max:50|string:currencies,lain_part_name',
+
+            'part' => 'max:50|string:currencies,part',
+            'accuracy' => 'numeric:currencies,accuracy',
         ];
     }
 
