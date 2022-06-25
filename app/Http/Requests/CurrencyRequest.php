@@ -27,15 +27,18 @@ class CurrencyRequest extends FormRequest
             'code' => 'required|string|unique:currencies,code',
             'name' => 'required|max:50|string|unique:currencies,name',
 
-            'branch_id' => 'max:50|numeric:currencies,branch_id',
+
 
             'latin_name' => 'max:50|string|unique:currencies,latin_name',
 
             'equality' => 'numeric:currencies,equality',
+
             'match' => 'numeric:currencies,match',
+
             'lain_part_name' => 'max:50|string:currencies,lain_part_name',
 
             'part' => 'max:50|string:currencies,part',
+
             'accuracy' => 'numeric:currencies,accuracy',
         ];
     }
@@ -53,28 +56,29 @@ class CurrencyRequest extends FormRequest
             'name.unique' => 'اسم  العملة موجود سابقا',
             'name.string' => 'اسم  العملة يجب أن يكون محارف',
 
-            'email.required' => 'البريد الالكتروني يجب أن يكون موجود',
-            'email.unique' => 'البريد الالكتروني مُدخل سابقاً لمستخدم آخر',
-            'email.string' => ' البريد الالكتروني  يجب أن يكون محارف',
 
-            'password.required' => 'كلمة المرور يجب أن تكون موجودة',
-            'password.unique' => 'كلمة المرور مُدخلة سابقاً لمستخدم آخر',
-            'password.min' => ' كلمة المرور يجب أن تكون 6 محارف على الأقل ',
 
-            'branch_name.string' => 'اسم الفرع يجب أن يكون محارف',
-            'role.string' => 'صفة لامستخدم يجب أن تكون محارف',
 
-            'branch_id.max' => 'رمز الفرع الرئيسي تجاوز 50 رقم',
-            'branch_id.numeric' => 'رمز الفرع الرئيسي يجب أن يكون ارقام',
+            'equality.numeric' => 'التعادل  يجب أن يكون ارقام',
+            'match.numeric' => 'المكافئ  يجب أن يكون ارقام',
 
-            'phone.max' => 'رقم الهاتف تجاوز 50 رقم',
-            'phone.unique' => 'رقم الهاتف مُدخل سابقاً لمستخدم آخر',
-            'phone.string' => 'رقم الهاتف يجب أن يكون محارف',
-            'mobile.max' => 'رقم الموبايل تجاوز 50 محرف',
-            'mobile.unique' => 'رقم الموبايل مُدخل سابقاً لمستخدم آخر',
-            'mobile.string' => 'رقم الموبايل يجب أن يكون محارف',
-            'id_number.max' => 'الرقم الوطني تجاوز 50 محرف ',
-            'id_number.numeric' => 'الرقم الوطني يجب أن يكون أرقام'
+
+            'lain_part_name.max' => ' الاسم اللاتيني للجزء تجاوز 50 رقم',
+
+            'lain_part_name.string' => 'الاسم االلاتيني للجزء يجب أن يكون محارف',
+
+
+            'lain_name.max' => ' الاسم اللاتيني تجاوز 50 رقم',
+
+            'lain_name.string' => 'الاسم االلاتيني يجب أن يكون محارف',
+
+
+            'part.max' => ' الاسم اللاتيني تجاوز 50 رقم',
+
+            'part.string' => 'الاسم االلاتيني يجب أن يكون محارف',
+
+
+            'accuracy.numeric' => 'الدقة يجب أن يكون أرقام'
 
         ];
     }
