@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateBranchRequest extends FormRequest
+class BranchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +23,18 @@ class UpdateBranchRequest extends FormRequest
      */
     public function rules()
     {
-             return $rules=[
-                 'code'                   =>'required|string|unique:branches,code',
-                 'name'                   =>'required|max:50|string|unique:branches,name' ,
-                 'branch_id'              =>'max:50|numeric' ,
-                 'responsibility'         =>'max:250|string',
-                 'address'                =>'max:100|string',
-                 'website'                =>'string|unique:branches,website',
-                 'email'                  =>'string|email|unique:branches,email',
-                 'phone'                  =>'max:50|string|unique:branches,phone',
-                 'mobile'                 =>'max:50|string|unique:branches,mobile',
-             ];
+        return $rules=[
+//              'code'                   =>'required|string|unique:branches,code',
+//              'name'                   =>'required|max:50|string|unique:branches,name' ,
+//              'branch_id'              =>'max:50|numeric' ,
+//              'center_id',             =>'required|max:50|numeric' ,
+//              'responsibility'         =>'max:250|string',
+//              'address'                =>'max:100|string',
+//              'website'                =>'string|unique:branches,website',
+//              'email'                  =>'string|email|unique:branches,email',
+//              'phone'                  =>'max:50|string|unique:branches,phone',
+//              'mobile'                 =>'max:50|string|unique:branches,mobile',
+        ];
     }
 
     public function messages()
@@ -47,7 +48,10 @@ class UpdateBranchRequest extends FormRequest
             'name.unique'            => 'اسم الفرع موجود سابقاً ',
             'name.string'            => 'اسم الفرع يجب أن يكون محارف ',
             'branch_id.max'          => 'رمز الفرع الرئيسي تجاوز 50 رقم ',
-            'branch_id.numeric'      => 'رمز الفرع الرئيسي يجب أن يكون ارقام ',
+            'branch_id.numeric'      => 'رمز الفرع الرئيسي يجب أن يكون ارقام  ',
+            'center_id.required'     => 'رمز مركز الكلفة الرئيسي يجب أن يُدخل',
+            'center_id.max'          => 'رمز مركز الكلفة الرئيسي تجاوز 50 رقم ',
+            'center_id.numeric'      => 'رمز مركز الكلفة الرئيسي يجب أن يكون ارقام  ',
             'responsibility.max'     => 'معلومات الفرع(الصفة) تجاوز 250 محرف ',
             'responsibility.string'  => 'معلومات الفرع يجب أن يكون محارف ',
             'address.max'            =>  'عنوان الفرع تجاوز 100 محرف ',

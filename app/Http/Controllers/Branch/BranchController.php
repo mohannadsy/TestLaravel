@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Branch;
 
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
-use App\Http\Requests\StoreBranchRequest;
+use App\Http\Requests\BranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
@@ -21,7 +21,7 @@ class BranchController extends Controller
         return    Branch::all();;
 //        return Inertia::render('',compact($Branches));
     }
-    public function store(StoreBranchRequest $request)
+    public function store(BranchRequest $request)
     {
         $id=Branch::orderBy('id','desc')->first()->id+1;
         $parameters = ['request' => $request ,'id'=> $id];
@@ -38,7 +38,7 @@ class BranchController extends Controller
         $branch =Branch::find($id);
         return $branch ? $branch &&  $this->callActivityMethod('show', $parameters):"branch not found" ;
     }
-    public function update(UpdateBranchRequest $request, $id)
+    public function update(BranchRequest $request, $id)
     {
         $paramters = ['request' => $request, 'id' => $id];
         return $branch = Branch::find($id)->update($request->all());

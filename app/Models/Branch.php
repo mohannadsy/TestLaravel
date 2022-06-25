@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Branch extends Model
 {
@@ -16,6 +15,7 @@ class Branch extends Model
         'code',
         'name',
         'branch_id',
+        'center_id',
         'responsibility',
         'address',
         'website',
@@ -28,10 +28,17 @@ class Branch extends Model
     {
         return $this->hasMany('App\Models\Branch', 'branch_id')->with(['branches', 'users']);
     }
-
     public function users()
     {
         return $this->hasMany('App\Models\User', 'branch_id')->with('permissions');
+    }
+    public function branch()
+    {
+        return $this->belongsTo('App\Models\Branch', 'branch_id');
+    }
+    public function cost_center()
+    {
+        return $this->belongsTo('App\Models\CostCenters', 'branch_id');
     }
 
 

@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->string('code')->default(null);
             $table->string('name')->default(null);
             $table->unsignedBigInteger('branch_id')->nullable()->default(null);
+            $table->unsignedBigInteger('center_id')->nullable()->default(null);
             $table->string('responsibility')->nullable()->default(null);
             $table->string('address')->nullable()->default(null);
             $table->string('website')->nullable()->default(null);
