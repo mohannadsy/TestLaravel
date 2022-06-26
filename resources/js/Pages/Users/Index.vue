@@ -126,7 +126,7 @@
                                     type="text"
                                     class="form-control"
                                     value=""
-                                
+
                                 />
                             </div>
                         </div>
@@ -201,20 +201,14 @@
                 <!-- <hr class="new1"> -->
                 <div class="row a mt-2">
                     <div class="col-5">
-
                         <title-button @click="activeTab = 'BasicInformation'">معلومات أساسية</title-button>
                         <title-button @click="activeTab = 'Permissions'">صلاحيات</title-button>
                         <title-button @click="activeTab = 'ExtraOptions'">خيارات إضافية</title-button>
-
                     </div>
                 </div>
                 <basic-information v-if="activeTab === 'BasicInformation'" />
-                <permissions  v-if="activeTab === 'Permissions'" />
+                <permissions v-if="activeTab === 'Permissions'" />
                 <extra-options  v-if="activeTab === 'ExtraOptions'" />
-
-
-
-                
                 <div class="row justify-content-end mb-2">
                     <div class="col-md-4 ">
                         <element-button >حفظ</element-button>
@@ -225,7 +219,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -274,7 +267,7 @@ button{
 div.a {
    -webkit-text-decoration-line: overline; /* Safari */
    text-decoration-line: overline;
-   border-top: 3px solid black; 
+   border-top: 3px solid black;
 }
 
 </style>
