@@ -15,7 +15,6 @@ class Branch extends Model
         'code',
         'name',
         'branch_id',
-        'center_id',
         'responsibility',
         'address',
         'website',
@@ -36,17 +35,10 @@ class Branch extends Model
     {
         return $this->belongsTo('App\Models\Branch', 'branch_id');
     }
-    public function cost_center()
-    {
-        return $this->belongsTo('App\Models\CostCenters', 'branch_id');
-    }
-
-
     public function onlyBranches()
     {
         return $this->hasMany('App\Models\Branch', 'branch_id');
     }
-
     public function onlyUsers()
     {
         return $this->hasMany('App\Models\User', 'branch_id');

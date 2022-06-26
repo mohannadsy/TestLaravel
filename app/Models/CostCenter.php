@@ -14,20 +14,11 @@ class CostCenter extends Model
              'name',
              'latin_name',
              'center_id',
-             'branch_id',
              'balance',
              'in_balance',
              'out_balance',
              'notes',
          ];
-        public function branches()
-        {
-            return $this->hasMany('App\Models\Branch', 'center_id');
-        }
-        public function users()
-        {
-            return $this->hasMany('App\Models\User', 'center_id');
-        }
         public function cost_centers()
         {
             return $this->hasMany('App\Models\CostCenters', 'center_id');
@@ -36,5 +27,4 @@ class CostCenter extends Model
         {
             return $this->belongsTo('App\Models\CostCenters', 'center_id');
         }
-
 }

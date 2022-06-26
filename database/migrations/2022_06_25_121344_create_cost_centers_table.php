@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('cost_centers', function (Blueprint $table) {
@@ -19,7 +14,6 @@ return new class extends Migration
             $table->string('name')->default(null);
             $table->string('latin_name')->default(null);
             $table->unsignedBigInteger('center_id')->nullable()->default(null);
-            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
             $table->unsignedBigInteger('balance')->nullable()->default(null);
             $table->unsignedBigInteger('in_balance')->nullable()->default(null);
             $table->unsignedBigInteger('out_balance')->nullable()->default(null);
@@ -27,12 +21,6 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('cost_centers');
