@@ -126,6 +126,7 @@
                                     type="text"
                                     class="form-control"
                                     value=""
+                                
                                 />
                             </div>
                         </div>
@@ -197,8 +198,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-2 ">
+                <!-- <hr class="new1"> -->
+                <div class="row a mt-2">
                     <div class="col-5">
+
                         <title-button @click="activeTab = 'BasicInformation'">معلومات أساسية</title-button>
                         <title-button @click="activeTab = 'Permissions'">صلاحيات</title-button>
                         <title-button @click="activeTab = 'ExtraOptions'">خيارات إضافية</title-button>
@@ -254,7 +257,7 @@ export default {
 },
     data() {
         return {
-            activeTab:'Permissions',
+            activeTab:'BasicInformation',
             rvalue: "",
             role: ["مدير عام", "محاسب", "كاشير"],
         };
@@ -265,4 +268,13 @@ export default {
 button{
   margin: 2px;
 }
+/* hr.new1 {
+  border-bottom: 3px solid black;
+} */
+div.a {
+   -webkit-text-decoration-line: overline; /* Safari */
+   text-decoration-line: overline;
+   border-top: 3px solid black; 
+}
+
 </style>

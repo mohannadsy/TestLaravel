@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-6">
+        <div class="col-3">
           <ul class="parent-tree">
         <li v-for="branch in branches" :key="branch.id">
             <span class="rightAngle"></span>
@@ -38,7 +38,7 @@
         </li>
     </ul>
         </div>
-        <div class="col-6">
+        <div class="col">
             <branch-form @save-data="saveData"></branch-form>
         </div>
     </div>
