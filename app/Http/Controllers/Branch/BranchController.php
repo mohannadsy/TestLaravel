@@ -7,12 +7,12 @@ use App\Models\Branch;
 use App\Http\Requests\BranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
 use App\Traits\ActivityLog\ActivityLog;
-use App\Traits\Branch\BranchTrait;
+use App\Traits\Branch\CostCenterTrait;
 
 class BranchController extends Controller
 {
     use  ActivityLog;
-    use  BranchTrait;
+    use  CostCenterTrait;
 
     public function index() //getAllBranches
     {
