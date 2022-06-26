@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\CostCenter;
 
+use App\Http\Requests\CostCentersRequest;
 use App\Models\CostCenter;
 use App\Traits\ActivityLog\ActivityLog;
-use App\Traits\Branch\CostCenterTrait;
+use App\Traits\CostCenter\CostCenterTrait;
 
 class CostCenterController extends Controller
 {
     use  ActivityLog;
+    use  CostCenterTrait;
 
     public function index() //getAllCostCenters
     {
