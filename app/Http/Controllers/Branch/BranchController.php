@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Branch;
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Http\Requests\BranchRequest;
-use App\Http\Requests\UpdateBranchRequest;
 use App\Traits\ActivityLog\ActivityLog;
-use App\Traits\Branch\CostCenterTrait;
+use App\Traits\Branch\BranchTrait;
 
 class BranchController extends Controller
 {
     use  ActivityLog;
-    use  CostCenterTrait;
+    use  BranchTrait;
 
     public function index() //getAllBranches
     {

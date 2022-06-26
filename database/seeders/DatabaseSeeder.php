@@ -2,11 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Activity;
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Auth;
 
 class
 DatabaseSeeder extends Seeder
@@ -20,6 +16,7 @@ DatabaseSeeder extends Seeder
             BranchSeeder::class,
             UserSeeder::class,
             CurrenctSeeder::class,
+            CostCenterSeeder::class,
         ]);
 
     }

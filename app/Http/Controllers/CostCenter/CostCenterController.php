@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\CostCenter;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CostCentersRequest;
 use App\Models\CostCenter;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\CostCenter\CostCenterTrait;
+
 
 class CostCenterController extends Controller
 {
@@ -16,7 +18,7 @@ class CostCenterController extends Controller
     {
         $parameters = ['id'=> null];
         $this->callActivityMethod('getAllCostCenters', $parameters);
-        return    CostCenter::all();;
+        return    CostCenter::all();
 //        return Inertia::render('',compact());
     }
     public function store(CostCentersRequest $request)
