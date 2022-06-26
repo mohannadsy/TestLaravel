@@ -9,6 +9,9 @@ class Currency extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'code', 'latin_name', 'equality', 'match', 'part', 'accuracy', 'lain_part_name'];
+    protected $fillable = ['name',
+        'code', 'latin_name',
+        'equality', 'match', 'part',
+        'accuracy', 'lain_part_name'];
     protected $hidden=['created_at','updated_at'];
 }

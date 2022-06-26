@@ -6,21 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return $rules = [
@@ -58,6 +48,7 @@ class UserRequest extends FormRequest
             'email.required' => 'البريد الالكتروني يجب أن يكون موجود',
             'email.unique' => 'البريد الالكتروني مُدخل سابقاً لمستخدم آخر',
             'email.string' => ' البريد الالكتروني  يجب أن يكون محارف',
+            'email.email' => '  ما تم إدخاله غير متوافق مع صيغة البريد الالكتروني',
 
             'password.required' => 'كلمة المرور يجب أن تكون موجودة',
             'password.unique' => 'كلمة المرور مُدخلة سابقاً لمستخدم آخر',

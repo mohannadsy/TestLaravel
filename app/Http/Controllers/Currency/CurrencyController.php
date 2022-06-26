@@ -51,7 +51,7 @@ class CurrencyController extends Controller
     public function delete($id)
     {
         $parameters = ['id' => $id];
-        if ($this->isNotDefaultBound($id)) {
+        if ($this->isNotDefaultCurrency($id)) {
             $currency = Currency::find($id);
             return $currency ? $currency->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Currency not Found';
         }

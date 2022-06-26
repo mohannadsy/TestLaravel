@@ -5,14 +5,14 @@ namespace App\Traits\Currency;
 trait  CurrencyTrait {
 
 
-    public function isDefaultBound($id)
+    public function isDefaultCurrency($id)
     {
         return $id == 1;
     }
 
-    public function isNotDefaultBound($id)
+    public function isNotDefaultCurrency($id)
     {
-        return !$this->isDefaultBound($id);
+        return !$this->isDefaultCurrency($id);
     }
 
 }
