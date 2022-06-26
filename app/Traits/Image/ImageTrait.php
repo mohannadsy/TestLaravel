@@ -4,6 +4,8 @@ namespace App\Traits\Image;
 
 use Illuminate\Http\Request;
 use Intervention\Image\Image;
+use Illuminate\Support\Str;
+
 
 trait  ImageTrait
 {
@@ -30,6 +32,5 @@ trait  ImageTrait
             $url = preg_replace("/public/", "", $url);
             return $img->save($public_path) ? $url : '';
         }
-
     }
 }
