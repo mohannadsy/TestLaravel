@@ -16,7 +16,6 @@ class UserController extends Controller
 {
     use ImageTrait, ActivityLog, AdminTrait, UserTrait;
 
-
     public function callActivityMethod($method, $parameters)
     {
         $this->makeActivity([
