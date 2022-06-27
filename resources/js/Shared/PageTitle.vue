@@ -18,5 +18,6 @@ export default defineComponent({
     color: white;
     background-color: black;
     font-weight: bold;
+    padding: 3px;
 }
 </style>
