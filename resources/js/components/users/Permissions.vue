@@ -1,13 +1,84 @@
 <template>
+   <table class="mt-2">
+    <thead>
+        <tr>
+            <th></th>
+            <th>إضافة</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+            <th>استعراض</th>
+            <th>حذف نهائي</th>
+            <th>استعادة</th>
+            <th>طباعة</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>حسابات</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+         <tr>
+            <td>دليل الحسابات</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td> بطاقة حساب</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
 
+   </table>
 </template>
 
-<script>
-export default {
 
-}
+<script>
+import ElemetLabel from "../../Shared/ElemetLabel.vue";
+import Checkbox from "../../Shared/Checkbox.vue";
+import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
+
+export default {
+    components: {
+    ElemetLabel,
+    Checkbox,
+    CheckboxSwitch
+
+},
+
+    data() {
+
+    },
+};
+
 </script>
 
-<style>
+<style scoped>
+table,th,td{
+    border: 1px solid;
+
+}
 
 </style>

@@ -6,59 +6,7 @@
         <div class="row px-3 mt-1 pb-2">
           <page-title>بطاقة مستخدم</page-title>
         </div>
-        <div class="row">
-          <div class="col-md-5">
-            <div class="form-group row mt-2">
-              <elemet-label class="col-form-label col-md-3">رمز المستخدم</elemet-label>
-              <div class="col-8">
-                <element-input type="text" class="form-control"/>
-              </div>
-            </div>
-            <div class="form-group row mt-2">
-              <elemet-label
-                class="col-form-label col-md-3"
-                style="padding-left: 6px">اسم المستخدم</elemet-label>
-              <div class="col-8">
-                <element-input type="text" class="form-control"/>
-              </div>
-            </div>
-            <div class="form-group row mt-2">
-              <elemet-label
-                class="col-form-label col-md-3"
-                style="padding-left: 6px"
-                >البريد الالكتروني</elemet-label
-              >
-              <div class="col-8">
-                <element-input type="text" class="form-control"/>
-              </div>
-            </div>
-            <div class="form-group row mt-2">
-              <elemet-label class="col-form-label col-md-3">كلمة المرور</elemet-label>
-              <div class="col-8">
-                <element-input type="text" class="form-control"/>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group row mt-2">
-              <elemet-label class="col-form-label col-2">الفرع </elemet-label>
-              <div class="col-8">
-                <element-input type="text" class="form-control"/>
-              </div>
-            </div>
-            <div class="form-group row mt-2">
-              <elemet-label class="col-form-label col-2">الصفة</elemet-label>
-              <div class="col-8">
-                <v-select :value="rvalue" :options="role" />
-              </div>
-            </div>
-            <div class="form-group row mt-2">
-              <div class="col-md-2 justify-content-right">
-                <checkbox-switch></checkbox-switch>
-              </div>
-            </div>
-          </div>
-        </div>
+        <main-information></main-information>
         <!-- <hr class="new1"> -->
         <div class="row a mt-2">
           <div class="col-5">
@@ -90,7 +38,7 @@
 </template>
 
 <script>
-import Home from "../Home.vue";
+import Home from "../../Pages/Home.vue";
 import BasicInformation from "./BasicInformation.vue";
 import Permissions from "./Permissions.vue";
 import ExtraOptions from "./ExtraOptions.vue";
@@ -101,8 +49,10 @@ import VSelect from "../../Shared/VSelect.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
+import MainInformation from "./MainInformation.vue";
 export default {
   components: {
+    MainInformation,
     Home,
     BasicInformation,
     Permissions,
@@ -118,8 +68,6 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
-      rvalue: "",
-      role: ["مدير عام", "محاسب", "كاشير"],
     };
   },
 };

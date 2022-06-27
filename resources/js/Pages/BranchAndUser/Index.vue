@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="row">
         <div class="col-6">
             <tree-view ref="tree" id="customtree-async" :load-nodes-async="loadNodesAsync" :model-defaults="modelDefaults"></tree-view>
@@ -80,5 +80,17 @@ export default {
     }
 
 
+}
+</script> -->
+<template>
+    <user-form></user-form>
+</template>
+
+<script>
+import IndexVue from '../../components/users/Index.vue';
+export default {
+    components:{
+        userForm: IndexVue
+    }
 }
 </script>
