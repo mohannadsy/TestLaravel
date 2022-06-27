@@ -6,7 +6,7 @@
         <div class="row px-3 mt-1 pb-2">
           <page-title>بطاقة مستخدم</page-title>
         </div>
-        <main-information></main-information>
+        <main-information @save-data="saveData"></main-information>
         <!-- <hr class="new1"> -->
         <div class="row a mt-2">
           <div class="col-5">
@@ -26,7 +26,7 @@
         <extra-options v-if="activeTab === 'ExtraOptions'" />
         <div class="row justify-content-end mb-2">
           <div class="col-md-4">
-            <element-button>حفظ</element-button>
+            <element-button @click="saveData">حفظ</element-button>
             <element-button>جديد</element-button>
             <element-button>تعديل</element-button>
             <element-button>حذف</element-button>
@@ -70,6 +70,12 @@ export default {
       activeTab: "BasicInformation",
     };
   },
+  methods:{
+    saveData(data){
+            this.$store.dispatch('users/registerUser',data);
+            console.log('hi')
+        },
+  }
 };
 </script>
 <style scoped>

@@ -1,3 +1,5 @@
+import { Inertia } from "@inertiajs/inertia";
+
 export default {
     registerUser(context, data) {
         const userData = {
@@ -20,7 +22,7 @@ export default {
             mobile: data.mobile
         };
         Inertia.post(route('user.store'), userData);
-        context.commit('registerBranch', {
+        context.commit('registerUser', {
             ...userData
         });
     }

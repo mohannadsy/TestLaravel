@@ -43,7 +43,7 @@ class UserController extends Controller
 //      $this->givePermissionTo($request->permissions);
         User::create($input);
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('Users/index', compact('input'));;
+        return Inertia::render('BranchAndUser/index', compact('input'));;
     }
 
     public function update(UserRequest $request, $id)
