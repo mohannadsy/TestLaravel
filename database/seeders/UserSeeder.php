@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'superAdmin@gmail.com',
             'password' => bcrypt('12345superadmin'),
-            'branch_name' => 'Main Branch',
+
             'role' => 'Super Admin',// مدير عام
             'branch_id' => '1',
             'profile_photo_path' => 'qqq',
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             'name' => 'Noor Al-kinj',
             'email' => 'noor@gmail.com',
             'password' => bcrypt('12345noor'),
-            'branch_name' => 'Main Branch',
+
             'role' => 'Accountant',
             'profile_photo_path' => 'qqq',
             'branch_id' => '2',
@@ -59,7 +59,6 @@ class UserSeeder extends Seeder
                 'name' => 'Clauda Al-Rakkad' . $i,
                 'email' => "clauda@gmail$i.com",
                 'password' => bcrypt('12345clauda'),
-                'branch_name' => 'Main Branch',
                 'role' => 'Casher',
                 'branch_id' => '3',
                 'first_name' => 's',

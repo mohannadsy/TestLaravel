@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('currencies', function (Blueprint $table) {
@@ -18,10 +13,10 @@ return new class extends Migration
             $table->string('name')->default('null');
             $table->string('code')->default('null');
             $table->string('latin_name')->nullable()->default('null');
-            $table->unsignedFloat('equality');
-            $table->unsignedFloat('match');
+            $table->float('equality');
+            $table->string('match');
             $table->string('part');
-            $table->unsignedBigInteger('accuracy');
+            $table->integer('accuracy');
             $table->string('lain_part_name');
             $table->timestamps();
         });
