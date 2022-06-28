@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         $id = User::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $input = $request->validated();
+        $input = $request->all();
         $input->password = Hash::make($input['password']);
         $input->profile_photo_path = $this->getImageURL($request);;
         $input->role = $this->assignRole($request->role);
@@ -78,5 +78,7 @@ class UserController extends Controller
         }
         return 'User not Found';
     }
+
+
 }
 

@@ -1,15 +1,17 @@
 <template>
-  <home></home>
-  <form>
+
+
     <div class="container-fluide rounded bg-white mb-1">
       <div class="row justify-content-end">
         <div class="col-md-9 border-right">
           <div class="row px-3 mt-1 pb-2">
             <page-title>بطاقة مستخدم</page-title>
           </div>
-          <main-information @save-main="saveData"></main-information>
+          <form>
+          <main-information @input="save"></main-information>
+        </form>
           <!-- <hr class="new1"> -->
-          <div class="row a mt-2">
+          <!-- <div class="row a mt-2">
             <div class="col-5">
               <title-button @click="activeTab = 'BasicInformation'"
                 >معلومات أساسية</title-button
@@ -27,10 +29,10 @@
             @save-basic="saveData"
           ></basic-information>
           <permissions v-if="activeTab === 'Permissions'" />
-          <extra-options v-if="activeTab === 'ExtraOptions'" />
+          <extra-options v-if="activeTab === 'ExtraOptions'" /> -->
           <div class="row justify-content-end mb-2">
             <div class="col-md-4">
-              <element-button>حفظ</element-button>
+              <element-button @click="submit">حفظ</element-button>
               <element-button>جديد</element-button>
               <element-button>تعديل</element-button>
               <element-button>حذف</element-button>
@@ -39,10 +41,11 @@
         </div>
       </div>
     </div>
-  </form>
+
 </template>
 
 <script>
+import { Inertia } from '@inertiajs/inertia'
 import Home from "../../Pages/Home.vue";
 import BasicInformation from "./BasicInformation.vue";
 import Permissions from "./Permissions.vue";
@@ -55,6 +58,7 @@ import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInformation from "./MainInformation.vue";
+import { reactive } from 'vue'
 export default {
   components: {
     MainInformation,
@@ -73,13 +77,50 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
+    //    code:'',
+    //     name:'',
+    //     email:'',
+    //     password:'',
+    //     branch_name:'',
+       postData:reactive({
+
+        code:'',
+        name:'',
+        email:'',
+        password:'',
+        branch_id:'',
+        role:'',
+        _token: this.$page.props.csrf_token,
+       })
+    //   basic:{
+
+    //   }
+    //   }
     };
   },
   methods: {
-    saveData(data) {
-      this.$store.dispatch("users/registerUser", data);
-      console.log("hi");
+    // saveData(data) {
+    //   this.$store.dispatch("users/registerUser", data);
+    //   console.log("hi");
+    // },
+    // saveMain(){
+    //     console.log('hello from main vue')
+    // },
+    //Inertia.post(route('user.store'), userData);
+    save(data){
+        console.log(data);
+            this.postData.code=data.code,
+            this.postData.name=data.name,
+            this.postData.email=data.email,
+            this.postData.password=data.password,
+            this.postData.branch_id=data.branch_id
+            this.postData.role = data.role
+
+        console.log(this.postData);
     },
+    submit(){
+        Inertia.post(route('user.store'), this.postData);
+    }
   },
 };
 </script>
