@@ -38,7 +38,8 @@ class User extends Authenticatable
         'phone',
         'mobile',
         'id_number',
-        'profile_photo_path'
+        'profile_photo_path',
+        'notes',
 
     ];
 

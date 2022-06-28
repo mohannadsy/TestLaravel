@@ -48,5 +48,4 @@ class CurrencyRequest extends FormRequest
         ];
     }
 
-
 }
