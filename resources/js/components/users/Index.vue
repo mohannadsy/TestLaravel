@@ -1,40 +1,45 @@
 <template>
   <home></home>
-  <div class="container-fluide rounded bg-white mb-1">
-    <div class="row justify-content-end">
-      <div class="col-md-9 border-right">
-        <div class="row px-3 mt-1 pb-2">
-          <page-title>بطاقة مستخدم</page-title>
-        </div>
-        <main-information @save-data="saveData"></main-information>
-        <!-- <hr class="new1"> -->
-        <div class="row a mt-2">
-          <div class="col-5">
-            <title-button @click="activeTab = 'BasicInformation'"
-              >معلومات أساسية</title-button
-            >
-            <title-button @click="activeTab = 'Permissions'"
-              >صلاحيات</title-button
-            >
-            <title-button @click="activeTab = 'ExtraOptions'"
-              >خيارات إضافية</title-button
-            >
+  <form>
+    <div class="container-fluide rounded bg-white mb-1">
+      <div class="row justify-content-end">
+        <div class="col-md-9 border-right">
+          <div class="row px-3 mt-1 pb-2">
+            <page-title>بطاقة مستخدم</page-title>
           </div>
-        </div>
-        <basic-information v-if="activeTab === 'BasicInformation'" />
-        <permissions v-if="activeTab === 'Permissions'" />
-        <extra-options v-if="activeTab === 'ExtraOptions'" />
-        <div class="row justify-content-end mb-2">
-          <div class="col-md-4">
-            <element-button @click="saveData">حفظ</element-button>
-            <element-button>جديد</element-button>
-            <element-button>تعديل</element-button>
-            <element-button>حذف</element-button>
+          <main-information @save-main="saveData"></main-information>
+          <!-- <hr class="new1"> -->
+          <div class="row a mt-2">
+            <div class="col-5">
+              <title-button @click="activeTab = 'BasicInformation'"
+                >معلومات أساسية</title-button
+              >
+              <title-button @click="activeTab = 'Permissions'"
+                >صلاحيات</title-button
+              >
+              <title-button @click="activeTab = 'ExtraOptions'"
+                >خيارات إضافية</title-button
+              >
+            </div>
+          </div>
+          <basic-information
+            v-if="activeTab === 'BasicInformation'"
+            @save-basic="saveData"
+          ></basic-information>
+          <permissions v-if="activeTab === 'Permissions'" />
+          <extra-options v-if="activeTab === 'ExtraOptions'" />
+          <div class="row justify-content-end mb-2">
+            <div class="col-md-4">
+              <element-button>حفظ</element-button>
+              <element-button>جديد</element-button>
+              <element-button>تعديل</element-button>
+              <element-button>حذف</element-button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -70,12 +75,12 @@ export default {
       activeTab: "BasicInformation",
     };
   },
-  methods:{
-    saveData(data){
-            this.$store.dispatch('users/registerUser',data);
-            console.log('hi')
-        },
-  }
+  methods: {
+    saveData(data) {
+      this.$store.dispatch("users/registerUser", data);
+      console.log("hi");
+    },
+  },
 };
 </script>
 <style scoped>
