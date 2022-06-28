@@ -19,16 +19,16 @@
 
             <div class="mb-5">
                 <div>
-                    <label class="custom-control-label fs-5">
+                    <!-- <elemet-label class="custom-control-label fs-5">
                         الرجاء إدخال معلومات الحساب
-                    </label>
+                    </elemet-label> -->
                 </div>
             </div>
 
             <form @submit.prevent="submit">
                 <div class="mb-3">
-                    <jet-label for="email"  value="البريد الالكتروني" />
-                    <jet-input
+                    <!-- <element-label for="email"  value="البريد الالكتروني" /> -->
+                    <element-input
                         id="email"
                         type="text"
                         name="email"
@@ -38,22 +38,9 @@
                         autofocus
                     />
                 </div>
-                <!-- <div class="mb-3">
-
-                    <element-form-input
-                        label="اسم المستخدم أو البريد الاكتروني"
-                        id="num"
-                        type="number"
-                        placeholder=""
-                        v-model="form.number"
-                        required
-                        autofocus
-                    />
-                </div> -->
-
                 <div class="mb-3">
-                    <jet-label for="password" value="كلمة المرور" />
-                    <jet-input
+                    <!-- <element-label for="password" value="كلمة المرور" /> -->
+                    <element-input
                         id="password"
                         type="password"
                         v-model="form.password"
@@ -64,7 +51,7 @@
 
                 <div class="mb-3">
                     <div class="custom-control custom-checkbox">
-                        <jet-checkbox
+                        <element-checkbox
                             id="remember_me"
                             name="remember"
                             v-model:checked="form.remember"
@@ -126,23 +113,11 @@
                     <div
                         class="d-flex justify-content-center align-items-baseline"
                     >
-                        <label class="custom-control-label">
+                        <!-- <element-label class="custom-control-label">
                             يمكنك تجربة البرنامج مجانا من خلال الضغط على
-                            <button class="bold">التجربة الآن</button>
-                        </label>
+                            <element-button class="bold">التجربة الآن</element-button>
+                        </element-label> -->
                     </div>
-                </div>
-                <div class="mb-3">
-                    <!-- <tbody>
-                        <tr>
-                            <td> <label>الصفة</label></td>
-                            <td><v-select :value="form.value" :options="lang" ></v-select></td>
-                        </tr>
-                    </tbody> -->
-                    <!-- <text-area
-                        placeholder="ملاحظات"
-                        v-model="form.notes"
-                    ></text-area> -->
                 </div>
             </form>
         </div>
@@ -159,35 +134,33 @@ import JetCheckbox from "@/Jetstream/Checkbox.vue";
 import JetLabel from "@/Jetstream/Label.vue";
 import JetValidationErrors from "@/Jetstream/ValidationErrors.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import ElementFormInput from "../../Shared/ElementFormInput.vue";
+import ElementInput from "../../Shared/ElementInput.vue";
+// import ElementLabel from "../../Shared/ElemetLabel.vue";
 import PageTitle from "../../Shared/PageTitle.vue";
-// import CheckBox from '../../Shared/CheckBox.vue';
+import ElementCheckbox from '../../Shared/ElementCheckbox.vue'
 import CheckboxLabeled from "../../Shared/CheckboxLabeled.vue";
-import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
-import CheckboxSwitchedLabel from "../../Shared/CheckboxSwitchedLabel.vue";
-import VSelect from "../../Shared/VSelect.vue";
-import TextArea from "../../Shared/TextArea.vue";
+import ElementCheckbox1 from "../../Shared/ElementCheckbox.vue";
+import ElementButton from "../../Shared/ElementButton.vue";
 
 export default defineComponent({
     components: {
-        Head,
-        JetAuthenticationCard,
-        JetAuthenticationCardLogo,
-        JetButton,
-        JetInput,
-        JetCheckbox,
-        JetLabel,
-        JetValidationErrors,
-        Link,
-        ElementFormInput,
-        PageTitle,
-        // CheckBox,
-        CheckboxLabeled,
-        CheckboxSwitch,
-        CheckboxSwitchedLabel,
-        VSelect,
-        TextArea,
-    },
+    Head,
+    JetAuthenticationCard,
+    JetAuthenticationCardLogo,
+    JetButton,
+    JetInput,
+    JetCheckbox,
+    JetLabel,
+    JetValidationErrors,
+    Link,
+    // ElementLabel,
+    ElementInput,
+    PageTitle,
+    ElementCheckbox,
+    CheckboxLabeled,
+    ElementCheckbox1,
+    ElementButton
+},
     props: {
         canResetPassword: Boolean,
         status: String,
@@ -197,12 +170,8 @@ export default defineComponent({
             form: this.$inertia.form({
                 email: "",
                 password: "",
-                number: "",
                 remember: false,
-                value: "",
-                notes: "",
             }),
-            lang: ["مدير عام", "محاسب", "كاشير"],
         };
     },
     methods: {
