@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            $table->string('role');
-            $table->string('branch_id');
+            $table->string('role')->nullable()->default(null);
+            $table->string('branch_id')->nullable()->default(null);
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name')->nullable();

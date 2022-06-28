@@ -79,7 +79,5 @@ class UserController extends Controller
         }
         return 'User not Found';
     }
-
-
 }
 
