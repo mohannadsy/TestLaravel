@@ -72,7 +72,11 @@ class UserController extends Controller
     {
         $parameters = ['id' => $id];
         $user = User::find($id);
-        return $user ? $user &&  $this->callActivityMethod('show', $parameters): 'User not Found';
+        if ($user) {
+            $this->callActivityMethod('show', $parameters);
+            return $user;
+        }
+        return 'User not Found';
     }
 }
 

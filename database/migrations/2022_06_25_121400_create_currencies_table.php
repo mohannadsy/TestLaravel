@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name')->default('null');
             $table->string('code')->default('null');
             $table->string('latin_name')->nullable()->default('null');
-            $table->unsignedBigInteger('equality');
-            $table->unsignedBigInteger('match');
+            $table->unsignedFloat('equality');
+            $table->unsignedFloat('match');
             $table->string('part');
             $table->unsignedBigInteger('accuracy');
             $table->string('lain_part_name');
