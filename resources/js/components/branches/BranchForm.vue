@@ -24,51 +24,8 @@
                 </div> -->
 
 
-                <div class="row px-3 mt-1 pb-2">
-                    <page-title>بطاقة فرع</page-title>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group row mt-2">
-                            <elemet-label class="col-form-label col-md-4">رمز الفرع</elemet-label>
-                            <div class="col-8">
-                                <element-input
-                                    type="text"
-                                    value=""
-                                    v-model.trim="code"/>
-                                    <p>{{ code }}</p>
-                            </div>
-                        </div>
-                        <div class="form-group row mt-2">
-                            <elemet-label class="col-form-label col-md-4">اسم الفرع</elemet-label>
-                            <div class="col-8">
-                                <element-input
-                                    type="text"
-                                    value=""
-                                    v-model.trim="name"/>
-                            </div>
-                        </div>
-                        <div class="form-group row mt-2">
-                            <elemet-label class="col-form-label col-md-4"> الفرع الرئيسي</elemet-label>
-                            <div class="col-8">
-                                <element-input
-                                    type="text"
-                                    v-model.trim="branch_id"
-                                    value=""/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group row mt-4">
-                            <input style="visibility:hidden;" />
-                        </div>
-                        <div class="form-group row mt-2">
-                            <div class="col-md-2 justify-content-right">
-                                <checkbox-switch checked></checkbox-switch>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                <main-infromation></main-infromation>
                 <div class="row a mt-2 ">
                     <div class="col-5">
                         <title-button @click="activeTab = 'BasicInformation'">معلومات أساسية</title-button>
@@ -91,6 +48,7 @@
 </template>
 
 <script>
+import MainInfromation from "./MainInfromation.vue";
 import BasicInformation from "./BasicInformation.vue";
 import PageTitle from "../../Shared/PageTitle.vue";
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
@@ -98,6 +56,8 @@ import ElementInput from "../../Shared/ElementInput.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from '../../Shared/TitleButton.vue';
+import MainInfromation1 from "./MainInfromation.vue";
+
     
 export default {
     components: {
@@ -107,18 +67,16 @@ export default {
     ElementInput,
     CheckboxSwitch,
     ElementButton,
-    TitleButton
+    TitleButton,
+    MainInfromation,
+    MainInfromation1
 },
     emits:['save-data'],
     data() {
         return {
             activeTab:'BasicInformation',
-            code: '',
-            name: '',
-            branch_id: '',
            
         }
-        //  sync:{responsibility:''; address:''}
     },
     methods:{
         submitForm(){
