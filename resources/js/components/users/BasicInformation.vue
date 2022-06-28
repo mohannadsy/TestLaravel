@@ -1,63 +1,89 @@
 <template>
-  <div class="row mt-2">
-    <div class="col-md-6">
-      <div class="form-group row mt-3">
-        <elemet-label class="col-form-label col-3">الاسم الأول</elemet-label>
-        <div class="col-8">
-          <element-input type="text" class="form-control" />
+  <form @submit.prevent="submitForm">
+    <div class="row mt-2">
+      <div class="col-md-6">
+        <div class="form-group row mt-3">
+          <elemet-label class="col-form-label col-3">الاسم الأول</elemet-label>
+          <div class="col-8">
+            <element-input
+              type="text"
+              class="form-control"
+              v-model.trim="first_name"
+            />
+          </div>
         </div>
-      </div>
-      <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-3">اسم الأب</elemet-label>
-        <div class="col-md-8">
-          <element-input type="text" class="form-control" />
+        <div class="form-group row mt-2">
+          <elemet-label class="col-form-label col-3">اسم الأب</elemet-label>
+          <div class="col-md-8">
+            <element-input
+              type="text"
+              class="form-control"
+              v-model.trim="middle_name"
+            />
+          </div>
         </div>
-      </div>
-      <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3"
-          >الاسم الأخير</elemet-label
-        >
-        <div class="col-md-8">
-          <element-input type="text" class="form-control" />
+        <div class="form-group row mt-2">
+          <elemet-label class="col-form-label col-md-3"
+            >الاسم الأخير</elemet-label
+          >
+          <div class="col-md-8">
+            <element-input
+              type="text"
+              class="form-control"
+              v-model.trim="last_name"
+            />
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row mt-2">
+        <!-- <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-3">اسم الأم</elemet-label>
         <div class="col-md-8">
           <element-input type="text" class="form-control" />
         </div>
-      </div>
-      <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3">هاتف</elemet-label>
-        <div class="col-md-8">
-          <element-input type="text" class="form-control" />
+      </div> -->
+        <div class="form-group row mt-2">
+          <elemet-label class="col-form-label col-md-3">هاتف</elemet-label>
+          <div class="col-md-8">
+            <element-input
+              type="text"
+              class="form-control"
+              v-model.trim="phone"
+            />
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <elemet-label class="col-form-label col-md-3">جوال</elemet-label>
+          <div class="col-md-8">
+            <element-input
+              type="text"
+              class="form-control"
+              v-model.trim="mobile"
+            />
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <elemet-label class="col-form-label col-md-3"
+            >الرقم الوطني</elemet-label
+          >
+          <div class="col-md-8">
+            <element-input
+              type="text"
+              class="form-control"
+              v-model.trim="id_number"
+            />
+          </div>
         </div>
       </div>
-      <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3">جوال</elemet-label>
-        <div class="col-md-8">
-          <element-input type="text" class="form-control" />
-        </div>
-      </div>
-      <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3"
-          >الرقم الوطني</elemet-label
-        >
-        <div class="col-md-8">
-          <element-input type="text" class="form-control" />
+      <div class="col-md-5">
+        <div class="form-group row mt-2">
+          <elemet-label class="col-form-label col-md-2">ملاحظات</elemet-label>
+          <div class="col-md-9">
+            <text-area class="form-control"></text-area>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-5">
-      <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-2">ملاحظات</elemet-label>
-        <div class="col-md-9">
-          <text-area class="form-control"></text-area>
-        </div>
-      </div>
-    </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -65,10 +91,25 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import TextArea from "../../Shared/TextArea.vue";
 export default {
+  emits: ["save-basic"],
   components: {
     ElemetLabel,
     ElementInput,
     TextArea,
+  },
+  methods: {
+    submitForm() {
+      const formData = {
+        first_name: this.first_name,
+        middle_name: this.middle_name,
+        last_name: this.last_name,
+        phone: this.phone,
+        mobile: this.mobile,
+        id_number: this.id_number,
+      };
+      this.$emit("save-basic", formData);
+      console.log(formData);
+    },
   },
 };
 </script>
