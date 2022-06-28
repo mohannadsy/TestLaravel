@@ -19,15 +19,15 @@
 
             <div class="mb-5">
                 <div>
-                    <elemet-label class="custom-control-label fs-5">
+                    <!-- <elemet-label class="custom-control-label fs-5">
                         الرجاء إدخال معلومات الحساب
-                    </elemet-label>
+                    </elemet-label> -->
                 </div>
             </div>
 
             <form @submit.prevent="submit">
                 <div class="mb-3">
-                    <element-label for="email"  value="البريد الالكتروني" />
+                    <!-- <element-label for="email"  value="البريد الالكتروني" /> -->
                     <element-input
                         id="email"
                         type="text"
@@ -39,7 +39,7 @@
                     />
                 </div>
                 <div class="mb-3">
-                    <element-label for="password" value="كلمة المرور" />
+                    <!-- <element-label for="password" value="كلمة المرور" /> -->
                     <element-input
                         id="password"
                         type="password"
@@ -113,10 +113,10 @@
                     <div
                         class="d-flex justify-content-center align-items-baseline"
                     >
-                        <label class="custom-control-label">
+                        <!-- <element-label class="custom-control-label">
                             يمكنك تجربة البرنامج مجانا من خلال الضغط على
-                            <button class="bold">التجربة الآن</button>
-                        </label>
+                            <element-button class="bold">التجربة الآن</element-button>
+                        </element-label> -->
                     </div>
                 </div>
             </form>
@@ -135,11 +135,12 @@ import JetLabel from "@/Jetstream/Label.vue";
 import JetValidationErrors from "@/Jetstream/ValidationErrors.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import ElementInput from "../../Shared/ElementInput.vue";
-import ElementLabel from "../../Shared/ElementLabel.vue";
+// import ElementLabel from "../../Shared/ElemetLabel.vue";
 import PageTitle from "../../Shared/PageTitle.vue";
 import ElementCheckbox from '../../Shared/ElementCheckbox.vue'
 import CheckboxLabeled from "../../Shared/CheckboxLabeled.vue";
 import ElementCheckbox1 from "../../Shared/ElementCheckbox.vue";
+import ElementButton from "../../Shared/ElementButton.vue";
 
 export default defineComponent({
     components: {
@@ -152,12 +153,13 @@ export default defineComponent({
     JetLabel,
     JetValidationErrors,
     Link,
-    ElementLabel,
+    // ElementLabel,
     ElementInput,
     PageTitle,
     ElementCheckbox,
     CheckboxLabeled,
-    ElementCheckbox1
+    ElementCheckbox1,
+    ElementButton
 },
     props: {
         canResetPassword: Boolean,
