@@ -32,7 +32,7 @@
           <extra-options v-if="activeTab === 'ExtraOptions'" /> -->
           <div class="row justify-content-end mb-2">
             <div class="col-md-4">
-              <element-button>حفظ</element-button>
+              <element-button @click="submit">حفظ</element-button>
               <element-button>جديد</element-button>
               <element-button>تعديل</element-button>
               <element-button>حذف</element-button>
@@ -58,6 +58,7 @@ import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInformation from "./MainInformation.vue";
+import { reactive } from 'vue'
 export default {
   components: {
     MainInformation,
@@ -81,14 +82,15 @@ export default {
     //     email:'',
     //     password:'',
     //     branch_name:'',
-    //   postData:{
+       postData:reactive({
 
         code:'',
         name:'',
         email:'',
         password:'',
-        branch_id:''
-      ,
+        branch_id:'',
+        _token: this.$page.props.csrf_token,
+       })
     //   basic:{
 
     //   }
@@ -106,15 +108,17 @@ export default {
     //Inertia.post(route('user.store'), userData);
     save(data){
         console.log(data);
-        const postData={
-            code:data.code,
-            name:data.name,
-            email:data.email,
-            password:data.password,
-            branch_id:data.branch_id
-        }
-        Inertia.post(route('user.store'), postData);
-        console.log(postData);
+            this.postData.code=data.code,
+            this.postData.name=data.name,
+            this.postData.email=data.email,
+            this.postData.password=data.password,
+            this.postData.branch_id=data.branch_id
+
+
+        console.log(this.postData);
+    },
+    submit(){
+        Inertia.post(route('user.store'), this.postData);
     }
   },
 };

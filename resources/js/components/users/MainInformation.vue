@@ -92,7 +92,7 @@ export default {
         name: '',
         email: '',
         password: '',
-        branch_id: '',
+        branch_id: '9',
       }
     };
   },
