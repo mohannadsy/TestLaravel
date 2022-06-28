@@ -89,6 +89,7 @@ export default {
         email:'',
         password:'',
         branch_id:'',
+        role:'',
         _token: this.$page.props.csrf_token,
        })
     //   basic:{
@@ -113,7 +114,7 @@ export default {
             this.postData.email=data.email,
             this.postData.password=data.password,
             this.postData.branch_id=data.branch_id
-
+            this.postData.role = data.role
 
         console.log(this.postData);
     },

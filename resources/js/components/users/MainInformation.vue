@@ -50,14 +50,14 @@
             type="text"
             class="form-control"
             @change="objChanged"
-            v-model.trim="myObj.branch_name"
+            v-model.trim="myObj.branch_id"
           />
         </div>
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-2">الصفة</elemet-label>
         <div class="col-8">
-          <v-select :options="role" />
+          <v-select :options="role"  @change="objChanged" v-model="myObj.role"/>
         </div>
       </div>
       <div class="form-group row mt-2">
@@ -92,7 +92,8 @@ export default {
         name: '',
         email: '',
         password: '',
-        branch_id: '9',
+        branch_id: '',
+        role:''
       }
     };
   },

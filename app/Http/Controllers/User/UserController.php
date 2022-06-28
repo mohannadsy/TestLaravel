@@ -11,7 +11,6 @@ use App\Traits\User\AdminTrait;
 use App\Traits\User\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -33,16 +32,16 @@ class UserController extends Controller
         return User::all();
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $id = User::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        // $input = $request->validated();
-        // $input->password = Hash::make($input['password']);
-        // $input->profile_photo_path = $this->getImageURL($request);;
-        // $input->role = $this->assignRole($request->role);
+        $input = $request->all();
+        $input->password = Hash::make($input['password']);
+        $input->profile_photo_path = $this->getImageURL($request);;
+        $input->role = $this->assignRole($request->role);
 //      $this->givePermissionTo($request->permissions);
-        User::create($request->all());
+        User::create($input);
         $this->callActivityMethod('store', $parameters);
         return Inertia::render('BranchAndUser/Index', compact('input'));;
     }
@@ -79,5 +78,7 @@ class UserController extends Controller
         }
         return 'User not Found';
     }
+
+
 }
 
