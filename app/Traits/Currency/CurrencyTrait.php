@@ -2,7 +2,8 @@
 
 namespace App\Traits\Currency;
 
-trait  CurrencyTrait {
+trait  CurrencyTrait
+{
 
 
     public function isDefaultCurrency($id)

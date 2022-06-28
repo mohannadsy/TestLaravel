@@ -16,6 +16,11 @@ Route::group(['namespace' => 'User','prefix'=>'user'], function () {
     Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 });
 
+
+Route::get('backup',function (){
+
+   \Illuminate\Support\Facades\Artisan::call("php artisan backup:run");
+});
 //------- Currency ------//
 
 Route::group(['namespace' => 'Currency','prefix'=>'currency'], function () {

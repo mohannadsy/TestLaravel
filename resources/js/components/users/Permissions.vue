@@ -56,14 +56,14 @@
 
 
 <script>
-import ElemetLabel from "../../Shared/ElemetLabel.vue";
-import Checkbox from "../../Shared/Checkbox.vue";
+import ElementLabel from "../../Shared/ElemetLabel.vue";
+import ElementCheckbox from "../../Shared/ElementCheckbox.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 
 export default {
     components: {
-    ElemetLabel,
-    Checkbox,
+    ElementLabel,
+    ElementCheckbox,
     CheckboxSwitch
 
 },

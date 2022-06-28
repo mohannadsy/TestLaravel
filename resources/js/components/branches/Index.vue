@@ -4,10 +4,12 @@
 
 <script>
 import MainInfromation from './MainInfromation.vue';
-import AdditionalInfromation from './AdditionalInfromation.vue';
+import BasicInformation from './BasicInformation.vue';
+
 export default {
     components:{
-        MainInfromation,AdditionalInfromation
+        MainInfromation,
+        BasicInformation,
     }
 }
 </script>

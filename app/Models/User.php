@@ -29,7 +29,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'branch_name',
+
         'role', // الصفة
         'branch_id',
         'first_name',
@@ -38,7 +38,8 @@ class User extends Authenticatable
         'phone',
         'mobile',
         'id_number',
-        'profile_photo_path'
+        'profile_photo_path',
+        'notes',
 
     ];
 

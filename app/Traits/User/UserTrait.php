@@ -8,7 +8,7 @@ use App\Models\User;
 
 trait  UserTrait {
 
-    public function forceDelete($id) //can not be restored
+    public function forceDelete($id)
     {
         $parameters = ['id' => $id];
         if ($this->isNotSuperAdmin($id)) {
@@ -18,7 +18,7 @@ trait  UserTrait {
         return "Super Admin Can not be Deleted";
     }
 
-    public function restore($id) // from recycle bin
+    public function restore($id)
     {
         $parameters = ['id' => $id];
         $user = User::withTrashed()->find($id);
