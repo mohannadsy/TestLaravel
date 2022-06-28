@@ -10,7 +10,7 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.tirm="code"
+              v-model.trim="code"
             />
           </div>
         </div>
@@ -24,7 +24,7 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.tirm="name"
+              v-model.trim="name"
             />
           </div>
         </div>
@@ -38,7 +38,7 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.tirm="email"
+              v-model.trim="email"
             />
           </div>
         </div>
@@ -50,7 +50,7 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.tirm="password"
+              v-model.trim="password"
             />
           </div>
         </div>
@@ -62,7 +62,7 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.tirm="branch_name"
+              v-model.trim="branch_name"
             />
           </div>
         </div>
@@ -88,7 +88,7 @@ import ElementInput from "../../Shared/ElementInput.vue";
 import VSelect from "../../Shared/VSelect.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 export default {
-  emits:['save-data'],
+  emits: ["save-main"],
   components: {
     ElemetLabel,
     ElementInput,
@@ -101,20 +101,20 @@ export default {
       role: ["مدير عام", "محاسب", "كاشير"],
     };
   },
-  methods:{
-    submitForm(){
-        const formData={
-            code:this.code,
-            name:this.name,
-            email:this.email,
-            password:this.password,
-            branch_name:this.branch_name,
-            role:this.role
-        };
-        this.$emit('save-data',formData);
-        console.log(formData);
-    }
-  }
+  methods: {
+    submitForm() {
+      const formData = {
+        code: this.code,
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        branch_name: this.branch_name,
+        //role:this.role
+      };
+      this.$emit("save-main", formData);
+      console.log(formData);
+    },
+  },
 };
 </script>
 

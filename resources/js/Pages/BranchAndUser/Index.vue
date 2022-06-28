@@ -83,14 +83,14 @@ export default {
 }
 </script> -->
 <template>
-    <user-form></user-form>
+  <user-form></user-form>
 </template>
 
 <script>
-import IndexVue from '../../components/users/Index.vue';
+import IndexVue from "../../components/users/Index.vue";
 export default {
-    components:{
-        userForm: IndexVue
-    }
-}
+  components: {
+    userForm: IndexVue,
+  },
+};
 </script>
