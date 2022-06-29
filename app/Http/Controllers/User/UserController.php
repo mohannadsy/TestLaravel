@@ -36,12 +36,13 @@ class UserController extends Controller
     {
         $id = User::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $input = $request;
+        $input = $request->all();
+        dd( $request->all());
         $input->password = Hash::make($input->password);
         $input->profile_photo_path = $this->getImageURL($request);;
-        // $input->role = $this->assignRole($request->role);
+        $input->role = $this->assignRole($request->role);
 //      $this->givePermissionTo($request->permissions);
-        User::create($input->all());
+        User::create($input);
         $this->callActivityMethod('store', $parameters);
         return Inertia::render('BranchAndUser/Index', compact('input'));;
     }
