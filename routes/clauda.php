@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Currency\CurrencyController;
+use App\Http\Controllers\Account\AccountController;
 use Barryvdh\Debugbar\Facades;
 
 
@@ -30,7 +31,15 @@ Route::group(['namespace' => 'Currency','prefix'=>'currency'], function () {
     Route::post('update', [CurrencyController::class, 'update'])->name('currency.update');
     Route::get('delete/{id}', [CurrencyController::class, 'delete'])->name('currency.delete');
 });
+//------- Currency ------//
 
+Route::group(['namespace' => 'Account','prefix'=>'account'], function () {
+    Route::get('index', [AccountController::class, 'index'])->name('account.index');
+    Route::post('store', [AccountController::class, 'store'])->name('account.store');
+    Route::get('show/{id}', [AccountController::class, 'show'])->name('account.show');
+    Route::post('update', [AccountController::class, 'update'])->name('account.update');
+    Route::get('delete/{id}', [AccountController::class, 'delete'])->name('account.delete');
+});
 //------- Debug bar ------//
 
 Route::get('/debug-bar', function () {
