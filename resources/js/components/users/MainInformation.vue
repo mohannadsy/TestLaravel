@@ -57,7 +57,7 @@
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-2">الصفة</elemet-label>
         <div class="col-8">
-          <v-select :options="role" @change="objChanged" v-model="myObj.role"/>
+          <v-select :options="roleOptions" @change="objChanged" :v-model="myObj.role"/>
         </div>
       </div>
       <div class="form-group row mt-2">
@@ -86,14 +86,14 @@ export default {
   data() {
     return {
       rvalue: "",
-      role: ["مدير عام", "محاسب", "كاشير"],
+      roleOptions: ["مدير عام", "محاسب", "كاشير"],
       myObj:{
         code: '',
         name: '',
         email: '',
         password: '',
         branch_id: '',
-        role:'كاشير'
+        role:''
       }
     };
   },
@@ -112,7 +112,8 @@ export default {
     // },
     objChanged(){
         this.$emit("input",this.myObj);
-        //console.log(this.myObj);
+        // console.log('hi')
+        console.log(this.myObj.role);
     }
   },
 };

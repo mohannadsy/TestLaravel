@@ -1,6 +1,6 @@
 <template>
-    <select class="form-select" @change="handleChange" >
-        <option  v-for="(option, i) in options" :key="i" value="option">
+    <select class="form-select" @change="handleChange" v-model="selected">
+        <option  v-for="(option, i) in options" :key="i" :value="option.value">
             {{ option }}
         </option>
     </select>
@@ -16,11 +16,11 @@ export default {
         value:{
             default:""
         }
-      
+
     },
     methods:{
         handleChange(e){
-            console.log(e.target.value);
+            console.log(e.target.value + "raghad");
         }
     }
 };
