@@ -10,7 +10,7 @@ use Barryvdh\Debugbar\Facades;
 
 //------- Users ------//
 
-Route::group(['namespace' => 'User','prefix'=>'user'], function () {
+Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('index', [UserController::class, 'index'])->name('user.index');
     Route::post('store', [UserController::class, 'store'])->name('user.store');
     Route::get('show/{id}', [UserController::class, 'show'])->name('user.show');
@@ -19,13 +19,13 @@ Route::group(['namespace' => 'User','prefix'=>'user'], function () {
 });
 
 
-Route::get('backup',function (){
+Route::get('backup', function () {
 
-   \Illuminate\Support\Facades\Artisan::call("php artisan backup:run");
+    \Illuminate\Support\Facades\Artisan::call("php artisan backup:run");
 });
 //------- Currency ------//
 
-Route::group(['namespace' => 'Currency','prefix'=>'currency'], function () {
+Route::group(['namespace' => 'Currency', 'prefix' => 'currency'], function () {
     Route::get('index', [CurrencyController::class, 'index'])->name('currency.index');
     Route::post('store', [CurrencyController::class, 'store'])->name('currency.store');
     Route::get('show/{id}', [CurrencyController::class, 'show'])->name('currency.show');
@@ -34,7 +34,7 @@ Route::group(['namespace' => 'Currency','prefix'=>'currency'], function () {
 });
 //------- Currency ------//
 
-Route::group(['namespace' => 'Account','prefix'=>'account'], function () {
+Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
     Route::get('index', [AccountController::class, 'index'])->name('account.index');
     Route::post('store', [AccountController::class, 'store'])->name('account.store');
     Route::get('show/{id}', [AccountController::class, 'show'])->name('account.show');
@@ -42,11 +42,10 @@ Route::group(['namespace' => 'Account','prefix'=>'account'], function () {
     Route::get('delete/{id}', [AccountController::class, 'delete'])->name('account.delete');
 });
 
-Route::get('last-id',function (){
-//    return Account::latest()->first()->id ;
-
-//    return Account::orderBy('id','desc')->first()->id+1;
-
+//------- Other Routes ------//
+Route::get('last-id', function () {
+//    return Account::latest()->first()->id; // flase
+    return Account::orderBy('id', 'desc')->first()->id + 1; // true
 });
 //------- Debug bar ------//
 

@@ -41,7 +41,6 @@ class AccountController extends Controller
         return 'Account Already Exist';
     }
 
-
     public function show($id)
     {
         $parameters = ['id' => $id];
