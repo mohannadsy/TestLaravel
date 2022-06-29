@@ -23,13 +23,14 @@ return new class extends Migration {
             $table->string('middle_name');
             $table->string('last_name')->nullable();
             $table->string('phone');
-            $table->string('id_number');
-            $table->rememberToken();
+
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('mobile');
             $table->string('notes');
 
+            $table->string('id_number');
+            $table->rememberToken();
 //            $table->softDeletes();
             $table->timestamps();
         });
