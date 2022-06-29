@@ -36,26 +36,23 @@ class UserController extends Controller
     {
         $id = User::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $input = $request->all();
-        dd( $request->all());
-        $input->password = Hash::make($input->password);
-        $input->profile_photo_path = $this->getImageURL($request);;
-        $input->role = $this->assignRole($request->role);
+        $request->password = Hash::make($request->password);
+        $request->profile_photo_path = $this->getImageURL($request);
+//      $request->role = $this->assignRole($request->role);
 //      $this->givePermissionTo($request->permissions);
-        User::create($input);
+        $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('BranchAndUser/Index', compact('input'));;
+        return Inertia::render('BranchAndUser/Index', compact('user'));;
     }
 
     public function update(UserRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $url = $this->getImageURL($request);
-        $input = $request->all(); //   $input = $request->all();
-        $input->password = Hash::make($input['password']);
-        $input->profile_photo_path = $url;
-        $user = User::find($id)->update($input);
-        $user->update($input);
+        $request->password = Hash::make($request['password']);
+        $request->profile_photo_path = $url;
+        $user = User::find($id)->update($request);
+        $user->update($request->all());
         $this->callActivityMethod('update', $parameters);
     }
 

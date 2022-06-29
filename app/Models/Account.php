@@ -15,14 +15,17 @@ class Account extends Model
         'latin_name',
         'type',//نوع الحساب
         'account_id',//حساب رئيسي
-        'final_account',//حساب ختامي
+        'is_final',
+        '',
+        '',
+        'final_account_id',//حساب ختامي
         'cost_center_id',//مركز الكلفة
         'currency_id',//عملة
         'equality',// تعادل
         'budget',//موازنة تقديرية
         'nature',//طبيعة الحساب
         'current_balance',//الرصيد الحالي للحساب
-        'results',//حساب النتائج
+        'final_account_result_id',//حساب النتائج
         'notes',
     ];
 }
