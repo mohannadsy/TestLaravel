@@ -15,6 +15,7 @@ class RoleSeeder extends Seeder
         $roleCacher = Role::create(['name' => 'Cacher']);
 
         //-----give permissions to Admin Role-----//
+
         $roleAdmin->givePermissionTo('store-user');
         $roleAdmin->givePermissionTo('update-user');
         $roleAdmin->givePermissionTo('delete-user');

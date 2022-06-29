@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->string('code');
             $table->string('latin_name');
             $table->string('type');
-            $table->string('account_id');
+            $table->unsignedBigInteger('account_id');
             $table->boolean('is_final');
             $table->unsignedBigInteger('final_account_id');
             $table->unsignedBigInteger('cost_center_id');
