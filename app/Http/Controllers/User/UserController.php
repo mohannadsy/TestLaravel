@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         $parameters = ['request' => $request, 'id' => $id];
         $url = $this->getImageURL($request);
-        $input = $request->validated(); //   $input = $request->all();
+        $input = $request->all(); //   $input = $request->all();
         $input->password = Hash::make($input['password']);
         $input->profile_photo_path = $url;
         $user = User::find($id)->update($input);
