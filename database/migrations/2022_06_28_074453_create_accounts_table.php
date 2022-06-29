@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->integer('budget');
             $table->string('nature');
             $table->string('current_balance');
-            $table->unsignedBigInteger('final_account_result_id');
+            $table->unsignedFloat('final_account_result_id');
             $table->string('notes');
             $table->timestamps();
         });
