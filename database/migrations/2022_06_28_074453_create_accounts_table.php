@@ -15,14 +15,15 @@ return new class extends Migration {
             $table->string('latin_name');
             $table->string('type');
             $table->string('account_id');
-            $table->unsignedBigInteger('final_account');
+            $table->boolean('is_final');
+            $table->unsignedBigInteger('final_account_id');
             $table->unsignedBigInteger('cost_center_id');
             $table->string('currency_id');
             $table->integer('equality');
             $table->integer('budget');
             $table->string('nature');
             $table->string('current_balance');
-            $table->string('results');
+            $table->unsignedBigInteger('final_account_result_id');
             $table->string('notes');
             $table->timestamps();
         });

@@ -15,20 +15,21 @@ class AccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'',
-            'code'=>'',
-            'latin_name'=>'',
-            'type'=>'',
-            'account_id'=>'',
-            'final_account'=>'',
-            'cost_center_id'=>'',
-            'currency_id'=>'',
-            'equality'=>'',
-            'budget'=>'',
-            'nature'=>'',
-            'current_balance'=>'',
-            'results'=>'',
-            'notes'=>'',
+            'name' => 'required',
+            'code' => 'required',
+            'latin_name' => '',
+            'type' => '',
+            'account_id' => '',
+            'final_account_id' => 'required',
+            'is_final',
+            'cost_center_id' => '',
+            'currency_id' => '',
+            'equality' => '',
+            'budget' => '',
+            'nature' => '',
+            'current_balance' => '',
+            'results' => '',
+            'notes' => '',
 
         ];
     }
@@ -36,21 +37,22 @@ class AccountRequest extends FormRequest
 
     public function messages()
     {
-        return $message =[
-            'name'=>'',
-            'code'=>'',
-            'latin_name'=>'',
-            'type'=>'',
-            'account_id'=>'',
-            'final_account'=>'',
-            'cost_center_id'=>'',
-            'currency_id'=>'',
-            'equality'=>'',
-            'budget'=>'',
-            'nature'=>'',
-            'current_balance'=>'',
-            'results'=>'',
-            'notes'=>'',
-            ];
+        return $message = [
+            'name' => '',
+            'code' => '',
+            'latin_name' => '',
+            'type' => '',
+            'account_id' => '',
+            'final_account_id' => '',
+            'is_final' => '',
+            'cost_center_id' => '',
+            'currency_id' => '',
+            'equality' => '',
+            'budget' => '',
+            'nature' => '',
+            'current_balance' => '',
+            'results' => '',
+            'notes' => '',
+        ];
     }
 }

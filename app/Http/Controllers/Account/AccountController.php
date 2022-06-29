@@ -32,13 +32,9 @@ class AccountController extends Controller
     {
         $id = Account::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $account = $request->all();
-        if (!$account) {
-            Account::create($account);
-            $this->callActivityMethod('store', $parameters);
-            return Inertia::render('', compact('account'));;
-        }
-        return 'Account Already Exist';
+        $account = Account::create($request->all());
+        $this->callActivityMethod('store', $parameters);
+        return Inertia::render('', compact('account'));;
     }
 
     public function show($id)
@@ -55,9 +51,8 @@ class AccountController extends Controller
     public function update(AccountRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
-        $input = $request->all();
-        $account = Account::find($id)->update($input);
-        $account->update($input);
+        $account = Account::find($id)->get();
+        $account->update($request->all());
         $this->callActivityMethod('update', $parameters);
     }
 
