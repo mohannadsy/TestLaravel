@@ -88,7 +88,7 @@ export default {
       rvalue: "",
       role: ["مدير عام", "محاسب", "كاشير"],
       myObj:{
-        code: '585',
+        code: '',
         name: '',
         email: '',
         password: '',
