@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Account;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AccountRequest;
 use App\Models\Account;
 use App\Traits\ActivityLog\ActivityLog;
@@ -29,8 +30,7 @@ class AccountController extends Controller
 
     public function store(AccountRequest $request)
     {
-//        $id = Account::latest()->first()->id + 1;
-        $id = 1;
+        $id = Account::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
         $account = $request->all();
         if (!$account) {
@@ -40,6 +40,7 @@ class AccountController extends Controller
         }
         return 'Account Already Exist';
     }
+
 
     public function show($id)
     {

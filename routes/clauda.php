@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Account;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Currency\CurrencyController;
@@ -39,6 +40,13 @@ Route::group(['namespace' => 'Account','prefix'=>'account'], function () {
     Route::get('show/{id}', [AccountController::class, 'show'])->name('account.show');
     Route::post('update', [AccountController::class, 'update'])->name('account.update');
     Route::get('delete/{id}', [AccountController::class, 'delete'])->name('account.delete');
+});
+
+Route::get('last-id',function (){
+//    return Account::latest()->first()->id ;
+
+//    return Account::orderBy('id','desc')->first()->id+1;
+
 });
 //------- Debug bar ------//
 

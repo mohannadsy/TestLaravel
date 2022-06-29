@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        $id = User::latest()->first()->id + 1;
+        $id = User::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
         $input = $request->all();
         $input->password = Hash::make($input['password']);
