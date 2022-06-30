@@ -77,11 +77,6 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
-    //    code:'',
-    //     name:'',
-    //     email:'',
-    //     password:'',
-    //     branch_name:'',
        postData:reactive({
 
         code:'',
@@ -99,31 +94,16 @@ export default {
         notes: '',
         _token: this.$page.props.csrf_token,
        })
-    //   basic:{
-
-    //   }
-    //   }
     };
   },
   methods: {
-    // saveData(data) {
-    //   this.$store.dispatch("users/registerUser", data);
-    //   console.log("hi");
-    // },
-    // saveMain(){
-    //     console.log('hello from main vue')
-    // },
-    //Inertia.post(route('user.store'), userData);
     saveMain(data){
-        //console.log(data);
             this.postData.code=data.code,
             this.postData.name=data.name,
             this.postData.email=data.email,
             this.postData.password=data.password,
             this.postData.branch_id=data.branch_id
             this.postData.role = data.role
-
-        //console.log(this.postData);
     },
     saveBasic(data){
         this.postData.first_name=data.first_name,
@@ -138,6 +118,7 @@ export default {
 
     },
     submit(){
+        console.log(this.postData);
         Inertia.post(route('user.store'), this.postData);
     }
   },

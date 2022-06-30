@@ -57,7 +57,7 @@
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-2">الصفة</elemet-label>
         <div class="col-8">
-          <v-select :options="roleOptions" @change="objChanged" :v-model="myObj.role"/>
+          <v-select :options="roleOptions" @change="roleChange($event)" v-model="myObj.role"/>
         </div>
       </div>
       <div class="form-group row mt-2">
@@ -98,22 +98,12 @@ export default {
     };
   },
   methods: {
-    // saveMain() {
-    //   const formData = {
-    //     code: this.code,
-    //     name: this.name,
-    //     email: this.email,
-    //     password: this.password,
-    //     branch_name: this.branch_name,
-    //     //role:this.role
-    //   };
-    //   this.$emit("save-main", formData);
-    //   console.log("save main");
-    // },
     objChanged(){
         this.$emit("input",this.myObj);
-        // console.log('hi')
-        console.log(this.myObj.role);
+    },
+    roleChange(e){
+        this.myObj.role = e.target.value;
+         this.$emit("input",this.myObj);
     }
   },
 };

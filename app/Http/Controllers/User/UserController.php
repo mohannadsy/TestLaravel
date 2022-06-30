@@ -39,7 +39,7 @@ class UserController extends Controller
         dd($request);
         $request->password = Hash::make($request->password);
         $request->profile_photo_path = $this->getImageURL($request);
-    //  $request->role = $this->assignRole($request->role);
+        $request->role = $this->assignRole($request->role);
 //      $this->givePermissionTo($request->permissions);
         $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
