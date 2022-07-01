@@ -8,7 +8,7 @@
             <page-title>بطاقة مستخدم</page-title>
           </div>
           <form>
-          <main-information @input="saveMain"></main-information>
+          <main-information @save-main="saveMain"></main-information>
         </form>
           <!-- <hr class="new1"> -->
           <div class="row a mt-2">
@@ -118,7 +118,6 @@ export default {
 
     },
     submit(){
-        // console.log(this.postData);
         // Inertia.post(route('user.store'), this.postData);
         this.$store.dispatch('users/registerUser',this.postData);
     }

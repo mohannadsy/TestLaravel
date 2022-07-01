@@ -10,7 +10,7 @@
                 <li><span class="ti ti-image"></span>&nbsp;&nbsp;<span @click="printTree(insideBranch)">{{insideBranch.name}}</span></li>
                 <li v-for="user in insideBranch.users" :key="user.id"><span class="ti ti-File"></span>&nbsp;&nbsp;<span @click="getDataToForm(user , 'user')">{{user.name}}</span></li>
             </ul>
-            
+
             <!-- <span class="rightAngle"></span>
             <span class="ti ti-folder"></span>&nbsp;&nbsp;Main Folder
             <ul class="nested-tree">
@@ -39,13 +39,13 @@
     </ul>
         </div>
         <div class="col">
-            <branch-form @save-data="saveData"></branch-form>
+            <index @save-data="saveData"></index>
         </div>
     </div>
 </template>
 
 <script>
-import BranchForm from '../../components/branches/BranchForm.vue';
+import Index from '../../components/branches/Index.vue';
 export default {
     data() {
         return {
@@ -59,7 +59,7 @@ export default {
             toggleNodeTree[i].addEventListener('click', function() {
                 this.parentElement.querySelector('.nested-tree').classList.toggle('active');
                 this.classList.toggle('angleDown')
-                
+
             })
         }
       },
@@ -87,7 +87,7 @@ export default {
         branches: Array
     },
     components:{
-        BranchForm
+        Index
     }
 
 
