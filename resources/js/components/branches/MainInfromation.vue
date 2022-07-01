@@ -44,6 +44,7 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 export default {
+    emits: ["save-main"],
   components: {
     PageTitle,
     ElemetLabel,

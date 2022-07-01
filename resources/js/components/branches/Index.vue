@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col border-right">
-      <main-infromation></main-infromation>
+      <main-infromation @save-main="saveMain"></main-infromation>
       <div class="row a mt-2">
         <div class="col-5">
           <title-button @click="activeTab = 'BasicInformation'"
@@ -9,12 +9,12 @@
           >
         </div>
       </div>
-      <basic-information v-if="activeTab === 'BasicInformation'" />
+      <basic-information  @save-basic="saveBasic" v-if="activeTab === 'BasicInformation'" />
     </div>
 
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
-        <element-button>حفظ</element-button>
+        <element-button @click="submit">حفظ</element-button>
         <element-button>جديد</element-button>
         <element-button>تعديل</element-button>
         <element-button>حذف</element-button>
@@ -33,6 +33,7 @@ import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInfromation1 from "./MainInfromation.vue";
+import { reactive } from 'vue'
 
 export default {
   components: {
