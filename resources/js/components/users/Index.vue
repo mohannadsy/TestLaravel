@@ -118,8 +118,9 @@ export default {
 
     },
     submit(){
-        console.log(this.postData);
-        Inertia.post(route('user.store'), this.postData);
+        // console.log(this.postData);
+        // Inertia.post(route('user.store'), this.postData);
+        this.$store.dispatch('users/registerUser',this.postData);
     }
   },
 };
