@@ -93,7 +93,7 @@ export default {
         email: '',
         password: '',
         branch_id: '',
-        role:''
+        role:'مدير عام'
       }
     };
   },
