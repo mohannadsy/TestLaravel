@@ -24,7 +24,7 @@
                 </div> -->
 
 
-                
+
                 <main-infromation></main-infromation>
                 <div class="row a mt-2 ">
                     <div class="col-5">
@@ -58,7 +58,7 @@ import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from '../../Shared/TitleButton.vue';
 import MainInfromation1 from "./MainInfromation.vue";
 
-    
+
 export default {
     components: {
     BasicInformation,
@@ -75,7 +75,7 @@ export default {
     data() {
         return {
             activeTab:'BasicInformation',
-           
+
         }
     },
     methods:{
@@ -105,6 +105,6 @@ button{
 div.a {
    -webkit-text-decoration-line: overline;
    text-decoration-line: overline;
-   border-top: 3px solid black; 
+   border-top: 3px solid black;
 }
 </style>

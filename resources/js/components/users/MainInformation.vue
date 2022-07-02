@@ -76,7 +76,7 @@ import VSelect from "../../Shared/VSelect.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 export default {
 //sync:['code','name','email','password','branch_name'],
-  emits: ["input"],
+  emits: ["save-main"],
   components: {
     ElemetLabel,
     ElementInput,
@@ -93,17 +93,17 @@ export default {
         email: '',
         password: '',
         branch_id: '',
-        role:''
+        role:'مدير عام'
       }
     };
   },
   methods: {
     objChanged(){
-        this.$emit("input",this.myObj);
+        this.$emit("save-main",this.myObj);
     },
     roleChange(e){
         this.myObj.role = e.target.value;
-         this.$emit("input",this.myObj);
+         this.$emit("save-main",this.myObj);
     }
   },
 };

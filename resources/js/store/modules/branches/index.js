@@ -8,7 +8,7 @@ export default {
         return {
             branches: [{
                 id: '',
-                code: '13',
+                code: '',
                 name: '',
                 branch_id: '',
                 responsibility: '',
