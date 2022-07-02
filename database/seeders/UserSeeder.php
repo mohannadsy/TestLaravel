@@ -16,7 +16,6 @@ class UserSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'superAdmin@gmail.com',
             'password' => bcrypt('12345superadmin'),
-
             'role' => 'Super Admin',// مدير عام
             'branch_id' => '1',
             'profile_photo_path' => 'qqq',
@@ -28,7 +27,8 @@ class UserSeeder extends Seeder
             'id_number' => '001123938373774',
             'notes' => 'notes',
             'account_box_id' => 0,
-            'store_id' =>0
+            'store_id' =>0,
+            'is_active'=>true
         ]);
         $userMohannad->assignRole('Admin');
         $userMohannad->assignRole('Accountant');
@@ -52,7 +52,8 @@ class UserSeeder extends Seeder
             'id_number' => '001123938373774',
             'notes' => 'notes',
             'account_box_id' => 0,
-            'store_id' => 0
+            'store_id' => 0,
+            'is_active'=>false
         ]);
         $userNoor->assignRole('Accountant');
 
@@ -73,7 +74,8 @@ class UserSeeder extends Seeder
                 'id_number' => '001123938373774',
                 'notes' => 'notes ',
                 'account_box_id' => 0,
-                'store_id' => 0
+                'store_id' => 0,
+                'is_active'=>false
             ]);
         $userClauda->assignRole('Cacher');
         $userClauda->givePermissionTo('store-user');

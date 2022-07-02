@@ -30,7 +30,8 @@ class UserRequest extends FormRequest
 //            'mobile' => 'max:50|string|unique:users,mobile',
 //            'id_number' => 'max:50|string:users,id_number',
 //            'account-box_id' => ' ',
-//            'store_id' => ' '
+//            'store_id' => ' ',
+//        'is_active'
         ];
     }
 
@@ -70,7 +71,8 @@ class UserRequest extends FormRequest
 //            'id_number.max' => 'الرقم الوطني تجاوز 50 محرف ',
 //            'id_number.numeric' => 'الرقم الوطني يجب أن يكون أرقام'
 //            'account-box_id' => ' ',
-//            'store_id' => ' '
+//            'store_id' => ' ',
+//        'is_active',
         ];
     }
 

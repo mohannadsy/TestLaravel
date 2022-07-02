@@ -30,6 +30,7 @@ return new class extends Migration {
 
             $table->integer('account_box_id');
             $table->integer('store_id');
+            $table->boolean('is_active');
 
             $table->rememberToken();
 //            $table->softDeletes();
