@@ -19,15 +19,15 @@
 
             <div class="mb-5">
                 <div>
-                    <!-- <elemet-label class="custom-control-label fs-5">
+                    <elemet-label class="custom-control-label fs-5">
                         الرجاء إدخال معلومات الحساب
-                    </elemet-label> -->
+                    </elemet-label>
                 </div>
             </div>
 
             <form @submit.prevent="submit">
                 <div class="mb-3">
-                    <!-- <element-label for="email"  value="البريد الالكتروني" /> -->
+                    <elemet-label for="email"  value="البريد الالكتروني" />
                     <element-input
                         id="email"
                         type="text"
@@ -39,7 +39,7 @@
                     />
                 </div>
                 <div class="mb-3">
-                    <!-- <element-label for="password" value="كلمة المرور" /> -->
+                    <elemet-label for="password" value="كلمة المرور" />
                     <element-input
                         id="password"
                         type="password"
@@ -113,10 +113,10 @@
                     <div
                         class="d-flex justify-content-center align-items-baseline"
                     >
-                        <!-- <element-label class="custom-control-label">
+                        <elemet-label class="custom-control-label">
                             يمكنك تجربة البرنامج مجانا من خلال الضغط على
                             <element-button class="bold">التجربة الآن</element-button>
-                        </element-label> -->
+                        </elemet-label>
                     </div>
                 </div>
             </form>
@@ -135,7 +135,7 @@ import JetLabel from "@/Jetstream/Label.vue";
 import JetValidationErrors from "@/Jetstream/ValidationErrors.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import ElementInput from "../../Shared/ElementInput.vue";
-// import ElementLabel from "../../Shared/ElemetLabel.vue";
+import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import PageTitle from "../../Shared/PageTitle.vue";
 import ElementCheckbox from '../../Shared/ElementCheckbox.vue'
 import CheckboxLabeled from "../../Shared/CheckboxLabeled.vue";
@@ -153,7 +153,7 @@ export default defineComponent({
     JetLabel,
     JetValidationErrors,
     Link,
-    // ElementLabel,
+    ElemetLabel,
     ElementInput,
     PageTitle,
     ElementCheckbox,
