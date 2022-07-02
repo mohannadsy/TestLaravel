@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         $parameters = ['id' => null];
         $this->callActivityMethod('index', $parameters);
-        return User::all();
+        return User::select('id', 'name', 'code')->get();
     }
 
     public function store(UserRequest $request)
@@ -74,7 +74,7 @@ class UserController extends Controller
         $user = User::find($id);
         if ($user) {
             $this->callActivityMethod('show', $parameters);
-            return $user->with('permissions');
+            return User::with('permissions')->find($id);
         }
         return 'User not Found';
     }
