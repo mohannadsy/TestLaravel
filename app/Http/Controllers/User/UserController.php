@@ -72,11 +72,14 @@ class UserController extends Controller
     {
         $parameters = ['id' => $id];
         $user = User::find($id);
-        if ($this->isActive($id)) {
-            $this->callActivityMethod('show', $parameters);
-            return User::with('permissions')->find($id);
+        if ($user) {
+            if ($this->isActive($user->id)) {
+                $this->callActivityMethod('show', $parameters);
+                return User::with('permissions')->find($id);
+            }
+            return 'User not Active';
         }
-        return 'User not Active';
+        return 'User not Found';
     }
 
 
