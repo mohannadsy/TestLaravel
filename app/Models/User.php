@@ -41,7 +41,6 @@ class User extends Authenticatable
         'id_number',
         'profile_photo_path',
         'notes',
-
         'account-box_id' ,
         'store_id',
 
