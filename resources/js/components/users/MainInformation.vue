@@ -62,8 +62,16 @@
       </div>
       <div class="form-group row mt-2">
         <div class="col-md-2 justify-content-right">
-          <checkbox-switch></checkbox-switch>
+          <checkbox-switch v-model="myObj.active" @change="switch_on()" checked></checkbox-switch>
+          
         </div>
+        <div class="col-md-3">
+          <label v-if="myObj.active" > مفعل</label>
+          <label v-else>غير مفعل</label>
+
+        </div>
+        
+        
       </div>
     </div>
   </div>
@@ -74,6 +82,7 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import VSelect from "../../Shared/VSelect.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
+import Label from '../../Jetstream/Label.vue';
 export default {
 //sync:['code','name','email','password','branch_name'],
   emits: ["save-main"],
@@ -82,6 +91,7 @@ export default {
     ElementInput,
     VSelect,
     CheckboxSwitch,
+    Label,
   },
   data() {
     return {
@@ -93,7 +103,8 @@ export default {
         email: '',
         password: '',
         branch_id: '',
-        role:'مدير عام'
+        role:'مدير عام',
+        active:true,
       }
     };
   },
@@ -104,6 +115,13 @@ export default {
     roleChange(e){
         this.myObj.role = e.target.value;
          this.$emit("save-main",this.myObj);
+    },
+    switch_on(){
+      // if (this.myObj.active)
+      //   this.myObj.active = false;
+      //   else
+      //   this.myObj.active = true;
+        this.myObj.active=!this.myObj.active;
     }
   },
 };
