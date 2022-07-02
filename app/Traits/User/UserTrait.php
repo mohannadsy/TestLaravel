@@ -6,7 +6,8 @@ use App\Models\Trash;
 use App\Models\User;
 
 
-trait  UserTrait {
+trait  UserTrait
+{
 
     public function forceDelete($id)
     {
@@ -35,5 +36,9 @@ trait  UserTrait {
         $this->callActivityMethod('create', $parameters);
 //        return Inertia::render('Users/index');
     }
-
+    public function isActive($id)
+    {
+        $user = User::find($id);
+        return $user->is_active == true;
+    }
 }
