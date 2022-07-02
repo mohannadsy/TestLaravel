@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -30,6 +27,11 @@ return new class extends Migration {
             $table->string('notes')->nullable();
 
             $table->string('id_number');
+
+            $table->integer('account_box_id');
+            $table->integer('store_id');
+            $table->boolean('is_active');
+
             $table->rememberToken();
 //            $table->softDeletes();
             $table->timestamps();

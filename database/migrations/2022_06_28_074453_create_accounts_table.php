@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->integer('equality');
             $table->integer('budget');
             $table->string('nature');
-            $table->string('current_balance');
+            $table->integer('current_balance');
             $table->unsignedFloat('final_account_result_id');
             $table->string('notes');
             $table->timestamps();
