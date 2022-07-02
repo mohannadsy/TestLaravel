@@ -26,7 +26,9 @@ class UserSeeder extends Seeder
             'phone' => '09913646374',
             'mobile' => '0414949494',
             'id_number' => '001123938373774',
-            'notes'=>'notes'
+            'notes' => 'notes',
+            'account-box_id' => ' ',
+            'store_id' => ' '
         ]);
         $userMohannad->assignRole('Admin');
         $userMohannad->assignRole('Accountant');
@@ -48,7 +50,9 @@ class UserSeeder extends Seeder
             'phone' => '09955556374',
             'mobile' => '0414949494',
             'id_number' => '001123938373774',
-            'notes'=>'notes'
+            'notes' => 'notes',
+            'account-box_id' => ' ',
+            'store_id' => ' '
         ]);
         $userNoor->assignRole('Accountant');
 
@@ -67,7 +71,9 @@ class UserSeeder extends Seeder
                 'phone' => '09913646374',
                 'mobile' => '0414949494',
                 'id_number' => '001123938373774',
-                'notes'=>'notes '
+                'notes' => 'notes ',
+                'account-box_id' => ' ',
+                'store_id' => ' '
             ]);
         $userClauda->assignRole('Cacher');
         $userClauda->givePermissionTo('store-user');
