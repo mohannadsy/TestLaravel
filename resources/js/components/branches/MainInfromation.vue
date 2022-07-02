@@ -31,7 +31,12 @@
       </div>
       <div class="form-group row mt-2">
         <div class="col-md-2 justify-content-right">
-          <checkbox-switch checked></checkbox-switch>
+          <checkbox-switch v-model="myObj.active" @change="switch_off()" checked></checkbox-switch>
+        </div>
+        <div class="col-md-3">
+          <label v-if="myObj.active">مفعل</label>
+          <label v-else>غير مفعل</label>
+
         </div>
       </div>
     </div>
@@ -57,6 +62,7 @@ export default {
         code: "",
         name: "",
         branch_id: "",
+        active:true,
       },
     };
   },
@@ -64,6 +70,9 @@ export default {
      objChanged(){
         this.$emit("save-main",this.myObj);
     },
+    switch_off(){
+      this.myObj.active=!this.myObj.active;
+    }
   }
 };
 </script>
