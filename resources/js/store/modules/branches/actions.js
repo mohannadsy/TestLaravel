@@ -30,10 +30,13 @@ export default {
             ...branchData
         });
     },
-    loadBranches() {
+    async loadBranches() {
         //const response = Inertia.get(route('branch.TreeOfMainBranch'));
-        const response = fetch(Inertia.get(route('branch.index')));
-        console.log(response);
+        let messages = [];
+        const response = await fetch(Inertia.get(route('branch.index')));
+        const responseData = response.json();
+        //const response = fetch(Inertia.get(route('branch.index')));
+        console.log(responseData);
         // const responseData = await response.json;
         // console.log(responseData);
         // if (!response.ok) {
