@@ -32,7 +32,7 @@ class CreatePermissionTables extends Migration
 
             $table->string('caption')->nullable()->default('null');
             $table->unsignedBigInteger('group_caption')->nullable()->default(null);
-            $table->boolean('is_active')->nullable()->default(null);
+//            $table->boolean('is_active')->nullable()->default(null);
 
             $table->timestamps();
 

@@ -13,6 +13,7 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
 });
 
 
+
 //-------CostCenter------//
 
 Route::group(['namespace' => 'CostCenter', 'prefix' => 'costCenter'], function () {
@@ -23,3 +24,4 @@ Route::group(['namespace' => 'CostCenter', 'prefix' => 'costCenter'], function (
     Route::get('delete/{id}', [\App\Http\Controllers\CostCenter\CostCenterController::class, 'delete'])->name('costCenter.delete');
 });
 
+Route::get('get-main-tree', [\App\Http\Controllers\Branch\BranchController::class,  'tree']);
