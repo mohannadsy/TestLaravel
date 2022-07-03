@@ -8,17 +8,17 @@
             <page-title>بطاقة مستخدم</page-title>
           </div>
           <form>
-          <main-information @input="save"></main-information>
+          <main-information @save-main="saveMain"></main-information>
         </form>
           <!-- <hr class="new1"> -->
-          <!-- <div class="row a mt-2">
+          <div class="row a mt-2">
             <div class="col-5">
               <title-button @click="activeTab = 'BasicInformation'"
                 >معلومات أساسية</title-button
               >
-              <title-button @click="activeTab = 'Permissions'"
+              <!-- <title-button @click="activeTab = 'Permissions'"
                 >صلاحيات</title-button
-              >
+              > -->
               <title-button @click="activeTab = 'ExtraOptions'"
                 >خيارات إضافية</title-button
               >
@@ -26,10 +26,10 @@
           </div>
           <basic-information
             v-if="activeTab === 'BasicInformation'"
-            @save-basic="saveData"
+            @save-basic="saveBasic"
           ></basic-information>
-          <permissions v-if="activeTab === 'Permissions'" />
-          <extra-options v-if="activeTab === 'ExtraOptions'" /> -->
+          <!-- <permissions v-if="activeTab === 'Permissions'" /> -->
+          <extra-options v-if="activeTab === 'ExtraOptions'" />
           <div class="row justify-content-end mb-2">
             <div class="col-md-4">
               <element-button @click="submit">حفظ</element-button>
@@ -77,11 +77,6 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
-    //    code:'',
-    //     name:'',
-    //     email:'',
-    //     password:'',
-    //     branch_name:'',
        postData:reactive({
 
         code:'',
@@ -90,36 +85,41 @@ export default {
         password:'',
         branch_id:'',
         role:'',
+        first_name: '',
+        middle_name: '',
+        last_name: '',
+        phone: '',
+        mobile: '',
+        id_number: '',
+        notes: '',
         _token: this.$page.props.csrf_token,
        })
-    //   basic:{
-
-    //   }
-    //   }
     };
   },
   methods: {
-    // saveData(data) {
-    //   this.$store.dispatch("users/registerUser", data);
-    //   console.log("hi");
-    // },
-    // saveMain(){
-    //     console.log('hello from main vue')
-    // },
-    //Inertia.post(route('user.store'), userData);
-    save(data){
-        console.log(data);
+    saveMain(data){
             this.postData.code=data.code,
             this.postData.name=data.name,
             this.postData.email=data.email,
             this.postData.password=data.password,
             this.postData.branch_id=data.branch_id
             this.postData.role = data.role
+    },
+    saveBasic(data){
+        this.postData.first_name=data.first_name,
+        this.postData.middle_name=data.middle_name,
+        this.postData.last_name=data.last_name,
+        this.postData.phone=data.phone,
+        this.postData.mobile=data.mobile
+        this.postData.id_number = data.id_number
+        this.postData.notes = data.notes
+    },
+    saveExtra(data){
 
-        console.log(this.postData);
     },
     submit(){
-        Inertia.post(route('user.store'), this.postData);
+        // Inertia.post(route('user.store'), this.postData);
+        this.$store.dispatch('users/registerUser',this.postData);
     }
   },
 };

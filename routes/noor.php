@@ -10,7 +10,10 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('show/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'show'])->name('branch.show');
     Route::post('update/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'update'])->name('branch.update');
     Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'delete'])->name('branch.delete');
+    Route::get('isActive/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'isActive'])->name('branch.isActive');
+
 });
+
 
 
 //-------CostCenter------//
@@ -23,3 +26,4 @@ Route::group(['namespace' => 'CostCenter', 'prefix' => 'costCenter'], function (
     Route::get('delete/{id}', [\App\Http\Controllers\CostCenter\CostCenterController::class, 'delete'])->name('costCenter.delete');
 });
 
+Route::get('get-main-tree', [\App\Http\Controllers\Branch\BranchController::class,  'tree']);

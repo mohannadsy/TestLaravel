@@ -2,11 +2,30 @@
 
 namespace App\Traits\User;
 
+use App\Models\Branch;
 use App\Models\Trash;
 use App\Models\User;
+use Spatie\Permission\Models\Permission;
 
 
-trait  UserTrait {
+trait  UserTrait
+{
+
+    public function getAllPermissions()
+    {
+        return Permission::select('name')->get();
+    }
+
+    public function getUserPermissions($id)
+    {
+
+        return User::find($id)->permissions;
+    }
+
+    public function tree()
+    {
+        return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->select('id', 'name', 'code', 'branch_id')->get();
+    }
 
     public function forceDelete($id)
     {
@@ -36,4 +55,9 @@ trait  UserTrait {
 //        return Inertia::render('Users/index');
     }
 
+    public function isActive($id)
+    {
+        $user = User::find($id);
+        return $user->is_active == true;
+    }
 }

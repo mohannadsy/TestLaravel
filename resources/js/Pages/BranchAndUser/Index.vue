@@ -84,6 +84,7 @@ export default {
 </script> -->
 <template>
   <user-form></user-form>
+  <button @click="saveData">loading</button>
 </template>
 
 <script>
@@ -92,5 +93,10 @@ export default {
   components: {
     userForm: IndexVue,
   },
+  methods:{
+     saveData(){
+            this.$store.dispatch('branches/loadBranches');
+        },
+  }
 };
 </script>

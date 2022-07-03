@@ -11,6 +11,7 @@ use App\Traits\User\AdminTrait;
 use App\Traits\User\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -29,32 +30,32 @@ class UserController extends Controller
     {
         $parameters = ['id' => null];
         $this->callActivityMethod('index', $parameters);
-        return User::all();
+        return User::select('id', 'name', 'code')->get();
     }
 
     public function store(UserRequest $request)
     {
-        $id = User::latest()->first()->id + 1;
+        $id = User::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $input = $request->all();
-        $input->password = Hash::make($input['password']);
-        $input->profile_photo_path = $this->getImageURL($request);;
-        $input->role = $this->assignRole($request->role);
+//        dd($request);
+        $request->password = Hash::make($request->password);
+        $request->profile_photo_path = $this->getImageURL($request);
+//        $request->role = $this->assignRole($request->role);
 //      $this->givePermissionTo($request->permissions);
-        User::create($input);
+        $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('BranchAndUser/Index', compact('input'));;
+        //dd($request);
+        return Inertia::render('BranchAndUser/Index', compact('user'));;
     }
 
     public function update(UserRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $url = $this->getImageURL($request);
-        $input = $request->validated(); //   $input = $request->all();
-        $input->password = Hash::make($input['password']);
-        $input->profile_photo_path = $url;
-        $user = User::find($id)->update($input);
-        $user->update($input);
+        $request->password = Hash::make($request['password']);
+        $request->profile_photo_path = $url;
+        $user = User::find($id)->update($request);
+        $user->update($request->all());
         $this->callActivityMethod('update', $parameters);
     }
 
@@ -73,11 +74,15 @@ class UserController extends Controller
         $parameters = ['id' => $id];
         $user = User::find($id);
         if ($user) {
-            $this->callActivityMethod('show', $parameters);
-            return $user;
+            if ($this->isActive($user->id)) {
+                $this->callActivityMethod('show', $parameters);
+                return User::with('permissions')->find($id);
+            }
+            return 'User not Active';
         }
         return 'User not Found';
     }
+
 
 
 }

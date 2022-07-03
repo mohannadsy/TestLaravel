@@ -30,36 +30,36 @@ export default {
             ...branchData
         });
     },
-    async loadBranches(context) {
+    loadBranches() {
         //const response = Inertia.get(route('branch.TreeOfMainBranch'));
-        const response = fetch(Inertia.get(route('branch.TreeOfMainBranch')));
+        const response = fetch(Inertia.get(route('branch.index')));
         console.log(response);
-        const responseData = await response.json;
-        console.log(responseData);
-        if (!response.ok) {
-            ///
-        }
-        const branches = [];
-        for (const key in responseData) {
-            const branch = {
-                id: key,
-                code: responseData[key].code,
-                name: responseData[key].name,
-                branch_id: responseData[key].branch_id,
-                responsibility: responseData[key].responsibility,
-                address: responseData[key].address,
-                website: responseData[key].website,
-                email: responseData[key].email,
-                phone: responseData[key].phone,
-                mobile: responseData[key].mobile,
-                //branches: responseData[key].branches
-            };
-            console.log(branch);
-            branches.push(branch);
-        }
-        context.commit('setBranches', branches);
-        console.log('hi');
-        console.log(branches);
-        console.log('hiiiii');
+        // const responseData = await response.json;
+        // console.log(responseData);
+        // if (!response.ok) {
+        //     ///
+        // }
+        // const branches = [];
+        // for (const key in responseData) {
+        //     const branch = {
+        //         id: key,
+        //         code: responseData[key].code,
+        //         name: responseData[key].name,
+        //         branch_id: responseData[key].branch_id,
+        //         responsibility: responseData[key].responsibility,
+        //         address: responseData[key].address,
+        //         website: responseData[key].website,
+        //         email: responseData[key].email,
+        //         phone: responseData[key].phone,
+        //         mobile: responseData[key].mobile,
+        //         //branches: responseData[key].branches
+        //     };
+        //     console.log(branch);
+        //     branches.push(branch);
+        // }
+        // context.commit('setBranches', branches);
+        // console.log('hi');
+        // console.log(branches);
+        // console.log('hiiiii');
     }
 };

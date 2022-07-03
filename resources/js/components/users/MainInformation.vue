@@ -57,13 +57,21 @@
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-2">الصفة</elemet-label>
         <div class="col-8">
-          <v-select :options="role"  @change="objChanged" v-model="myObj.role"/>
+          <v-select :options="roleOptions" @change="roleChange($event)" v-model="myObj.role"/>
         </div>
       </div>
       <div class="form-group row mt-2">
         <div class="col-md-2 justify-content-right">
-          <checkbox-switch></checkbox-switch>
+          <checkbox-switch v-model="myObj.active" @change="switch_on()" checked></checkbox-switch>
+          
         </div>
+        <div class="col-md-3">
+          <label v-if="myObj.active" > مفعل</label>
+          <label v-else>غير مفعل</label>
+
+        </div>
+        
+        
       </div>
     </div>
   </div>
@@ -74,45 +82,46 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import VSelect from "../../Shared/VSelect.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
+import Label from '../../Jetstream/Label.vue';
 export default {
 //sync:['code','name','email','password','branch_name'],
-  emits: ["input"],
+  emits: ["save-main"],
   components: {
     ElemetLabel,
     ElementInput,
     VSelect,
     CheckboxSwitch,
+    Label,
   },
   data() {
     return {
       rvalue: "",
-      role: ["مدير عام", "محاسب", "كاشير"],
+      roleOptions: ["مدير عام", "محاسب", "كاشير"],
       myObj:{
-        code: '585',
+        code: '',
         name: '',
         email: '',
         password: '',
         branch_id: '',
-        role:''
+        role:'مدير عام',
+        active:true,
       }
     };
   },
   methods: {
-    // saveMain() {
-    //   const formData = {
-    //     code: this.code,
-    //     name: this.name,
-    //     email: this.email,
-    //     password: this.password,
-    //     branch_name: this.branch_name,
-    //     //role:this.role
-    //   };
-    //   this.$emit("save-main", formData);
-    //   console.log("save main");
-    // },
     objChanged(){
-        this.$emit("input",this.myObj);
-        //console.log(this.myObj);
+        this.$emit("save-main",this.myObj);
+    },
+    roleChange(e){
+        this.myObj.role = e.target.value;
+         this.$emit("save-main",this.myObj);
+    },
+    switch_on(){
+      // if (this.myObj.active)
+      //   this.myObj.active = false;
+      //   else
+      //   this.myObj.active = true;
+        this.myObj.active=!this.myObj.active;
     }
   },
 };

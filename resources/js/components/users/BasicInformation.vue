@@ -8,7 +8,8 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.trim="first_name"
+              @change="objChanged"
+              v-model.trim="myObj.first_name"
             />
           </div>
         </div>
@@ -18,7 +19,8 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.trim="middle_name"
+              @change="objChanged"
+              v-model.trim="myObj.middle_name"
             />
           </div>
         </div>
@@ -30,7 +32,8 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.trim="last_name"
+              @change="objChanged"
+              v-model.trim="myObj.last_name"
             />
           </div>
         </div>
@@ -47,7 +50,8 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.trim="phone"
+              @change="objChanged"
+              v-model.trim="myObj.phone"
             />
           </div>
         </div>
@@ -57,7 +61,8 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.trim="mobile"
+              @change="objChanged"
+              v-model.trim="myObj.mobile"
             />
           </div>
         </div>
@@ -69,7 +74,8 @@
             <element-input
               type="text"
               class="form-control"
-              v-model.trim="id_number"
+              @change="objChanged"
+              v-model.trim="myObj.id_number"
             />
           </div>
         </div>
@@ -78,7 +84,11 @@
         <div class="form-group row mt-2">
           <elemet-label class="col-form-label col-md-2">ملاحظات</elemet-label>
           <div class="col-md-9">
-            <text-area class="form-control"></text-area>
+            <text-area
+              class="form-control"
+              @change="objChanged"
+              v-model.trim="myObj.notes"
+            ></text-area>
           </div>
         </div>
       </div>
@@ -91,6 +101,19 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import TextArea from "../../Shared/TextArea.vue";
 export default {
+  data() {
+    return {
+      myObj: {
+        first_name: "",
+        middle_name: "",
+        last_name: "",
+        phone: "",
+        mobile: "",
+        id_number: "",
+        notes: "",
+      },
+    };
+  },
   emits: ["save-basic"],
   components: {
     ElemetLabel,
@@ -98,17 +121,20 @@ export default {
     TextArea,
   },
   methods: {
-    submitForm() {
-      const formData = {
-        first_name: this.first_name,
-        middle_name: this.middle_name,
-        last_name: this.last_name,
-        phone: this.phone,
-        mobile: this.mobile,
-        id_number: this.id_number,
-      };
-      this.$emit("save-basic", formData);
-      console.log(formData);
+    // submitForm() {
+    //   const formData = {
+    //     first_name: this.first_name,
+    //     middle_name: this.middle_name,
+    //     last_name: this.last_name,
+    //     phone: this.phone,
+    //     mobile: this.mobile,
+    //     id_number: this.id_number,
+    //   };
+    //   this.$emit("save-basic", formData);
+    //   console.log(formData);
+    // },
+    objChanged() {
+      this.$emit("save-basic", this.myObj);
     },
   },
 };
