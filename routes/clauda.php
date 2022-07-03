@@ -19,11 +19,8 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 
 
-
-
     Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');
     Route::get('get-main-tree', [UserController::class, 'tree'])->name('user.tree');
-
     Route::get('get-user-permissions/{id}', [UserController::class, 'getUserPermissions'])->name('user.getUserPermissions');
 
 });

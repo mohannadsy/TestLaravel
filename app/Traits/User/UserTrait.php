@@ -11,20 +11,21 @@ use Spatie\Permission\Models\Permission;
 trait  UserTrait
 {
 
-    public function getAllPermissions(){
+    public function getAllPermissions()
+    {
         return Permission::select('name')->get();
     }
-    public function getUserPermissions($id){
-        $user =User::find($id);
-       return $user->permmisson;
-//        return Permission::select('name')->get();
+
+    public function getUserPermissions($id)
+    {
+
+        return User::find($id)->permissions;
     }
+
     public function tree()
     {
-        return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
+        return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->select('id', 'name', 'code', 'branch_id')->get();
     }
-
-
 
     public function forceDelete($id)
     {
@@ -53,6 +54,7 @@ trait  UserTrait
         $this->callActivityMethod('create', $parameters);
 //        return Inertia::render('Users/index');
     }
+
     public function isActive($id)
     {
         $user = User::find($id);
