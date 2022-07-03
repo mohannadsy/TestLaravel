@@ -10,6 +10,8 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('show/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'show'])->name('branch.show');
     Route::post('update/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'update'])->name('branch.update');
     Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'delete'])->name('branch.delete');
+    Route::get('isActive/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'isActive'])->name('branch.isActive');
+
 });
 
 

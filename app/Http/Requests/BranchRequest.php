@@ -33,6 +33,7 @@ class BranchRequest extends FormRequest
 //              'email'                  =>'string|email|unique:branches,email',
 //              'phone'                  =>'max:50|string|unique:branches,phone',
 //              'mobile'                 =>'max:50|string|unique:branches,mobile',
+//                'active'                 =>'boolean',
         ];
     }
 
@@ -63,6 +64,7 @@ class BranchRequest extends FormRequest
             'mobile.max'             => 'رقم الموبايل تجاوز 50 محرف ',
             'mobile.unique'          => 'رقم الموبايل مُدخل سابقاً لفرع آخر ',
             'mobile.string'          =>'رقم الموبايل يجب أن يكون محارف ',
+//            'active.boolean'         =>''
         ];
     }
 }
