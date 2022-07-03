@@ -31,7 +31,7 @@ class UserRequest extends FormRequest
 //            'id_number' => 'max:50|string:users,id_number',
 //            'account-box_id' => ' ',
 //            'store_id' => ' ',
-//        'is_active'
+//            'is_active'
         ];
     }
 
@@ -72,7 +72,7 @@ class UserRequest extends FormRequest
 //            'id_number.numeric' => 'الرقم الوطني يجب أن يكون أرقام'
 //            'account-box_id' => ' ',
 //            'store_id' => ' ',
-//        'is_active',
+//            'is_active',
         ];
     }
 
