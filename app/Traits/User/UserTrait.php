@@ -2,12 +2,29 @@
 
 namespace App\Traits\User;
 
+use App\Models\Branch;
 use App\Models\Trash;
 use App\Models\User;
+use Spatie\Permission\Models\Permission;
 
 
 trait  UserTrait
 {
+
+    public function getAllPermissions(){
+        return Permission::select('name')->get();
+    }
+    public function getUserPermissions($id){
+        $user =User::find($id);
+       return $user->permmisson;
+//        return Permission::select('name')->get();
+    }
+    public function tree()
+    {
+        return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
+    }
+
+
 
     public function forceDelete($id)
     {

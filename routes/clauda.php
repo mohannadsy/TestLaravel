@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Currency\CurrencyController;
 use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Branch\BranchController;
 use Barryvdh\Debugbar\Facades;
 
 
@@ -16,6 +17,15 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('show/{id}', [UserController::class, 'show'])->name('user.show');
     Route::post('update', [UserController::class, 'update'])->name('user.update');
     Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+
+
+
+
+    Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');
+    Route::get('get-main-tree', [UserController::class, 'tree'])->name('user.tree');
+
+    Route::get('get-user-permissions/{id}', [UserController::class, 'getUserPermissions'])->name('user.getUserPermissions');
+
 });
 
 

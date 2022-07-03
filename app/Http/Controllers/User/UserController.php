@@ -83,9 +83,7 @@ class UserController extends Controller
         return 'User not Found';
     }
 
-    public function getAllPermissions(){
-        return Permission::all();
-    }
+
 
 }
 
