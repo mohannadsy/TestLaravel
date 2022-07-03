@@ -11,6 +11,7 @@ use App\Traits\User\AdminTrait;
 use App\Traits\User\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -82,6 +83,9 @@ class UserController extends Controller
         return 'User not Found';
     }
 
+    public function getAllPermissions(){
+        return Permission::all();
+    }
 
 }
 
