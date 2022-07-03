@@ -22,7 +22,7 @@ class BranchController extends Controller
         $branchesWithUsers = Branch::with(['branches'])->select('id', 'name', 'code', 'branch_id')->get();
 
         $permissions = Permission::all();
-        return $permissions;
+        return $branchesWithUsers;
 //        return Inertia::render('',compact($branches,$branchesWithUsers,$permissions));
     }
 
