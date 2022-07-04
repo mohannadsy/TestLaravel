@@ -17,15 +17,25 @@ class PermissionGroupSeeder extends Seeder
     {
         $userPermissionGroup = PermissionGroup::create([
             'name' => 'User Permission Group',
-            'caption'=>' '
+            'caption' => ["{
+                'lang' => '',
+                'name' => '  '}"]
         ]);
         $rolePermissionGroup = PermissionGroup::create([
             'name' => 'Role Permission Group 1',
-            'caption'=>' '
+            'caption' => ["  {
+                'lang' => '',
+                'name' => ''
+                  }"]
         ]);
         $permissionsPermissionGroup = PermissionGroup::create([ // WOW
             'name' => 'Permissions Permission Group 1',
-            'caption'=>' '
+
+            'caption' =>
+                ["  {
+                'lang' => '',
+                'name' => ''
+        }"]
         ]);
 
     }
