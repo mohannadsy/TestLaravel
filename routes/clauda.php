@@ -72,3 +72,8 @@ Route::get('last-id', function () {
 //Route::get('/json-test',function (){
 //   return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
 //});
+
+//Route::get('is-active',function (){
+//    $user = \App\Models\User::find(1);
+//    return $user ? $user->is_active == true : 'User Not Found';
+//});
