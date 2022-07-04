@@ -9,6 +9,7 @@ use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
 use Spatie\Permission\Models\Permission;
 
+
 class BranchController extends Controller
 {
     use  ActivityLog;
@@ -19,11 +20,11 @@ class BranchController extends Controller
         $parameters = ['id' => null];
         $this->callActivityMethod('getAllBranches', $parameters);
         $branches = Branch::select('id', 'name', 'code', 'branch_id')->get();
-        $branchesWithUsers = Branch::with(['branches'])->select('id', 'name', 'code', 'branch_id')->get();
+        $branchesWithUsers = Branch::whereNull('branch_id')->with(['branches'])->select('id', 'name', 'code', 'branch_id')->get();
 
         $permissions = Permission::all();
-        return $branchesWithUsers;
-//        return Inertia::render('',compact($branches,$branchesWithUsers,$permissions));
+        //return $branchesWithUsers;
+        return inertia('BranchAndUser/Index',compact('branches','branchesWithUsers','permissions'));
     }
 
     public function store(BranchRequest $request)
