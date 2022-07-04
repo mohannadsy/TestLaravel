@@ -17,7 +17,8 @@ DatabaseSeeder extends Seeder
             UserSeeder::class,
             CurrencySeeder::class,
             CostCenterSeeder::class,
-            AccountSeeder::class
+            AccountSeeder::class,
+            PermissionGroupSeeder::class
         ]);
 
     }

@@ -3,6 +3,7 @@
 namespace App\Traits\User;
 
 use App\Models\Branch;
+use App\Models\PermissionGroup;
 use App\Models\Trash;
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
@@ -13,7 +14,10 @@ trait  UserTrait
 
     public function getAllPermissions()
     {
-        return Permission::select('name')->get();
+//        return Permission::with(['permissionGroup'=>function ($query){
+//            $query->select('name' , 'id');
+//        }])->get();
+        return PermissionGroup::with('permissions')->get();
     }
 
     public function getUserPermissions($id)
