@@ -37,7 +37,7 @@ trait  BranchTrait {
     public function isActive($id)
     {
         $branch=Branch::find($id);
-        return $branch->active ? 'branch is active' :'branch is not active' ;
+        return $branch->active ? true :false;
     }
 
 
