@@ -16,13 +16,16 @@ class PermissionGroupSeeder extends Seeder
     public function run()
     {
         $userPermissionGroup = PermissionGroup::create([
-            'name' => 'User Permission Group'
+            'name' => 'User Permission Group',
+            'caption'=>' '
         ]);
         $rolePermissionGroup = PermissionGroup::create([
-            'name' => 'Role Permission Group 1'
+            'name' => 'Role Permission Group 1',
+            'caption'=>' '
         ]);
         $permissionsPermissionGroup = PermissionGroup::create([ // WOW
-            'name' => 'Permissions Permission Group 1'
+            'name' => 'Permissions Permission Group 1',
+            'caption'=>' '
         ]);
 
     }

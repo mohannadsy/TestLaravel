@@ -45,6 +45,7 @@ class JetstreamServiceProvider extends ServiceProvider
                 Hash::check($request->password, $user->password)
             ) {
                 return $user;
+//   ->is_active == true ? $user : 'Not';
             }
         });
     }
