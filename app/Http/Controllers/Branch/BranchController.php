@@ -19,8 +19,8 @@ class BranchController extends Controller
     {
         $parameters = ['id' => null];
         $this->callActivityMethod('getAllBranches', $parameters);
-        $branches = Branch::select('id', 'name', 'code', 'branch_id')->get();
-        $branchesWithUsers = Branch::whereNull('branch_id')->with(['branches'])->select('id', 'name', 'code', 'branch_id')->get();
+        $branches = Branch::select('id', 'name', 'code', 'branch_id')->where('is_active',true)->get(); // auto complete
+        $branchesWithUsers = Branch::whereNull('branch_id')->with(['branches'])->select('id', 'name', 'code', 'branch_id')->get();// for tree
 
         $permissions = Permission::all();
         //return $branchesWithUsers;
@@ -43,9 +43,7 @@ class BranchController extends Controller
     {
         $parameters = ['id' => $id];
         $branch = Branch::find($id);
-        if($this->isExict($id) )
-            return $branch && $this->callActivityMethod('show', $parameters) ;
-        return "branch not found";
+        return $branch  &&  $this->callActivityMethod('show', $parameters) ;
     }
 
     public function update(BranchRequest $request, $id)
