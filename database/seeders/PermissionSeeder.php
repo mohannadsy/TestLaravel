@@ -12,7 +12,7 @@ class PermissionSeeder extends Seeder
     {
         //---------------users--------------------------//
         $storeUser = Permission::create(['name' => 'store-user', 'permission_group_id' => 1,
-            'caption'=>json_decode(  '[{
+            'caption' => json_decode('[{
                "lang" : "ar",
                 "name" : "أول"
                 } ,
@@ -22,18 +22,106 @@ class PermissionSeeder extends Seeder
                 }] '
             )
         ]);
-//        $updateUser = Permission::create(['name' => 'update-user', 'permission_group_id' => 1]);
-//        $deleteUser = Permission::create(['name' => 'delete-user', 'permission_group_id' => 1]);
-//        $showUser = Permission::create(['name' => 'show-user', 'permission_group_id' => 1]);
-//        //---------------roles--------------------------//
-//        $storeRole = Permission::create(['name' => 'store-role', 'permission_group_id' => 2]);
-//        $updateRole = Permission::create(['name' => 'update-role', 'permission_group_id' => 2]);
-//        $deleteRole = Permission::create(['name' => 'delete-role', 'permission_group_id' => 2]);
-//        $showRole = Permission::create(['name' => 'show-role', 'permission_group_id' => 2]);
-//        //---------------permissions--------------------------//
-//        $storePermission = Permission::create(['name' => 'store-permission', 'permission_group_id' => 3]);
-//        $updatePermission = Permission::create(['name' => 'update-permission', 'permission_group_id' => 3]);
-//        $deletePermission = Permission::create(['name' => 'delete-permission', 'permission_group_id' => 3]);
-//        $showPermission = Permission::create(['name' => 'show-permission', 'permission_group_id' => 3]);
+        $updateUser = Permission::create(['name' => 'update-user', 'permission_group_id' => 1, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
+        $deleteUser = Permission::create(['name' => 'delete-user', 'permission_group_id' => 1, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
+        $showUser = Permission::create(['name' => 'show-user', 'permission_group_id' => 1, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
+        //---------------roles--------------------------//
+        $storeRole = Permission::create(['name' => 'store-role', 'permission_group_id' => 2, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
+        $updateRole = Permission::create(['name' => 'update-role', 'permission_group_id' => 2, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
+        $deleteRole = Permission::create(['name' => 'delete-role', 'permission_group_id' => 2, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
+        $showRole = Permission::create(['name' => 'show-role', 'permission_group_id' => 2, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
+        //---------------permissions--------------------------//
+        $storePermission = Permission::create(['name' => 'store-permission', 'permission_group_id' => 3, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
+        $updatePermission = Permission::create(['name' => 'update-permission', 'permission_group_id' => 3, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
+        $deletePermission = Permission::create(['name' => 'delete-permission', 'permission_group_id' => 3, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
+        $showPermission = Permission::create(['name' => 'show-permission', 'permission_group_id' => 3, 'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+        )]);
     }
 }
