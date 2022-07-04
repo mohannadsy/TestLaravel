@@ -7,21 +7,25 @@ use App\Models\Trash;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
-trait  BranchTrait {
+trait  BranchTrait
+{
 
-    public  function numOfSubBranches($id)
+    public function numOfSubBranches($id)
     {
-        $SubBranches=Branch::where('branch_id',$id)->get();
+        $SubBranches = Branch::where('branch_id', $id)->get();
         return count($SubBranches);
     }
+
     public function isRootBranch($id)
     {
         return $id == 1;
     }
+
     public function isNotRootBranch($id)
     {
         return !$this->isRootBranch($id);
     }
+
     public function callActivityMethod($method, $parameters)
     {
         $this->makeActivity([
@@ -30,14 +34,24 @@ trait  BranchTrait {
             'parameters' => $parameters
         ]);
     }
+
     public function tree()
     {
         return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
     }
+<<<<<<< HEAD
     public function isActive($id)
     {
         $branch=Branch::find($id);
             if($branch->is_active)
+=======
+
+    public function isExict($id)
+    {
+        $branch = Branch::find($id);
+        if ($branch)
+            if ($branch->is_active)
+>>>>>>> 9bb599430fc674bca7ab2a0dabf2268b9aa7bb67
                 return $branch;
             else
                 return "branch is not active";
