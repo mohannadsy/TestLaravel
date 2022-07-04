@@ -94,8 +94,8 @@ export default {
     userForm: IndexVue,
   },
   methods:{
-     saveData(){
-            this.$store.dispatch('branches/loadBranches');
+    saveData(){
+        this.$store.dispatch('branches/loadBranches');
         },
   }
 };

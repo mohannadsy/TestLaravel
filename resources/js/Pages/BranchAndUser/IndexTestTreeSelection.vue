@@ -46,6 +46,7 @@
 
 <script>
 import Index from '../../components/branches/Index.vue';
+import {Inertia} from "@inertiajs/inertia";
 export default {
     data() {
         return {
@@ -71,6 +72,8 @@ export default {
           console.log(data.name + "," + dataType);
         },
         printTree(object){
+            const response = Inertia.get(route('branch.index'));
+            console.log(response);
             for (var key in object) {
                 if(typeof object[key] === "object"){
                     this.printTree(object[key]);
@@ -84,7 +87,8 @@ export default {
         }
       },
     props:{
-        branches: Array
+        branches: Array,
+        branchesWithUsers:Array
     },
     components:{
         Index
