@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // Route::get('mohannad' , function(){
-    
+
 // });
 
 Route::get('mohannad', function(){

@@ -41,6 +41,12 @@
         <div class="col">
             <index @save-data="saveData"></index>
         </div>
+        <div>
+        <button @click="printBranch">printBranch</button>
+        <ul>
+            <li v-for="branch in branchesWithUsers" :key="branch.id">{{branch.name}}</li>
+        </ul>
+        </div>
     </div>
 </template>
 
@@ -65,6 +71,9 @@ export default {
         }
       },
       methods: {
+        printBranch(){
+             console.log(branchesWithUsers);
+        },
         saveData(data){
           this.$store.dispatch('branches/registerBranch',data);
         },
@@ -72,8 +81,7 @@ export default {
           console.log(data.name + "," + dataType);
         },
         printTree(object){
-            const response = Inertia.get(route('branch.index'));
-            console.log(response);
+
             for (var key in object) {
                 if(typeof object[key] === "object"){
                     this.printTree(object[key]);
@@ -92,7 +100,7 @@ export default {
     },
     components:{
         Index
-    }
+    },
 
 
 }
