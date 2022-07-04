@@ -17,25 +17,39 @@ class PermissionGroupSeeder extends Seeder
     {
         $userPermissionGroup = PermissionGroup::create([
             'name' => 'User Permission Group',
-            'caption' => ["{
-                'lang' => '',
-                'name' => '  '}"]
+            'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+            )
         ]);
         $rolePermissionGroup = PermissionGroup::create([
             'name' => 'Role Permission Group 1',
-            'caption' => ["  {
-                'lang' => '',
-                'name' => ''
-                  }"]
+            'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+            )
         ]);
         $permissionsPermissionGroup = PermissionGroup::create([ // WOW
             'name' => 'Permissions Permission Group 1',
-
-            'caption' =>
-                ["  {
-                'lang' => '',
-                'name' => ''
-        }"]
+            'caption' => json_decode('[{
+               "lang" : "ar",
+                "name" : "أول"
+                } ,
+                 {
+                "lang" : "en",
+                "name" : "ثاني"
+                }] '
+            )
         ]);
 
     }

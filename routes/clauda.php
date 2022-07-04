@@ -55,20 +55,20 @@ Route::get('last-id', function () {
     return Account::orderBy('id', 'desc')->first()->id + 1; // true
 });
 //------- Debug bar ------//
-
-Route::get('/debug-bar', function () {
-    Facades\Debugbar::startMeasure('render', 'Time for rendering');
-    $user = \App\Models\User::find(2);
-    Facades\Debugbar::info($user);
-    Facades\Debugbar::stopMeasure('render');
-    return 'Debug bar';
-});
-
-
-
-
-
-
-Route::get('/json-test',function (){
-   return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
-});
+//
+//Route::get('/debug-bar', function () {
+//    Facades\Debugbar::startMeasure('render', 'Time for rendering');
+//    $user = \App\Models\User::find(2);
+//    Facades\Debugbar::info($user);
+//    Facades\Debugbar::stopMeasure('render');
+//    return 'Debug bar';
+//});
+//
+//
+//
+//
+//
+//
+//Route::get('/json-test',function (){
+//   return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
+//});

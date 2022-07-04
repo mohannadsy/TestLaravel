@@ -18,4 +18,9 @@ class PermissionGroup extends Model
         return $this->hasMany(Permission::class, 'permission_group_id');
 
     }
+
+
+    protected $casts = [
+        'caption' => 'array',
+    ];
 }
