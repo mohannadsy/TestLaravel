@@ -65,3 +65,10 @@ Route::get('/debug-bar', function () {
 });
 
 
+
+
+
+
+Route::get('/json-test',function (){
+   return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
+});

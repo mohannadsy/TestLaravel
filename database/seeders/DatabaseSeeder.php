@@ -12,12 +12,13 @@ DatabaseSeeder extends Seeder
     {
         $this->call([
             PermissionSeeder::class,
-            RoleSeeder::class,
-            BranchSeeder::class,
-            UserSeeder::class,
-            CurrencySeeder::class,
-            CostCenterSeeder::class,
-            AccountSeeder::class
+//            RoleSeeder::class,
+//            BranchSeeder::class,
+//            UserSeeder::class,
+//            CurrencySeeder::class,
+//            CostCenterSeeder::class,
+//            AccountSeeder::class,
+//            PermissionGroupSeeder::class
         ]);
 
     }
