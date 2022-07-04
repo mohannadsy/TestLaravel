@@ -34,10 +34,15 @@ trait  BranchTrait {
     {
         return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
     }
-    public function isActive($id)
+    public function isExict($id)
     {
         $branch=Branch::find($id);
-        return $branch->active ? true :false;
+        if($branch)
+            if($branch->is_active)
+                return $branch;
+            else
+                return "branch is not active";
+        return "branch is not found";
     }
 
 

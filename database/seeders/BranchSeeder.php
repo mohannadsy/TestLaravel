@@ -19,7 +19,7 @@ class BranchSeeder extends Seeder
             'email'          => 'mainbranch@gmail.com',
             'phone'          => '041877645',
             'mobile'         => '0994848736',
-            'is_active'         => 1
+            'is_active'         => true,
         ]);
         Branch::create([
             'code'           => '2',
@@ -31,7 +31,7 @@ class BranchSeeder extends Seeder
             'email'          => 'branch1@gmail.com',
             'phone'          => '0412088635',
             'mobile'         => '0948943236',
-            'is_active'         => 0
+            'is_active'      => false,
         ]);
 
         Branch::create([
@@ -44,7 +44,7 @@ class BranchSeeder extends Seeder
             'email'          => 'branch2@gmail.com',
             'phone'          => '043325645',
             'mobile'         => '0093648736',
-            'is_active'         => 1
+            'is_active'      => true,
         ]);
         Branch::create([
             'code'           => '4',
@@ -56,7 +56,7 @@ class BranchSeeder extends Seeder
             'email'          => 'branch3@gmail.com',
             'phone'          => '041878875',
             'mobile'         => '09940935736',
-            'is_active'         => 1
+            'is_active'      => true,
         ]);
         Branch::create([
             'code'           => '5',
@@ -68,7 +68,7 @@ class BranchSeeder extends Seeder
             'email'          => 'branch4@gmail.com',
             'phone'          => '041078875',
             'mobile'         => '09944935736',
-            'is_active'         => 1
+            'is_active'      => true,
         ]);
         Branch::create([
             'code'           => '6',
@@ -80,7 +80,7 @@ class BranchSeeder extends Seeder
             'email'          => 'branch5@gmail.com',
             'phone'          => '04107855875',
             'mobile'         => '09944449',
-            'is_active'         => 0
+            'is_active'      => false,
         ]);
     }
 }
