@@ -59,24 +59,9 @@
         <span class="rightAngle"></span>
         <span class="ti ti-folder"></span>&nbsp;&nbsp;
         <span @click="printTree(branch)">{{ branch.name }}</span>
-        <!-- <ul
-          class="nested-tree"
-          v-for="childBranch in branch.branches"
-          :key="childBranch.id"
-        >
-          <li>
-            <span class="ti ti-image"></span>&nbsp;&nbsp;<span
-              @click="printTree(childBranch)"
-              >{{ childBranch.name }}</span
-            >
-          </li>
-          <li v-for="user in childBranch.users" :key="user.id">
-            <span class="ti ti-File"></span>&nbsp;&nbsp;<span
-              @click="getDataToForm(user, 'user')"
-              >{{ user.name }}</span
-            >
-          </li>
-        </ul> -->
+        <ul>
+            <li v-for="childBranch in branch.branches" :key="childBranch.id">{{childBranch.name}}</li>
+        </ul>
       </li>
       <h1>Sara</h1>
     </ul>
