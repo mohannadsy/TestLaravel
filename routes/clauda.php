@@ -74,3 +74,7 @@ Route::get('last-id', function () {
 //});
 
 //Route::get('is-active/{id}', [UserController::class, 'isActive'])->name('user.active');
+
+Route::get('/local',function (){
+    return Config::get('app.locale');
+});

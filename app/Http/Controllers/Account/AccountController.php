@@ -11,7 +11,7 @@ use Inertia\Inertia;
 
 class AccountController extends Controller
 {
-    use ActivityLog , AccountTrait;
+    use ActivityLog, AccountTrait;
 
     public function callActivityMethod($method, $parameters)
     {
