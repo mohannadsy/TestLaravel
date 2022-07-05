@@ -3,9 +3,12 @@
 namespace App\Traits\Branch;
 
 use App\Models\Branch;
+use App\Models\PermissionGroup;
 use App\Models\Trash;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use League\Flysystem\Config;
+use Spatie\Permission\Models\Permission;
 
 trait  BranchTrait
 {
@@ -47,6 +50,16 @@ trait  BranchTrait
             return true;
         return false;
     }
+
+
+    public function permissionsWithLang(){
+
+         $currentLang = Config::get('app.locale');
+
+         PermissionGroup::where('caption.lang',$currentLang)->get();
+
+    }
+
 }
 
 

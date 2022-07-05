@@ -20,12 +20,12 @@ class BranchController extends Controller
     {
         $parameters = ['id' => null];
         $this->callActivityMethod('getAllBranches', $parameters);
-        $branches = Branch::where('is_active',true)->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
+        $branches = Branch::where('is_active', true)->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
         $branchesWithUsers = Branch::whereNull('branch_id')->with(['branches'])->select('id', 'name', 'code', 'branch_id')->get();// for tree
-        $groupPermissions =PermissionGroup::with('permissions')->get();
+        $groupPermissions = PermissionGroup::with('permissions')->get();
 
 //        return $groupPermissions;
-        return inertia('BranchAndUser/Index',compact('branches','branchesWithUsers','groupPermissions'));
+        return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
     }
 
     public function store(BranchRequest $request)
@@ -44,7 +44,7 @@ class BranchController extends Controller
     {
         $parameters = ['id' => $id];
         $branch = Branch::find($id);
-        return $branch  &&  $this->callActivityMethod('show', $parameters) ;
+        return $branch && $this->callActivityMethod('show', $parameters);
     }
 
     public function update(BranchRequest $request, $id)
