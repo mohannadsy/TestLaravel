@@ -39,7 +39,7 @@ Route::group(['namespace' => 'Currency', 'prefix' => 'currency'], function () {
     Route::post('update', [CurrencyController::class, 'update'])->name('currency.update');
     Route::get('delete/{id}', [CurrencyController::class, 'delete'])->name('currency.delete');
 });
-//------- Currency ------//
+//------- Accounts ------//
 
 Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
     Route::get('index', [AccountController::class, 'index'])->name('account.index');
@@ -73,7 +73,4 @@ Route::get('last-id', function () {
 //   return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
 //});
 
-//Route::get('is-active',function (){
-//    $user = \App\Models\User::find(1);
-//    return $user ? $user->is_active == true : 'User Not Found';
-//});
+//Route::get('is-active/{id}', [UserController::class, 'isActive'])->name('user.active');
