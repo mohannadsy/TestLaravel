@@ -39,7 +39,7 @@ Route::group(['namespace' => 'Currency', 'prefix' => 'currency'], function () {
     Route::post('update', [CurrencyController::class, 'update'])->name('currency.update');
     Route::get('delete/{id}', [CurrencyController::class, 'delete'])->name('currency.delete');
 });
-//------- Currency ------//
+//------- Accounts ------//
 
 Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
     Route::get('index', [AccountController::class, 'index'])->name('account.index');
