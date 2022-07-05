@@ -73,7 +73,4 @@ Route::get('last-id', function () {
 //   return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
 //});
 
-//Route::get('is-active',function (){
-//    $user = \App\Models\User::find(1);
-//    return $user ? $user->is_active == true : 'User Not Found';
-//});
+//Route::get('is-active/{id}', [UserController::class, 'isActive'])->name('user.active');
