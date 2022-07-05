@@ -22,10 +22,10 @@ class BranchController extends Controller
         $this->callActivityMethod('getAllBranches', $parameters);
         $branches = Branch::where('is_active',true)->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
         $branchesWithUsers = Branch::whereNull('branch_id')->with(['branches'])->select('id', 'name', 'code', 'branch_id')->get();// for tree
-        $groupPermissions =PermissionGroup::get();
+        $groupPermissions =PermissionGroup::with('permissions')->get();
 
-        return $groupPermissions;
-//        return inertia('BranchAndUser/Index',compact('branches','branchesWithUsers','groupPermissions'));
+//        return $groupPermissions;
+        return inertia('BranchAndUser/Index',compact('branches','branchesWithUsers','groupPermissions'));
     }
 
     public function store(BranchRequest $request)
