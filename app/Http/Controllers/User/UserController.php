@@ -8,14 +8,14 @@ use App\Http\Requests\UserRequest;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
 use App\Traits\User\AdminTrait;
-use App\Traits\User\AccountTrait;
+use App\Traits\User\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
-    use ImageTrait, ActivityLog, AdminTrait, AccountTrait;
+    use ImageTrait, ActivityLog, AdminTrait, UserTrait;
 
     public function callActivityMethod($method, $parameters)
     {
