@@ -34,4 +34,13 @@ class Account extends Model
         'debtor',
         'balance'
     ];
+
+    public function accounts()
+    {
+        return $this->hasMany(Account::class, 'account_id');
+    }
+    public function account()
+    {
+        return $this->belongsTo(Account::class, 'account_id');
+    }
 }
