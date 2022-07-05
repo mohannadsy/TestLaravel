@@ -12,6 +12,11 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'delete'])->name('branch.delete');
     Route::get('isActive/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'isActive'])->name('branch.isActive');
 
+
+
+    Route::get('permissionsWithLang', [\App\Http\Controllers\Branch\BranchController::class, 'permissionsWithLang'])->name('branch.permissionsWithLang');
+
+
 });
 
 

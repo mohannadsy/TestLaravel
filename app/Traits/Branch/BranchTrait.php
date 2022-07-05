@@ -5,9 +5,11 @@ namespace App\Traits\Branch;
 use App\Models\Branch;
 use App\Models\PermissionGroup;
 use App\Models\Trash;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
-use League\Flysystem\Config;
+
+//use League\Flysystem\Config;
 use Spatie\Permission\Models\Permission;
 
 trait  BranchTrait
@@ -52,11 +54,32 @@ trait  BranchTrait
     }
 
 
-    public function permissionsWithLang(){
+    public function permissionsWithLang()
+    {
 
-         $currentLang = Config::get('app.locale');
+        $permission = Permission::all();
+        for ($i = 0; $i < 100; $i++) {
+            $lang = Permission::caption[$i]['lang'];
+            $name = $permission->caption[$i]['name'];
 
-         PermissionGroup::where('caption.lang',$currentLang)->get();
+//            return Config::get('app.locale') == $lang;
+            return $lang . $name ;
+        }
+
+//         $currentLang = Config::get('app.locale');
+
+//        for ($i = 0; $i < 100; $i++) {
+//            $permisson = Permission::all();
+//          $item =  $permisson->caption['i']['lang'];
+//          $p =   PermissionGroup::where('item', Config::get('app.locale'))->get();
+////
+//        }
+//        return $p;
+
+
+//        PermissionGroup::where('caption[i][\'lang\']',  Config::get('app.locale'))->get();
+
+//        return Config::get('app.locale') == PermissionGroup::select('caption->lang');
 
     }
 
