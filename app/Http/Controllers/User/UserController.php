@@ -15,7 +15,7 @@ use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
-    use ImageTrait, ActivityLog, AdminTrait,UserTrait;
+    use ImageTrait, ActivityLog, AdminTrait, UserTrait;
 
     public function callActivityMethod($method, $parameters)
     {
