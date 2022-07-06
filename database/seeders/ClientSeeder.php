@@ -12,26 +12,25 @@ class ClientSeeder extends Seeder
     public function run()
     {
         $client1 = Client::create([
-            'name' => 'client 1',
+            'name' => 'client',
             'notes' => 'this is first client ',
             'photo' => '372856',
             'gender' => 'female',
             'nationality' => 'syrian',
             'work' => 'student',
             'birth_place' => 'qq',
-            'birth_data' => 'ss',
+            'birth_data' => ' 7/6/2022',
             'record_number' => 32,
             'address' => '',
-            'email_code' => '',
+            'email_code' => 32,
             'phone' => '',
             'mobile' => '',
             'fax' => '',
-            'email' => '',
-            'default_price' => '',
+            'email' => 'something@gmail.com',
+            'default_price' => 32,
             'discount_rate' => '',
-            'discount_account' => '',
-            'account_id' => '',
-
+            'discount_account' => 323,
+            'account_id' => 1,
         ]);
     }
 }

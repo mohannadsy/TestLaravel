@@ -15,31 +15,32 @@ return new class extends Migration {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
 
-            $table->string(' name');
+            $table->string('name');
+
             $table->string('notes');
 
             $table->string('photo');
 
-            $table->string(' gender');
+            $table->string('gender');
             $table->string('nationality');
-            $table->string(' work');
+            $table->string('work');
             $table->string('birth_place');
-            $table->date(' birth_data');
-            $table->string(  'record_number');
+            $table->string('birth_data');
+            $table->string('record_number');
 
 
             $table->string('address');
-            $table->integer(' email_code');
-            $table->string(' phone');
+            $table->integer('email_code');
+            $table->string('phone');
             $table->string('mobile');
-            $table->string(' fax');
+            $table->string('fax');
             $table->string('email');
 
 
             $table->integer('default_price');
-            $table->string(' discount_rate');
+            $table->string('discount_rate');
             $table->integer('discount_account');
-
+            $table->integer('account_id');
 
             $table->timestamps();
         });
