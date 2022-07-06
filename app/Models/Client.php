@@ -26,7 +26,11 @@ class Client extends Model
         'fax',
         'default_price',
         'discount_rate',
-        'discount_account'
-
+        'discount_account',
+        'account_id'
     ];
-}
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class, 'client_id');
+    }}

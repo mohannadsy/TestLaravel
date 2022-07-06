@@ -32,15 +32,24 @@ class Account extends Model
         'notes',
         'creditor',
         'debtor',
-        'balance'
+        'balance',
+        'client_id',
+        'debtor_and_creditor',
+        ''
     ];
 
     public function accounts()
     {
         return $this->hasMany(Account::class, 'account_id');
     }
+
     public function account()
     {
         return $this->belongsTo(Account::class, 'account_id');
+    }
+
+    public function client()
+    {
+        return $this->hasOne(Client::class, 'account_id');
     }
 }

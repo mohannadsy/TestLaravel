@@ -14,4 +14,12 @@ trait  AccountTrait
         $account = Account::find($id);
         return $account->is_final == true;
     }
+
+    public function isClient($id)
+    {
+        $account = Account::find($id);
+        return $account->is_client == true;
+    }
+
+
 }
