@@ -17,18 +17,25 @@ return new class extends Migration {
 
             $table->string(' name');
             $table->string('notes');
-            $table->string(' fax');
-            $table->string('mobile');
-            $table->string(' phone');
-            $table->string('email');
-            $table->integer(' email_code');
-            $table->string('address');
-            $table->date(' birth_data');
-            $table->string('birth_place');
-            $table->string(' work');
-            $table->string('nationality');
-            $table->string(' gender');
+
             $table->string('photo');
+
+            $table->string(' gender');
+            $table->string('nationality');
+            $table->string(' work');
+            $table->string('birth_place');
+            $table->date(' birth_data');
+            $table->string(  'record_number');
+
+
+            $table->string('address');
+            $table->integer(' email_code');
+            $table->string(' phone');
+            $table->string('mobile');
+            $table->string(' fax');
+            $table->string('email');
+
+
             $table->integer('default_price');
             $table->string(' discount_rate');
             $table->integer('discount_account');

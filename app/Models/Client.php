@@ -12,21 +12,28 @@ class Client extends Model
     protected $fillable=[
         'name',
         'notes',
+
         'photo',
-        'gender',
-        'nationality',
+
+        'gender', // الجنس
+        'nationality', // الجنسية
         'work',
         'birth_place',
         'birth_data',
+        'record_number', // رقم السجل
+
         'address',
         'email_code',
-        'email',
         'phone',
         'mobile',
         'fax',
+        'email',
+
         'default_price',
         'discount_rate',
+
         'discount_account',
+
         'account_id'
     ];
 
