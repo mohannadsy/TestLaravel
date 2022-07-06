@@ -60,22 +60,23 @@
         <span class="ti ti-folder"></span>&nbsp;&nbsp;
         <span @click="printTree(branch)">{{ branch.name }}</span>
         <ul>
-            <li v-for="childBranch in branch.branches" :key="childBranch.id">{{childBranch.name}}</li>
+          <li v-for="childBranch in print(branch.branches)" :key="childBranch.id">
+            {{hi}}
+          </li>
         </ul>
       </li>
       <h1>Sara</h1>
     </ul>
   </div>
-
 </template>
 
 <script>
 export default {
   props: ["branchesWithUsers"],
-  created(){
+  created() {
     console.log(this.branchesWithUsers);
   },
-   mounted() {
+  mounted() {
     var toggleNodeTree = document.getElementsByClassName("rightAngle");
     for (var i = 0; i < toggleNodeTree.length; i++) {
       toggleNodeTree[i].addEventListener("click", function () {
@@ -87,6 +88,9 @@ export default {
     }
   },
   methods: {
+    print(x){
+        console.log(x + 'hi branch');
+    },
     printTree(object) {
       for (var key in object) {
         if (typeof object[key] === "object") {
@@ -103,8 +107,19 @@ export default {
         }
       }
     },
-     getDataToForm(data, dataType) {
+    getDataToForm(data, dataType) {
       console.log(data.name + "," + dataType);
+    },
+    searchTree(node, level, resultArr) {
+      if (node) {
+        if (node.level === level) {
+          resultArr.push(node);
+        } else if (node.children) {
+          node.children.forEach((n) => {
+            searchTree(n, level, resultArr);
+          });
+        }
+      }
     },
   },
 };
