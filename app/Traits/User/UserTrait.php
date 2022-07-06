@@ -62,6 +62,6 @@ trait  UserTrait
     public function isActive($id)
     {
         $user = User::find($id);
-        return $user ? $user->is_active == true : 'User Not Found';
+        return $user->is_active == true;
     }
 }

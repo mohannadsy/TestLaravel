@@ -30,7 +30,6 @@ class AccountRequest extends FormRequest
             'current_balance' => '',
             'results' => '',
             'notes' => '',
-
         ];
     }
 
