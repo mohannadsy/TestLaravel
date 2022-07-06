@@ -39,19 +39,12 @@ trait  BranchTrait
     {
         return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
     }
-<<<<<<< HEAD
-    public function isActive($id)
-    {
-        $branch=Branch::find($id);
-            if($branch->is_active)
-=======
 
     public function isExict($id)
     {
         $branch = Branch::find($id);
         if ($branch)
             if ($branch->is_active)
->>>>>>> 9bb599430fc674bca7ab2a0dabf2268b9aa7bb67
                 return $branch;
             else
                 return "branch is not active";
