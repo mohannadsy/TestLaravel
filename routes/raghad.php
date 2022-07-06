@@ -4,7 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::inertia('raghad','Auth/Login');
+Route::inertia('raghad','BranchAndUser/TestUser');
 // Route::inertia('rgd','Users/Index');
 
 Route::get('nan', function(){

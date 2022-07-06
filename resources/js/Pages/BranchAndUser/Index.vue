@@ -104,7 +104,7 @@ export default {
   props: {
     branches: Array,
     branchesWithUsers: Array,
-    permissions: Array
+    groupPermissions: Array
   },
   components: {
     userForm: Index,
