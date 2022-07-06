@@ -14,7 +14,7 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
 
 
 
-    Route::get('permissionsWithLang', [\App\Http\Controllers\Branch\BranchController::class, 'permissionsWithLang'])->name('branch.permissionsWithLang');
+    Route::get('permissionsAccordingLang', [\App\Http\Controllers\Branch\BranchController::class, 'permissionsAccordingLang'])->name('branch.permissionsAccordingLang');
 
 
 });
