@@ -4,13 +4,7 @@ namespace App\Traits\Branch;
 
 use App\Models\Branch;
 use App\Models\PermissionGroup;
-use App\Models\Trash;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
-
-//use League\Flysystem\Config;
-use Spatie\Permission\Models\Permission;
 
 trait  BranchTrait
 {
@@ -45,7 +39,6 @@ trait  BranchTrait
         return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
     }
 
-
     public function isActive($id)
     {
         $branch = Branch::find($id);
@@ -54,17 +47,13 @@ trait  BranchTrait
         return false;
     }
 
-    //////////////////////////////////////////////////////////////////
     public function permissionsAccordingLang()
     {
-        $lang = Config::get('app.locale') ;
-        {
-            $permissions = PermissionGroup::with(['permissions'])->select('caption_.lang')->get();
-            return $permissions;
-        }
-
-
+        $permissions = PermissionGroup::with(['permissions'])->select('caption_'.Config::get('app.locale').' as caption ')->get();
+        return $permissions;
     }
+
+
 ////////////////////////////////////////////////////////////////
 //    public function permissionsWithLang()
 //    {
