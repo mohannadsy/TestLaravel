@@ -2,12 +2,16 @@
 
 namespace App\Traits\User;
 
-trait  AdminTrait {
+use App\Models\User;
+
+trait  AdminTrait
+{
 
 
     public function isSuperAdmin($id)
     {
-        return $id == 1;
+        $user = User::find($id);
+        return $id == 1 && $user->is_active == true;
     }
 
     public function isNotSuperAdmin($id)

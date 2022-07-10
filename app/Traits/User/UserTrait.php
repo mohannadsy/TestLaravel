@@ -3,8 +3,11 @@
 namespace App\Traits\User;
 
 use App\Models\Branch;
+use App\Models\PermissionGroup;
 use App\Models\Trash;
 use App\Models\User;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 
 
@@ -13,7 +16,8 @@ trait  UserTrait
 
     public function getAllPermissions()
     {
-        return Permission::select('name')->get();
+
+        return PermissionGroup::with('permissions')->get();
     }
 
     public function getUserPermissions($id)
@@ -52,12 +56,27 @@ trait  UserTrait
         $id = User::latest()->first()->id + 1;
         $parameters = ['id' => $id];
         $this->callActivityMethod('create', $parameters);
-//        return Inertia::render('Users/index');
     }
 
     public function isActive($id)
     {
         $user = User::find($id);
         return $user->is_active == true;
+    }
+
+
+    public function permissionsAccordingLang()
+    {
+
+        $groups = PermissionGroup::with('permissions')->get();
+        foreach ($groups as $group) {
+            if (Config::get('app.locale') == 'ar')
+                $group->caption = $group->caption[0]['name'];
+            if (Config::get('app.locale') == 'en')
+                $group->caption = $group->caption[1]['name'];
+        }
+        return $groups;
+
+
     }
 }

@@ -33,7 +33,6 @@ class BranchRequest extends FormRequest
 //              'email'                  =>'string|email|unique:branches,email',
 //              'phone'                  =>'max:50|string|unique:branches,phone',
 //              'mobile'                 =>'max:50|string|unique:branches,mobile',
-//                'active'                 =>'boolean',
         ];
     }
 
@@ -56,7 +55,7 @@ class BranchRequest extends FormRequest
             'website.unique'         =>'الموقع الالكتروني مُدخل سابقاً لفرع آخر ',
             'website.string'         =>'الموقع الالكتروني يجب أن يكون محارف  ',
             'email.string'           =>' البريد الالكتروني  يجب أن يكون محارف ',
-            'email.email'           =>'ماتم إدخاله غير متوافق مع صيغة البريد الإلكتروني  ',
+            'email.email'            =>'ماتم إدخاله غير متوافق مع صيغة البريد الإلكتروني  ',
             'email.unique'           =>'البريد الالكتروني مُدخل سابقاً لفرع آخر  ',
             'phone.max'              => 'رقم الهاتف تجاوز 50 رقم ',
             'phone.unique'           => 'رقم الهاتف مُدخل سابقاً لفرع آخر ',
@@ -64,7 +63,7 @@ class BranchRequest extends FormRequest
             'mobile.max'             => 'رقم الموبايل تجاوز 50 محرف ',
             'mobile.unique'          => 'رقم الموبايل مُدخل سابقاً لفرع آخر ',
             'mobile.string'          =>'رقم الموبايل يجب أن يكون محارف ',
-//            'active.boolean'         =>''
+
         ];
     }
 }

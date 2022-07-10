@@ -30,9 +30,10 @@ class CreatePermissionTables extends Migration
             $table->string('name');       // For MySQL 8.0 use string('name', 125);
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
 
-            $table->string('caption')->nullable()->default('null');
-            $table->unsignedBigInteger('group_caption')->nullable()->default(null);
-            $table->boolean('is_active')->nullable()->default(null);
+            $table->string('caption_ar');
+            $table->string('caption_en');
+
+            $table->unsignedBigInteger('permission_group_id')->nullable()->default(null);
 
             $table->timestamps();
 

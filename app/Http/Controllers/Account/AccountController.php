@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AccountRequest;
 use App\Models\Account;
+use App\Traits\Account\AccountTrait;
 use App\Traits\ActivityLog\ActivityLog;
 use Inertia\Inertia;
 
 class AccountController extends Controller
 {
-    use ActivityLog;
+    use ActivityLog, AccountTrait;
 
     public function callActivityMethod($method, $parameters)
     {
@@ -56,10 +57,12 @@ class AccountController extends Controller
         $this->callActivityMethod('update', $parameters);
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $parameters = ['id' => $id];
         $account = Account::find($id);
         return $account ? $account->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Account not Found';
     }
+
+
 }

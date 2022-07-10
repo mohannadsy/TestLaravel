@@ -16,9 +16,9 @@
               <title-button @click="activeTab = 'BasicInformation'"
                 >معلومات أساسية</title-button
               >
-              <!-- <title-button @click="activeTab = 'Permissions'"
+              <title-button @click="activeTab = 'Permissions'"
                 >صلاحيات</title-button
-              > -->
+              >
               <title-button @click="activeTab = 'ExtraOptions'"
                 >خيارات إضافية</title-button
               >
@@ -28,7 +28,7 @@
             v-if="activeTab === 'BasicInformation'"
             @save-basic="saveBasic"
           ></basic-information>
-          <!-- <permissions v-if="activeTab === 'Permissions'" /> -->
+          <permissions v-if="activeTab === 'Permissions'" />
           <extra-options v-if="activeTab === 'ExtraOptions'" />
           <div class="row justify-content-end mb-2">
             <div class="col-md-4">

@@ -11,7 +11,7 @@ use Inertia\Inertia;
 
 class CurrencyController extends Controller
 {
-    use CurrencyTrait ,ActivityLog ;
+    use CurrencyTrait, ActivityLog;
 
     public function callActivityMethod($method, $parameters)
     {
@@ -48,6 +48,14 @@ class CurrencyController extends Controller
         $this->callActivityMethod('update', $parameters);
     }
 
+
+    public function show($id)
+    {
+        $parameters = ['id' => $id];
+        $currency = Currency::find($id);
+        return $currency ? $currency && $this->callActivityMethod('show', $parameters) : 'Currency not Found';
+    }
+
     public function delete($id)
     {
         $parameters = ['id' => $id];
@@ -56,12 +64,5 @@ class CurrencyController extends Controller
             return $currency ? $currency->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Currency not Found';
         }
         return "Default Bounds Can not be Deleted";
-    }
-
-    public function show($id)
-    {
-        $parameters = ['id' => $id];
-        $currency = Currency::find($id);
-        return $currency ? $currency && $this->callActivityMethod('show', $parameters) : 'Currency not Found';
     }
 }

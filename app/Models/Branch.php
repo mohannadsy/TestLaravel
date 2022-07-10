@@ -21,7 +21,7 @@ class Branch extends Model
         'email',
         'phone',
         'mobile',
-        'active',
+        'is_active',
     ];
     public function branches()
     {

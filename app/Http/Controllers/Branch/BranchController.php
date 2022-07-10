@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Branch;
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Http\Requests\BranchRequest;
+use App\Models\PermissionGroup;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
 use Spatie\Permission\Models\Permission;
+
 
 class BranchController extends Controller
 {
@@ -18,12 +20,12 @@ class BranchController extends Controller
     {
         $parameters = ['id' => null];
         $this->callActivityMethod('getAllBranches', $parameters);
-        $branches = Branch::select('id', 'name', 'code', 'branch_id')->get();
-        $branchesWithUsers = Branch::with(['branches'])->select('id', 'name', 'code', 'branch_id')->get();
+        $branches = Branch::where('is_active', true)->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
+        $branchesWithUsers = Branch::whereNull('branch_id')->with(['branches'])->select('id', 'name', 'code', 'branch_id')->get();// for tree
+        $groupPermissions = PermissionGroup::with('permissions')->get();
 
-        $permissions = Permission::all();
-        return $branchesWithUsers;
-//        return Inertia::render('',compact($branches,$branchesWithUsers,$permissions));
+//        return $groupPermissions;
+        return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
     }
 
     public function store(BranchRequest $request)
@@ -42,7 +44,7 @@ class BranchController extends Controller
     {
         $parameters = ['id' => $id];
         $branch = Branch::find($id);
-        return $branch && $this->isActive($id) ? $branch && $this->callActivityMethod('show', $parameters) : "branch not found";
+        return $branch && $this->callActivityMethod('show', $parameters);
     }
 
     public function update(BranchRequest $request, $id)

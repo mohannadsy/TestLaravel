@@ -14,7 +14,7 @@ Route::get('mohannad', function(){
     // return inertia('BranchAndUser/Index' , compact('branches'));
 
     // $branches = Branch::whereNull('branch_id')->get();
-    return inertia('BranchAndUser/IndexTestTreeSelection' , compact('branches'));
+    return inertia('BranchAndUser/Tree' , compact('branches'));
 
 })->name('branch.TreeOfMainBranch');
 

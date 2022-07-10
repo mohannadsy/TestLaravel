@@ -3,25 +3,28 @@
 namespace App\Traits\Branch;
 
 use App\Models\Branch;
-use App\Models\Trash;
-use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
+use App\Models\PermissionGroup;
+use Illuminate\Support\Facades\Config;
 
-trait  BranchTrait {
+trait  BranchTrait
+{
 
-    public  function numOfSubBranches($id)
+    public function numOfSubBranches($id)
     {
-        $SubBranches=Branch::where('branch_id',$id)->get();
+        $SubBranches = Branch::where('branch_id', $id)->get();
         return count($SubBranches);
     }
+
     public function isRootBranch($id)
     {
         return $id == 1;
     }
+
     public function isNotRootBranch($id)
     {
         return !$this->isRootBranch($id);
     }
+
     public function callActivityMethod($method, $parameters)
     {
         $this->makeActivity([
@@ -30,16 +33,65 @@ trait  BranchTrait {
             'parameters' => $parameters
         ]);
     }
+
     public function tree()
     {
         return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
     }
+
     public function isActive($id)
     {
-        $branch=Branch::find($id);
-        return $branch->active ? 'branch is active' :'branch is not active' ;
+        $branch = Branch::find($id);
+        if ($branch->is_active)
+            return true;
+        return false;
     }
 
+    public function permissionsAccordingLang()
+    {
+        $permissions = PermissionGroup::with(['permissions'])->select('caption_'.Config::get('app.locale').' as caption ')->get();
+        return $permissions;
+    }
+
+
+////////////////////////////////////////////////////////////////
+//    public function permissionsWithLang()
+//    {
+//
+//        $branch = Branch::find($id);
+//        if ($branch)
+//            if ($branch->is_active)
+//                return $branch;
+//            else
+//                return "branch is not active";
+//
+//        $permission = Permission::all();
+//        for ($i = 0; $i < 100; $i++) {
+//            $lang = Permission::caption[$i]['lang'];
+//            $name = $permission->caption[$i]['name'];
+//
+////            return Config::get('app.locale') == $lang;
+//            return $lang . $name ;
+//        }
+//
+////         $currentLang = Config::get('app.locale');
+//
+////        for ($i = 0; $i < 100; $i++) {
+////            $permisson = Permission::all();
+////          $item =  $permisson->caption['i']['lang'];
+////          $p =   PermissionGroup::where('item', Config::get('app.locale'))->get();
+//////
+////        }
+////        return $p;
+//
+//
+////        PermissionGroup::where('caption[i][\'lang\']',  Config::get('app.locale'))->get();
+//
+////        return Config::get('app.locale') == PermissionGroup::select('caption->lang');
+//
+//    }
+
+}
 
 
 
@@ -101,4 +153,3 @@ trait  BranchTrait {
 //            ->get();
 //    }
 
-}

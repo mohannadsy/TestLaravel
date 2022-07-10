@@ -14,16 +14,49 @@ class Account extends Model
         'code',
         'latin_name',
         'type',//نوع الحساب
-        'account_id',//حساب رئيسي
-        'is_final',
+        'notes',//ملاحظات
+        'is_client',// عميل ؟
+
+        'is_active',// مفعل ؟
+
+        'account_id',//الحساب الرئيسي
         'final_account_id',//حساب ختامي
         'cost_center_id',//مركز الكلفة
-        'currency_id',//عملة
+        'currency_id', //عملة
         'equality',// تعادل
         'budget',//موازنة تقديرية
-        'nature',//طبيعة الحساب Debor or Creditor (مدين أو دائن)
+        'budget_value',//قيمة موازنة تقديرية
+
+        'nature',//طبيعة الحساب Debtor or Creditor (مدين أو دائن)
         'current_balance',//الرصيد الحالي للحساب
         'final_account_result_id',//حساب النتائج
-        'notes',
+        'division_rate',//نسبة التقسيم
+        'rates_sum',// مجموع النسب
+
+        'creditor',
+        'debtor',
+        'balance',
+        'client_id',
+
+        'debtor_and_creditor', // مدين ودائن معا
+        'not_debtor_not_creditor',// لا دائن ولا مدين
+        'is_aggregate',// تجميعي ؟
+        'is_distributive',// توزيعي ؟
+        'is_final',// ختامي ؟
     ];
+
+    public function accounts()
+    {
+        return $this->hasMany(Account::class, 'account_id');
+    }
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class, 'account_id');
+    }
+
+    public function client()
+    {
+        return $this->hasOne(Client::class, 'account_id');
+    }
 }

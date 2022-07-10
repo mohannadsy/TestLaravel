@@ -7,14 +7,12 @@
         <!-- {{loadResult}} -->
     </div>
     <!-- <div>{{freshData()}}</div> -->
-    <div>
-        <test-muhannad-sara></test-muhannad-sara>
-    </div>
+
     <button @click="updateBranch">Click</button>
 </template>
 
 <script>
- import TestMuhannadSara from './TestMuhannadSara';
+
  export default {
         data() {
             return {

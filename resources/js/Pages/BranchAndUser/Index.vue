@@ -83,20 +83,38 @@ export default {
 }
 </script> -->
 <template>
-  <user-form></user-form>
-  <button @click="saveData">loading</button>
+  <!-- <user-form></user-form>
+  <branch-form></branch-form> -->
+  <div class="row">
+    <div class="col-3">
+      <tree :branchesWithUsers="$page['props']['branchesWithUsers']"></tree>
+    </div>
+    <div class="col-9">
+      <branch-form></branch-form>
+    </div>
+  </div>
+  <!-- <button @click="saveData">loading</button> -->
 </template>
 
 <script>
-import IndexVue from "../../components/users/Index.vue";
+import Index from "../../components/users/Index.vue";
+import IndexVue from "../../components/branches/Index.vue";
+import Tree from "./Tree.vue";
 export default {
-  components: {
-    userForm: IndexVue,
+  props: {
+    branches: Array,
+    branchesWithUsers: Array,
+    groupPermissions: Array
   },
-  methods:{
-    saveData(){
-        this.$store.dispatch('branches/loadBranches');
-        },
-  }
+  components: {
+    userForm: Index,
+    branchForm: IndexVue,
+    Tree,
+  },
+  methods: {
+    saveData() {
+      this.$store.dispatch("branches/loadBranches");
+    },
+  },
 };
 </script>
