@@ -47,26 +47,11 @@ trait  BranchTrait
         return false;
     }
 
-<<<<<<< HEAD
-
-    public function permissionsWithLang()
-    {
-
-        $permission = Permission::all();
-        for ($i = 0; $i < 100; $i++) {
-            $lang = Permission::caption[$i]['lang'];
-            $name = $permission->caption[$i]['name'];
-
-//            return Config::get('app.locale') == $lang;
-            return $lang . $name ;
-        }
-=======
     public function permissionsAccordingLang()
     {
         $permissions = PermissionGroup::with(['permissions'])->select('caption_'.Config::get('app.locale').' as caption ')->get();
         return $permissions;
     }
->>>>>>> 153e52c921596d03c88cfba3641ecefb582ad70a
 
 
 ////////////////////////////////////////////////////////////////
@@ -88,16 +73,6 @@ trait  BranchTrait
 ////            return Config::get('app.locale') == $lang;
 //            return $lang . $name ;
 //        }
-<<<<<<< HEAD
-//        return $p;
-
-
-//        PermissionGroup::where('caption[i][\'lang\']',  Config::get('app.locale'))->get();
-
-//        return Config::get('app.locale') == PermissionGroup::select('caption->lang');
-
-    }
-=======
 //
 ////         $currentLang = Config::get('app.locale');
 //
@@ -115,7 +90,6 @@ trait  BranchTrait
 ////        return Config::get('app.locale') == PermissionGroup::select('caption->lang');
 //
 //    }
->>>>>>> 153e52c921596d03c88cfba3641ecefb582ad70a
 
 }
 
