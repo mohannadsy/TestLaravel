@@ -1,19 +1,19 @@
 <template>
-<div>
+  <div>
     <!-- <ul v-for="(groupPermission, i) in groupPermissions" :key="i" >
       <elemet-label> {{groupPermission.caption}}</elemet-label>
       <li v-for="(permission,i) in groupPermission.permissions" :key="i">
                 {{ permission}}
       </li>
     </ul> -->
-     <ul >
+    <ul>
       <elemet-label> raghad</elemet-label>
-      <li >
-            <elemet-label>hello</elemet-label>
+      <li>
+        <elemet-label>hello</elemet-label>
       </li>
     </ul>
-</div>
-    </template>
+  </div>
+</template>
 
 
 <script>
@@ -22,27 +22,23 @@ import ElementCheckbox from "../../Shared/ElementCheckbox.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 
 export default {
-    components: {
+  components: {
     ElemetLabel,
     ElementCheckbox,
     CheckboxSwitch,
+  },
+  props: {
+    groupPermissions: Array,
+  },
 
-},
-props:{
-    groupPermissions:Array,
-},
-
-    data() {
-
-    },
+  data() {},
 };
-
 </script>
 
 <style scoped>
-table,th,td{
-    border: 1px solid;
-
+table,
+th,
+td {
+  border: 1px solid;
 }
-
 </style>

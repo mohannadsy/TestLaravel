@@ -22,10 +22,6 @@ export default {
         // })
         // axios.post('branch.store', branchData);
         Inertia.post(route('branch.store'), branchData);
-
-        console.log(branchData);
-        //branchData.post(route('branch.store'));
-        //this.$inertia.post('branch.store', branchData);
         context.commit('registerBranch', {
             ...branchData
         });

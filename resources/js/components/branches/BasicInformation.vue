@@ -75,7 +75,7 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 
 export default {
-emits:['save-basic'],
+  emits: ["save-basic"],
   components: {
     ElemetLabel,
     ElementInput,
@@ -92,10 +92,10 @@ emits:['save-basic'],
       },
     };
   },
-  methods:{
-     objChanged(){
-        this.$emit("save-basic",this.myObj);
+  methods: {
+    objChanged() {
+      this.$emit("save-basic", this.myObj);
     },
-  }
+  },
 };
 </script>
