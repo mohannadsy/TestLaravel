@@ -99,7 +99,7 @@ export default {
 <script>
 import Index from "../../components/users/Index.vue";
 import IndexVue from "../../components/branches/Index.vue";
-import Tree from "./Tree.vue";
+import Tree from "./TreeTest.vue";
 export default {
   props: {
     branches: Array,

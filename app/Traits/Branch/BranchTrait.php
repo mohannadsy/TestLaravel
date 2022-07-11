@@ -44,8 +44,6 @@ trait  BranchTrait
     {
         return $result = Branch::with(['branches', 'users'])->whereNull('branch_id')->get();
     }
-<<<<<<< HEAD
-=======
 
     public function isActive($id)
     {
@@ -55,18 +53,9 @@ trait  BranchTrait
         return false;
     }
 
->>>>>>> e8580df9fdd2a67a6a5b9c62adcf0bab5c098a46
 
     public function permissionsWithLang()
     {
-<<<<<<< HEAD
-        $branch = Branch::find($id);
-        if ($branch)
-            if ($branch->is_active)
-                return $branch;
-            else
-                return "branch is not active";
-=======
 
         $permission = Permission::all();
         for ($i = 0; $i < 100; $i++) {
@@ -92,7 +81,6 @@ trait  BranchTrait
 
 //        return Config::get('app.locale') == PermissionGroup::select('caption->lang');
 
->>>>>>> e8580df9fdd2a67a6a5b9c62adcf0bab5c098a46
     }
 
 }

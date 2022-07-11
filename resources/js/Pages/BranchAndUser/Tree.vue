@@ -51,7 +51,7 @@
     </div>
 </template> -->
 
-<template>
+<!-- <template>
   <div class="row">
     <h1>hi</h1>
     <ul class="parent-tree">
@@ -68,60 +68,92 @@
       <h1>Sara</h1>
     </ul>
   </div>
+</template> -->
+<template>
+  <div>
+    <tree-test-vue class="item" :item="treeData" @make-folder="makeFolder"></tree-test-vue>
+  </div>
 </template>
-
-<script>
+  <script type='module'>
+import TreeView from "@grapoza/vue-tree";
+import TreeTestVue from "./TreeTest.vue";
 export default {
+  components: {TreeTestVue},
   props: ["branchesWithUsers"],
+  data() {
+    return {
+         //treeData: treeData,
+         treeData : {
+            name: "My Tree",
+            children: [{
+                name: "hello"
+            }, {
+                name: "wat"
+            }, {
+                name: "child folder",
+                children: [{
+                    name: "child folder",
+                    children: [{
+                        name: "hello"
+                    }, {
+                        name: "wat"
+                    }]
+                }, {
+                    name: "hello"
+                }, {
+                    name: "wat"
+                }, {
+                    name: "child folder",
+                    children: [{
+                        name: "hello"
+                    }, {
+                        name: "wat"
+                    }]
+                }]
+            }]
+        }
+    };
+  },
+  methods:{
+     makeFolder: function(item) {
+                    Vue.set(item, "children", []);
+                    // this.addItem(item);
+                },
+  },
   created() {
     console.log(this.branchesWithUsers);
   },
-  mounted() {
-    var toggleNodeTree = document.getElementsByClassName("rightAngle");
-    for (var i = 0; i < toggleNodeTree.length; i++) {
-      toggleNodeTree[i].addEventListener("click", function () {
-        this.parentElement
-          .querySelector(".nested-tree")
-          .classList.toggle("active");
-        this.classList.toggle("angleDown");
-      });
-    }
-  },
-  methods: {
-    print(x){
-        console.log(x + 'hi branch');
-    },
-    printTree(object) {
-      for (var key in object) {
-        if (typeof object[key] === "object") {
-          this.printTree(object[key]);
-          if (key == "users") {
-            console.log(
-              object.name + "  : " + typeof object[key] + "; key : " + key
-            );
-          }
-          if (key == "permissions")
-            console.log(
-              object.name + "  : " + typeof object[key] + "; key : " + key
-            );
-        }
-      }
-    },
-    getDataToForm(data, dataType) {
-      console.log(data.name + "," + dataType);
-    },
-    searchTree(node, level, resultArr) {
-      if (node) {
-        if (node.level === level) {
-          resultArr.push(node);
-        } else if (node.children) {
-          node.children.forEach((n) => {
-            searchTree(n, level, resultArr);
-          });
-        }
-      }
-    },
-  },
+  //   mounted() {
+  //     var toggleNodeTree = document.getElementsByClassName("rightAngle");
+  //     for (var i = 0; i < toggleNodeTree.length; i++) {
+  //       toggleNodeTree[i].addEventListener("click", function () {
+  //         this.parentElement
+  //           .querySelector(".nested-tree")
+  //           .classList.toggle("active");
+  //         this.classList.toggle("angleDown");
+  //       });
+  //     }
+  //   },
+  //   methods: {
+  //     printTree(object) {
+  //       for (var key in object) {
+  //         if (typeof object[key] === "object") {
+  //           this.printTree(object[key]);
+  //           if (key == "users") {
+  //             console.log(
+  //               object.name + "  : " + typeof object[key] + "; key : " + key
+  //             );
+  //           }
+  //           if (key == "permissions")
+  //             console.log(
+  //               object.name + "  : " + typeof object[key] + "; key : " + key
+  //             );
+  //         }
+  //       }
+  //     },
+  //     getDataToForm(data, dataType) {
+  //       console.log(data.name + "," + dataType);
+  //     },
 };
 </script>
 <!--
@@ -129,10 +161,6 @@ export default {
 import Index from "../../components/branches/Index.vue";
 import { Inertia } from "@inertiajs/inertia";
 export default {
-  data() {
-    return {};
-  },
-  computed: {},
   mounted() {
     var toggleNodeTree = document.getElementsByClassName("rightAngle");
     for (var i = 0; i < toggleNodeTree.length; i++) {
@@ -170,13 +198,6 @@ export default {
         }
       }
     },
-  },
-  props: {
-    branches: Array,
-    branchesWithUsers: Array,
-  },
-  components: {
-    Index,
   },
 };
 </script> -->
