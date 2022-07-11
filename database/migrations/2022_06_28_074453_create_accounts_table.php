@@ -16,23 +16,36 @@ return new class extends Migration {
             $table->string('code');
             $table->string('latin_name');
             $table->string('type')->default('Normal');
-            $table->unsignedBigInteger('account_id');
-            $table->boolean('is_final');
+            $table->string('notes');
+
+
             $table->boolean('is_active');
             $table->boolean('is_client');
+
+
+            $table->unsignedBigInteger('account_id');
             $table->unsignedBigInteger('final_account_id');
             $table->unsignedBigInteger('cost_center_id');
             $table->unsignedBigInteger('currency_id');
             $table->integer('equality');
-            $table->string('budget')->nullable()->default(null);
+
+            $table->string('budget')->default('not_debtor_not_creditor');
             $table->integer('budget_value');
-            $table->string('nature')->default('creditor');
+
+            $table->string('nature')->default('debtor_and_creditor');
             $table->string('division_rate');
             $table->string('rates_sum');
             $table->string('creditor');
             $table->string('debtor');
             $table->integer('balance');
-            $table->string('notes');
+
+
+            $table->string('not_debtor_not_creditor');
+            $table->string('is_aggregate');
+            $table->string('is_distributive');
+            $table->boolean('is_final');
+            $table->string('debtor_and_creditor');
+
             $table->timestamps();
         });
     }

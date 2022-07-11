@@ -4,13 +4,7 @@ namespace App\Traits\Branch;
 
 use App\Models\Branch;
 use App\Models\PermissionGroup;
-use App\Models\Trash;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
-
-//use League\Flysystem\Config;
-use Spatie\Permission\Models\Permission;
 
 trait  BranchTrait
 {
@@ -53,6 +47,7 @@ trait  BranchTrait
         return false;
     }
 
+<<<<<<< HEAD
 
     public function permissionsWithLang()
     {
@@ -65,15 +60,35 @@ trait  BranchTrait
 //            return Config::get('app.locale') == $lang;
             return $lang . $name ;
         }
+=======
+    public function permissionsAccordingLang()
+    {
+        $permissions = PermissionGroup::with(['permissions'])->select('caption_'.Config::get('app.locale').' as caption ')->get();
+        return $permissions;
+    }
+>>>>>>> 153e52c921596d03c88cfba3641ecefb582ad70a
 
-//         $currentLang = Config::get('app.locale');
 
+////////////////////////////////////////////////////////////////
+//    public function permissionsWithLang()
+//    {
+//
+//        $branch = Branch::find($id);
+//        if ($branch)
+//            if ($branch->is_active)
+//                return $branch;
+//            else
+//                return "branch is not active";
+//
+//        $permission = Permission::all();
 //        for ($i = 0; $i < 100; $i++) {
-//            $permisson = Permission::all();
-//          $item =  $permisson->caption['i']['lang'];
-//          $p =   PermissionGroup::where('item', Config::get('app.locale'))->get();
-////
+//            $lang = Permission::caption[$i]['lang'];
+//            $name = $permission->caption[$i]['name'];
+//
+////            return Config::get('app.locale') == $lang;
+//            return $lang . $name ;
 //        }
+<<<<<<< HEAD
 //        return $p;
 
 
@@ -82,6 +97,25 @@ trait  BranchTrait
 //        return Config::get('app.locale') == PermissionGroup::select('caption->lang');
 
     }
+=======
+//
+////         $currentLang = Config::get('app.locale');
+//
+////        for ($i = 0; $i < 100; $i++) {
+////            $permisson = Permission::all();
+////          $item =  $permisson->caption['i']['lang'];
+////          $p =   PermissionGroup::where('item', Config::get('app.locale'))->get();
+//////
+////        }
+////        return $p;
+//
+//
+////        PermissionGroup::where('caption[i][\'lang\']',  Config::get('app.locale'))->get();
+//
+////        return Config::get('app.locale') == PermissionGroup::select('caption->lang');
+//
+//    }
+>>>>>>> 153e52c921596d03c88cfba3641ecefb582ad70a
 
 }
 

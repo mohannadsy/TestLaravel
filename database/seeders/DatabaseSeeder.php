@@ -11,14 +11,7 @@ DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-//            PermissionSeeder::class,
-//            RoleSeeder::class,
-            BranchSeeder::class,
-//            UserSeeder::class,
-//            CurrencySeeder::class,
-//            CostCenterSeeder::class,
-//            AccountSeeder::class,
-//            PermissionGroupSeeder::class
+
             PermissionSeeder::class,
             RoleSeeder::class,
             BranchSeeder::class,
@@ -26,7 +19,10 @@ DatabaseSeeder extends Seeder
             CurrencySeeder::class,
             CostCenterSeeder::class,
             AccountSeeder::class,
-            PermissionGroupSeeder::class
+            PermissionGroupSeeder::class,
+            AccountSeeder::class,
+            ClientSeeder::class,
+
         ]);
 
     }

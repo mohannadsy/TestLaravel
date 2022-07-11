@@ -1,71 +1,35 @@
 <template>
-   <table class="mt-2">
-    <thead>
-        <tr>
-            <th></th>
-            <th>إضافة</th>
-            <th>تعديل</th>
-            <th>حذف</th>
-            <th>استعراض</th>
-            <th>حذف نهائي</th>
-            <th>استعادة</th>
-            <th>طباعة</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>حسابات</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-         <tr>
-            <td>دليل الحسابات</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td> بطاقة حساب</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-
-   </table>
-</template>
+<div>
+    <!-- <ul v-for="(groupPermission, i) in groupPermissions" :key="i" >
+      <elemet-label> {{groupPermission.caption}}</elemet-label>
+      <li v-for="(permission,i) in groupPermission.permissions" :key="i">
+                {{ permission}}
+      </li>
+    </ul> -->
+     <ul >
+      <elemet-label> raghad</elemet-label>
+      <li >
+            <elemet-label>hello</elemet-label>
+      </li>
+    </ul>
+</div>
+    </template>
 
 
 <script>
-import ElementLabel from "../../Shared/ElemetLabel.vue";
+import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementCheckbox from "../../Shared/ElementCheckbox.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 
 export default {
     components: {
-    ElementLabel,
+    ElemetLabel,
     ElementCheckbox,
-    CheckboxSwitch
+    CheckboxSwitch,
 
+},
+props:{
+    groupPermissions:Array,
 },
 
     data() {

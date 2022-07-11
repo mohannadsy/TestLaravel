@@ -19,6 +19,8 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 
 
+    Route::get('permissions-according-lang', [UserController::class, 'permissionsAccordingLang'])->name('user.permissionsAccordingLang');
+
     Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');
     Route::get('get-main-tree', [UserController::class, 'tree'])->name('user.tree');
     Route::get('get-user-permissions/{id}', [UserController::class, 'getUserPermissions'])->name('user.getUserPermissions');
@@ -54,21 +56,7 @@ Route::get('last-id', function () {
 //    return Account::latest()->first()->id; // flase
     return Account::orderBy('id', 'desc')->first()->id + 1; // true
 });
-//------- Debug bar ------//
-//
-//Route::get('/debug-bar', function () {
-//    Facades\Debugbar::startMeasure('render', 'Time for rendering');
-//    $user = \App\Models\User::find(2);
-//    Facades\Debugbar::info($user);
-//    Facades\Debugbar::stopMeasure('render');
-//    return 'Debug bar';
-//});
-//
-//
-//
-//
-//
-//
+
 Route::get('/json-test',function (){
    return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
 });
