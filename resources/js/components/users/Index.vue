@@ -76,7 +76,7 @@ export default {
   },
   data() {
     return {
-      activeTab: "BasicInformation",
+      activeTab: "Permissions",
        postData:reactive({
 
         code:'',
