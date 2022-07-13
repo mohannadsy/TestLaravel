@@ -16,9 +16,7 @@ trait  UserTrait
 
     public function getAllPermissions()
     {
-//        return Permission::with(['permissionGroup'=>function ($query){
-//            $query->select('name' , 'id');
-//        }])->get();
+
         return PermissionGroup::with('permissions')->get();
     }
 
@@ -58,7 +56,6 @@ trait  UserTrait
         $id = User::latest()->first()->id + 1;
         $parameters = ['id' => $id];
         $this->callActivityMethod('create', $parameters);
-//        return Inertia::render('Users/index');
     }
 
     public function isActive($id)

@@ -11,7 +11,8 @@ return new class extends Migration {
         Schema::create('permission_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->json('caption');
+            $table->string('caption_ar');
+            $table->string('caption_en');
             $table->timestamps();
         });
     }

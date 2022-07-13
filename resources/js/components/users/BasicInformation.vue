@@ -121,18 +121,6 @@ export default {
     TextArea,
   },
   methods: {
-    // submitForm() {
-    //   const formData = {
-    //     first_name: this.first_name,
-    //     middle_name: this.middle_name,
-    //     last_name: this.last_name,
-    //     phone: this.phone,
-    //     mobile: this.mobile,
-    //     id_number: this.id_number,
-    //   };
-    //   this.$emit("save-basic", formData);
-    //   console.log(formData);
-    // },
     objChanged() {
       this.$emit("save-basic", this.myObj);
     },

@@ -9,7 +9,10 @@
           >
         </div>
       </div>
-      <basic-information  @save-basic="saveBasic" v-if="activeTab === 'BasicInformation'" />
+      <basic-information
+        @save-basic="saveBasic"
+        v-if="activeTab === 'BasicInformation'"
+      />
     </div>
 
     <div class="row justify-content-end mb-2">
@@ -33,7 +36,7 @@ import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInfromation1 from "./MainInfromation.vue";
-import { reactive } from 'vue'
+import { reactive } from "vue";
 
 export default {
   components: {
@@ -50,41 +53,39 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
-       postData:reactive({
-        code:'',
-        name:'',
-        branch_id:'',
-        responsibility: '',
-        address: '',
-        website: '',
-        email: '',
-        phone: '',
-        mobile: '',
+      postData: reactive({
+        code: "",
+        name: "",
+        branch_id: "",
+        responsibility: "",
+        address: "",
+        website: "",
+        email: "",
+        phone: "",
+        mobile: "",
         _token: this.$page.props.csrf_token,
-       })
+      }),
     };
   },
   methods: {
-    saveMain(data){
-        this.postData.code=data.code,
-        this.postData.name=data.name,
-        this.postData.branch_id=data.branch_id
+    saveMain(data) {
+      (this.postData.code = data.code),
+        (this.postData.name = data.name),
+        (this.postData.branch_id = data.branch_id);
     },
-    saveBasic(data){
-        this.postData.responsibility=data.responsibility,
-        this.postData.address=data.address,
-        this.postData.website=data.website,
-         this.postData.email=data.email,
-        this.postData.phone=data.phone,
-        this.postData.mobile=data.mobile
+    saveBasic(data) {
+      (this.postData.responsibility = data.responsibility),
+        (this.postData.address = data.address),
+        (this.postData.website = data.website),
+        (this.postData.email = data.email),
+        (this.postData.phone = data.phone),
+        (this.postData.mobile = data.mobile);
     },
-    saveExtra(data){
-
+    saveExtra(data) {},
+    submit() {
+      // Inertia.post(route('user.store'), this.postData);
+      this.$store.dispatch("branches/registerBranch", this.postData);
     },
-    submit(){
-        // Inertia.post(route('user.store'), this.postData);
-        this.$store.dispatch('branches/registerBranch',this.postData);
-    }
   },
 };
 </script>

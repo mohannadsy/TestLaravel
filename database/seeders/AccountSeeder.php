@@ -33,6 +33,10 @@ class AccountSeeder extends Seeder
             'debtor' => '',
             'balance' => 0,
             'notes' => ' ',
+            'debtor_and_creditor' => '',
+            'not_debtor_not_creditor' => '',
+            'is_aggregate' => '',
+            'is_distributive' => ''
         ]);
 
         $finalAccount = Account::create([
@@ -58,6 +62,11 @@ class AccountSeeder extends Seeder
             'balance' => 0,
             'notes' => ' ',
 
+            'debtor_and_creditor' => '',
+            'not_debtor_not_creditor' => '',
+            'is_aggregate' => '',
+            'is_distributive' => ''
+
         ]);
 
         $account2 = Account::create([
@@ -82,6 +91,10 @@ class AccountSeeder extends Seeder
             'debtor' => '',
             'balance' => 0,
             'notes' => ' ',
+            'debtor_and_creditor' => '',
+            'not_debtor_not_creditor' => '',
+            'is_aggregate' => '',
+            'is_distributive' => ''
         ]);
 
 
@@ -107,6 +120,10 @@ class AccountSeeder extends Seeder
             'debtor' => '',
             'balance' => 0,
             'notes' => ' ',
+            'debtor_and_creditor' => '',
+            'not_debtor_not_creditor' => '',
+            'is_aggregate' => '',
+            'is_distributive' => ''
         ]);
 
     }
