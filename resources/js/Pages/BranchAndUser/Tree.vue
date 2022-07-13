@@ -3,15 +3,17 @@
     <div>
       <span
         class="default-pointer"
-
         @click="toggle"
         @dblclick="makeFolder"
         v-if="isFolder"
         >{{ isOpen ? "-" : "+" }}</span
       >
-      <span :class="{bold: isFolder}" class="pointer" @click="showName(item.name, item.isUser)">{{
-        item.name
-      }}</span>
+      <span
+        :class="{ bold: isFolder }"
+        class="pointer"
+        @click="action(event, item.id)"
+        >{{ item.name }}</span
+      >
     </div>
     <ul v-show="isOpen" v-if="isFolder">
       <tree-item
@@ -20,7 +22,6 @@
         :key="index"
         :item="childBranch"
         @make-folder="$emit('make-folder', $event)"
-        @add-item="$emit('add-item', $event)"
       ></tree-item>
       <tree-item
         class="item"
@@ -28,7 +29,6 @@
         :key="index"
         :item="childUsers"
         @make-folder="$emit('make-folder', $event)"
-        @add-item="$emit('add-item', $event)"
       ></tree-item>
     </ul>
   </div>
@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       isOpen: false,
+      current: 'sara current',
     };
   },
   computed: {
@@ -62,9 +63,17 @@ export default {
         this.isOpen = true;
       }
     },
-    // showName : function(name , isUser){
-    //   alert(name +"  "+ isUser)
-    // }
+    // action(event, type) {
+    //   if(this.current==='user'){
+    //     this.$emit('send-user',this.current);
+    //   }
+    //   console.log("nodeType: ", type);
+    // },
+    showName: function (name) {
+      this.current = name;
+      console.log(this.current);
+      this.$emit('send-current',this.current)
+    },
   },
 };
 </script>
