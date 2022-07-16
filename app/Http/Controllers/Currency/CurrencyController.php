@@ -37,7 +37,7 @@ class CurrencyController extends Controller
         $request->photo = $this->getImageURL($request);
         $currency = $currency = Currency::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('', compact('currency'));;
+//        return Inertia::render('', compact('currency'));;
     }
 
     public function update(CurrencyRequest $request, $id)

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Currency\CurrencyController;
 use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Branch\BranchController;
 use Barryvdh\Debugbar\Facades;
 
@@ -40,6 +41,16 @@ Route::group(['namespace' => 'Currency', 'prefix' => 'currency'], function () {
     Route::get('show/{id}', [CurrencyController::class, 'show'])->name('currency.show');
     Route::post('update', [CurrencyController::class, 'update'])->name('currency.update');
     Route::get('delete/{id}', [CurrencyController::class, 'delete'])->name('currency.delete');
+});
+
+//------- Client ------//
+
+Route::group(['namespace' => 'Client', 'prefix' => 'client'], function () {
+    Route::get('index', [ClientController::class, 'index'])->name('client.index');
+    Route::post('store', [ClientController::class, 'store'])->name('client.store');
+    Route::get('show/{id}', [ClientController::class, 'show'])->name('client.show');
+    Route::post('update', [ClientController::class, 'update'])->name('client.update');
+    Route::get('delete/{id}', [ClientController::class, 'delete'])->name('client.delete');
 });
 //------- Accounts ------//
 
