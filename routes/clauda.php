@@ -68,12 +68,12 @@ Route::get('last-id', function () {
     return Account::orderBy('id', 'desc')->first()->id + 1; // true
 });
 
-Route::get('/json-test',function (){
-   return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
+Route::get('/json-test', function () {
+    return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
 });
 
 //Route::get('is-active/{id}', [UserController::class, 'isActive'])->name('user.active');
 
-Route::get('/local',function (){
+Route::get('/local', function () {
     return Config::get('app.locale');
 });

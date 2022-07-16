@@ -10,8 +10,7 @@ use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
 use App\Traits\User\AdminTrait;
 use App\Traits\User\UserTrait;
-use Illuminate\Support\Facades\Hash;
-use Inertia\Inertia;
+
 
 class ClientController extends Controller
 {
