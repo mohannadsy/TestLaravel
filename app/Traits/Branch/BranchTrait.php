@@ -5,6 +5,7 @@ namespace App\Traits\Branch;
 use App\Models\Branch;
 use App\Models\PermissionGroup;
 use Illuminate\Support\Facades\Config;
+use Spatie\Permission\Models\Permission;
 
 trait  BranchTrait
 {
@@ -49,7 +50,11 @@ trait  BranchTrait
 
     public function permissionsAccordingLang()
     {
+
         $permissions = PermissionGroup::select('caption_'.Config::get('app.locale').' as caption ')->get();
+
+        $permissions = PermissionGroup::select('caption_'.Config::get('app.locale').' as caption ','id')->with(['permissions'])->get();
+
         return $permissions;
 
     }
