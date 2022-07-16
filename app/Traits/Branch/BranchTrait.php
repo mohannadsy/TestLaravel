@@ -49,8 +49,9 @@ trait  BranchTrait
 
     public function permissionsAccordingLang()
     {
-        $permissions = PermissionGroup::with(['permissions'])->select('caption_'.Config::get('app.locale').' as caption ')->get();
+        $permissions = PermissionGroup::select('caption_'.Config::get('app.locale').' as caption ')->get();
         return $permissions;
+
     }
 
 
