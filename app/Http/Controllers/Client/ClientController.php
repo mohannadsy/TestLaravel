@@ -6,11 +6,25 @@ use App\Models\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
 use App\Models\Currency;
+use App\Traits\ActivityLog\ActivityLog;
+use App\Traits\Image\ImageTrait;
+use App\Traits\User\AdminTrait;
+use App\Traits\User\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
 class ClientController extends Controller
 {
+    use ImageTrait, ActivityLog;
+
+    public function callActivityMethod($method, $parameters)
+    {
+        $this->makeActivity([
+            'table' => 'users',
+            'operation' => $method,
+            'parameters' => $parameters
+        ]);
+    }
 
     public function index()
     {
@@ -36,7 +50,11 @@ class ClientController extends Controller
     {
         $parameters = ['id' => $id];
         $client = Client::find($id);
-        return $client ? $client && $this->callActivityMethod('show', $parameters) : '$Client not Found';
+        if ($client) {
+            $this->callActivityMethod('show', $parameters);
+            return $client;
+        }
+        return 'Client Not Found';
     }
 
     public function update(ClientRequest $request, $id)

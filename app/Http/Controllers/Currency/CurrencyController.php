@@ -52,16 +52,22 @@ class CurrencyController extends Controller
     {
         $parameters = ['id' => $id];
         $currency = Currency::find($id);
-        return $currency ? $currency && $this->callActivityMethod('show', $parameters) : 'Currency not Found';
+        if ($currency) {
+            $this->callActivityMethod('show', $parameters);
+            return $currency;
+        }
+        return 'User not Found';
     }
 
-    public function delete($id)
-    {
-        $parameters = ['id' => $id];
-        if ($this->isNotDefaultCurrency($id)) {
-            $currency = Currency::find($id);
-            return $currency ? $currency->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Currency not Found';
-        }
-        return "Default Bounds Can not be Deleted";
+
+public
+function delete($id)
+{
+    $parameters = ['id' => $id];
+    if ($this->isNotDefaultCurrency($id)) {
+        $currency = Currency::find($id);
+        return $currency ? $currency->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Currency not Found';
     }
+    return "Default Currency Can not be Deleted";
+}
 }
