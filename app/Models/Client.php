@@ -22,19 +22,16 @@ class Client extends Model
         'birth_place',
         'birth_data',
         'record_number', // رقم السجل
-
         'address',
-        'email_code',
+        'email_prefix',
         'phone',
         'mobile',
         'fax',
         'email',
-
         'default_price',
         'discount_rate',
-
         'discount_account',
-
+        'payment_conditions',
         'account_id'
     ];
 
