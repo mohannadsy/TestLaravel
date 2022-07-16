@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Client;
 use App\Models\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
-use App\Models\Currency;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
-use App\Traits\User\AdminTrait;
-use App\Traits\User\UserTrait;
 
 
 class ClientController extends Controller
@@ -29,7 +26,7 @@ class ClientController extends Controller
     {
         $parameters = ['id' => null];
         $this->callActivityMethod('index', $parameters);
-        return Client::select('id', 'name', 'code')->get();
+        return Client::all();
     }
 
 
@@ -40,7 +37,6 @@ class ClientController extends Controller
         $request->photo = $this->getImageURL($request);
         $client = Client::create($request->all());
         $this->callActivityMethod('store', $parameters);
-
 //        return Inertia::render('', compact('client'));;
     }
 
@@ -61,7 +57,7 @@ class ClientController extends Controller
         $parameters = ['request' => $request, 'id' => $id];
         $url = $this->getImageURL($request);
         $request->photo = $url;
-        $client = Client::find($id)->update($request);
+        $client = Client::find($id)->update($request->all());
 //        $client->update($request->all());
         $this->callActivityMethod('update', $parameters);
     }

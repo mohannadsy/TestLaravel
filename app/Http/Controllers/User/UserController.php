@@ -75,7 +75,6 @@ class UserController extends Controller
         if ($user) {
             $this->callActivityMethod('show', $parameters);
             return User::with('permissions')->find($id);
-//            return $user->permissions;
         }
         return 'User not Found';
     }
