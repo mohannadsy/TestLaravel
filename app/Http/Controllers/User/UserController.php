@@ -37,7 +37,6 @@ class UserController extends Controller
     {
         $id = User::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-//        dd($request);
         $request->password = Hash::make($request->password);
         $request->profile_photo_path = $this->getImageURL($request);
 //        $request->role = $this->assignRole($request->role);
@@ -55,7 +54,7 @@ class UserController extends Controller
         $request->password = Hash::make($request['password']);
         $request->profile_photo_path = $url;
         $user = User::find($id)->update($request);
-        $user->update($request->all());
+//        $user->update($request->all());
         $this->callActivityMethod('update', $parameters);
     }
 

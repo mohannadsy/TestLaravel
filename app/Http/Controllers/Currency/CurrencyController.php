@@ -7,11 +7,12 @@ use App\Http\Requests\CurrencyRequest;
 use App\Models\Currency;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Currency\CurrencyTrait;
+use App\Traits\Image\ImageTrait;
 use Inertia\Inertia;
 
 class CurrencyController extends Controller
 {
-    use CurrencyTrait, ActivityLog;
+    use CurrencyTrait, ActivityLog, ImageTrait;
 
     public function callActivityMethod($method, $parameters)
     {
@@ -33,18 +34,16 @@ class CurrencyController extends Controller
     {
         $id = Currency::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $input = $request->validated();
-        Currency::create($input);
+        $request->photo = $this->getImageURL($request);
+        $currency = $currency = Currency::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('', compact('input'));;
+        return Inertia::render('', compact('currency'));;
     }
 
     public function update(CurrencyRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
-        $input = $request->validated(); //   $input = $request->all();
-        $currency = Currency::find($id)->update($input);
-        $currency->update($input);
+        $currency = Currency::find($id)->update($request->all());
         $this->callActivityMethod('update', $parameters);
     }
 

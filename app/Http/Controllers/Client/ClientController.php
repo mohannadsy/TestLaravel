@@ -15,7 +15,7 @@ class ClientController extends Controller
     }
 
 
-    public function store(StoreClientRequest $request)
+    public function store(ClientRequest $request)
     {
         //
     }

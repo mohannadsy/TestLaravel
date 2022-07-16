@@ -20,6 +20,7 @@ class CurrencySeeder extends Seeder
             'part' => 'قرش',
             'accuracy' => 100,
             'lain_part_name' => 'Piaster',
+            'photo'=>'',
         ]);
         $firstExtraCurrency = Currency::create([
             'name' => 'الدولار الأمريكي',
@@ -30,6 +31,7 @@ class CurrencySeeder extends Seeder
             'part' => 'سنت',
             'accuracy' => 100,
             'lain_part_name' => 'sent',
+            'photo'=>'',
         ]);
 
 

@@ -18,6 +18,8 @@ class Currency extends Model
         'part',
         'accuracy',
         'lain_part_name',
+        'photo',
+        'create_at',
         ];
     protected $hidden = ['created_at', 'updated_at'];
 }
