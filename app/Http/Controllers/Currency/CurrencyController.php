@@ -37,7 +37,7 @@ class CurrencyController extends Controller
         $request->photo = $this->getImageURL($request);
         $currency = $currency = Currency::create($request->all());
         $this->callActivityMethod('store', $parameters);
-//        return Inertia::render('', compact('currency'));;
+        return Inertia::render('', compact('currency'));;
     }
 
     public function update(CurrencyRequest $request, $id)
@@ -60,14 +60,13 @@ class CurrencyController extends Controller
     }
 
 
-public
-function delete($id)
-{
-    $parameters = ['id' => $id];
-    if ($this->isNotDefaultCurrency($id)) {
-        $currency = Currency::find($id);
-        return $currency ? $currency->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Currency not Found';
+    public function delete($id)
+    {
+        $parameters = ['id' => $id];
+        if ($this->isNotDefaultCurrency($id)) {
+            $currency = Currency::find($id);
+            return $currency ? $currency->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Currency not Found';
+        }
+        return "Default Currency Can not be Deleted";
     }
-    return "Default Currency Can not be Deleted";
-}
 }

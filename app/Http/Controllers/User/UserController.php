@@ -12,6 +12,7 @@ use App\Traits\User\UserTrait;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
+use function Symfony\Component\Mime\Header\all;
 
 class UserController extends Controller
 {
@@ -43,7 +44,6 @@ class UserController extends Controller
 //      $this->givePermissionTo($request->permissions);
         $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        //dd($request);
         return Inertia::render('BranchAndUser/Index', compact('user'));;
     }
 
@@ -53,8 +53,7 @@ class UserController extends Controller
         $url = $this->getImageURL($request);
         $request->password = Hash::make($request['password']);
         $request->profile_photo_path = $url;
-        $user = User::find($id)->update($request);
-//        $user->update($request->all());
+        $user = User::find($id)->update($request->all());
         $this->callActivityMethod('update', $parameters);
     }
 
@@ -75,7 +74,6 @@ class UserController extends Controller
         if ($user) {
             $this->callActivityMethod('show', $parameters);
             return User::with('permissions')->find($id);
-//            return $user->permissions;
         }
         return 'User not Found';
     }
