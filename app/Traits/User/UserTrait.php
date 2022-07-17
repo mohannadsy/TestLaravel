@@ -56,6 +56,7 @@ trait  UserTrait
         $id = User::latest()->first()->id + 1;
         $parameters = ['id' => $id];
         $this->callActivityMethod('create', $parameters);
+
     }
 
     public function isActive($id)

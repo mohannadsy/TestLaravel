@@ -25,7 +25,7 @@ class ClientRequest extends FormRequest
             'birth_data' => '',
             'record_number' => '',
             'address' => '',
-            'email_code' => '',
+            'email_prefix' => '',
             'phone' => '',
             'mobile' => '',
             'fax' => '',
@@ -33,6 +33,7 @@ class ClientRequest extends FormRequest
             'default_price' => '',
             'discount_rate' => '',
             'discount_account' => '',
+            'payment_conditions' => '',
             'account_id' => '',
         ];
     }
@@ -52,7 +53,7 @@ class ClientRequest extends FormRequest
             'birth_data' => '',
             'record_number' => '',
             'address' => '',
-            'email_code' => '',
+            'email_prefix' => '',
             'phone' => '',
             'mobile' => '',
             'fax' => '',
@@ -60,6 +61,7 @@ class ClientRequest extends FormRequest
             'default_price' => '',
             'discount_rate' => '',
             'discount_account' => '',
+            'payment_conditions' => '',
             'account_id' => '',
         ];
     }
