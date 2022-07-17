@@ -8,6 +8,7 @@ use App\Models\Trash;
 use App\Models\User;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 
 
@@ -56,6 +57,7 @@ trait  UserTrait
         $id = User::latest()->first()->id + 1;
         $parameters = ['id' => $id];
         $this->callActivityMethod('create', $parameters);
+
     }
 
     public function isActive($id)
@@ -79,4 +81,46 @@ trait  UserTrait
 
 
     }
+
+
+    public function userPermission($userId)
+    {
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption ', 'id')->with(['permissions'])->get();
+        $user = User::find($userId);
+        $userPermissions = User::with('permissions')->find($userId);
+
+        foreach ($groupPermissions as $groups) {
+
+            foreach ($groups->permissions as $permission) {
+                if ($permission == $userPermissions) {
+                    $permission->is_active = true;
+                } else {
+                    $permission->is_active = false;
+                }
+            }
+            return $groupPermissions;
+
+//                if($groups $userPermissions)
+//            $groupPermissions->permissions;
+
+        }
+
+    }
+
+//    public function userPermissionTow($userId)
+//    {
+//        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption ', 'id')->with(['permissions'])->get();
+//
+//
+//        $userPermissions = User::with(['permissions'=>function ($query){
+//            $query->select('caption_' . Config::get('app.locale') . ' as caption ');
+//        }])->select('name','id')->find($userId);
+//
+//
+//        return Inertia::render('BranchAndUser/Index', compact('groupPermissions','$userPermissions'));
+//
+//
+//    }
+
+
 }

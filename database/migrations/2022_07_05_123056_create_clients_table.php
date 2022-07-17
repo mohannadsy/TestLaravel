@@ -30,7 +30,7 @@ return new class extends Migration {
 
 
             $table->string('address');
-            $table->integer('email_code');
+            $table->integer('email_prefix');
             $table->string('phone');
             $table->string('mobile');
             $table->string('fax');
@@ -40,6 +40,8 @@ return new class extends Migration {
             $table->integer('default_price');
             $table->string('discount_rate');
             $table->integer('discount_account');
+            $table->string('payment_conditions');
+
             $table->integer('account_id');
 
             $table->timestamps();

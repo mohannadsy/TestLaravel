@@ -18,8 +18,6 @@ class UserRequest extends FormRequest
 //            'name' => 'required|max:50|string|unique:users,name',
 //            'email' => 'string|email|unique:users,email',
 //            'password' => 'required|min:6|password|unique:users,password',
-////          'password_confirm' => 'required|same:password:users,password_confirm',
-//
 //            'role' => 'string:users,role',
 //            'branch_id' => 'max:50|numeric:users,branch_id',
 //            'photo' => 'string|image:users,photo',
@@ -31,14 +29,14 @@ class UserRequest extends FormRequest
 //            'id_number' => 'max:50|string:users,id_number',
 //            'account-box_id' => ' ',
 //            'store_id' => ' ',
-//            'is_active'
+//            'is_active'=>''
         ];
     }
 
     public function messages()
     {
         return $messages = [
-//
+
 //            'code.required' => 'رمز المستخدم يجب أن يُدخل',
 //            'code.unique' => 'رمز المستخدم موجود سابقاً ',
 //            'code.string' => 'رمز المستخدم يجب أن يكون محارف ',
@@ -69,7 +67,7 @@ class UserRequest extends FormRequest
 //            'mobile.unique' => 'رقم الموبايل مُدخل سابقاً لمستخدم آخر',
 //            'mobile.string' => 'رقم الموبايل يجب أن يكون محارف',
 //            'id_number.max' => 'الرقم الوطني تجاوز 50 محرف ',
-//            'id_number.numeric' => 'الرقم الوطني يجب أن يكون أرقام'
+//            'id_number.numeric' => 'الرقم الوطني يجب أن يكون أرقام',
 //            'account-box_id' => ' ',
 //            'store_id' => ' ',
 //            'is_active',

@@ -1,21 +1,26 @@
 <template>
     <div>
-        <!-- <ul v-for="(groupPermission, i) in groupPermissions" :key="i" >
-      <elemet-label> {{groupPermission.caption}}</elemet-label>
-      <li v-for="(permission,i) in groupPermission.permissions" :key="i">
-                {{ permission}}
-      </li>
-    </ul> -->
-        <ul class="main" v-for="(group,i) in groups" :key="i" >
+        <ul class="main" v-for="(groupPermission, i) in groupPermissions" :key="i" >
+            <elemet-label> {{groupPermission.caption}}</elemet-label>
+            
+            <ul >
+                    <li class="col-3" v-for="(permission,i) in groupPermission.permissions" :key="i">
+                        <checkbox-switch>   </checkbox-switch>
+                        {{permission.caption }}
+                    </li>
+
+            </ul>
+        </ul>
+        <!-- <ul class="main" v-for="(group,i) in groups" :key="i" >
             <elemet-label> حسابات</elemet-label>
             <ul>
-                <!-- <elemet-label>{{group}} </elemet-label> -->
+                <elemet-label>{{group}} </elemet-label>
                 <li class="col-3" v-for="(permission,i) in permissions" :key="i">
                 <checkbox-switch>   </checkbox-switch>
                 {{permission}}
                </li>
             </ul>
-        </ul>
+        </ul> -->
     </div>
 </template>
 
@@ -31,13 +36,13 @@ export default {
         CheckboxSwitch,
     },
     props: {
-        // groupPermissions:Array,
+        groupPermissions:Array,
     },
 
     data() {
         return {
-            groups:['دليل الحسابات','بطاقة حساب'],
-            permissions:['إضافة بطاقة حساب','تعديل بطاقة ','حذف','استعراض','حذف نهائي','استعادة','طباعة','طباعة','حذف',]
+            // groups:['دليل الحسابات','بطاقة حساب'],
+            // permissions:['إضافة بطاقة حساب','تعديل بطاقة ','حذف','استعراض','حذف نهائي','استعادة','طباعة']
 
         };
     },
@@ -45,11 +50,6 @@ export default {
 </script>
 
 <style scoped>
-table,
-th,
-td {
-    border: 1px solid;
-}
 .main{
     list-style: none;
     margin: 0;

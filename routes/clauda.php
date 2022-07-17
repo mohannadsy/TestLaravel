@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Currency\CurrencyController;
 use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Branch\BranchController;
 use Barryvdh\Debugbar\Facades;
 
@@ -17,9 +18,12 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('show/{id}', [UserController::class, 'show'])->name('user.show');
     Route::post('update', [UserController::class, 'update'])->name('user.update');
     Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
-
+//    Route::get('create', [UserController::class, 'create'])->name('user.create');
 
     Route::get('permissions-according-lang', [UserController::class, 'permissionsAccordingLang'])->name('user.permissionsAccordingLang');
+    Route::get('user-permission-tow/{id}', [UserController::class, 'userPermissionTow'])->name('user.userPermisssionTow');
+
+        Route::get('user-permission/{id}', [UserController::class, 'userPermission'])->name('user.userPermission');
 
     Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');
     Route::get('get-main-tree', [UserController::class, 'tree'])->name('user.tree');
@@ -41,6 +45,16 @@ Route::group(['namespace' => 'Currency', 'prefix' => 'currency'], function () {
     Route::post('update', [CurrencyController::class, 'update'])->name('currency.update');
     Route::get('delete/{id}', [CurrencyController::class, 'delete'])->name('currency.delete');
 });
+
+//------- Client ------//
+
+Route::group(['namespace' => 'Client', 'prefix' => 'client'], function () {
+    Route::get('index', [ClientController::class, 'index'])->name('client.index');
+    Route::post('store', [ClientController::class, 'store'])->name('client.store');
+    Route::get('show/{id}', [ClientController::class, 'show'])->name('client.show');
+    Route::post('update', [ClientController::class, 'update'])->name('client.update');
+    Route::get('delete/{id}', [ClientController::class, 'delete'])->name('client.delete');
+});
 //------- Accounts ------//
 
 Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
@@ -57,12 +71,12 @@ Route::get('last-id', function () {
     return Account::orderBy('id', 'desc')->first()->id + 1; // true
 });
 
-Route::get('/json-test',function (){
-   return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
+Route::get('/json-test', function () {
+    return \Spatie\Permission\Models\Permission::find(1)->caption[0]['lang'];
 });
 
 //Route::get('is-active/{id}', [UserController::class, 'isActive'])->name('user.active');
 
-Route::get('/local',function (){
+Route::get('/local', function () {
     return Config::get('app.locale');
 });

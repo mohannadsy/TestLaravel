@@ -12,78 +12,90 @@ class PermissionSeeder extends Seeder
     {
         //---------------users--------------------------//
         $storeUser = Permission::create([
-          'name'                => 'store-user',
-          'permission_group_id' => 1,
-          'caption_ar'          =>'إضافة مستخدم ',
-          'caption_en'          =>'store-user ',
+            'name' => 'store-user',
+            'permission_group_id' => 1,
+            'caption_ar' => 'إضافة مستخدم ',
+            'caption_en' => 'store-user ',
+
         ]);
         $updateUser = Permission::create([
-            'name'                => 'update-user',
+            'name' => 'update-user',
             'permission_group_id' => 1,
-            'caption_ar'          =>'تعديل مستخدم ',
-            'caption_en'          =>'update-user ',
-       ]);
+            'caption_ar' => 'تعديل مستخدم ',
+            'caption_en' => 'update-user ',
+
+        ]);
         $deleteUser = Permission::create([
-            'name'                => 'delete-user',
+            'name' => 'delete-user',
             'permission_group_id' => 1,
-            'caption_ar'          =>'حذف مستخدم ',
-            'caption_en'          =>'delete-user ',
+            'caption_ar' => 'حذف مستخدم ',
+            'caption_en' => 'delete-user ',
+
         ]);
         $showUser = Permission::create([
-            'name'                => 'show-user',
+            'name' => 'show-user',
             'permission_group_id' => 1,
-            'caption_ar'          =>'عرض مستخدم ',
-            'caption_en'          =>'show-user ',
-       ]);
+            'caption_ar' => 'عرض مستخدم ',
+            'caption_en' => 'show-user ',
+
+        ]);
         //---------------roles--------------------------//
         $storeRole = Permission::create([
-            'name'                => 'store-role',
+            'name' => 'store-role',
             'permission_group_id' => 2,
-            'caption_ar'          =>'إضافة دور  ',
-            'caption_en'          =>'store-role ',
+            'caption_ar' => 'إضافة دور  ',
+            'caption_en' => 'store-role ',
+
         ]);
         $updateRole = Permission::create([
-            'name'                => 'update-role',
+            'name' => 'update-role',
             'permission_group_id' => 2,
-            'caption_ar'          =>'تعديل دور  ',
-            'caption_en'          =>'update-role ',
+            'caption_ar' => 'تعديل دور  ',
+            'caption_en' => 'update-role ',
+
         ]);
         $deleteRole = Permission::create([
-            'name'                => 'delete-role',
+            'name' => 'delete-role',
             'permission_group_id' => 2,
-            'caption_ar'          =>'حذف دور  ',
-            'caption_en'          =>'delete-role ',
+            'caption_ar' => 'حذف دور  ',
+            'caption_en' => 'delete-role ',
+
         ]);
         $showRole = Permission::create([
-            'name'                => 'show-role',
+            'name' => 'show-role',
             'permission_group_id' => 2,
-            'caption_ar'          =>'عرض دور  ',
-            'caption_en'          =>'show-role ',
+            'caption_ar' => 'عرض دور  ',
+            'caption_en' => 'show-role ',
+
         ]);
         //---------------permissions--------------------------//
         $storePermission = Permission::create([
-            'name'                => 'store-permission',
+            'name' => 'store-permission',
             'permission_group_id' => 3,
-            'caption_ar'          =>'إضافة صلاحية  ',
-            'caption_en'          =>'store-permission ',
+            'caption_ar' => 'إضافة صلاحية  ',
+            'caption_en' => 'store-permission ',
+
         ]);
         $updatePermission = Permission::create([
-            'name'                => 'update-permission',
+            'name' => 'update-permission',
             'permission_group_id' => 3,
-            'caption_ar'          =>'تعديل صلاحية  ',
-            'caption_en'          =>'update-permission',
+            'caption_ar' => 'تعديل صلاحية  ',
+            'caption_en' => 'update-permission',
+
         ]);
         $deletePermission = Permission::create([
-            'name'                => 'delete-permission',
+            'name' => 'delete-permission',
             'permission_group_id' => 3,
-            'caption_ar'          =>'حذف صلاحية  ',
-            'caption_en'          =>'delete-permission',
+            'caption_ar' => 'حذف صلاحية  ',
+            'caption_en' => 'delete-permission',
+
         ]);
         $showPermission = Permission::create([
-            'name'                => 'show-permission',
+            'name' => 'show-permission',
             'permission_group_id' => 3,
-            'caption_ar'          =>'عرض صلاحية  ',
-            'caption_en'          =>'show-permission',
+            'caption_ar' => 'عرض صلاحية  ',
+            'caption_en' => 'show-permission',
+
         ]);
     }
 }

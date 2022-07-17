@@ -8,6 +8,7 @@ use App\Http\Requests\BranchRequest;
 use App\Models\PermissionGroup;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
+use Illuminate\Support\Facades\Config;
 use Spatie\Permission\Models\Permission;
 
 
@@ -22,7 +23,7 @@ class BranchController extends Controller
         $this->callActivityMethod('getAllBranches', $parameters);
         $branches = Branch::where('is_active', true)->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
         $branchesWithUsers = Branch::whereNull('branch_id')->with(['branches'])->select('id', 'name', 'code', 'branch_id')->get();// for tree
-        $groupPermissions = PermissionGroup::with('permissions')->get();
+        $groupPermissions = PermissionGroup::select('caption_'.Config::get('app.locale').' as caption','id')->with(['permissions'])->get();
 
 //        return $groupPermissions;
         return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));

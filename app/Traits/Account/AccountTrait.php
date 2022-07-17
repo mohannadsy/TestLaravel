@@ -9,25 +9,25 @@ trait  AccountTrait
 {
 
 
-    public function isFinal($id)
+    public function isFinal($id) // ختامي
     {
         $account = Account::find($id);
         return $account->is_final == true;
     }
 
-    public function isClient($id)
+    public function isClient($id) // عميل
     {
         $account = Account::find($id);
         return $account->is_client == true;
     }
 
-    public function isAggregateAccount($id)
+    public function isAggregateAccount($id) // تجميعي
     {
         $account = Account::find($id);
         return $account->is_aggregate == true;
     }
 
-    public function isDistributiveAccount($id)
+    public function isDistributiveAccount($id) // توزيعي
     {
         $account = Account::find($id);
         return $account->is_distributive == true;

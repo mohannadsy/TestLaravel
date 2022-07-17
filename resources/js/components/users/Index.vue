@@ -26,7 +26,7 @@
           v-if="activeTab === 'BasicInformation'"
           @save-basic="saveBasic"
         ></basic-information>
-        <permissions v-if="activeTab === 'Permissions'" />
+        <permissions v-if="activeTab === 'Permissions'" :groupPermissions="$page['props']['groupPermissions']"/>
         <extra-options v-if="activeTab === 'ExtraOptions'" />
         <div class="row justify-content-end mb-2">
           <div class="col-md-4">
@@ -71,6 +71,9 @@ export default {
     ElementButton,
     TitleButton,
   },
+   props: {
+        groupPermissions:Array,
+    },
   data() {
     return {
       activeTab: "BasicInformation",
