@@ -70,7 +70,7 @@ class UserSeeder extends Seeder
                 'email'             => "clauda@gmail$i.com",
                 'password'          => bcrypt('12345clauda'),
                 'role'              => 'Casher',
-                'branch_id'         => '3',
+                'branch_id'         => $i,
                 'first_name'        => 's',
                 'middle_name'       => 's',
                 'last_name'         => 's',
