@@ -80,5 +80,13 @@ class UserController extends Controller
     }
 
 
+//    public function isActive($id)
+//    {
+//        $permission = Permission::find($id);
+//        return $permission->is_active = true;
+//   }
+
+
+
 }
 
