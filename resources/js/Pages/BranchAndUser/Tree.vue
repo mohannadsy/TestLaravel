@@ -11,20 +11,18 @@
       <span
         :class="{ bold: isFolder }"
         class="pointer"
-        @click="action(event, item.id)"
+        @click="showName(item)"
         >{{ item.name }}</span
       >
     </div>
     <ul v-show="isOpen" v-if="isFolder">
       <tree-item
-        class="item"
         v-for="(childBranch, index) in item.branches"
         :key="index"
         :item="childBranch"
         @make-folder="$emit('make-folder', $event)"
       ></tree-item>
       <tree-item
-        class="item"
         v-for="(childUsers, index) in item.users"
         :key="index"
         :item="childUsers"
@@ -43,7 +41,7 @@ export default {
   data() {
     return {
       isOpen: false,
-      current: 'sara current',
+      current: "sara",
     };
   },
   computed: {
@@ -63,16 +61,14 @@ export default {
         this.isOpen = true;
       }
     },
-    // action(event, type) {
-    //   if(this.current==='user'){
-    //     this.$emit('send-user',this.current);
-    //   }
-    //   console.log("nodeType: ", type);
-    // },
-    showName: function (name) {
-      this.current = name;
-      console.log(this.current);
-      this.$emit('send-current',this.current)
+
+    showName(item) {
+      if (item.hasOwnProperty("branches")) {
+        this.current = "branches";
+      } else {
+        this.current = "users";
+      }
+      this.$emit('send-type',this.current)
     },
   },
 };
