@@ -4,10 +4,8 @@
 namespace App\Traits\ActivityLog;
 
 use App\Models\Activity;
-use App\Models\Branch;
 use App\Models\Trash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 trait  ActivityLog
 {

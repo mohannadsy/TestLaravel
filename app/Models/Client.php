@@ -10,7 +10,7 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'name',
         'notes',
 
@@ -22,23 +22,21 @@ class Client extends Model
         'birth_place',
         'birth_data',
         'record_number', // رقم السجل
-
         'address',
-        'email_code',
+        'email_prefix', // الرمز البريدي
         'phone',
         'mobile',
         'fax',
         'email',
-
         'default_price',
         'discount_rate',
-
         'discount_account',
-
+        'payment_conditions', // شروط الدفع
         'account_id'
     ];
 
     public function account()
     {
         return $this->belongsTo(Account::class, 'client_id');
-    }}
+    }
+}
