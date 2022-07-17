@@ -73,24 +73,6 @@ export default {
   },
   data() {
     return {
-<<<<<<< HEAD
-      activeTab: "Permissions",
-       postData:reactive({
-
-        code:'',
-        name:'',
-        email:'',
-        password:'',
-        branch_id:'',
-        role:'',
-        first_name: '',
-        middle_name: '',
-        last_name: '',
-        phone: '',
-        mobile: '',
-        id_number: '',
-        notes: '',
-=======
       activeTab: "BasicInformation",
       postData: reactive({
         code: "",
@@ -106,7 +88,6 @@ export default {
         mobile: "",
         id_number: "",
         notes: "",
->>>>>>> 3fcfcc4bef52112827d219dcb17c1d395f5f2bc5
         _token: this.$page.props.csrf_token,
       }),
     };
