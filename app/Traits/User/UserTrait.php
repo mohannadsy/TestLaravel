@@ -8,6 +8,7 @@ use App\Models\Trash;
 use App\Models\User;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 
 
@@ -80,4 +81,38 @@ trait  UserTrait
 
 
     }
+
+//
+//    public function userPermisssion($userId)
+//    {
+//        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption ', 'id')->with(['permissions'])->get();
+//
+//        $user = User::find($userId);
+////        $user->permissions;
+//        $userPermissions = User::with('permissions')->find($userId);
+//
+//        foreach ($groupPermissions as $groups) {
+//            foreach ($permission)
+//        }
+//
+//    }
+
+    public function userPermissionTow($userId)
+    {
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption ', 'id')->with(['permissions'])->get();
+
+
+        $userPermissions = User::with(['permissions'=>function ($query){
+            $query->select('caption_' . Config::get('app.locale') . ' as caption ');
+        }])->select('name','id')->find($userId);
+
+
+        return Inertia::render('BranchAndUser/Index', compact('groupPermissions','$userPermissions'));
+
+
+    }
+
+
+
+
 }

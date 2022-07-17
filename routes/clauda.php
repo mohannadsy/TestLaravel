@@ -21,6 +21,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 //    Route::get('create', [UserController::class, 'create'])->name('user.create');
 
     Route::get('permissions-according-lang', [UserController::class, 'permissionsAccordingLang'])->name('user.permissionsAccordingLang');
+    Route::get('user-permission-tow/{id}', [UserController::class, 'userPermissionTow'])->name('user.userPermisssionTow');
 
     Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');
     Route::get('get-main-tree', [UserController::class, 'tree'])->name('user.tree');
