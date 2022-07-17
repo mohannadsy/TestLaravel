@@ -44,8 +44,33 @@ class UserController extends Controller
 //      $this->givePermissionTo($request->permissions);
         $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('BranchAndUser/Index', compact('user'));;
+        return Inertia::render('BranchAndUser/Index', compact('user'));
     }
+//
+//    public function create(UserRequest $request)
+//    {
+//        $id = User::orderBy('id', 'desc')->first()->id + 1;
+//        $parameters = ['request' => $request, 'id' => $id];
+//        $request->code = 98;
+//        $request->name = 'Clauda Al-Rakkad';
+//        $request->email = "clauda@gmail.com";
+//        $request->password = bcrypt('12345clauda');
+//        $request->role = 'Casher';
+//        $request->branch_id = '3';
+//        $request->first_name = 's';
+//        $request->middle_name = 's';
+//        $request->last_name = 's';
+//        $request->phone = '09913646374';
+//        $request->mobile = '0414949494';
+//        $request->id_number = '001123938373774';
+//        $request->notes = 'notes ';
+//        $request->account_box_id = 0;
+//        $request->store_id = 0;
+//        $request->is_active = false;
+//        $request->profile_photo_path = 'photo';
+//        $user = User::create($request->all());
+//        $this->callActivityMethod('create', $parameters);
+//    }
 
     public function update(UserRequest $request, $id)
     {

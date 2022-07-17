@@ -18,7 +18,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('show/{id}', [UserController::class, 'show'])->name('user.show');
     Route::post('update', [UserController::class, 'update'])->name('user.update');
     Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
-
+//    Route::get('create', [UserController::class, 'create'])->name('user.create');
 
     Route::get('permissions-according-lang', [UserController::class, 'permissionsAccordingLang'])->name('user.permissionsAccordingLang');
 
