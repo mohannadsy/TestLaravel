@@ -92,7 +92,6 @@ trait  UserTrait
                     $permission->is_active = false;
                 }
             }
-
         }
         return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
 
