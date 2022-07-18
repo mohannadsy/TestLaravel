@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 
 trait  UserTrait
@@ -82,37 +83,56 @@ trait  UserTrait
 
     }
 
-//
-//    public function userPermisssion($userId)
-//    {
-//        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption ', 'id')->with(['permissions'])->get();
-//
-//        $user = User::find($userId);
-////        $user->permissions;
-//        $userPermissions = User::with('permissions')->find($userId);
-//
-//        foreach ($groupPermissions as $groups) {
-//            foreach ($permission)
-//        }
-//
-//    }
 
-    public function userPermissionTow($userId)
+    public function userPermission($userId)
     {
-        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption ', 'id')->with(['permissions'])->get();
-
-
-        $userPermissions = User::with(['permissions'=>function ($query){
-            $query->select('caption_' . Config::get('app.locale') . ' as caption ');
-        }])->select('name','id')->find($userId);
-
-
-        return Inertia::render('BranchAndUser/Index', compact('groupPermissions','$userPermissions'));
-
-
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+        $user = User::find($userId);
+        foreach ($groupPermissions as $groups) {
+            foreach ($groups->permissions as $permission) {
+                if ($user->hasPermissionTo($permission->name)) {
+                    $permission->is_active = true;
+                } else {
+                    $permission->is_active = false;
+                }
+            }
+        }
+        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
     }
 
+    public function rolePermission($roleId)
+    {
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+        $role = Role::find($roleId);
 
+        foreach ($groupPermissions as $groups) {
+            foreach ($groups->permissions as $permission) {
+                if ($role->hasPermissionTo($permission->name)) {
+                    $permission->is_active = true;
+                    return $role->permissions;
+                } else {
+                    $permission->is_active = false;
+                }
+            }
+        }
+
+        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role'));
+    }
+
+//    public function userPermissionTow($userId)
+//    {
+//        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id')->with(['permissions'])->get();
+//
+//
+//        $userPermissions = User::with(['permissions'=>function ($query){
+//            $query->select('caption_' . Config::get('app.locale') . ' as caption');
+//        }])->select('name','id')->find($userId);
+//
+//
+//        return Inertia::render('BranchAndUser/Index', compact('groupPermissions','$userPermissions'));
+//
+//
+//    }
 
 
 }
