@@ -31,12 +31,18 @@ class CostCenterController extends Controller
         return $data = 'store is successfully';
     }
 
+
     public function show($id)
     {
         $parameters = ['id' => $id];
         $CostCenter = CostCenter::find($id);
-        return $CostCenter ? $CostCenter && $this->callActivityMethod('show', $parameters) : "CostCenter not found";
+        if ($CostCenter) {
+            $this->callActivityMethod('show', $parameters);
+            return $CostCenter;
+        }
+        return 'CostCenter not Found';
     }
+
 
     public function update(CostCentersRequest $request, $id)
     {
