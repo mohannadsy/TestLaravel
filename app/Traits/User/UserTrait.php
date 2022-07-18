@@ -70,7 +70,6 @@ trait  UserTrait
 
     public function permissionsAccordingLang()
     {
-
         $groups = PermissionGroup::with('permissions')->get();
         foreach ($groups as $group) {
             if (Config::get('app.locale') == 'ar')
@@ -79,10 +78,7 @@ trait  UserTrait
                 $group->caption = $group->caption[1]['name'];
         }
         return $groups;
-
-
     }
-
 
     public function userPermission($userId)
     {
@@ -97,12 +93,9 @@ trait  UserTrait
                 }
             }
         }
-<<<<<<< HEAD
+
         return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
-=======
-        return $user;
-//        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
->>>>>>> 692d7c3aa0b29cce84cc13f3f74e6365d79f715e
+
     }
 
     public function rolePermission($roleId)
@@ -123,21 +116,6 @@ trait  UserTrait
 
 //        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role'));
     }
-
-//    public function userPermissionTow($userId)
-//    {
-//        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id')->with(['permissions'])->get();
-//
-//
-//        $userPermissions = User::with(['permissions'=>function ($query){
-//            $query->select('caption_' . Config::get('app.locale') . ' as caption');
-//        }])->select('name','id')->find($userId);
-//
-//
-//        return Inertia::render('BranchAndUser/Index', compact('groupPermissions','$userPermissions'));
-//
-//
-//    }
 
 
 }
