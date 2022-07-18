@@ -109,13 +109,12 @@ trait  UserTrait
             foreach ($groups->permissions as $permission) {
                 if ($role->hasPermissionTo($permission->name)) {
                     $permission->is_active = true;
-//                    return $role->permissions;
+                    return $role->permissions;
                 } else {
                     $permission->is_active = false;
                 }
             }
         }
-
 
         return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role'));
     }
