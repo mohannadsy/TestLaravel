@@ -87,7 +87,7 @@ trait  UserTrait
     public function userPermission($userId)
     {
         $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
-        $user = User::find($userId);
+        $user = User::with('permissions')->find($userId);
         foreach ($groupPermissions as $groups) {
             foreach ($groups->permissions as $permission) {
                 if ($user->hasPermissionTo($permission->name)) {
@@ -97,7 +97,7 @@ trait  UserTrait
                 }
             }
         }
-        return $groupPermissions;
+        return $user;
 //        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
     }
 
