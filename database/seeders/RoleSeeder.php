@@ -16,7 +16,7 @@ class RoleSeeder extends Seeder
 
         //-----give permissions to Admin Role-----//
 
-        $roleAdmin->givePermissionTo('store-user');
+//        $roleAdmin->givePermissionTo('store-user');
         $roleAdmin->givePermissionTo('update-user');
         $roleAdmin->givePermissionTo('delete-user');
         $roleAdmin->givePermissionTo('show-user');

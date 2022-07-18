@@ -21,12 +21,14 @@
         :key="index"
         :item="childBranch"
         @make-folder="$emit('make-folder', $event)"
+        @send-data="this.$emit('send-data',$event)"
       ></tree-item>
       <tree-item
         v-for="(childUsers, index) in item.users"
         :key="index"
         :item="childUsers"
         @make-folder="$emit('make-folder', $event)"
+        @send-data="this.$emit('send-data',$event)"
       ></tree-item>
     </ul>
   </div>
@@ -41,7 +43,7 @@ export default {
   data() {
     return {
       isOpen: false,
-       current: "sara",
+       current: "",
     };
   },
   computed: {
@@ -69,7 +71,7 @@ export default {
         this.current = "users";
       }
       this.$emit('send-data',this.current)
-      console.log('this is from tree' + this.current)
+      console.log('this is from tree ' + this.current)
     },
   },
 };
