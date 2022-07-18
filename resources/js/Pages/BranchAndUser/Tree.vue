@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       isOpen: false,
-      current: "sara",
+       current: "sara",
     };
   },
   computed: {
@@ -68,12 +68,12 @@ export default {
       } else {
         this.current = "users";
       }
-      this.$emit('send-type',this.current)
+      this.$emit('send-data',this.current)
+      console.log('this is from tree' + this.current)
     },
   },
 };
 </script>
-
 <style scoped>
 .pointer {
   cursor: pointer;
