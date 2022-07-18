@@ -11,7 +11,7 @@
       <span
         :class="{ bold: isFolder }"
         class="pointer"
-        @click="showName(item)"
+        @click="sendNodeType(item)"
         >{{ item.name }}</span
       >
     </div>
@@ -21,14 +21,14 @@
         :key="index"
         :item="childBranch"
         @make-folder="$emit('make-folder', $event)"
-        @send-data="this.$emit('send-data',$event)"
+        @node-type="this.$emit('node-type',$event)"
       ></tree-item>
       <tree-item
         v-for="(childUsers, index) in item.users"
         :key="index"
         :item="childUsers"
         @make-folder="$emit('make-folder', $event)"
-        @send-data="this.$emit('send-data',$event)"
+        @node-type="this.$emit('node-type',$event)"
       ></tree-item>
     </ul>
   </div>
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       isOpen: false,
-       current: "",
+       node: "",
     };
   },
   computed: {
@@ -64,14 +64,13 @@ export default {
       }
     },
 
-    showName(item) {
+    sendNodeType(item) {
       if (item.hasOwnProperty("branches")) {
-        this.current = "branches";
+        this.node = "branches";
       } else {
-        this.current = "users";
+        this.node = "users";
       }
-      this.$emit('send-data',this.current)
-      console.log('this is from tree ' + this.current)
+      this.$emit('node-type',this.node)
     },
   },
 };

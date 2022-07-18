@@ -7,12 +7,12 @@
         :key="branch.name"
         class="item"
         :item="branch"
-        @send-data="showType($event)"
+        @node-type="getNodeType($event)"
       ></tree>
     </div>
     <div class="col-9">
-      <branch-form v-show="type=='branches'"></branch-form>
-      <user-form v-show="type=='users'"  :groupPermissions="$page['props']['groupPermissions']"></user-form>
+      <branch-form v-show="nodeType=='branches'"></branch-form>
+      <user-form v-show="nodeType=='users'"  :groupPermissions="$page['props']['groupPermissions']"></user-form>
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@ import Tree from "./Tree.vue";
 export default {
   data() {
     return {
-      type: 'branches',
+      nodeType: 'branches',
     };
   },
   props: {
@@ -41,14 +41,10 @@ export default {
     saveData() {
       this.$store.dispatch("branches/loadBranches");
     },
-    showType(msg){
-        this.type = msg;
-        console.log("message " + msg +'TTTTTTT'+ this.type) ;
+    getNodeType(current){
+        this.nodeType = current;
     },
   },
-  mounted(){
-    console.log('from index' + this.type)
-  }
 };
 </script>
 
