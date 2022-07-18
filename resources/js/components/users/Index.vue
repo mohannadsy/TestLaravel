@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluide rounded bg-white mb-1">
     <div class="row justify-content-end">
-      <div class="col-md-12 border-right">
+      <div class="col-md-9 border-right">
         <div class="row px-3 mt-1 pb-2">
           <page-title>بطاقة مستخدم</page-title>
         </div>

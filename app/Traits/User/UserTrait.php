@@ -97,8 +97,7 @@ trait  UserTrait
                 }
             }
         }
-        return $groupPermissions;
-//        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
+        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
     }
 
     public function rolePermission($roleId)
@@ -117,7 +116,7 @@ trait  UserTrait
         }
         return $groupPermissions;
 
-//       return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role'));
+//        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role'));
     }
 
 //    public function userPermissionTow($userId)
