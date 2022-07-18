@@ -7,7 +7,6 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 
-import 'devextreme/dist/css/dx.light.css';
 library.add(fas, fab);
 
 const appName = window.document.getElementsByTagName('title')[0];
