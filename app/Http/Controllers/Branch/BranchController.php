@@ -45,7 +45,11 @@ class BranchController extends Controller
     {
         $parameters = ['id' => $id];
         $branch = Branch::find($id);
-        return $branch && $this->callActivityMethod('show', $parameters);
+        if ($branch) {
+            $this->callActivityMethod('show', $parameters);
+            return $branch;
+        }
+        return 'Branch not Found';
     }
 
     public function update(BranchRequest $request, $id)
