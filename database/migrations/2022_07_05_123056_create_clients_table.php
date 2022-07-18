@@ -40,7 +40,7 @@ return new class extends Migration {
             $table->integer('default_price');
             $table->string('discount_rate');
             $table->integer('discount_account');
-            $table->string('payment_conditions');
+            $table->string('payment_method');
 
             $table->integer('account_id');
 
