@@ -79,14 +79,5 @@ class UserController extends Controller
         return 'User not Found';
     }
 
-
-//    public function isActive($id)
-//    {
-//        $permission = Permission::find($id);
-//        return $permission->is_active = true;
-//   }
-
-
-
 }
 
