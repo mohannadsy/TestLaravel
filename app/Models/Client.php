@@ -31,7 +31,7 @@ class Client extends Model
         'default_price',
         'discount_rate',
         'discount_account',
-        'payment_conditions', // شروط الدفع
+        'payment_method', // شروط الدفع
         'account_id'
     ];
 

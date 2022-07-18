@@ -30,7 +30,7 @@ class ClientSeeder extends Seeder
             'default_price'      => 32,
             'discount_rate'      => '',
             'discount_account'   => 323,
-            'payment_conditions' =>'',
+            'payment_method' =>'',
             'account_id'         => 1,
         ]);
     }
