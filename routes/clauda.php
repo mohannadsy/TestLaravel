@@ -22,6 +22,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 
     Route::get('permissions-according-lang', [UserController::class, 'permissionsAccordingLang'])->name('user.permissionsAccordingLang');
     Route::get('user-permission-tow/{id}', [UserController::class, 'userPermissionTow'])->name('user.userPermisssionTow');
+
     Route::get('userPermission/{id}', [UserController::class, 'userPermission'])->name('user.userPermission');
     Route::get('rolePermission/{id}', [UserController::class, 'rolePermission'])->name('user.rolePermission');
 

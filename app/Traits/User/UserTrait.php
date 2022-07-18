@@ -86,35 +86,38 @@ trait  UserTrait
 
     public function userPermission($userId)
     {
-        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id' , 'name')->with(['permissions'])->get();
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
         $user = User::find($userId);
         foreach ($groupPermissions as $groups) {
             foreach ($groups->permissions as $permission) {
-                if ( $user->hasPermissionTo($permission->name)) {
+                if ($user->hasPermissionTo($permission->name)) {
                     $permission->is_active = true;
                 } else {
                     $permission->is_active = false;
                 }
             }
-
         }
-        return Inertia::render('BranchAndUser/Index', compact('$groupPermissions','$user'));
+        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
     }
 
     public function rolePermission($roleId)
     {
-        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id' , 'name')->with(['permissions'])->get();
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
         $role = Role::find($roleId);
+
         foreach ($groupPermissions as $groups) {
             foreach ($groups->permissions as $permission) {
-                if ( $role->hasPermissionTo($permission->name)) {
+                if ($role->hasPermissionTo($permission->name)) {
                     $permission->is_active = true;
+//                    return $role->permissions;
                 } else {
                     $permission->is_active = false;
                 }
             }
         }
-        return Inertia::render('BranchAndUser/Index', compact('$groupPermissions','$role'));
+
+
+        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role'));
     }
 
 //    public function userPermissionTow($userId)
