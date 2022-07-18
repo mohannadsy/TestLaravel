@@ -97,6 +97,7 @@ trait  UserTrait
                 }
             }
         }
+
         return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
     }
 
