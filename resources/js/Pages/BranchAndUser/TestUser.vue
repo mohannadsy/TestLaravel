@@ -1,6 +1,6 @@
 <template>
     <div>
-        <user-form></user-form>
+        <!-- <user-form :groupPermissions="$page['props']['groupPermissions']"></user-form> -->
 
     </div>
 </template>
@@ -12,5 +12,8 @@ export default{
     components:{
      userForm:Index
     },
+    // props: {
+    //     groupPermissions:Array,
+    // },
 };
 </script>

@@ -1,13 +1,13 @@
 require('./bootstrap');
 import { createApp, h } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {  library } from '@fortawesome/fontawesome-svg-core';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 
-library.add(fas,fab);
+library.add(fas, fab);
 
 const appName = window.document.getElementsByTagName('title')[0];
 
@@ -43,7 +43,7 @@ createInertiaApp({
             .use(plugin)
             .use(store)
             .use(style)
-            .component('fa',FontAwesomeIcon)
+            .component('fa', FontAwesomeIcon)
             .mixin({ methods: { route } })
             .mount(el);
     },

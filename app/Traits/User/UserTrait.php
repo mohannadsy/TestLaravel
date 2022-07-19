@@ -8,7 +8,9 @@ use App\Models\Trash;
 use App\Models\User;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 
 trait  UserTrait
@@ -68,7 +70,6 @@ trait  UserTrait
 
     public function permissionsAccordingLang()
     {
-
         $groups = PermissionGroup::with('permissions')->get();
         foreach ($groups as $group) {
             if (Config::get('app.locale') == 'ar')
@@ -77,7 +78,40 @@ trait  UserTrait
                 $group->caption = $group->caption[1]['name'];
         }
         return $groups;
+    }
+
+    public function userPermission($userId)
+    {
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+        $user = User::find($userId);
+        foreach ($groupPermissions as $groups) {
+            foreach ($groups->permissions as $permission) {
+                if ($user->hasPermissionTo($permission->name)) {
+                    $permission->is_active = true;
+                } else {
+                    $permission->is_active = false;
+                }
+            }
+        }
+        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
+    }
 
 
+    public function rolePermission($roleId)
+    {
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+        $role = Role::find($roleId);
+
+        foreach ($groupPermissions as $groups) {
+            foreach ($groups->permissions as $permission) {
+                if ($role->hasPermissionTo($permission->name)) {
+                    $permission->is_active = true;
+                } else {
+                    $permission->is_active = false;
+                }
+            }
+        }
+        return $groupPermissions;
+//        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role'));
     }
 }

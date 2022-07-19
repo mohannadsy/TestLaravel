@@ -7,40 +7,23 @@
         :key="branch.name"
         class="item"
         :item="branch"
+        @node-type="getNodeType($event)"
       ></tree>
-      <!-- <tree
-        id="customtree-basic"
-        :initial-model="branchesWithUsers"
-        :model-defaults="modelDefaults"
-      ></tree> -->
     </div>
     <div class="col-9">
-      <branch-form
-        v-if="this.current === 'branch'"
-        @send-branch="switchToBranch"
-      ></branch-form>
-      <user-form
-        v-if="this.current === 'user'"
-        @send-user="switchToUser"
-      ></user-form>
+      <branch-form v-show="nodeType=='branches'"></branch-form>
+      <user-form v-show="nodeType=='users'"  :groupPermissions="$page['props']['groupPermissions']"></user-form>
     </div>
   </div>
 </template>
-
 <script>
 import Index from "../../components/users/Index.vue";
 import IndexVue from "../../components/branches/Index.vue";
 import Tree from "./Tree.vue";
-//import TreeView from "@grapoza/vue-tree";
 export default {
   data() {
     return {
-      current: "branch",
-      modelDefaults: {
-        idProperty: "id",
-        labelProperty: "name",
-        childrenProperty: "branches",
-      },
+      nodeType: 'branches',
     };
   },
   props: {
@@ -58,15 +41,10 @@ export default {
     saveData() {
       this.$store.dispatch("branches/loadBranches");
     },
-    switchToUser() {
-      this.current = "user";
+    getNodeType(current){
+        this.nodeType = current;
     },
-    switchToBranch() {
-      this.current = "branch";
-    },
-  },
-  mounted() {
-    console.log(typeof(this.modelDefaults.childrenProperty));
   },
 };
 </script>
+

@@ -1,19 +1,15 @@
 <template>
     <div>
-        <!-- <ul v-for="(groupPermission, i) in groupPermissions" :key="i" >
-      <elemet-label> {{groupPermission.caption}}</elemet-label>
-      <li v-for="(permission,i) in groupPermission.permissions" :key="i">
-                {{ permission}}
-      </li>
-    </ul> -->
-        <ul class="main" v-for="(group,i) in groups" :key="i" >
-            <elemet-label> حسابات</elemet-label>
-            <ul>
-                <!-- <elemet-label>{{group}} </elemet-label> -->
-                <li class="col-3" v-for="(permission,i) in permissions" :key="i">
-                <checkbox-switch>   </checkbox-switch>
-                {{permission}}
-               </li>
+        <ul class="main" v-for="(groupPermission, i) in groupPermissions" :key="i" >
+        <span class="rightAngle"></span>
+            <elemet-label> {{groupPermission.caption}}</elemet-label>
+            
+            <ul class="permisiions_ul" >
+                    <li class="col-3" v-for="(permission,i) in groupPermission.permissions" :key="i">
+                        <checkbox-switch>   </checkbox-switch>
+                        {{permission.caption }}
+                    </li>
+
             </ul>
         </ul>
     </div>
@@ -31,30 +27,40 @@ export default {
         CheckboxSwitch,
     },
     props: {
-        // groupPermissions:Array,
+        groupPermissions:Array,
     },
-
-    data() {
-        return {
-            groups:['دليل الحسابات','بطاقة حساب'],
-            permissions:['إضافة بطاقة حساب','تعديل بطاقة ','حذف','استعراض','حذف نهائي','استعادة','طباعة']
-
-        };
-    },
+    mounted() {
+    var toggleNodeGroup = document.getElementsByClassName("rightAngle");
+    for (var i = 0; i < toggleNodeGroup.length; i++) {
+      toggleNodeGroup[i].addEventListener("click", function () {
+        this.parentElement
+          .querySelector(".permisiions_ul")
+          .classList.toggle("active");
+        this.classList.toggle("angleDown");
+      });
+    }
+  },
 };
 </script>
 
 <style scoped>
-table,
-th,
-td {
-    border: 1px solid;
-}
 .main{
     list-style: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
+}
+.rightAngle::before {
+  content: "\25B6";
+  display: inline-block;
+  cursor: pointer;
+  padding: 1px;
+  transition: 0.2s ease-out;
+  transform: rotate(180deg);
+}
+.angleDown::before {
+  transform: rotate(90deg);
+  transition: 0.2s ease-out;
 }
 
 
@@ -62,7 +68,6 @@ li
 {
   float :right;
   display: block;
-  text-align: center;
   padding: 20px 16px ;
   text-decoration: none;
 }
