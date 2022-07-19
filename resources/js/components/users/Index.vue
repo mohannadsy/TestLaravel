@@ -1,8 +1,8 @@
 <template>
-  <div class="container-fluide rounded bg-white mb-1">
-    <div class="row justify-content-end">
-      <div class="col-md-9 border-right">
-        <div class="row px-3 mt-1 pb-2">
+  <div class="container-fluide rounded bg-light">
+    <div class="row">
+      <div class="col-md">
+        <div class="row px-3 mt-1 ">
           <page-title>بطاقة مستخدم</page-title>
         </div>
         <form>
