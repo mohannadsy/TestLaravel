@@ -11,7 +11,7 @@ class PermissionGroup extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'caption_ar', 'caption_en'];
+    protected $fillable = ['name', 'caption_ar', 'caption_en', 'confidentiality_degree',];
     protected $hidden = ['created_at', 'updated_at'];
 
     public function permissions()

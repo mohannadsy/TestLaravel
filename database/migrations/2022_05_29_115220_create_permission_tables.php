@@ -34,6 +34,7 @@ class CreatePermissionTables extends Migration
             $table->string('caption_en');
 
 
+
             $table->unsignedBigInteger('permission_group_id');
 
             $table->timestamps();

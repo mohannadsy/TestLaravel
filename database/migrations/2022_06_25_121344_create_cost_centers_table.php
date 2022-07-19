@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('in_balance')->nullable()->default(null);
             $table->unsignedBigInteger('out_balance')->nullable()->default(null);
             $table->string('notes')->nullable()->default(null);
+            $table->integer('confidentiality_degree');
             $table->timestamps();
 
             $table->foreign('center_id')->references('id')->on('cost_centers');

@@ -31,6 +31,8 @@ return new class extends Migration {
             $table->integer('account_box_id');
             $table->integer('store_id');
             $table->boolean('is_active');
+            $table->integer('confidentiality_degree');
+            $table->integer('confidentiality_level');
 
             $table->rememberToken();
 //            $table->softDeletes();

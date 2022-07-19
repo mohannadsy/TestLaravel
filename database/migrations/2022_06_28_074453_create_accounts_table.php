@@ -45,6 +45,7 @@ return new class extends Migration {
             $table->string('is_distributive');
             $table->boolean('is_final');
             $table->string('debtor_and_creditor');
+            $table->integer('confidentiality_degree');
 
             $table->timestamps();
 

@@ -44,7 +44,12 @@ class User extends Authenticatable
         'notes',
         'account-box_id',
         'store_id',
-        'is_active'
+        'is_active',
+
+
+        'confidentiality_degree',
+
+        'confidentiality_level',
     ];
 
     protected $hidden = [
@@ -54,6 +59,8 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
         'profile_photo_url',
+
+
 
     ];
 

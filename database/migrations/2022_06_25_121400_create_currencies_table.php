@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->integer('accuracy');
             $table->string('lain_part_name');
             $table->string('photo');
+            $table->integer('confidentiality_degree');
             $table->timestamps();
         });
     }
