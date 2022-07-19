@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role');
-            $table->string('branch_id');
+            $table->unsignedBigInteger('branch_id');
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name')->nullable();
@@ -35,6 +35,11 @@ return new class extends Migration {
             $table->rememberToken();
 //            $table->softDeletes();
             $table->timestamps();
+
+
+
+            $table->foreign('branch_id')->references('id')->on('branches');
+
         });
     }
 

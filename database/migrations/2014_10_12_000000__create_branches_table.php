@@ -20,6 +20,10 @@ return new class extends Migration {
             $table->string('mobile')->nullable()->default(null);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+
+
+            $table->foreign('branch_id')->references('id')->on('branches');
+
         });
     }
     public function down()
