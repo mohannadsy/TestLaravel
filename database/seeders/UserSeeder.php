@@ -63,7 +63,7 @@ class UserSeeder extends Seeder
 
 
         // user 3 -> 10
-        for ($i = 3; $i < 10; $i++)
+        for ($i = 3; $i <= 6; $i++)
             $userClauda = User::create([
                 'code'              => $i,
                 'name'              => 'Clauda Al-Rakkad' . $i,

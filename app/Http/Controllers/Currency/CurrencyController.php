@@ -56,7 +56,7 @@ class CurrencyController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $currency;
         }
-        return 'User not Found';
+        return 'Currency not Found';
     }
 
 

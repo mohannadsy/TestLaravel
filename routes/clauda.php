@@ -20,7 +20,12 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 //    Route::get('create', [UserController::class, 'create'])->name('user.create');
 
+
+
+     Route::get('database-backup', [UserController::class, 'databaseBackup'])->name('database.databaseBackup');
+
     Route::get('permissions-according-lang', [UserController::class, 'permissionsAccordingLang'])->name('user.permissionsAccordingLang');
+
     Route::get('user-permission-tow/{id}', [UserController::class, 'userPermissionTow'])->name('user.userPermissionTow');
 
     Route::get('userPermission/{id}', [UserController::class, 'userPermission'])->name('user.userPermission');
