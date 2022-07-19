@@ -47,6 +47,10 @@ return new class extends Migration {
             $table->string('debtor_and_creditor');
 
             $table->timestamps();
+
+
+            $table->foreign('account_id')->references('id')->on('accounts');
+
         });
     }
 

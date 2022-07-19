@@ -9,7 +9,6 @@ use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
 use App\Traits\User\AdminTrait;
 use App\Traits\User\UserTrait;
-use App\Traits\Database\DatabaseTrait;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
@@ -17,7 +16,7 @@ use function Symfony\Component\Mime\Header\all;
 
 class UserController extends Controller
 {
-    use ImageTrait, ActivityLog, AdminTrait, UserTrait, DatabaseTrait;
+    use ImageTrait, ActivityLog, AdminTrait, UserTrait;
 
     public function callActivityMethod($method, $parameters)
     {

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('out_balance')->nullable()->default(null);
             $table->string('notes')->nullable()->default(null);
             $table->timestamps();
+
+            $table->foreign('center_id')->references('id')->on('cost_centers');
         });
     }
     public function down()
