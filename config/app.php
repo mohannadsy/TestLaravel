@@ -190,7 +190,7 @@ return [
 
         Barryvdh\Debugbar\ServiceProvider::class,
 
-        Spatie\Backup\BackupServiceProvider::class,
+
 
         /*
          * Application Service Providers...

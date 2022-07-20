@@ -39,20 +39,6 @@ class PermissionSeeder extends Seeder
             'caption_en' => 'show-user ',
 
         ]);
-        $showUser = Permission::create([
-            'name' => 'show-user for raghad',
-            'permission_group_id' => 1,
-            'caption_ar' => 'عرض مستخدم ',
-            'caption_en' => 'show-user ',
-
-        ]);
-        $showUser = Permission::create([
-            'name' => 'show-user again ',
-            'permission_group_id' => 1,
-            'caption_ar' => 'عرض مستخدم ',
-            'caption_en' => 'show-user ',
-
-        ]);
         //---------------roles--------------------------//
         $storeRole = Permission::create([
             'name' => 'store-role',
@@ -71,22 +57,15 @@ class PermissionSeeder extends Seeder
         $deleteRole = Permission::create([
             'name' => 'delete-role',
             'permission_group_id' => 2,
-            'caption_ar' => 'حذف دور نهائيا ',
+            'caption_ar' => 'حذف دور  ',
             'caption_en' => 'delete-role ',
 
         ]);
         $showRole = Permission::create([
             'name' => 'show-role',
             'permission_group_id' => 2,
-            'caption_ar' => 'عرض دور   يا جماعة ',
-            'caption_en' => 'show-role ',
-
-        ]);
-        $showRole = Permission::create([
-            'name' => 'show-role again',
-            'permission_group_id' => 2,
             'caption_ar' => 'عرض دور  ',
-            'caption_en' => 'show-role => Showwwwwwww Role ',
+            'caption_en' => 'show-role ',
 
         ]);
         //---------------permissions--------------------------//
@@ -107,8 +86,8 @@ class PermissionSeeder extends Seeder
         $deletePermission = Permission::create([
             'name' => 'delete-permission',
             'permission_group_id' => 3,
-            'caption_ar' => 'حذف صلاحية حذف صلاحية  ',
-            'caption_en' => 'delete-permission delete-permission ',
+            'caption_ar' => 'حذف صلاحية  ',
+            'caption_en' => 'delete-permission',
 
         ]);
         $showPermission = Permission::create([
