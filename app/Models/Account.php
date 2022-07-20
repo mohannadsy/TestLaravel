@@ -60,4 +60,8 @@ class Account extends Model
     {
         return $this->hasOne(Client::class, 'account_id');
     }
+    public function stores()
+    {
+        return $this->hasMany(Store::class,'account_id');
+    }
 }

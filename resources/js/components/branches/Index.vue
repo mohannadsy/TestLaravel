@@ -23,6 +23,7 @@
         <element-button>حذف</element-button>
       </div>
     </div>
+    <h1 v-for="Re in Rec" :key="Re">{{Re.name}}</h1>
   </div>
 </template>
 
@@ -39,6 +40,7 @@ import MainInfromation1 from "./MainInfromation.vue";
 import { reactive } from "vue";
 
 export default {
+    props:["Rec"],
   components: {
     BasicInformation,
     PageTitle,
@@ -87,6 +89,9 @@ export default {
       this.$store.dispatch("branches/registerBranch", this.postData);
     },
   },
+  created(){
+    console.log()
+  }
 };
 </script>
 
