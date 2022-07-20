@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-2">الصفة</elemet-label>
+        <elemet-label class="col-form-label col-2" style="padding-top:15px;">الصفة</elemet-label>
         <div class="col-8">
           <v-select
             :options="roleOptions"
