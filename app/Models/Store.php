@@ -25,15 +25,15 @@ class Store extends Model
     ];
     public function stores()
     {
-        return $this->hasMany('App\Models\Store', 'store_id');
+        return $this->hasMany(Store::Class, 'store_id');
     }
     public function store()
     {
-        return $this->belongsTo('App\Models\Store', 'store_id');
+        return $this->belongsTo(Store::Class, 'store_id');
     }
     public function accounts()
     {
-        return $this->hasMany('App\Model\Account','account_id');
+        return $this->hasMany(Account::Class ,'account_id');
     }
 
     use HasFactory;
