@@ -11,7 +11,7 @@
       <span
         :class="{ bold: isFolder }"
         class="pointer"
-        @click="sendNodeType(item, id)"
+        @click="sendNodeType(item)"
         >{{ item.name }}</span
       >
     </div>
@@ -75,16 +75,16 @@ export default {
       }
     this.$emit("node-type",this.node);
     //   let res = this.$inertia.get(route("branch.show",1));
-    let self = this;
-    axios.get(route("branch.show",item.id)).then((response)=>{
-   //this.res = response.data
-           this.$emit("node-type",{node:this.node,response});
-    }
-            // I need this data here ^^
+//     let self = this;
+//     axios.get(route("branch.show",item.id)).then((response)=>{
+//    //this.res = response.data
+//            this.$emit("node-type",{node:this.node,response});
+//     }
+//             // I need this data here ^^
 
 
-           //console.log(that)
-)
+//            //console.log(that)
+// )
     //   this.response = res;
     //   //this.response.code = res.code
     //console.log(this.res)
