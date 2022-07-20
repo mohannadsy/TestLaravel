@@ -71,14 +71,14 @@ class PermissionSeeder extends Seeder
         $deleteRole = Permission::create([
             'name' => 'delete-role',
             'permission_group_id' => 2,
-            'caption_ar' => 'حذف دور  ',
+            'caption_ar' => 'حذف دور نهائيا ',
             'caption_en' => 'delete-role ',
 
         ]);
         $showRole = Permission::create([
             'name' => 'show-role',
             'permission_group_id' => 2,
-            'caption_ar' => 'عرض دور  ',
+            'caption_ar' => 'عرض دور   يا جماعة ',
             'caption_en' => 'show-role ',
 
         ]);
@@ -86,7 +86,7 @@ class PermissionSeeder extends Seeder
             'name' => 'show-role',
             'permission_group_id' => 2,
             'caption_ar' => 'عرض دور  ',
-            'caption_en' => 'show-role ',
+            'caption_en' => 'show-role => Showwwwwwww Role ',
 
         ]);
         //---------------permissions--------------------------//
@@ -107,8 +107,8 @@ class PermissionSeeder extends Seeder
         $deletePermission = Permission::create([
             'name' => 'delete-permission',
             'permission_group_id' => 3,
-            'caption_ar' => 'حذف صلاحية  ',
-            'caption_en' => 'delete-permission',
+            'caption_ar' => 'حذف صلاحية حذف صلاحية  ',
+            'caption_en' => 'delete-permission delete-permission ',
 
         ]);
 //        $showPermission = Permission::create([
