@@ -20,6 +20,7 @@ class BranchSeeder extends Seeder
             'phone' => '041877645',
             'mobile' => '0994848736',
             'is_active' => true,
+            'confidentiality_degree' => 1 // سرية
         ]);
         Branch::create([
             'code' => '2',
