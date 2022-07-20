@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use NunoMaduro\Collision\Adapters\Phpunit\State;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -113,5 +114,29 @@ trait  UserTrait
         }
         return $groupPermissions;
 //        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role'));
+    }
+
+
+    public function restoreDatabase()
+    {
+
+        $sqlPath = storage_path('app\backups\mysql-laravel.sql');
+        DB::unprepared(file_get_contents($sqlPath));
+
+
+//        ini_set('memory_limit', '-1');
+//        return DB::unprepared(file_get_contents("mysql-laravel.sql")) ? ' Ok' : 'No';
+
+
+//        DB::statement( file_get_contents('/path/to/your/database.sql') );
+//        DB::unprepared(File::get('full/path/to/dump.sql'));//another solution
+
+
+        // another solution
+//    use Illuminate\Support\Facades\DB;
+//    use Illuminate\Support\Facades\File;
+//
+//        $sql_dump = File::get('/path/to/file.sql');
+//        DB::connection()->getPdo()->exec($sql_dump);
     }
 }

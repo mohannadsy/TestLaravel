@@ -21,8 +21,9 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 //    Route::get('create', [UserController::class, 'create'])->name('user.create');
 
 
+    Route::get('restoreDatabase', [UserController::class, 'restoreDatabase'])->name('user.restoreDatabase');
 
-     Route::get('database-backup', [UserController::class, 'databaseBackup'])->name('database.databaseBackup');
+    Route::get('database-backup', [UserController::class, 'databaseBackup'])->name('database.databaseBackup');
 
     Route::get('permissions-according-lang', [UserController::class, 'permissionsAccordingLang'])->name('user.permissionsAccordingLang');
 

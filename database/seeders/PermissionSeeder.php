@@ -39,6 +39,20 @@ class PermissionSeeder extends Seeder
             'caption_en' => 'show-user ',
 
         ]);
+        $showUser = Permission::create([
+            'name' => 'show-user',
+            'permission_group_id' => 1,
+            'caption_ar' => 'عرض مستخدم ',
+            'caption_en' => 'show-user ',
+
+        ]);
+        $showUser = Permission::create([
+            'name' => 'show-user',
+            'permission_group_id' => 1,
+            'caption_ar' => 'عرض مستخدم ',
+            'caption_en' => 'show-user ',
+
+        ]);
         //---------------roles--------------------------//
         $storeRole = Permission::create([
             'name' => 'store-role',
@@ -59,6 +73,13 @@ class PermissionSeeder extends Seeder
             'permission_group_id' => 2,
             'caption_ar' => 'حذف دور  ',
             'caption_en' => 'delete-role ',
+
+        ]);
+        $showRole = Permission::create([
+            'name' => 'show-role',
+            'permission_group_id' => 2,
+            'caption_ar' => 'عرض دور  ',
+            'caption_en' => 'show-role ',
 
         ]);
         $showRole = Permission::create([
@@ -90,12 +111,12 @@ class PermissionSeeder extends Seeder
             'caption_en' => 'delete-permission',
 
         ]);
-        $showPermission = Permission::create([
-            'name' => 'show-permission',
-            'permission_group_id' => 3,
-            'caption_ar' => 'عرض صلاحية  ',
-            'caption_en' => 'show-permission',
-
-        ]);
+//        $showPermission = Permission::create([
+//            'name' => 'show-permission',
+//            'permission_group_id' => 3,
+//            'caption_ar' => 'عرض صلاحية  ',
+//            'caption_en' => 'show-permission',
+//
+//        ]);
     }
 }
