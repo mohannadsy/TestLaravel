@@ -9,6 +9,7 @@
         :item="branch"
         @node-type="getNodeType($event)"
       ></tree>
+      <h1>{{response}}</h1>
     </div>
     <div class="col-9">
       <branch-form v-show="nodeType=='branches'"></branch-form>
@@ -22,8 +23,11 @@ import IndexVue from "../../components/branches/Index.vue";
 import Tree from "./Tree.vue";
 export default {
   data() {
+    props:['nodId']
     return {
       nodeType: 'branches',
+      nodeId:'',
+      response:''
     };
   },
   props: {
@@ -38,11 +42,14 @@ export default {
     //tree: TreeView,
   },
   methods: {
-    saveData() {
-      this.$store.dispatch("branches/loadBranches");
-    },
-    getNodeType(current){
-        this.nodeType = current;
+    // saveData() {
+    //   this.$store.dispatch("branches/loadBranches");
+    // },
+    getNodeType(node){
+         this.nodeType = node;
+        // this.nodeId = id
+        // this.response = response
+       console.log( this.nodeType);
     },
   },
 };

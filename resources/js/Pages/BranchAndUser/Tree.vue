@@ -21,20 +21,21 @@
         :key="index"
         :item="childBranch"
         @make-folder="$emit('make-folder', $event)"
-        @node-type="this.$emit('node-type',$event)"
+        @node-type="this.$emit('node-type', $event)"
       ></tree-item>
       <tree-item
         v-for="(childUsers, index) in item.users"
         :key="index"
         :item="childUsers"
         @make-folder="$emit('make-folder', $event)"
-        @node-type="this.$emit('node-type',$event)"
+        @node-type="this.$emit('node-type', $event)"
       ></tree-item>
     </ul>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "treeItem",
   props: {
@@ -43,7 +44,9 @@ export default {
   data() {
     return {
       isOpen: false,
-       node: "",
+      node: "",
+      id: "",
+      res: {},
     };
   },
   computed: {
@@ -70,7 +73,23 @@ export default {
       } else {
         this.node = "users";
       }
-      this.$emit('node-type',this.node)
+    this.$emit("node-type",this.node);
+    //   let res = this.$inertia.get(route("branch.show",1));
+//     let self = this;
+//     axios.get(route("branch.show",item.id)).then((response)=>{
+//    //this.res = response.data
+//            this.$emit("node-type",{node:this.node,response});
+//     }
+//             // I need this data here ^^
+
+
+//            //console.log(that)
+// )
+    //   this.response = res;
+    //   //this.response.code = res.code
+    //console.log(this.res)
+
+
     },
   },
 };
