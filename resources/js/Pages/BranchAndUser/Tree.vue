@@ -11,7 +11,7 @@
       <span
         :class="{ bold: isFolder }"
         class="pointer"
-        @click="sendNodeType(item)"
+        @click="sendNodeType(item,item.id)"
         >{{ item.name }}</span
       >
     </div>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   name: "treeItem",
   props: {
@@ -44,9 +44,8 @@ export default {
   data() {
     return {
       isOpen: false,
-      node: "",
-      id: "",
-      res: {},
+      nodeType: "",
+      nodeId:""
     };
   },
   computed: {
@@ -67,29 +66,29 @@ export default {
       }
     },
 
-    sendNodeType(item) {
+    sendNodeType(item,id) {
+        id = item.id
       if (item.hasOwnProperty("branches")) {
-        this.node = "branches";
+        this.nodeType = "branches";
+        this.nodeId = id
       } else {
-        this.node = "users";
+        this.nodeType = "users";
+        this.nodeId = id
       }
-    this.$emit("node-type",this.node);
-    //   let res = this.$inertia.get(route("branch.show",1));
-//     let self = this;
-//     axios.get(route("branch.show",item.id)).then((response)=>{
-//    //this.res = response.data
-//            this.$emit("node-type",{node:this.node,response});
-//     }
-//             // I need this data here ^^
+      this.$emit("node-type",{nodeId: this.nodeId,nodeType:this.nodeType});
+      //   let res = this.$inertia.get(route("branch.show",1));
+      //     let self = this;
+      //     axios.get(route("branch.show",item.id)).then((response)=>{
+      //    //this.res = response.data
+      //            this.$emit("node-type",{node:this.node,response});
+      //     }
+      //             // I need this data here ^^
 
-
-//            //console.log(that)
-// )
-    //   this.response = res;
-    //   //this.response.code = res.code
-    //console.log(this.res)
-
-
+      //            //console.log(that)
+      // )
+      //   this.response = res;
+      //   //this.response.code = res.code
+      //console.log(this.res)
     },
   },
 };
