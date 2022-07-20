@@ -18,6 +18,7 @@ class CostCenter extends Model
              'in_balance',
              'out_balance',
              'notes',
+             'confidentiality_degree',
          ];
         public function cost_centers()
         {

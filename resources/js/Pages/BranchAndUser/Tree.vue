@@ -73,15 +73,12 @@ export default {
       } else {
         this.node = "users";
       }
-
-
-
-    let that = {}
+    this.$emit("node-type",this.node);
     //   let res = this.$inertia.get(route("branch.show",1));
     let self = this;
     axios.get(route("branch.show",item.id)).then((response)=>{
    //this.res = response.data
-           this.$emit("node-type",response);
+           this.$emit("node-type",{node:this.node,response});
     }
             // I need this data here ^^
 

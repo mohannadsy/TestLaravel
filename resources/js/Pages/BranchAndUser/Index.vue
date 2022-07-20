@@ -45,11 +45,11 @@ export default {
     // saveData() {
     //   this.$store.dispatch("branches/loadBranches");
     // },
-    getNodeType(response){
-        // this.nodeType = node;
+    getNodeType(node,response){
+         this.nodeType = node;
         // this.nodeId = id
         this.response = response
-       console.log( this.response.data.name);
+       console.log( this.response);
     },
   },
 };

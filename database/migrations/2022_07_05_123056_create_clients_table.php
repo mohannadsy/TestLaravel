@@ -44,6 +44,9 @@ return new class extends Migration {
 
             $table->integer('account_id');
 
+            $table->integer('confidentiality_degree');
+
+
             $table->timestamps();
         });
     }

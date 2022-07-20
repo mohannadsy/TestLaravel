@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('phone')->nullable()->default(null);
             $table->string('mobile')->nullable()->default(null);
             $table->boolean('is_active')->default(true);
+            $table->integer('confidentiality_degree');
             $table->timestamps();
 
 

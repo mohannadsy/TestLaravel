@@ -21,6 +21,8 @@ class CurrencySeeder extends Seeder
             'accuracy'          => 100,
             'lain_part_name'    => 'Piaster',
             'photo'             =>'',
+            'confidentiality_degree' => 1 // سرية
+
         ]);
         $firstExtraCurrency = Currency::create([
             'name'              => 'الدولار الأمريكي',
@@ -32,6 +34,7 @@ class CurrencySeeder extends Seeder
             'accuracy'          => 100,
             'lain_part_name'    => 'sent',
             'photo'             =>'',
+            'confidentiality_degree' => 3 // سرية
         ]);
 
 
