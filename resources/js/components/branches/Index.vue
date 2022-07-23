@@ -1,7 +1,11 @@
 <template>
   <div class="row">
     <div class="col border-right">
-      <main-infromation @save-main="saveMain" :branchInformaion="branchInformaion"></main-infromation>
+      <main-infromation
+        @save-main="saveMain"
+        :branchInformaion="branchInformaion"
+        :postData="postData"
+      ></main-infromation>
       <div class="row a mt-2">
         <div class="col-5">
           <title-button @click="activeTab = 'BasicInformation'"
@@ -11,6 +15,7 @@
       </div>
       <basic-information
         :branchInformaion="branchInformaion"
+        :postData="postData"
         @save-basic="saveBasic"
         v-if="activeTab === 'BasicInformation'"
       />
@@ -19,8 +24,8 @@
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
         <element-button @click="submit">حفظ</element-button>
-        <element-button>جديد</element-button>
-        <element-button>تعديل</element-button>
+        <element-button :type="button" @click="newBranch">جديد</element-button>
+        <element-button :type="button" @click="updateBranch">تعديل</element-button>
         <element-button>حذف</element-button>
       </div>
     </div>
@@ -38,9 +43,9 @@ import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInfromation1 from "./MainInfromation.vue";
 import { reactive } from "vue";
-
+import { Inertia } from "@inertiajs/inertia";
 export default {
-  props: ["branchInformaion"],
+  props: ["branchInformaion","nodeId"],
   components: {
     BasicInformation,
     PageTitle,
@@ -93,6 +98,19 @@ export default {
       // Inertia.post(route('user.store'), this.postData);
       this.$store.dispatch("branches/registerBranch", this.postData);
     },
+    newBranch() {
+      this.postData={}
+      this.postData.is_active=true
+    },
+    updateBranch(){
+
+       console.log(this.postData);
+
+       Inertia.post(route('branch.update' , this.nodeId ), this.postData);
+
+    //    this.$store.dispatch("branches/newBranch",{nodeId:this.nodeId,data: this.postData});
+       console.log(this.postData);
+    }
   },
 };
 </script>

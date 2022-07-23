@@ -33,7 +33,7 @@ class Client extends Model
         'discount_account',
         'payment_method', // شروط الدفع
         'account_id',
-        'confidentiality_degree',
+        'security_degree',
     ];
 
     public function account()

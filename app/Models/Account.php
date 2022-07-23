@@ -43,7 +43,9 @@ class Account extends Model
         'is_aggregate',// تجميعي ؟
         'is_distributive',// توزيعي ؟
         'is_final',// ختامي ؟
-        'confidentiality_degree',
+        'aggregate_ids',    //مصفوفة تضم الحسابات العادية ضمن هذا الحساب التجميعي
+        'distributive_ids',//مصفوفة تضم الحسابات العادية ضمن هذا الحساب التوزيعي
+        'security_degree',
     ];
 
     public function accounts()

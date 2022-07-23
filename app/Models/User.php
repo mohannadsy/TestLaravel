@@ -47,9 +47,9 @@ class User extends Authenticatable
         'is_active',
 
 
-        'confidentiality_degree',
+        'security_degree',
 
-        'confidentiality_level',
+        'security_level',
     ];
 
     protected $hidden = [

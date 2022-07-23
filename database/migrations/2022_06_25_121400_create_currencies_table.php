@@ -9,16 +9,16 @@ return new class extends Migration {
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->default('null');
-            $table->string('code')->default('null');
+            $table->string('name')->unique();
+            $table->string('code')->unique();
             $table->string('latin_name')->nullable()->default('null');
             $table->float('equality');
-            $table->string('match');
-            $table->string('part');
+            $table->string('match')->default(null)->nullable();
+            $table->string('part')->nullable()->default(null);
             $table->integer('accuracy');
-            $table->string('lain_part_name');
-            $table->string('photo');
-            $table->integer('confidentiality_degree');
+            $table->string('lain_part_name')->default(null)->nullable();
+            $table->string('photo')->nullable()->default(null);
+            $table->integer('security_degree')->default(1);
             $table->timestamps();
         });
     }

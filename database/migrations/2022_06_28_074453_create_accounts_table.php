@@ -12,40 +12,44 @@ return new class extends Migration {
 
 
             $table->id();
-            $table->string('name');
-            $table->string('code');
-            $table->string('latin_name');
-            $table->string('type')->default('Normal');
-            $table->string('notes');
+            $table->string('name')->unique();
+            $table->string('code')->unique();
+            $table->string('latin_name')->default(null)->nullable();
+            $table->string('type')->default('normal');
+            $table->string('notes')->default(null)->nullable();
 
 
-            $table->boolean('is_active');
-            $table->boolean('is_client');
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_client')->default(false);
 
 
-            $table->unsignedBigInteger('account_id');
-            $table->unsignedBigInteger('final_account_id');
-            $table->unsignedBigInteger('cost_center_id');
-            $table->unsignedBigInteger('currency_id');
-            $table->integer('equality');
+            $table->unsignedBigInteger('account_id')->nullable()->default(null);
+            $table->unsignedBigInteger('final_account_id')->nullable()->default(null);
+            $table->unsignedBigInteger('cost_center_id')->nullable()->default(null);
+            $table->unsignedBigInteger('currency_id')->default(null)->nullable();
+            $table->integer('equality')->default(null)->nullable();
 
             $table->string('budget')->default('not_debtor_not_creditor');
-            $table->integer('budget_value');
+            $table->integer('budget_value')->nullable()->default(null);
 
             $table->string('nature')->default('debtor_and_creditor');
-            $table->string('division_rate');
-            $table->string('rates_sum');
-            $table->string('creditor');
-            $table->string('debtor');
-            $table->integer('balance');
+            $table->string('division_rate')->default(null)->nullable();
+            $table->string('rates_sum')->default(null)->nullable();
+            $table->string('creditor')->default(null)->nullable();
+            $table->string('debtor')->default(null)->nullable();
+            $table->integer('balance')->default(0)->nullable();
 
 
-            $table->string('not_debtor_not_creditor');
-            $table->string('is_aggregate');
-            $table->string('is_distributive');
-            $table->boolean('is_final');
-            $table->string('debtor_and_creditor');
-            $table->integer('confidentiality_degree');
+            $table->string('not_debtor_not_creditor')->default(null)->nullable();
+            $table->boolean('is_aggregate')->default(false);
+            $table->boolean('is_distributive')->default(false);
+            $table->boolean('is_final')->default(false);
+            $table->string('debtor_and_creditor')->default(null)->nullable();
+            $table->integer('security_degree')->default(1);
+            $table->json('aggregate_ids');
+            $table->json('distributive_ids');
+
+
 
             $table->timestamps();
 
