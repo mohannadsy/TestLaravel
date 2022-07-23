@@ -9,17 +9,17 @@ return new class extends Migration {
     {
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->default(null);
-            $table->string('name')->default(null);
+            $table->string('code')->unique();
+            $table->string('name')->unique();
             $table->unsignedBigInteger('branch_id')->nullable()->default(null);
             $table->string('responsibility')->nullable()->default(null);
             $table->string('address')->nullable()->default(null);
             $table->string('website')->nullable()->default(null);
-            $table->string('email')->nullable()->default(null);
+            $table->string('email')->nullable()->default(null)->unique();
             $table->string('phone')->nullable()->default(null);
             $table->string('mobile')->nullable()->default(null);
             $table->boolean('is_active')->default(true);
-            $table->integer('confidentiality_degree');
+            $table->integer('security_degree')->default(1);
             $table->timestamps();
 
 

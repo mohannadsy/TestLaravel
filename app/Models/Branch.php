@@ -22,7 +22,7 @@ class Branch extends Model
         'phone',
         'mobile',
         'is_active',
-        'confidentiality_degree',
+        'security_degree',
     ];
     public function branches()
     {

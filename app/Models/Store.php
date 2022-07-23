@@ -19,9 +19,9 @@ class Store extends Model
         'storage_amount',
         'website',
         'photo',
-        'nodes',
+        'notes',
         'is_active',
-        'confidentiality_degree',
+        'security_degree',
     ];
     public function stores()
     {

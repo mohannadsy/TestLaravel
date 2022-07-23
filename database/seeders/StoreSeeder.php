@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Store;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -26,9 +27,9 @@ class StoreSeeder extends Seeder
             'storage_amount'            => '500',
             'website'                   => '',
             'photo'                     => '',
-            'nodes'                     => '',
+            'notes'                     => '',
             'is_active'                 => true,
-            'confidentiality_degree'    => 1 // سرية
+            'security_degree'    => 1 // سرية
         ]);
         Store::create([
             'code'                      => '2',
@@ -42,9 +43,9 @@ class StoreSeeder extends Seeder
             'storage_amount'            => '200',
             'website'                   => '',
             'photo'                     => '',
-            'nodes'                     => '',
+            'notes'                     => '',
             'is_active'                 => true,
-            'confidentiality_degree'    => 3 //
+            'security_degree'    => 3 //
         ]);
         Store::create([
             'code'                      => '3',
@@ -58,12 +59,12 @@ class StoreSeeder extends Seeder
             'storage_amount'            => '2500',
             'website'                   => '',
             'photo'                     => '',
-            'nodes'                     => '',
+            'notes'                     => '',
             'is_active'                 => false,
-            'confidentiality_degree'    => 1 // سرية
+            'security_degree'    => 1 // سرية
         ]);
         Store::create([
-            'code'                      => '1',
+            'code'                      => '4',
             'name'                      => 'third store',
             'latin_name'                => null,
             'type'                      => ' XX',
@@ -74,9 +75,9 @@ class StoreSeeder extends Seeder
             'storage_amount'            => '500',
             'website'                   => '',
             'photo'                     => '',
-            'nodes'                     => '',
+            'notes'                     => '',
             'is_active'                 => false,
-            'confidentiality_degree'    => 1 // سرية
+            'security_degree'    => 1 // سرية
         ]);
     }
 

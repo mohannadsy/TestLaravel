@@ -32,7 +32,7 @@ class ClientSeeder extends Seeder
             'discount_account' => 323,
             'payment_method' => '',
             'account_id' => 1,
-            'confidentiality_degree' => 1 // سرية
+            'security_degree' => 1 // سرية
         ]);
     }
 }

@@ -29,8 +29,8 @@ class UserSeeder extends Seeder
             'account_box_id' => 0,
             'store_id' => 0,
             'is_active' => true,
-            'confidentiality_degree' => 2,
-            'confidentiality_level' => 1
+            'security_degree' => 2,
+            'security_level' => 1
         ]);
         $userMohannad->assignRole('Admin');
         $userMohannad->assignRole('Accountant');
@@ -58,8 +58,8 @@ class UserSeeder extends Seeder
             'account_box_id' => 0,
             'store_id' => 0,
             'is_active' => false,
-            'confidentiality_degree' => 1,
-            'confidentiality_level' => 1
+            'security_degree' => 1,
+            'security_level' => 1
         ]);
         $userNoor->assignRole('Accountant');
         $userNoor->givePermissionTo('update-role');
@@ -85,8 +85,8 @@ class UserSeeder extends Seeder
                 'account_box_id' => 0,
                 'store_id' => 0,
                 'is_active' => false,
-                'confidentiality_degree' => 3,
-                'confidentiality_level' => 1
+                'security_degree' => 3,
+                'security_level' => 1
             ]);
         $userClauda->assignRole('Cacher');
         $userClauda->givePermissionTo('store-user');

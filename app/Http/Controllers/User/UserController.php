@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\PermissionGroup;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
 use App\Traits\User\AdminTrait;
 use App\Traits\User\UserTrait;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use function Symfony\Component\Mime\Header\all;
 
 class UserController extends Controller
@@ -27,11 +30,27 @@ class UserController extends Controller
         ]);
     }
 
-    public function index()
+    public function index($roleId)
     {
         $parameters = ['id' => null];
         $this->callActivityMethod('index', $parameters);
-        return User::select('id', 'name', 'code')->get();
+        $user= User::select('id', 'name', 'code')->get();
+
+//
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+        $role = Role::find($roleId);
+
+        foreach ($groupPermissions as $groups) {
+            foreach ($groups->permissions as $permission) {
+                if ($role->hasPermissionTo($permission->name)) {
+                    $permission->is_active = true;
+                } else {
+                    $permission->is_active = false;
+                }
+            }
+        }
+        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role','user'));
+
     }
 
     public function store(UserRequest $request)
@@ -74,7 +93,18 @@ class UserController extends Controller
         $user = User::find($id);
         if ($user) {
             $this->callActivityMethod('show', $parameters);
-            return User::with('permissions')->find($id);
+//            return User::with('permissions')->find($id);
+            $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+            foreach ($groupPermissions as $groups) {
+                foreach ($groups->permissions as $permission) {
+                    if ($user->hasPermissionTo($permission->name)) {
+                        $permission->is_active = true;
+                    } else {
+                        $permission->is_active = false;
+                    }
+                }
+            }
+             return Inertia::render('BranchAndUser/show', compact('groupPermissions', 'user'));
         }
         return 'User not Found';
     }
