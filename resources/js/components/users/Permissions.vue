@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll">
+  <div class="scroll pb-2">
     <ul class="main" v-for="(groupPermission, index) in groupPermissions" :key="index">
       <button @click="ToggleIsExpanded(index)">
         <span class="rightAngle" :class="angle[index]"  ></span>
@@ -38,7 +38,8 @@
 <script>
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementCheckbox from "../../Shared/ElementCheckbox.vue";
-import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
+//import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
+import CheckboxSwitchedLabel from "../../Shared/CheckboxSwitchedLabel.vue";
 
 export default {
   data() {
@@ -50,7 +51,8 @@ export default {
   components: {
     ElemetLabel,
     ElementCheckbox,
-    CheckboxSwitch,
+   // CheckboxSwitch,
+    CheckboxSwitchedLabel,
   },
   props: {
     groupPermissions: Array,
@@ -102,9 +104,11 @@ button{
     border: none;
 }
 .scroll{
-    max-height: 50%;
+    /* max-height: 50%; */
     width:100%;
    overflow: scroll;
    max-height: 350px;
+   scroll-behavior: smooth;
+
 }
 </style>
