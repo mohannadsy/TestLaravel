@@ -16,7 +16,8 @@ export default {
                 website: '',
                 email: '',
                 phone: '',
-                mobile: ''
+                mobile: '',
+                is_active: true
             }],
             results: 'hello from vuex'
         };

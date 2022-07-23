@@ -76,6 +76,7 @@ import ElementInput from "../../Shared/ElementInput.vue";
 
 export default {
   emits: ["save-basic"],
+  props:['branchInformaion'],
   components: {
     ElemetLabel,
     ElementInput,
@@ -91,6 +92,12 @@ export default {
         mobile: "",
       },
     };
+  },
+  watch: {
+    branchInformaion() {
+      const returnedTarget = Object.assign(this.myObj, this.branchInformaion);
+      //console.log(JSON.parse(JSON.stringify(returnedTarget)));
+    },
   },
   methods: {
     objChanged() {
