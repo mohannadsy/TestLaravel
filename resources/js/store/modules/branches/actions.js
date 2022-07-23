@@ -14,7 +14,8 @@ export default {
             website: data.website,
             email: data.email,
             phone: data.phone,
-            mobile: data.mobile
+            mobile: data.mobile,
+            is_active: data.is_active
         };
         // const response = await fetch(route('branch.store'), {
         //     method: 'POST',

@@ -1,7 +1,6 @@
 <template>
   <div class="row">
     <div class="col-3">
-      <!-- <tree :branchesWithUsers="$page['props']['branchesWithUsers']"></tree> -->
       <tree
         v-for="branch in branchesWithUsers"
         :key="branch.name"
@@ -9,10 +8,9 @@
         :item="branch"
         @node-type="getNodeType($event)"
       ></tree>
-      <!-- <h1>{{Rec.name}}</h1> -->
     </div>
     <div class="col-9">
-      <branch-form v-show="nodeType == 'branches'"></branch-form>
+      <branch-form :branchInformaion="branchInformaion" v-show="nodeType == 'branches'"></branch-form>
       <user-form
         v-show="nodeType == 'users'"
         :groupPermissions="$page['props']['groupPermissions']"
@@ -30,62 +28,28 @@ export default {
     return {
       nodeType: "branches",
       nodeId: "",
-      Rec: {},
+      branchInformaion: {},
     };
   },
   props: {
     branches: Array,
     branchesWithUsers: Array,
     groupPermissions: Array,
-    Rec: Object,
   },
   components: {
     userForm: Index,
     branchForm: IndexVue,
     Tree,
   },
-  mounted(){
-    var self = this;
-     axios.get(route("branch.show", this.nodeId))
-        .then((response) => {
-          self.Rec = response.data;
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-        });
-  },
   methods: {
     // saveData() {
     //   this.$store.dispatch("branches/loadBranches");
     // },
-    getNodeType({ nodeId, nodeType }) {
+    async getNodeType({ nodeId, nodeType }) {
       this.nodeType = nodeType;
       this.nodeId = nodeId;
-      //this.nodeId = response.id
-      //this.nodeId = response.nodeId
-      // let resss = JSON.parse(JSON.stringify(response))
-      //   this.nodeType = resss.node;
-      //   console.log(this.nodeType);
-      //   this.dataRec = resss;
-      //   childRes = this.dataRec.res
-      //   //childRes = JSON.parse(JSON.stringify(resss.res))
-      //   let cccc = JSON.parse(JSON.stringify(childRes))
-      //   //this.nodeId = response.id;
-      //   //this.dataRec = reactive(response);
-      //   //  this.response = response
-      //   //  this.sara = this.response.node
-      //   console.log(cccc);
-      //   //console.log(this.dataRec.res);
-      //console.log(this.nodeId);
-
-      //   .then((response)=>{
-      //     this.Rec = response.data
-      //     //this.$emit("node-type",this.dataToSend);
-      //     JSON.parse(JSON.stringify(this.Rec))
-
-      //   })
-      console.log(this.Rec);
+      let res = await axios.get(route("branch.show", this.nodeId));
+      this.branchInformaion = JSON.parse(JSON.stringify(res.data));
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col border-right">
-      <main-infromation @save-main="saveMain"></main-infromation>
+      <main-infromation @save-main="saveMain" :branchInformaion="branchInformaion"></main-infromation>
       <div class="row a mt-2">
         <div class="col-5">
           <title-button @click="activeTab = 'BasicInformation'"
@@ -10,6 +10,7 @@
         </div>
       </div>
       <basic-information
+        :branchInformaion="branchInformaion"
         @save-basic="saveBasic"
         v-if="activeTab === 'BasicInformation'"
       />
@@ -23,7 +24,6 @@
         <element-button>حذف</element-button>
       </div>
     </div>
-    <h1 v-for="Re in Rec" :key="Re">{{Re.name}}</h1>
   </div>
 </template>
 
@@ -40,7 +40,7 @@ import MainInfromation1 from "./MainInfromation.vue";
 import { reactive } from "vue";
 
 export default {
-    props:["Rec"],
+  props: ["branchInformaion"],
   components: {
     BasicInformation,
     PageTitle,
@@ -59,6 +59,7 @@ export default {
         code: "",
         name: "",
         branch_id: "",
+        is_active: true,
         responsibility: "",
         address: "",
         website: "",
@@ -69,11 +70,15 @@ export default {
       }),
     };
   },
+  //   mounted() {
+  //     this.postData = this.Rec;
+  //   },
   methods: {
     saveMain(data) {
       (this.postData.code = data.code),
         (this.postData.name = data.name),
         (this.postData.branch_id = data.branch_id);
+      this.postData.is_active = data.is_active;
     },
     saveBasic(data) {
       (this.postData.responsibility = data.responsibility),
@@ -89,9 +94,6 @@ export default {
       this.$store.dispatch("branches/registerBranch", this.postData);
     },
   },
-  created(){
-    console.log()
-  }
 };
 </script>
 
