@@ -122,6 +122,9 @@ export default {
 };
 </script>
 <style scoped>
+/* .container-fluide{
+  overscroll-behavior: contain;
+} */
 button {
   margin: 2px;
 }
