@@ -70,7 +70,7 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 export default {
-  props: ["branchInformaion"],
+  props: ["branchInformaion","postData"],
   emits: ["save-main"],
   components: {
     PageTitle,
@@ -88,9 +88,16 @@ export default {
       },
     };
   },
+//   mounted(){
+//     this.myObj.code = this.postData.code
+//     console.log('empty')
+//   },
   watch: {
+    postData(){
+        this.myObj = this.postData
+    },
     branchInformaion() {
-      const returnedTarget = Object.assign(this.myObj, this.branchInformaion);
+      Object.assign(this.myObj, this.branchInformaion);
       //console.log(JSON.parse(JSON.stringify(returnedTarget)));
     },
   },

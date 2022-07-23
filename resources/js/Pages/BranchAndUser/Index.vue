@@ -10,7 +10,11 @@
       ></tree>
     </div>
     <div class="col-9">
-      <branch-form :branchInformaion="branchInformaion" v-show="nodeType == 'branches'"></branch-form>
+      <branch-form
+      :branchInformaion="branchInformaion"
+      :nodeId="nodeId"
+      v-show="nodeType == 'branches'"
+      ></branch-form>
       <user-form
         v-show="nodeType == 'users'"
         :groupPermissions="$page['props']['groupPermissions']"
