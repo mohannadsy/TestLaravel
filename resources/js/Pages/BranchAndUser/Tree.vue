@@ -11,7 +11,7 @@
       <span
         :class="{ bold: isFolder }"
         class="pointer"
-        @click="sendNodeType(item,item.id)"
+        @click="sendNodeType(item, item.id)"
         >{{ item.name }}</span
       >
     </div>
@@ -45,7 +45,7 @@ export default {
     return {
       isOpen: false,
       nodeType: "",
-      nodeId:""
+      nodeId: "",
     };
   },
   computed: {
@@ -66,29 +66,16 @@ export default {
       }
     },
 
-    sendNodeType(item,id) {
-        id = item.id
+    sendNodeType(item, id) {
+      id = item.id;
       if (item.hasOwnProperty("branches")) {
         this.nodeType = "branches";
-        this.nodeId = id
+        this.nodeId = id;
       } else {
         this.nodeType = "users";
-        this.nodeId = id
+        this.nodeId = id;
       }
-      this.$emit("node-type",{nodeId: this.nodeId,nodeType:this.nodeType});
-      //   let res = this.$inertia.get(route("branch.show",1));
-      //     let self = this;
-      //     axios.get(route("branch.show",item.id)).then((response)=>{
-      //    //this.res = response.data
-      //            this.$emit("node-type",{node:this.node,response});
-      //     }
-      //             // I need this data here ^^
-
-      //            //console.log(that)
-      // )
-      //   this.response = res;
-      //   //this.response.code = res.code
-      //console.log(this.res)
+      this.$emit("node-type", { nodeId: this.nodeId, nodeType: this.nodeType });
     },
   },
 };

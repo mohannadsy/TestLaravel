@@ -14,7 +14,8 @@ export default {
             website: data.website,
             email: data.email,
             phone: data.phone,
-            mobile: data.mobile
+            mobile: data.mobile,
+            is_active: data.is_active
         };
         // const response = await fetch(route('branch.store'), {
         //     method: 'POST',
@@ -22,7 +23,26 @@ export default {
         // })
         // axios.post('branch.store', branchData);
         Inertia.post(route('branch.store'), branchData);
-        context.commit('registerBranch', {
+        context.commit('newBranch', {
+            ...branchData
+        });
+    },
+    newBranch(context, { data, nodeId }) {
+        const branchData = {
+            id: nodeId,
+            code: data.code,
+            name: data.name,
+            branch_id: data.branch_id,
+            responsibility: data.responsibility,
+            address: data.address,
+            website: data.website,
+            email: data.email,
+            phone: data.phone,
+            mobile: data.mobile,
+            is_active: data.is_active
+        };
+        Inertia.post(route('branch.update', branchData.id), branchData);
+        context.commit('newrBranch', {
             ...branchData
         });
     },
