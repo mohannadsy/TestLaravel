@@ -30,51 +30,62 @@ export default {
     return {
       nodeType: "branches",
       nodeId: "",
-      Rec:{}
+      Rec: {},
     };
   },
   props: {
     branches: Array,
     branchesWithUsers: Array,
     groupPermissions: Array,
-    Rec:Object
+    Rec: Object,
   },
   components: {
     userForm: Index,
     branchForm: IndexVue,
     Tree,
   },
+  mounted(){
+    var self = this;
+     axios.get(route("branch.show", this.nodeId))
+        .then((response) => {
+          self.Rec = response.data;
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+  },
   methods: {
     // saveData() {
     //   this.$store.dispatch("branches/loadBranches");
     // },
-    getNodeType({nodeId,nodeType}) {
-        this.nodeType = nodeType
-        this.nodeId = nodeId
-        //this.nodeId = response.id
-        //this.nodeId = response.nodeId
-    // let resss = JSON.parse(JSON.stringify(response))
-    //   this.nodeType = resss.node;
-    //   console.log(this.nodeType);
-    //   this.dataRec = resss;
-    //   childRes = this.dataRec.res
-    //   //childRes = JSON.parse(JSON.stringify(resss.res))
-    //   let cccc = JSON.parse(JSON.stringify(childRes))
-    //   //this.nodeId = response.id;
-    //   //this.dataRec = reactive(response);
-    //   //  this.response = response
-    //   //  this.sara = this.response.node
-    //   console.log(cccc);
-    //   //console.log(this.dataRec.res);
-    //console.log(this.nodeId);
-      this.Rec = axios.get(route("branch.show",this.nodeId)).then((response)=>response.data)
-    //   .then((response)=>{
-    //     this.Rec = response.data
-    //     //this.$emit("node-type",this.dataToSend);
-    //     JSON.parse(JSON.stringify(this.Rec))
+    getNodeType({ nodeId, nodeType }) {
+      this.nodeType = nodeType;
+      this.nodeId = nodeId;
+      //this.nodeId = response.id
+      //this.nodeId = response.nodeId
+      // let resss = JSON.parse(JSON.stringify(response))
+      //   this.nodeType = resss.node;
+      //   console.log(this.nodeType);
+      //   this.dataRec = resss;
+      //   childRes = this.dataRec.res
+      //   //childRes = JSON.parse(JSON.stringify(resss.res))
+      //   let cccc = JSON.parse(JSON.stringify(childRes))
+      //   //this.nodeId = response.id;
+      //   //this.dataRec = reactive(response);
+      //   //  this.response = response
+      //   //  this.sara = this.response.node
+      //   console.log(cccc);
+      //   //console.log(this.dataRec.res);
+      //console.log(this.nodeId);
 
-    //   })
-      console.log(this.Rec)
+      //   .then((response)=>{
+      //     this.Rec = response.data
+      //     //this.$emit("node-type",this.dataToSend);
+      //     JSON.parse(JSON.stringify(this.Rec))
+
+      //   })
+      console.log(this.Rec);
     },
   },
 };
