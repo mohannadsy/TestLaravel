@@ -43,8 +43,8 @@ class Account extends Model
         'is_aggregate',// تجميعي ؟
         'is_distributive',// توزيعي ؟
         'is_final',// ختامي ؟
-        'aggregate_ids',
-        'distributive_ids',
+        'aggregate_ids',    //مصفوفة تضم الحسابات العادية ضمن هذا الحساب التجميعي
+        'distributive_ids',//مصفوفة تضم الحسابات العادية ضمن هذا الحساب التوزيعي
         'security_degree',
     ];
 
