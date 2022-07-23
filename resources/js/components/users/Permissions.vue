@@ -105,5 +105,6 @@ button{
     max-height: 50%;
     width:100%;
    overflow: scroll;
+   max-height: 350px;
 }
 </style>
