@@ -26,7 +26,7 @@
         <element-button @click="submit">حفظ</element-button>
         <element-button :type="button" @click="newBranch">جديد</element-button>
         <element-button :type="button" @click="updateBranch">تعديل</element-button>
-        <element-button>حذف</element-button>
+        <element-button :type="button" @click="deleteBranch">حذف</element-button>
       </div>
     </div>
   </div>
@@ -110,6 +110,10 @@ export default {
 
     //    this.$store.dispatch("branches/newBranch",{nodeId:this.nodeId,data: this.postData});
        console.log(this.postData);
+    },
+    deleteBranch(){
+        console.log(this.postData)
+         Inertia.get(route('branch.delete' , this.nodeId ), this.postData);
     }
   },
 };

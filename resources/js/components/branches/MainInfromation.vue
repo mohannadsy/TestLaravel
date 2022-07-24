@@ -55,10 +55,10 @@
             @change="switch_off()"
           ></checkbox-switch>
         </div> -->
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <label v-if="myObj.is_active">مفعل</label>
           <label v-else>غير مفعل</label>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
