@@ -6,7 +6,6 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Currency\CurrencyController;
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Client\ClientController;
-use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\Store\StoreController;
 use App\Http\Controllers\Item\ItemController;
 
@@ -22,24 +21,10 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('show-role/{id}', [UserController::class, 'showRole'])->name('role.show');
     Route::post('update', [UserController::class, 'update'])->name('user.update');
     Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
-//    Route::get('create', [UserController::class, 'create'])->name('user.create');
-
-
-
-    Route::get('permissions-according-lang', [UserController::class, 'permissionsAccordingLang'])->name('user.permissionsAccordingLang');
-
-    Route::get('user-permission-tow/{id}', [UserController::class, 'userPermissionTow'])->name('user.userPermissionTow');
-
     Route::get('userPermission/{id}', [UserController::class, 'userPermission'])->name('user.userPermission');
-
-
-
-    Route::get('user-permission/{id}', [UserController::class, 'userPermission'])->name('user.userPermission');
-
     Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');
     Route::get('get-main-tree', [UserController::class, 'tree'])->name('user.tree');
     Route::get('get-user-permissions/{id}', [UserController::class, 'getUserPermissions'])->name('user.getUserPermissions');
-
 });
 
 

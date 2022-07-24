@@ -33,7 +33,7 @@ return new class extends Migration {
             $table->rememberToken();
 //            $table->softDeletes();
             $table->timestamps();
-                        $table->foreign('branch_id')->references('id')->on('branches');
+            $table->foreign('branch_id')->references('id')->on('branches');
 
         });
     }
