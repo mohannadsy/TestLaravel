@@ -7,6 +7,9 @@ use App\Http\Controllers\Currency\CurrencyController;
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Branch\BranchController;
+use App\Http\Controllers\Store\StoreController;
+use App\Http\Controllers\Item\ItemController;
+
 use Barryvdh\Debugbar\Facades;
 
 
@@ -40,10 +43,6 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 });
 
 
-Route::get('backup', function () {
-
-    \Illuminate\Support\Facades\Artisan::call("php artisan backup:run");
-});
 //------- Currency ------//
 
 Route::group(['namespace' => 'Currency', 'prefix' => 'currency'], function () {
@@ -73,6 +72,33 @@ Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
     Route::get('delete/{id}', [AccountController::class, 'delete'])->name('account.delete');
 });
 
+
+//------- Items ------//
+
+Route::group(['namespace' => 'Item', 'prefix' => 'item'], function () {
+    Route::get('index', [ItemController::class, 'index'])->name('item.index');
+    Route::post('store', [ItemController::class, 'store'])->name('item.store');
+    Route::get('show/{id}', [ItemController::class, 'show'])->name('item.show');
+    Route::post('update', [ItemController::class, 'update'])->name('item.update');
+    Route::get('delete/{id}', [ItemController::class, 'delete'])->name('item.delete');
+});
+
+
+//------- Stores ------//
+
+Route::group(['namespace' => 'Store', 'prefix' => 'store'], function () {
+    Route::get('index', [StoreController::class, 'index'])->name('store.index');
+    Route::post('store', [StoreController::class, 'store'])->name('store.store');
+    Route::get('show/{id}', [StoreController::class, 'show'])->name('store.show');
+    Route::post('update', [StoreController::class, 'update'])->name('store.update');
+    Route::get('delete/{id}', [StoreController::class, 'delete'])->name('store.delete');
+});
+
+
+Route::get('backup', function () {
+
+    \Illuminate\Support\Facades\Artisan::call("php artisan backup:run");
+});
 //------- Other Routes ------//
 Route::get('last-id', function () {
 //    return Account::latest()->first()->id; // flase
