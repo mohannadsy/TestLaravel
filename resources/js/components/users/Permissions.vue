@@ -51,7 +51,7 @@ export default {
   components: {
     ElemetLabel,
     ElementCheckbox,
-   // CheckboxSwitch,
+   // 0CheckboxSwitch,
     CheckboxSwitchedLabel,
   },
   props: {
