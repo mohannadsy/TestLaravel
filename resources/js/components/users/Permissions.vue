@@ -1,58 +1,60 @@
 <template>
-  <div class="scroll pb-2">
-    <ul class="main" v-for="(groupPermission, index) in groupPermissions" :key="index">
-      <button @click="ToggleIsExpanded(index)">
-        <span class="rightAngle" :class="angle[index]"  ></span>
-      </button>
-      <elemet-label> {{ groupPermission.caption }}</elemet-label>
-      <ul >
-        <div v-show="isExpanded[index]">
-            <li
-            class="col-3"
-            v-for="(permission, i) in groupPermission.permissions"
-            :key="i"
-            >
-
-            <checkbox-switch> </checkbox-switch>
-            {{ permission.caption }}
-            </li>
-        </div>
-      </ul>
-      <ul >
-        <div v-show="isExpanded[index]">
-            <li
-            class="col-3"
-            v-for="(permission, i) in groupPermission.permissions"
-            :key="i"
-            >
-
-            <checkbox-switch> </checkbox-switch>
-            {{ permission.caption }}
-            </li>
-        </div>
-      </ul>
-    </ul>
-  </div>
+    <div class="scroll pb-2">
+        <ul
+            class="main"
+            v-for="(groupPermission, index) in groupPermissions"
+            :key="index"
+        >
+            <button @click="ToggleIsExpanded(index)">
+                <span class="rightAngle" :class="angle[index]"></span>
+            </button>
+            <elemet-label> {{ groupPermission.caption }}</elemet-label>
+            <checkbox-switch
+                v-model="select_all"
+                @click="select"
+            ></checkbox-switch>
+            <elemet-label>تحديد الكل</elemet-label>
+            <ul>
+                <div v-show="isExpanded[index]">
+                    <li
+                        class="col-3"
+                        v-for="(permission, i) in groupPermission.permissions"
+                        :key="i"
+                    >
+                        <checkbox-switch
+                            :checked="permission.is_active ? true : false"
+                            v-model="selected"
+                        >
+                        </checkbox-switch>
+                        {{ permission.caption }}
+                    </li>
+                </div>
+            </ul>
+        </ul>
+    </div>
 </template>
 
 <script>
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementCheckbox from "../../Shared/ElementCheckbox.vue";
-//import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
-import CheckboxSwitchedLabel from "../../Shared/CheckboxSwitchedLabel.vue";
+import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
+// import CheckboxSwitchedLabel from "../../Shared/CheckboxSwitchedLabel.vue";
+import axios from "axios";
 
 export default {
   data() {
     return {
       isExpanded: [],
       angle:[],
+      select_all:false,
+      selected:[],
     };
   },
   components: {
     ElemetLabel,
     ElementCheckbox,
-   // 0CheckboxSwitch,
-    CheckboxSwitchedLabel,
+   CheckboxSwitch,
+    // CheckboxSwitchedLabel,
   },
   props: {
     groupPermissions: Array,
@@ -62,53 +64,66 @@ export default {
      this.isExpanded[index] = !this.isExpanded[index];
      this.angle[index]=="angleDown" ? this.angle[index]="" : this.angle[index]="angleDown";
     },
+    select(){
+      this.selected = [];
+      if(!this.select_all){
+          for (let i in this.data){
+            this.selected.push(this.data[i].id);
+          }
+      }
+    }
   },
+  // computed:{
+  //   async groupPermissions(){
+  //     let role = await axios.get(route("role.show", 1));
+  //     return  JSON.parse(JSON.stringify(role.data));
+  //   }
+  // }
 };
 </script>
 
 <style scoped>
 .main {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 .rightAngle::before {
-  content: "\25B6";
-  display: inline-block;
-  cursor: pointer;
-  padding: 1px;
-  transition: 0.2s ease-out;
-  transform: rotate(180deg);
+    content: "\25B6";
+    display: inline-block;
+    cursor: pointer;
+    padding: 1px;
+    transition: 0.2s ease-out;
+    transform: rotate(180deg);
 }
 .angleDown::before {
     content: "\25B6";
-  display: inline-block;
-  cursor: pointer;
-  padding: 1px;
-  transform: rotate(90deg);
-  transition: 0.2s ease-out;
+    display: inline-block;
+    cursor: pointer;
+    padding: 1px;
+    transform: rotate(90deg);
+    transition: 0.2s ease-out;
 }
 
 li {
-  float: right;
-  display: block;
-  padding: 20px 16px;
-  text-decoration: none;
+    float: right;
+    display: block;
+    padding: 20px 16px;
+    text-decoration: none;
 }
 
 li a:hover {
-  background-color: #111111;
+    background-color: #111111;
 }
-button{
+button {
     border: none;
 }
-.scroll{
+.scroll {
     /* max-height: 50%; */
-    width:100%;
-   overflow: scroll;
-   max-height: 350px;
-   scroll-behavior: smooth;
-
+    width: 100%;
+    overflow: scroll;
+    max-height: 350px;
+    scroll-behavior: smooth;
 }
 </style>
