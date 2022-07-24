@@ -29,19 +29,11 @@ class CreatePermissionTables extends Migration
             $table->bigIncrements('id');
             $table->string('name');       // For MySQL 8.0 use string('name', 125);
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
-
             $table->string('caption_ar');
             $table->string('caption_en');
-
-
-
             $table->unsignedBigInteger('permission_group_id');
-
             $table->timestamps();
-
-
 //            $table->foreign('permission_group_id')->references('id')->on('permission_groups');
-
             $table->unique(['name', 'guard_name']);
         });
 

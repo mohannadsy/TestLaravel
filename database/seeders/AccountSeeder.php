@@ -37,9 +37,9 @@ class AccountSeeder extends Seeder
             'not_debtor_not_creditor' => '',
             'is_aggregate' => false,
             'is_distributive' => false,
-            'security_degree' => 1 ,// سرية
-            'aggregate_ids'=>'{}',
-            'distributive_ids'=>'{}',
+            'security_degree' => 1,// سرية
+            'aggregate_ids' => '{}',
+            'distributive_ids' => '{}',
         ]);
 
         $finalAccount = Account::create([
@@ -70,8 +70,8 @@ class AccountSeeder extends Seeder
             'is_aggregate' => false,
             'is_distributive' => false,
             'security_degree' => 2, // سرية
-           'aggregate_ids'=>'{"id":1,"id":4}',
-           'distributive_ids'=>'{}',
+            'aggregate_ids' => '{"id":1,"id":4}',
+            'distributive_ids' => '{}',
 
         ]);
 
@@ -103,8 +103,8 @@ class AccountSeeder extends Seeder
             'is_distributive' => false,
             'security_degree' => 3, // سرية
 
-           'aggregate_ids'=>'{}',
-           'distributive_ids'=>'{"id":1,"id":4}',
+            'aggregate_ids' => '{}',
+            'distributive_ids' => '{"id":1,"id":4}',
         ]);
 
 
@@ -136,8 +136,8 @@ class AccountSeeder extends Seeder
             'is_distributive' => true,
             'security_degree' => 4, // سرية
 
-           'aggregate_ids'=>'{}',
-           'distributive_ids'=>'{}',
+            'aggregate_ids' => '{}',
+            'distributive_ids' => '{}',
         ]);
 
     }

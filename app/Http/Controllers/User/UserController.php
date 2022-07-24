@@ -16,6 +16,7 @@ use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use function Symfony\Component\Mime\Header\all;
+use function Symfony\Component\String\u;
 
 class UserController extends Controller
 {
@@ -34,23 +35,24 @@ class UserController extends Controller
     {
         $parameters = ['id' => null];
         $this->callActivityMethod('index', $parameters);
-        $user= User::select('id', 'name', 'code')->get();
+        $user = User::select('id', 'name', 'code')->get();
+        return Inertia::render('BranchAndUser/Index', compact('user'));
 
+
+//        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
 //
-        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
-        $role = Role::find($roleId);
-
-        foreach ($groupPermissions as $groups) {
-            foreach ($groups->permissions as $permission) {
-                if ($role->hasPermissionTo($permission->name)) {
-                    $permission->is_active = true;
-                } else {
-                    $permission->is_active = false;
-                }
-            }
-        }
-        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role','user'));
-
+//        $role = Role::find($roleId);
+//
+//        foreach ($groupPermissions as $groups) {
+//            foreach ($groups->permissions as $permission) {
+//                if ($role->hasPermissionTo($permission->name)) {
+//                    $permission->is_active = true;
+//                } else {
+//                    $permission->is_active = false;
+//                }
+//            }
+//        }
+//        return $groupPermissions;
     }
 
     public function store(UserRequest $request)
@@ -104,7 +106,7 @@ class UserController extends Controller
                     }
                 }
             }
-             return Inertia::render('BranchAndUser/show', compact('groupPermissions', 'user'));
+            return Inertia::render('BranchAndUser/show', compact('groupPermissions', 'user'));
         }
         return 'User not Found';
     }

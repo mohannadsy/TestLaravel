@@ -21,10 +21,7 @@ return new class extends Migration {
             $table->boolean('is_active')->default(true);
             $table->integer('security_degree')->default(1);
             $table->timestamps();
-
-
             $table->foreign('branch_id')->references('id')->on('branches');
-
         });
     }
     public function down()
