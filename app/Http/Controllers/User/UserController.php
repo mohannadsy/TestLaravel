@@ -36,23 +36,24 @@ class UserController extends Controller
         $parameters = ['id' => null];
         $this->callActivityMethod('index', $parameters);
         $user = User::select('id', 'name', 'code')->get();
-        return Inertia::render('BranchAndUser/Index', compact('user'));
 
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
 
-//        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
-//
-//        $role = Role::find($roleId);
-//
-//        foreach ($groupPermissions as $groups) {
-//            foreach ($groups->permissions as $permission) {
-//                if ($role->hasPermissionTo($permission->name)) {
-//                    $permission->is_active = true;
-//                } else {
-//                    $permission->is_active = false;
-//                }
-//            }
-//        }
-//        return $groupPermissions;
+        $role = Role::find($roleId);
+
+        foreach ($groupPermissions as $groups) {
+            foreach ($groups->permissions as $permission) {
+                if ($role->hasPermissionTo($permission->name)) {
+                    $permission->is_active = true;
+                } else {
+                    $permission->is_active = false;
+                }
+            }
+        }
+        return $groupPermissions;
+
+//        return Inertia::render('BranchAndUser/Index', compact('user'));
+
     }
 
     public function store(UserRequest $request)
