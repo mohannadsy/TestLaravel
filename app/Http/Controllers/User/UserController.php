@@ -31,7 +31,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function index($roleId)
+    public function index()
     {
         $parameters = ['id' => null];
         $this->callActivityMethod('index', $parameters);
