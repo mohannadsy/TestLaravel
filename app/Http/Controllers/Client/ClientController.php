@@ -16,7 +16,7 @@ class ClientController extends Controller
     public function callActivityMethod($method, $parameters)
     {
         $this->makeActivity([
-            'table' => 'users',
+            'table' => 'accounts',
             'operation' => $method,
             'parameters' => $parameters
         ]);

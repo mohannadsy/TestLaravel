@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         ]);
         $userMohannad->assignRole('Admin');
 //        $userMohannad->assignRole('Accountant');
-        $userMohannad->givePermissionTo('update-permission');
+//        $userMohannad->givePermissionTo('update-permission');
 //        $userMohannad->givePermissionTo('store-user');
 //        $userMohannad->givePermissionTo('delete-user');
 //        $userMohannad->givePermissionTo('show-user');
@@ -44,7 +44,6 @@ class UserSeeder extends Seeder
             'name' => 'Noor Al-kinj',
             'email' => 'noor@gmail.com',
             'password' => bcrypt('12345noor'),
-
             'role' => 'Accountant',
             'profile_photo_path' => 'qqq',
             'branch_id' => '2',
@@ -67,14 +66,14 @@ class UserSeeder extends Seeder
 
 
         // user 3 -> 10
-        for ($i = 3; $i <= 6; $i++)
+//        for ($i = 3; $i <= 6; $i++)
             $userClauda = User::create([
-                'code' => $i,
-                'name' => 'Clauda Al-Rakkad' . $i,
-                'email' => "clauda@gmail$i.com",
+                'code' => 5,
+                'name' => 'Clauda Al-Rakkad' ,
+                'email' => "clauda@gmail.com",
                 'password' => bcrypt('12345clauda'),
                 'role' => 'Casher',
-                'branch_id' => $i,
+                'branch_id' => 2,
                 'first_name' => 's',
                 'middle_name' => 's',
                 'last_name' => 's',

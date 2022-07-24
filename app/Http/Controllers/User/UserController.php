@@ -36,10 +36,7 @@ class UserController extends Controller
         $parameters = ['id' => null];
         $this->callActivityMethod('index', $parameters);
         $user = User::select('id', 'name', 'code')->get();
-
-
         return Inertia::render('BranchAndUser/Index', compact('user'));
-
     }
 
     public function store(UserRequest $request)
@@ -113,6 +110,7 @@ class UserController extends Controller
             }
         }
         return $groupPermissions;
+
     }
 
 }
