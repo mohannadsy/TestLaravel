@@ -20,27 +20,20 @@ return new class extends Migration {
             $table->string('middle_name');
             $table->string('last_name')->nullable();
             $table->string('phone');
-
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('mobile');
             $table->string('notes')->nullable();
-
             $table->string('id_number');
-
             $table->integer('account_box_id');
             $table->integer('store_id');
             $table->boolean('is_active');
             $table->integer('security_degree');
             $table->integer('security_level');
-
             $table->rememberToken();
 //            $table->softDeletes();
             $table->timestamps();
-
-
-
-            $table->foreign('branch_id')->references('id')->on('branches');
+                        $table->foreign('branch_id')->references('id')->on('branches');
 
         });
     }

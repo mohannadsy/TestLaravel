@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('notes')->nullable()->default(null);
             $table->integer('security_degree')->default(1);//منخفضة
             $table->timestamps();
-
             $table->foreign('center_id')->references('id')->on('cost_centers');
         });
     }

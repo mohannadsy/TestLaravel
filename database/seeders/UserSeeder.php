@@ -35,9 +35,9 @@ class UserSeeder extends Seeder
         $userMohannad->assignRole('Admin');
         $userMohannad->assignRole('Accountant');
         $userMohannad->givePermissionTo('update-permission');
-        $userMohannad->givePermissionTo('store-user');
-        $userMohannad->givePermissionTo('delete-user');
-        $userMohannad->givePermissionTo('show-user');
+//        $userMohannad->givePermissionTo('store-user');
+//        $userMohannad->givePermissionTo('delete-user');
+//        $userMohannad->givePermissionTo('show-user');
         // user 2
         $userNoor = User::create([
             'code' => '2',

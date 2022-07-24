@@ -11,7 +11,6 @@ DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-
             PermissionSeeder::class,
             RoleSeeder::class,
             BranchSeeder::class,
@@ -22,7 +21,6 @@ DatabaseSeeder extends Seeder
             PermissionGroupSeeder::class,
             ClientSeeder::class,
             StoreSeeder::class,
-
         ]);
 
     }

@@ -13,7 +13,7 @@ use Barryvdh\Debugbar\Facades;
 //------- Users ------//
 
 Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
-    Route::get('index', [UserController::class, 'index'])->name('user.index');
+    Route::get('index/{id}', [UserController::class, 'index'])->name('user.index');
     Route::post('store', [UserController::class, 'store'])->name('user.store');
     Route::get('show/{id}', [UserController::class, 'show'])->name('user.show');
     Route::post('update', [UserController::class, 'update'])->name('user.update');
@@ -21,9 +21,6 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 //    Route::get('create', [UserController::class, 'create'])->name('user.create');
 
 
-    Route::get('restoreDatabase', [UserController::class, 'restoreDatabase'])->name('user.restoreDatabase');
-
-    Route::get('database-backup', [UserController::class, 'databaseBackup'])->name('database.databaseBackup');
 
     Route::get('permissions-according-lang', [UserController::class, 'permissionsAccordingLang'])->name('user.permissionsAccordingLang');
 
