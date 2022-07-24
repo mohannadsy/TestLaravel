@@ -37,22 +37,8 @@ class UserController extends Controller
         $this->callActivityMethod('index', $parameters);
         $user = User::select('id', 'name', 'code')->get();
 
-        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
 
-        $role = Role::find($roleId);
-
-        foreach ($groupPermissions as $groups) {
-            foreach ($groups->permissions as $permission) {
-                if ($role->hasPermissionTo($permission->name)) {
-                    $permission->is_active = true;
-                } else {
-                    $permission->is_active = false;
-                }
-            }
-        }
-        return $groupPermissions;
-
-//        return Inertia::render('BranchAndUser/Index', compact('user'));
+        return Inertia::render('BranchAndUser/Index', compact('user'));
 
     }
 
@@ -110,6 +96,24 @@ class UserController extends Controller
             return Inertia::render('BranchAndUser/show', compact('groupPermissions', 'user'));
         }
         return 'User not Found';
+    }
+
+    public function showRole($id)
+    {
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+        $role = Role::find($id);
+
+        foreach ($groupPermissions as $groups) {
+            foreach ($groups->permissions as $permission) {
+                if ($role->hasPermissionTo($permission->name)) {
+                    $permission->is_active = true;
+                } else {
+                    $permission->is_active = false;
+                }
+            }
+        }
+        return $groupPermissions;
+
     }
 
 }

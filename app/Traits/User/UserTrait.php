@@ -94,9 +94,9 @@ trait  UserTrait
                 }
             }
         }
-        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
-    }
+        return $groupPermissions;
 
+    }
 
     public function rolePermission($roleId)
     {
@@ -113,6 +113,6 @@ trait  UserTrait
             }
         }
         return $groupPermissions;
-//        return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'role'));
+
     }
 }
