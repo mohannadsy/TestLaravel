@@ -9,7 +9,7 @@ trait  CategoryTrait
 
     public function isContainItems($id)
     {
-        return $category = Category::find($id)->items > 0;
+        return $category = Category::withCount('items') > 0;
 
     }
 

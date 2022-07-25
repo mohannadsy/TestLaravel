@@ -16,7 +16,6 @@ class Category extends Model
         'security_degree',
         'type',
         'branch_id',
-
         'is_active',
         'is_aggregate',// تجميعي ؟
     ];
