@@ -23,6 +23,9 @@ class Branch extends Model
         'mobile',
         'is_active',
         'security_degree',
+
+
+
     ];
     public function branches()
     {
@@ -43,5 +46,22 @@ class Branch extends Model
     public function onlyUsers()
     {
         return $this->hasMany('App\Models\User', 'branch_id');
+    }
+
+    public function costCenters()
+    {
+        return $this->hasMany(CostCenter::class, 'branch_id');
+    }
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'branch_id');
+    }
+    public function accounts()
+    {
+        return $this->hasMany(Account::class, 'branch_id');
+    }
+    public function stores()
+    {
+        return $this->hasMany(Store::class, 'branch_id');
     }
 }

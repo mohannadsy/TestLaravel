@@ -46,6 +46,10 @@ class Account extends Model
         'aggregate_ids',    //مصفوفة تضم الحسابات العادية ضمن هذا الحساب التجميعي
         'distributive_ids',//مصفوفة تضم الحسابات العادية ضمن هذا الحساب التوزيعي
         'security_degree',
+
+
+        // updates : add branch in all cards
+        'branch_id'
     ];
 
     public function accounts()
@@ -58,13 +62,15 @@ class Account extends Model
         return $this->belongsTo(Account::class, 'account_id');
     }
 
+
+
     public function client()
     {
         return $this->hasOne(Client::class, 'account_id');
     }
 
-    public function stores()
+    public function branch()
     {
-        return $this->hasMany(Store::class, 'account_id');
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
 }

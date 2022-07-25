@@ -23,6 +23,10 @@ class Store extends Model
         'notes',
         'is_active',
         'security_degree',
+
+
+        // updates : add branch in all cards
+        'branch_id'
     ];
     public function stores()
     {
@@ -32,13 +36,10 @@ class Store extends Model
     {
         return $this->belongsTo(Store::Class, 'store_id');
     }
-    public function accounts()
+
+    public function branch()
     {
-        return $this->hasMany(Account::Class ,'account_id');
-    }
-    public function items()
-    {
-        return $this->hasMany(Item::Class ,'store_id');
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
     use HasFactory;
 }

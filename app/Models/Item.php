@@ -11,13 +11,17 @@ class Item extends Model
 
 
     protected $fillable = [
+        // general
         'code',
         'name',
         'latin_name',
+
         'is_active',
         'is_inherited',
+
         'security_degree',
-        'class', // صنف
+
+        'category_id', // صنف
         'place',//مكان التواجد
         'manufacture_company', // الشركة المصنعة
         'origin_country',//بلط المنشأ
@@ -29,10 +33,8 @@ class Item extends Model
         'photo',
         'notes',
 
-
         // Prices
 
-        'automatic_price_calculation',
         'last_purchase',
         'middle_purchase',
         'max_purchase',
@@ -45,34 +47,32 @@ class Item extends Model
         'added_value_tax',// ضريبة القيمة المضافة
         'pricing_method',
 
+
+
         // خيارات
-        'item_type',
-        'finish_date',// تاريخ الانتهاء
-        'expiration_date',// تاريخ انتهاء الصلاحية
+        'type',
+        'product_date',// تاريخ الانتاج
+
         'force_on_output',//فرض عند الاخراج
         'force_on_input',//فرض عند الادخال
+
         'aggregate_item',//مادة تجميعية
-        'question',
-        'mandatory',
-        'price_increase',
-        'Price_before_increase',
-        'Price_before_increase',
-
-
         'modified_item',
-        'serial_number',
+
+        'is_service', //مادة خدمية
+        'is_stored',// مادة مستودعية
+        'origin', //مادة أصل
 
 
-        // كميات مستودعات
 
-        'store_id',
-        'amount',
-        'amount_sum',
-
-        //معدلات المواد
-        'rate',//معدل
-        //بدائل المادة
-        'statement',// بيان
+        //  أسعار
+//
+//
+//        'question',
+//        'mandatory',
+//        'price_increase',
+//        'Price_before_increase',
+//        'Price_before_increase',
 
 
 //        // Unites
@@ -100,12 +100,33 @@ class Item extends Model
 //        'item_limits',
 
 
+
+        // كميات مستودعات
+//
+//        'store_id',
+//        'amount',
+//        'amount_sum',
+//
+//        //معدلات المواد
+//        'rate',//معدل
+//        //بدائل المادة
+//        'statement',// بيان
+
+
+
+        // updates : add branch in all cards
+        'branch_id'
     ];
 
 
-    public function store()
+    public function branch()
     {
-        return $this->belongsTo(Store::class, 'store_id');
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
 }

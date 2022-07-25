@@ -21,6 +21,8 @@ class Currency extends Model
         'photo',
         'create_at',
         'security_degree',
+
+
     ];
     protected $hidden = ['updated_at'];
 }

@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->string('latin_name')->nullable()->default(null);
             $table->string('type')->default('normal');
             $table->unsignedBigInteger('store_id')->default(null)->nullable();
-            $table->unsignedBigInteger('account_id')->default(null)->nullable();
+            $table->integer('account_id')->default(1)->nullable();
             $table->string('address')->nullable()->default(null);
             $table->string('store_keeper')->nullable()->default(null);
             $table->integer('storage_amount')->default(null)->nullable();
@@ -24,8 +24,15 @@ return new class extends Migration {
             $table->string('photo')->nullable()->default(null);
             $table->integer('security_degree')->default(1);
             $table->timestamps();
+
+            // updates : add branch in all cards
+            $table->unsignedBigInteger('branch_id')->nullable()->default(1);
+            $table->foreign('branch_id')->references('id')->on('branches');
+
+
+
             $table->foreign('store_id')->references('id')->on('stores');
-            $table->foreign('account_id')->references('id')->on('accounts');
+
         });
     }
 

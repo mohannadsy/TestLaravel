@@ -18,7 +18,9 @@ class CostCenterSeeder extends Seeder
             'in_balance' => '200',
             'out_balance' => '300',
             'notes' => '',
-            'security_degree' => 1 // سرية
+            'security_degree' => 1 // سرية,
+            ,
+            'branch_id'=>1,
         ]);
         CostCenter::create([
             'code' => '2',
@@ -30,6 +32,8 @@ class CostCenterSeeder extends Seeder
             'out_balance' => '300',
             'notes' => '',
             'security_degree' => 4 // سرية
+            ,
+            'branch_id'=>2,
         ]);
 
         CostCenter::create([
@@ -42,7 +46,8 @@ class CostCenterSeeder extends Seeder
             'out_balance' => '100',
             'notes' => '',
             'security_degree' => 3 // سرية
-        ]);
+        ,
+            'branch_id'=>3,]);
         CostCenter::create([
             'code' => '4',
             'name' => 'CostCenter3 ',
@@ -53,6 +58,8 @@ class CostCenterSeeder extends Seeder
             'out_balance' => '100',
             'notes' => '',
             'security_degree' => 1 // سرية
+            ,
+            'branch_id'=>4,
         ]);
         CostCenter::create([
             'code' => '5',
@@ -64,6 +71,7 @@ class CostCenterSeeder extends Seeder
             'out_balance' => '200',
             'notes' => '',
             'security_degree' => 1 // سرية
+            ,'branch_id'=>5,
         ]);
         CostCenter::create([
             'code' => '6',
@@ -74,7 +82,9 @@ class CostCenterSeeder extends Seeder
             'in_balance' => '400',
             'out_balance' => '400',
             'notes' => '',
-            'security_degree' => 1 // سرية
+            'security_degree' => 1 // سرية,
+            ,'branch_id'=>6,
+
         ]);
     }
 }
