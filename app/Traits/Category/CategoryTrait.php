@@ -9,16 +9,9 @@ trait  CategoryTrait
 
     public function isContainItems($id)
     {
-        return $category = Category::withCount('items') > 0;
-
+         $category = Category::withCount('items')->get();
+        return count($category) > 0;
     }
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'categories',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
+
 }

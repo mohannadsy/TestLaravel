@@ -5,12 +5,22 @@ namespace App\Http\Controllers\Category;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Category\CategoryTrait;
 use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
- use CategoryTrait;
+ use CategoryTrait , ActivityLog;
+
+    public function callActivityMethod($method, $parameters)
+    {
+        $this->makeActivity([
+            'table' => 'categories',
+            'operation' => $method,
+            'parameters' => $parameters
+        ]);
+    }
     public function index()
     {
         $parameters = ['id' => null];

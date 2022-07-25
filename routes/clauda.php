@@ -16,7 +16,7 @@ use Barryvdh\Debugbar\Facades;
 //------- Users ------//
 
 Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
-    Route::get('index/{id}', [UserController::class, 'index'])->name('user.index');
+    Route::get('index', [UserController::class, 'index'])->name('user.index');
     Route::post('store', [UserController::class, 'store'])->name('user.store');
     Route::get('show/{id}', [UserController::class, 'show'])->name('user.show');
     Route::get('show-role/{id}', [UserController::class, 'showRole'])->name('role.show');
