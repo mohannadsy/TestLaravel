@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Seeders\ItemSeeder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,6 +36,9 @@ class Store extends Model
     {
         return $this->hasMany(Account::Class ,'account_id');
     }
-
+    public function items()
+    {
+        return $this->hasMany(Item::Class ,'store_id');
+    }
     use HasFactory;
 }

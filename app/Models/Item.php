@@ -30,7 +30,6 @@ class Item extends Model
         'notes',
 
 
-
         // Prices
 
         'automatic_price_calculation',
@@ -76,12 +75,6 @@ class Item extends Model
         'statement',// بيان
 
 
-
-
-
-
-
-
 //        // Unites
 //
 //        'unit1_name',
@@ -108,4 +101,11 @@ class Item extends Model
 
 
     ];
+
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
+
 }
