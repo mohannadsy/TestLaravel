@@ -30,18 +30,8 @@ class ItemSeeder extends Seeder
             'photo' => 'url',
             'notes' => 'notes',
             'branch_id' => 5,
+            'unit_id' => 5,
 
-            'last_purchase' => 4.5,
-            'middle_purchase' => 4.5,
-            'max_purchase' => 4.5,
-            'min_price' => 4.5,
-            'cost' => 4.5,
-
-            'currency' => 'اليرة السورية',
-            'equality' => 4.5,
-            'automatic_discount_on_sale' => 4.5,
-            'added_value_tax' => 4.5,
-            'pricing_method' => 'by cost',
 
 
             'type' => 'origin',

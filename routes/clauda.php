@@ -7,6 +7,7 @@ use App\Http\Controllers\Currency\CurrencyController;
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Store\StoreController;
+use App\Http\Controllers\Unit\UnitController;
 use App\Http\Controllers\Item\ItemController;
 use App\Http\Controllers\Category\CategoryController;
 
@@ -58,6 +59,15 @@ Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
     Route::get('delete/{id}', [AccountController::class, 'delete'])->name('account.delete');
 });
 
+//------- Units ------//
+
+Route::group(['namespace' => 'Unit', 'prefix' => 'unit'], function () {
+    Route::get('index', [UnitController::class, 'index'])->name('unit.index');
+    Route::post('store', [UnitController::class, 'store'])->name('unit.store');
+    Route::get('show/{id}', [UnitController::class, 'show'])->name('unit.show');
+    Route::post('update', [UnitController::class, 'update'])->name('unit.update');
+    Route::get('delete/{id}', [UnitController::class, 'delete'])->name('unit.delete');
+});
 
 //------- Items ------//
 

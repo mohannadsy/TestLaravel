@@ -33,21 +33,6 @@ class Item extends Model
         'photo',
         'notes',
 
-        // Prices
-
-        'last_purchase',
-        'middle_purchase',
-        'max_purchase',
-        'min_price',
-        'cost',
-
-        'currency',
-        'equality', // تعادل
-        'automatic_discount_on_sale', // حسم تلقائي عند المبيع
-        'added_value_tax',// ضريبة القيمة المضافة
-        'pricing_method',
-
-
 
         // خيارات
         'type',
@@ -64,6 +49,7 @@ class Item extends Model
         'origin', //مادة أصل
 
 
+        'unit_id',
 
         //  أسعار
 //
@@ -100,7 +86,6 @@ class Item extends Model
 //        'item_limits',
 
 
-
         // كميات مستودعات
 //
 //        'store_id',
@@ -111,7 +96,6 @@ class Item extends Model
 //        'rate',//معدل
 //        //بدائل المادة
 //        'statement',// بيان
-
 
 
         // updates : add branch in all cards
@@ -127,6 +111,11 @@ class Item extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function units()
+    {
+        return $this->hasMany(Unit::class, 'unit_id');
     }
 
 }

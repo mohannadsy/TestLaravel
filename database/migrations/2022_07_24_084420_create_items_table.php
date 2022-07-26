@@ -31,18 +31,6 @@ return new class extends Migration {
             $table->string('notes');
             $table->string('photo');
 
-            $table->float('last_purchase');
-            $table->float('middle_purchase');
-            $table->float('max_purchase');
-            $table->float('min_price');
-            $table->float('cost');
-
-
-            $table->string('currency');
-            $table->float('equality');
-            $table->float('automatic_discount_on_sale');
-            $table->float('added_value_tax');
-            $table->string('pricing_method');
 
 
             $table->string('type');
@@ -61,6 +49,10 @@ return new class extends Migration {
             $table->unsignedBigInteger('branch_id')->nullable()->default(1);
             $table->foreign('branch_id')->references('id')->on('branches');
 
+
+
+            $table->unsignedBigInteger('unit_id');
+            $table->foreign('unit_id')->references('id')->on('units');
 
         });
     }
