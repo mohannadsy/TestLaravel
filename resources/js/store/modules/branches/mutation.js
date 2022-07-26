@@ -5,6 +5,10 @@ export default {
     newBranch(state, payload) {
         state.branches.push(payload);
     },
+    saveUpdatedProduct: (state, branch) => {
+        state.branches.unshift(branch)
+            //state.updatedData = product;
+    },
     setBranches(state, payload) {
         state.branches = payload;
     },

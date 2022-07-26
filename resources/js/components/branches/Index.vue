@@ -25,8 +25,12 @@
       <div class="col-md-4">
         <element-button @click="submit">حفظ</element-button>
         <element-button :type="button" @click="newBranch">جديد</element-button>
-        <element-button :type="button" @click="updateBranch">تعديل</element-button>
-        <element-button :type="button" @click="deleteBranch">حذف</element-button>
+        <element-button :type="button" @click="updateBranch"
+          >تعديل</element-button
+        >
+        <element-button :type="button" @click="deleteBranch"
+          >حذف</element-button
+        >
       </div>
     </div>
   </div>
@@ -45,7 +49,7 @@ import MainInfromation1 from "./MainInfromation.vue";
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 export default {
-  props: ["branchInformaion","nodeId"],
+  props: ["branchInformaion", "nodeId"],
   components: {
     BasicInformation,
     PageTitle,
@@ -75,11 +79,8 @@ export default {
       }),
     };
   },
-  //   mounted() {
-  //     this.postData = this.Rec;
-  //   },
   methods: {
-    saveMain(data) {
+     saveMain(data) {
       (this.postData.code = data.code),
         (this.postData.name = data.name),
         (this.postData.branch_id = data.branch_id);
@@ -95,26 +96,18 @@ export default {
     },
     saveExtra(data) {},
     submit() {
-      // Inertia.post(route('user.store'), this.postData);
       this.$store.dispatch("branches/registerBranch", this.postData);
     },
     newBranch() {
-      this.postData={}
+      this.postData = {};
       this.postData.is_active=true
     },
-    updateBranch(){
-
-       console.log(this.postData);
-
-       Inertia.post(route('branch.update' , this.nodeId ), this.postData);
-
-    //    this.$store.dispatch("branches/newBranch",{nodeId:this.nodeId,data: this.postData});
-       console.log(this.postData);
+     updateBranch() {
+        Inertia.post(route('branch.update',this.nodeId), this.postData);
     },
-    deleteBranch(){
-        console.log(this.postData)
-         Inertia.get(route('branch.delete' , this.nodeId ), this.postData);
-    }
+    deleteBranch() {
+      Inertia.get(route("branch.delete", this.nodeId), this.postData);
+    },
   },
 };
 </script>
