@@ -20,6 +20,11 @@ return new class extends Migration
             $table->string('notes')->nullable()->default(null);
             $table->integer('security_degree')->default(1);//منخفضة
             $table->timestamps();
+            // updates : add branch in all cards
+            $table->unsignedBigInteger('branch_id')->nullable()->default(1);
+            $table->foreign('branch_id')->references('id')->on('branches');
+
+
             $table->foreign('center_id')->references('id')->on('cost_centers');
         });
     }

@@ -20,6 +20,9 @@ return new class extends Migration {
             $table->string('photo')->nullable()->default(null);
             $table->integer('security_degree')->default(1);
             $table->timestamps();
+
+
+
         });
     }
 

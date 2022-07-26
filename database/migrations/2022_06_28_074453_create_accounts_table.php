@@ -39,7 +39,12 @@ return new class extends Migration {
             $table->json('aggregate_ids');
             $table->json('distributive_ids');
             $table->timestamps();
-            $table->foreign('account_id')->references('id')->on('accounts');
+
+            // updates : add branch in all cards
+            $table->unsignedBigInteger('branch_id')->nullable()->default(1);
+            $table->foreign('branch_id')->references('id')->on('branches');
+
+
         });
     }
 

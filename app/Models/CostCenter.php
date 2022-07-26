@@ -19,6 +19,9 @@ class CostCenter extends Model
              'out_balance',
              'notes',
              'security_degree',
+
+             // updates : add branch in all cards
+             'branch_id'
          ];
         public function cost_centers()
         {

@@ -32,6 +32,8 @@ return new class extends Migration {
             $table->integer('account_id')->nullable()->default(null);
             $table->integer('security_degree')->default(1);
             $table->timestamps();
+
+
         });
     }
 

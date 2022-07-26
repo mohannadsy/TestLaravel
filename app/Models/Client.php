@@ -34,6 +34,8 @@ class Client extends Model
         'payment_method', // شروط الدفع
         'account_id',
         'security_degree',
+
+
     ];
 
     public function account()

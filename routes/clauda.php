@@ -8,6 +8,7 @@ use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Store\StoreController;
 use App\Http\Controllers\Item\ItemController;
+use App\Http\Controllers\Category\CategoryController;
 
 use Barryvdh\Debugbar\Facades;
 
@@ -15,7 +16,7 @@ use Barryvdh\Debugbar\Facades;
 //------- Users ------//
 
 Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
-    Route::get('index/{id}', [UserController::class, 'index'])->name('user.index');
+    Route::get('index', [UserController::class, 'index'])->name('user.index');
     Route::post('store', [UserController::class, 'store'])->name('user.store');
     Route::get('show/{id}', [UserController::class, 'show'])->name('user.show');
     Route::get('show-role/{id}', [UserController::class, 'showRole'])->name('role.show');
@@ -66,6 +67,16 @@ Route::group(['namespace' => 'Item', 'prefix' => 'item'], function () {
     Route::get('show/{id}', [ItemController::class, 'show'])->name('item.show');
     Route::post('update', [ItemController::class, 'update'])->name('item.update');
     Route::get('delete/{id}', [ItemController::class, 'delete'])->name('item.delete');
+});
+
+//------- Category ------//
+
+Route::group(['namespace' => 'Category', 'prefix' => 'category'], function () {
+    Route::get('index', [CategoryController::class, 'index'])->name('category.index');
+    Route::post('store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('show/{id}', [CategoryController::class, 'show'])->name('category.show');
+    Route::post('update', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 });
 
 
