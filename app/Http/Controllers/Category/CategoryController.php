@@ -60,7 +60,7 @@ class CategoryController extends Controller
     public function delete($id)
     {
         $parameters = ['id' => $id];
-        if (!$this->isContainItems($id)) {
+        if ($this->isNotContainItems($id)) {
             $category = Category::find($id);
             return $category ? $category->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Category not Found';
         }

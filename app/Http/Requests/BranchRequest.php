@@ -14,7 +14,11 @@ class BranchRequest extends FormRequest
 
     public function rules()
     {
-        return $rules=[
+        return $rules = [
+            'code' => 'unique:branches,code',
+            'name' => 'unique:branches,name',
+
+
 //              'code'                   =>'required|string|unique:branches,code',
 //              'name'                   =>'required|max:50|string|unique:branches,name' ,
 //              'branch_id'              =>'max:50|numeric' ,
@@ -29,7 +33,11 @@ class BranchRequest extends FormRequest
 
     public function messages()
     {
-        return $messages= [
+        return $messages = [
+            'code.required'          => __('branch.code required'),
+//            'code.required'          => 'رمز الفرع يجب أن يُدخل',
+//            'code.unique'            => 'رمز الفرع موجود سابقاً ',
+//            'code.unique'            => 'رمز الفرع موجود سابقاً ',
 //            'code.required'          => 'رمز الفرع يجب أن يُدخل',
 //            'code.unique'            => 'رمز الفرع موجود سابقاً ',
 //            'code.string'            => 'رمز الفرع يجب أن يكون محارف ',
