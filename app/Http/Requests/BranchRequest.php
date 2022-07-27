@@ -15,8 +15,8 @@ class BranchRequest extends FormRequest
     public function rules()
     {
         return $rules = [
-            'code' => 'unique:branches,code',
-            'name' => 'unique:branches,name',
+//            'code' => 'unique:branches,code',
+//            'name' => 'unique:branches,name',
 
 
 //              'code'                   =>'required|string|unique:branches,code',
@@ -35,13 +35,13 @@ class BranchRequest extends FormRequest
     {
         return $messages = [
 //            'code.required'          => __('branch.code required'),
-            'code.required'          => 'رمز الفرع يجب أن يُدخل',
+//            'code.required'          => 'رمز الفرع يجب أن يُدخل',
 //            'code.unique'            => 'رمز الفرع موجود سابقاً ',
 //            'code.unique'            => 'رمز الفرع موجود سابقاً ',
 //            'code.required'          => 'رمز الفرع يجب أن يُدخل',
 //            'code.unique'            => 'رمز الفرع موجود سابقاً ',
 //            'code.string'            => 'رمز الفرع يجب أن يكون محارف ',
-            'name.required'          => 'اسم الفرع يجب أن يُدخل',
+//            'name.required'          => 'اسم الفرع يجب أن يُدخل',
 //            'name.max'               => 'اسم الفرع تجاوز 50 محرف ',
 //            'name.unique'            => 'اسم الفرع موجود سابقاً ',
 //            'name.string'            => 'اسم الفرع يجب أن يكون محارف ',
