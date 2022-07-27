@@ -63,6 +63,8 @@ import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInfromation1 from "./MainInfromation.vue";
 import BaseDialog from "../../Shared/BaseDialog.vue";
+
+import axios from "axios";
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 export default {
@@ -118,10 +120,12 @@ export default {
         (this.postData.mobile = data.mobile);
     },
     saveExtra(data) {},
-    submit() {
-        console.log(typeof(this.messages))
+     submit() {
+        //console.log(typeof(this.messages))
       //this.$store.dispatch("branches/registerBranch", this.postData);
-       Inertia.post(route("branch.store"), this.postData);
+       //Inertia.post(route("branch.store"), this.postData);
+       axios.post(route("branch.store", this.postData)).then((response) => console.log('hi')).catch(err => console.log(err))
+
     },
     newBranch() {
       this.postData = {};
