@@ -16,7 +16,7 @@ class BranchRequest extends FormRequest
     {
         return $rules = [
 
-            'code' => 'unique:branches,code',
+            'code' => 'unique,required:branches,code',
             'name' => 'unique:branches,name',
 
 //              'code'                   =>'required|string|unique:branches,code',
@@ -37,7 +37,7 @@ class BranchRequest extends FormRequest
 //            'code.required'          => __('branch.code required'),
 
            'code.required'          => 'رمز الفرع يجب أن يُدخل',
-//            'code.unique'            => 'رمز الفرع موجود سابقاً ',
+           'code.unique'            => 'رمز الفرع موجود سابقاً ',
 //            'code.unique'            => 'رمز الفرع موجود سابقاً ',
 //            'code.required'          => 'رمز الفرع يجب أن يُدخل',
 //            'code.unique'            => 'رمز الفرع موجود سابقاً ',
