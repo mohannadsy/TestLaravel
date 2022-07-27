@@ -60,7 +60,7 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import ToggleButton from "../../Shared/ToggleButton.vue";
 export default {
-  props: ["branchInformaion", "postData","errors"],
+  props: ["branchInformaion", "postData","messages"],
   emits: ["save-main"],
   components: {
     PageTitle,
