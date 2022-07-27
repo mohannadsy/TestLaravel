@@ -8,7 +8,9 @@ use App\Http\Requests\BranchRequest;
 use App\Models\PermissionGroup;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
 
 
@@ -29,17 +31,41 @@ class BranchController extends Controller
         return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
     }
 
-    public function store(BranchRequest $request)
+//    public function store(BranchRequest $request)
+//    {
+//        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
+//        $parameters = ['request' => $request, 'id' => $id];
+//        //insert to Database
+//        $storeBranch = Branch::create($request->all());
+//        $this->callActivityMethod('store', $parameters);
+//        return $data = 'store is succesfully';
+////        return redirect()->back()->with(['store is succesfully']);
+////         return Inertia::render('Branches/Index',compact($data));
+//    }
+
+    public function store(Request $request)
     {
         $id = Branch::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
         //insert to Database
-        $storeBranch = Branch::create($request->validated());
+//        $storeBranch = Branch::create($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required:branches',
+            'code' => 'required:branches',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 400);
+        }
+
         $this->callActivityMethod('store', $parameters);
         return $data = 'store is succesfully';
 //        return redirect()->back()->with(['store is succesfully']);
 //         return Inertia::render('Branches/Index',compact($data));
     }
+
+
 
     public function show($id)
     {
