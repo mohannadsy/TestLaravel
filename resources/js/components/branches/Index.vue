@@ -66,6 +66,8 @@ import { Inertia } from "@inertiajs/inertia";
 export default {
   //props: ["branchInformaion", "nodeId"],
   props: {
+    branchInformaion:Object,
+    nodeId:String,
     errors: Object,
   },
   components: {
