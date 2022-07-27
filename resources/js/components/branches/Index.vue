@@ -18,10 +18,10 @@
         @save-main="saveMain"
         :branchInformaion="branchInformaion"
         :postData="postData"
-       :errors="errors">
+       :messages="messages">
 
       ></main-infromation>
-      <h1 v-for="message in messages" :key="message.id">{{error}}</h1>
+      <h1 v-for="message in messages" :key="message.id">{{message}}</h1>
       <div class="row a mt-2">
         <div class="col-5">
           <title-button @click="activeTab = 'BasicInformation'"
