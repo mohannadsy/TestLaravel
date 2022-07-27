@@ -18,6 +18,7 @@
         @save-main="saveMain"
         :branchInformaion="branchInformaion"
         :postData="postData"
+        :errors="errors"
       >
         ></main-infromation
       >
@@ -88,7 +89,7 @@ export default {
   props: {
     branchInformaion: Object,
     nodeId: String,
-    messages: Object,
+    errors: Object,
   },
   components: {
     BasicInformation,
@@ -137,7 +138,7 @@ export default {
     },
     saveExtra(data) {},
     submit() {
-      console.log(this.postData)
+      console.log(this.postData.errors)
       //this.$store.dispatch("branches/registerBranch", this.postData);
       Inertia.post(route("branch.store"), this.postData);
       //    axios.post(route("branch.store", this.postData)).then((response) => console.log(response)).catch((error) => console.log(error))

@@ -13,7 +13,7 @@
             v-model.trim="myObj.code"
           />
         </div>
-        <div v-if="postData.errors.code">{{ postData.errors.code }}</div>
+        <div v-if="myObj.errors.code">{{ myObj.errors.code }}</div>
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-4">اسم الفرع</elemet-label>
@@ -70,7 +70,7 @@ export default {
     });
     return { myObj };
   },
-  props: ["branchInformaion", "postData", "messages"],
+  props: ["branchInformaion", "postData", "errors"],
   emits: ["save-main"],
   components: {
     PageTitle,

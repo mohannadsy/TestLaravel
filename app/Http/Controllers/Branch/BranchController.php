@@ -10,7 +10,7 @@ use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Validator;
+// suse Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
 
 
@@ -53,6 +53,8 @@ class BranchController extends Controller
             'code' => 'required,unique',
         ]);
         $branch = Branch::create($request->all());
+
+
         $this->callActivityMethod('store', $parameters);
         $response = [
             'Branch' => $branch,
@@ -61,9 +63,6 @@ class BranchController extends Controller
         return response($response);
 //      return  response(['message' => 'Logout Done successfully ']);
 
-//        return $data = 'store is successfully';
-//        return redirect()->back()->with(['store is successfully']);
-//         return Inertia::render('Branches/Index',compact($data));
     }
 
 
