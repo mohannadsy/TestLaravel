@@ -60,7 +60,9 @@ class BranchController extends Controller
             'Branch' => $branch,
             'message' => '$token',
         ];
-        return response($response);
+//        return response($response);
+        return response()->json(['response' => $response], 200);;
+
 //      return  response(['message' => 'Logout Done successfully ']);
 
     }
