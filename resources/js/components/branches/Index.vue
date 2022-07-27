@@ -1,10 +1,24 @@
 <template>
+  <base-dialog
+    v-if="inputIsInvalid"
+    title="Invalid Input"
+    @close="confirmError"
+  >
+    <template #default>
+      <p>Unfortunately, at least one input value is Invalid</p>
+      <p>Please.. Check all inputs</p>
+    </template>
+    <template #actions>
+      <base-button @click="confirmError">Okay</base-button>
+    </template>
+  </base-dialog>
   <div class="row">
     <div class="col border-right">
       <main-infromation
         @save-main="saveMain"
         :branchInformaion="branchInformaion"
         :postData="postData"
+        :errors="$page['props']['errors']"
       ></main-infromation>
       <div class="row a mt-2">
         <div class="col-5">
@@ -46,10 +60,14 @@ import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInfromation1 from "./MainInfromation.vue";
+import BaseDialog from "../../Shared/BaseDialog.vue";
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 export default {
-  props: ["branchInformaion", "nodeId"],
+  //props: ["branchInformaion", "nodeId"],
+  props: {
+    errors: Object,
+  },
   components: {
     BasicInformation,
     PageTitle,
@@ -60,6 +78,7 @@ export default {
     TitleButton,
     MainInfromation,
     MainInfromation1,
+    BaseDialog,
   },
   data() {
     return {
@@ -80,7 +99,7 @@ export default {
     };
   },
   methods: {
-     saveMain(data) {
+    saveMain(data) {
       (this.postData.code = data.code),
         (this.postData.name = data.name),
         (this.postData.branch_id = data.branch_id);
@@ -96,18 +115,22 @@ export default {
     },
     saveExtra(data) {},
     submit() {
+        console.log(typeof(this.errors))
       this.$store.dispatch("branches/registerBranch", this.postData);
     },
     newBranch() {
       this.postData = {};
-      this.postData.is_active=true
+      this.postData.is_active = true;
     },
-     updateBranch() {
-        Inertia.post(route('branch.update',this.nodeId), this.postData);
+    updateBranch() {
+      Inertia.post(route("branch.update", this.nodeId), this.postData);
     },
     deleteBranch() {
       Inertia.get(route("branch.delete", this.nodeId), this.postData);
     },
+    confirmError(){
+
+        }
   },
 };
 </script>

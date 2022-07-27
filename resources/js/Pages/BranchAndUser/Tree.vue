@@ -12,7 +12,7 @@
         :class="{ bold: isFolder }"
         class="pointer"
         @click="sendNodeType(item, item.id)"
-        >{{ item.name }}</span
+        >{{ item.name }}_{{item.code}}</span
       >
     </div>
     <ul v-show="isOpen" v-if="isFolder">

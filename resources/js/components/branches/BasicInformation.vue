@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="form-group row mt-3">
         <elemet-label class="col-form-label col-3"> المسؤولية</elemet-label>
-        <div class="col-8">
+        <div class="col-md-8">
           <element-input
             type="text"
             @change="objChanged"

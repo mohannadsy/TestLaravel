@@ -13,6 +13,7 @@
             v-model.trim="myObj.code"
           />
         </div>
+          <div v-if="errors.code">{{ errors.code }}</div>
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-4">اسم الفرع</elemet-label>
@@ -58,7 +59,7 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import ToggleButton from "../../Shared/ToggleButton.vue";
 export default {
-  props: ["branchInformaion", "postData"],
+  props: ["branchInformaion", "postData","errors"],
   emits: ["save-main"],
   components: {
     PageTitle,
