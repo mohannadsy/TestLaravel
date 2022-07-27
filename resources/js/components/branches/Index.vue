@@ -18,8 +18,10 @@
         @save-main="saveMain"
         :branchInformaion="branchInformaion"
         :postData="postData"
-        :errors="$page['props']['errors']"
+       :errors="errors">
+
       ></main-infromation>
+      <h1 v-for="message in messages" :key="message.id">{{error}}</h1>
       <div class="row a mt-2">
         <div class="col-5">
           <title-button @click="activeTab = 'BasicInformation'"
@@ -68,7 +70,7 @@ export default {
   props: {
     branchInformaion:Object,
     nodeId:String,
-    errors: Object,
+    messages: Array,
   },
   components: {
     BasicInformation,
@@ -117,8 +119,9 @@ export default {
     },
     saveExtra(data) {},
     submit() {
-        console.log(typeof(this.errors))
-      this.$store.dispatch("branches/registerBranch", this.postData);
+        console.log(typeof(this.messages))
+      //this.$store.dispatch("branches/registerBranch", this.postData);
+       Inertia.post(route("branch.store"), this.postData);
     },
     newBranch() {
       this.postData = {};
