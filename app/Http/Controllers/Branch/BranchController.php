@@ -31,40 +31,17 @@ class BranchController extends Controller
         return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
     }
 
-//    public function store(BranchRequest $request)
-//    {
-//        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
-//        $parameters = ['request' => $request, 'id' => $id];
-//        //insert to Database
-//        $storeBranch = Branch::create($request->all());
-//        $this->callActivityMethod('store', $parameters);
-//        return $data = 'store is succesfully';
-////        return redirect()->back()->with(['store is succesfully']);
-////         return Inertia::render('Branches/Index',compact($data));
-//    }
-
-    public function store(Request $request)
+    public function store(BranchRequest $request)
     {
         $id = Branch::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
         //insert to Database
-//        $storeBranch = Branch::create($request->all());
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required:branches',
-            'code' => 'required:branches',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->messages(), 400);
-        }
-
+        $storeBranch = Branch::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return $data = 'store is succesfully';
-//        return redirect()->back()->with(['store is succesfully']);
+        return $data = 'store is successfully';
+//        return redirect()->back()->with(['store is successfully']);
 //         return Inertia::render('Branches/Index',compact($data));
     }
-
 
 
     public function show($id)
