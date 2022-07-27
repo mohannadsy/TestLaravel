@@ -13,7 +13,7 @@
             v-model.trim="myObj.code"
           />
         </div>
-          <!-- <div v-if="messages.code">{{ messages.code }}</div> -->
+        <div v-if="postData.errors.code">{{ postData.errors.code }}</div>
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-4">اسم الفرع</elemet-label>
@@ -24,7 +24,7 @@
             v-model.trim="myObj.name"
           />
         </div>
-         <!-- <div v-if="messages.name">{{ messages.name }}</div> -->
+        <!-- <div v-if="postData.errors.name">{{ postData.errors.name }}</div> -->
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-4">
@@ -59,8 +59,18 @@ import PageTitle from "../../Shared/PageTitle.vue";
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import ToggleButton from "../../Shared/ToggleButton.vue";
+import { useForm } from '@inertiajs/inertia-vue3'
 export default {
-  props: ["branchInformaion", "postData","messages"],
+  setup() {
+    const myObj = useForm({
+      code: "",
+      name: "",
+      branch_id: "",
+      is_active: true,
+    });
+    return { myObj };
+  },
+  props: ["branchInformaion", "postData", "messages"],
   emits: ["save-main"],
   components: {
     PageTitle,
@@ -70,12 +80,12 @@ export default {
   },
   data() {
     return {
-      myObj: {
-        code: "",
-        name: "",
-        branch_id: "",
-        is_active: true,
-      },
+      //   myObj: {
+      //     code: "",
+      //     name: "",
+      //     branch_id: "",
+      //     is_active: true,
+      //   },
     };
   },
   watch: {
