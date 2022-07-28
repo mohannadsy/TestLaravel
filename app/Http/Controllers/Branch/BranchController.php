@@ -43,29 +43,29 @@ class BranchController extends Controller
 ////         return Inertia::render('Branches/Index',compact($data));
 //    }
 
-    public function store(Request $request)
-    {
-        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
-        $parameters = ['request' => $request, 'id' => $id];
-
-        $request->validate([
-            'name' => 'required,unique',
-            'code' => 'required,unique',
-        ]);
-        $branch = Branch::create($request->all());
-
-
-        $this->callActivityMethod('store', $parameters);
-        $response = [
-            'Branch' => $branch,
-            'message' => '$token',
-        ];
-//        return response($response);
-        return response()->json(['response' => $response], 200);;
-
-//      return  response(['message' => 'Logout Done successfully ']);
-
-    }
+//    public function store(Request $request)
+//    {
+//        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
+//        $parameters = ['request' => $request, 'id' => $id];
+//
+//        $request->validate([
+//            'name' => 'required,unique',
+//            'code' => 'required,unique',
+//        ]);
+//        $branch = Branch::create($request->all());
+//
+//
+//        $this->callActivityMethod('store', $parameters);
+//        $response = [
+//            'Branch' => $branch,
+//            'message' => '$token',
+//        ];
+////        return response($response);
+//        return response()->json(['response' => $response], 200);;
+//
+////      return  response(['message' => 'Logout Done successfully ']);
+//
+//    }
 
 
     public function show($id)
@@ -99,5 +99,28 @@ class BranchController extends Controller
             return "Branch is deleted successfully";
         } else
             return "it is not possible to delete a branch that contains branches within it";
+    }
+    public function store(Request $request)
+    {
+        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
+        $parameters = ['request' => $request, 'id' => $id];
+
+        $request->validate([
+            'name' => 'required,unique',
+            'code' => 'required,unique',
+        ]);
+        $branch = Branch::create($request->all());
+
+
+        $this->callActivityMethod('store', $parameters);
+        $response = [
+            'Branch' => $branch,
+            'message' => '$token',
+        ];
+//        return response($response);
+        return response()->json(['response' => $response], 200);;
+
+//      return  response(['message' => 'Logout Done successfully ']);
+
     }
 }
