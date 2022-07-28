@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Config;
 // suse Illuminate\Support\Facades\Validator;
 //use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Validator;
+use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 
 
