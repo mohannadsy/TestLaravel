@@ -126,9 +126,9 @@ class BranchController extends Controller
         $id = Branch::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
 
-        $data= 'successfully' ;
         $this->callActivityMethod('store', $parameters);
-             return Inertia::render('Branches/Index',compact('data'));
+            return $data= 'successfully' ;
+
     }
     protected function getMessages()
     {
