@@ -11,6 +11,7 @@ use App\Traits\Branch\BranchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 // suse Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Validator;
 use Spatie\Permission\Models\Permission;
 
 
@@ -103,26 +104,75 @@ class BranchController extends Controller
     public function store(Request $request)
     {
         $rules = $this -> getRules();
-
+        $messages= $this->getMessages();
+        $validator= Validator::make($request->all(),$rules,$messages);
+        if($validator->fails())
+        {
+            return $validator->errors();
+        }
+         Branch::create([
+             'code'                   =>$request -> code ,
+              'name'                   =>$request -> name ,
+              'branch_id'              =>$request -> branch_id ,
+              'responsibility'          =>$request -> responsibility ,
+              'address'                =>$request -> address ,
+              'website'              =>$request -> website ,
+              'email'                  =>$request -> email ,
+              'phone'                 =>$request -> phone ,
+              'mobile'                =>$request -> mobile ,
+         ]);
         $id = Branch::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
 
-        $request->validate([
-            'name' => 'required,unique',
-            'code' => 'required,unique',
-        ]);
-        $branch = Branch::create($request->all());
-
-
+        $data= successfully ;
         $this->callActivityMethod('store', $parameters);
-        $response = [
-            'Branch' => $branch,
-            'message' => '$token',
-        ];
-//        return response($response);
-        return response()->json(['response' => $response], 200);;
+             return Inertia::render('Branches/Index',compact('data'));
+    }
+    protected function getMessages()
+    {
+        return $messages =[
+            'code.required'          => 'رمز الفرع يجب أن يُدخل',
+            'code.unique'            => 'رمز الفرع موجود سابقاً ',
+            'code.string'            => 'رمز الفرع يجب أن يكون محارف ',
+            'name.required'          => 'اسم الفرع يجب أن يُدخل',
+            'name.max'               => 'اسم الفرع تجاوز 50 محرف ',
+            'name.unique'            => 'اسم الفرع موجود سابقاً ',
+            'name.string'            => 'اسم الفرع يجب أن يكون محارف ',
+            'branch_id.max'          => 'رمز الفرع الرئيسي تجاوز 50 رقم ',
+            'branch_id.numeric'      => 'رمز الفرع الرئيسي يجب أن يكون ارقام  ',
+            'responsibility.max'     => 'معلومات الفرع(الصفة) تجاوز 250 محرف ',
+            'responsibility.string'  => 'معلومات الفرع يجب أن يكون محارف ',
+            'address.max'            =>  'عنوان الفرع تجاوز 100 محرف ',
+            'address.string'         =>'عنوان الفرع يجب أن يكون محارف ',
+            'website.unique'         =>'الموقع الالكتروني مُدخل سابقاً لفرع آخر ',
+            'website.string'         =>'الموقع الالكتروني يجب أن يكون محارف  ',
+            'email.string'           =>' البريد الالكتروني  يجب أن يكون محارف ',
+            'email.email'            =>'ماتم إدخاله غير متوافق مع صيغة البريد الإلكتروني  ',
+            'email.unique'           =>'البريد الالكتروني مُدخل سابقاً لفرع آخر  ',
+            'phone.max'              => 'رقم الهاتف تجاوز 50 رقم ',
+            'phone.unique'           => 'رقم الهاتف مُدخل سابقاً لفرع آخر ',
+            'phone.string'           =>'رقم الهاتف يجب أن يكون محارف ',
+            'mobile.max'             => 'رقم الموبايل تجاوز 50 محرف ',
+            'mobile.unique'          => 'رقم الموبايل مُدخل سابقاً لفرع آخر ',
+            'mobile.string'          =>'رقم الموبايل يجب أن يكون محارف ',
 
-//      return  response(['message' => 'Logout Done successfully ']);
+        ];
+    }
+
+    protected function getRules()
+    {
+        return $rules = [
+
+              'code'                   =>'required|string|unique:branches,code',
+              'name'                   =>'required|max:50|string|unique:branches,name' ,
+              'branch_id'              =>'max:50|numeric' ,
+              'responsibility'         =>'max:250|string',
+              'address'                =>'max:100|string',
+              'website'                =>'string|unique:branches,website',
+              'email'                  =>'string|email|unique:branches,email',
+              'phone'                  =>'max:50|string|unique:branches,phone',
+              'mobile'                 =>'max:50|string|unique:branches,mobile',
+        ];
 
     }
 }
