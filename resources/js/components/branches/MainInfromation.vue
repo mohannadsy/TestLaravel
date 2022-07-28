@@ -2,6 +2,7 @@
   <div class="row px-3 mt-1 pb-2">
     <page-title>بطاقة فرع</page-title>
   </div>
+  <form method="POST">
   <div class="row">
     <div class="col-md-5">
       <div class="form-group row mt-2">
@@ -13,7 +14,8 @@
             v-model.trim="myObj.code"
           />
         </div>
-        <div v-if="myObj.errors.code">{{ myObj.errors.code }}</div>
+        <!-- <h2>{{ myObj.errors.hasOwnProperty('code') }}</h2> -->
+        <div v-if="form.errors.code">{{form.errors.code}}</div>
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-4">اسم الفرع</elemet-label>
@@ -52,6 +54,7 @@
       </div>
     </div>
   </div>
+  </form>
 </template>
 
 <script>
@@ -70,7 +73,7 @@ export default {
     });
     return { myObj };
   },
-  props: ["branchInformaion", "postData", "errors"],
+  props: ["branchInformaion", "form"],
   emits: ["save-main"],
   components: {
     PageTitle,
@@ -80,17 +83,17 @@ export default {
   },
   data() {
     return {
-      //   myObj: {
-      //     code: "",
-      //     name: "",
-      //     branch_id: "",
-      //     is_active: true,
-      //   },
+        // myObj: {
+        //   code: "",
+        //   name: "",
+        //   branch_id: "",
+        //   is_active: true,
+        // },
     };
   },
   watch: {
-    postData() {
-      this.myObj = this.postData;
+    form() {
+      this.myObj = this.form;
     },
     branchInformaion() {
       Object.assign(this.myObj, this.branchInformaion);

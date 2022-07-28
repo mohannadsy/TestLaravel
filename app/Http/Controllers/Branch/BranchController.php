@@ -102,6 +102,8 @@ class BranchController extends Controller
     }
     public function store(Request $request)
     {
+        $rules = $this -> getRules();
+
         $id = Branch::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
 
