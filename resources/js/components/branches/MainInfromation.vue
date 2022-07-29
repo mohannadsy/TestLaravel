@@ -73,7 +73,7 @@ export default {
     });
     return { myObj };
   },
-  props: ["branchInformaion", "form"],
+  props: ["branchInformaion", "form","errors"],
   emits: ["save-main"],
   components: {
     PageTitle,
