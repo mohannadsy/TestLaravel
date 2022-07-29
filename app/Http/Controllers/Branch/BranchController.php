@@ -10,7 +10,7 @@ use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
 
 
@@ -30,27 +30,13 @@ class BranchController extends Controller
 //        return $groupPermissions;
         return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
     }
-//  public function store(Request $request)
-// {
-//     $request->validate([
-//         'code' => 'required|string|max:255',
-//         'name' => 'required|string|max:255',
-//     ]);
 
-//     Branch::create([
-//         'code' => $request->code,
-//         'name' => $request->name
-//     ]);
-//     sleep(1);
-
-//     return redirect()->route('branch.index')->with('message', 'Category Created Successfully');
-// }
    public function store(BranchRequest $request)
    {
        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
        $parameters = ['request' => $request, 'id' => $id];
        //insert to Database
-       $storeBranch = Branch::create($request->validate());
+       $storeBranch = Branch::create($request->all());
        $this->callActivityMethod('store', $parameters);
        return $data = 'store is successfully';
 //        return redirect()->back()->with(['store is successfully']);
