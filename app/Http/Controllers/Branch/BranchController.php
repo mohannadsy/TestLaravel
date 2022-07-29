@@ -10,7 +10,7 @@ use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-// suse Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
 
 
@@ -30,42 +30,56 @@ class BranchController extends Controller
 //        return $groupPermissions;
         return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
     }
+ public function store(Request $request)
+{
+    $request->validate([
+        'code' => 'required|string|max:255',
+        'name' => 'required|string|max:255',
+    ]);
 
+    Branch::create([
+        'code' => $request->code,
+        'name' => $request->name
+    ]);
+    sleep(1);
+
+    return redirect()->route('branch.index')->with('message', 'Category Created Successfully');
+}
 //    public function store(BranchRequest $request)
 //    {
 //        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
 //        $parameters = ['request' => $request, 'id' => $id];
 //        //insert to Database
-//        $storeBranch = Branch::create($request->all());
+//        $storeBranch = Branch::create($request->validate());
 //        $this->callActivityMethod('store', $parameters);
 //        return $data = 'store is successfully';
-////        return redirect()->back()->with(['store is successfully']);
-////         return Inertia::render('Branches/Index',compact($data));
+// //        return redirect()->back()->with(['store is successfully']);
+// //         return Inertia::render('Branches/Index',compact($data));
 //    }
 
-    public function store(Request $request)
-    {
-        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
-        $parameters = ['request' => $request, 'id' => $id];
+//     public function store(Request $request)
+//     {
+//         $id = Branch::orderBy('id', 'desc')->first()->id + 1;
+//         $parameters = ['request' => $request, 'id' => $id];
 
-        $request->validate([
-            'name' => 'required,unique',
-            'code' => 'required,unique',
-        ]);
-        $branch = Branch::create($request->all());
+//         $request->validate([
+//             'name' => 'required,unique',
+//             'code' => 'required,unique',
+//         ]);
+//         $branch = Branch::create($request->all());
 
 
-        $this->callActivityMethod('store', $parameters);
-        $response = [
-            'Branch' => $branch,
-            'message' => '$token',
-        ];
-//        return response($response);
-        return response()->json(['response' => $response], 200);;
+//         $this->callActivityMethod('store', $parameters);
+//         $response = [
+//             'Branch' => $branch,
+//             'message' => '$token',
+//         ];
+// //        return response($response);
+//         return response()->json(['response' => $response], 200);;
 
-//      return  response(['message' => 'Logout Done successfully ']);
+// //      return  response(['message' => 'Logout Done successfully ']);
 
-    }
+//     }
 
 
     public function show($id)

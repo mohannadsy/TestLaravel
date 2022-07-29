@@ -14,14 +14,16 @@
   </base-dialog>
   <div class="row">
     <div class="col border-right">
+    <form>
       <main-infromation
         @save-main="saveMain"
         :branchInformaion="branchInformaion"
-        :postData="postData"
+        :form="form"
         :errors="errors"
       >
         ></main-infromation
       >
+      </form>
       <!-- <h1 v-for="message in messages" :key="message.id">{{ message }}</h1> -->
       <div class="row a mt-2">
         <div class="col-5">
@@ -40,7 +42,7 @@
 
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
-        <element-button @click="submit">حفظ</element-button>
+        <element-button @click="storeBranch">حفظ</element-button>
         <element-button :type="button" @click="newBranch">جديد</element-button>
         <element-button :type="button" @click="updateBranch"
           >تعديل</element-button
@@ -64,32 +66,32 @@ import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInfromation1 from "./MainInfromation.vue";
 import BaseDialog from "../../Shared/BaseDialog.vue";
-import { useForm } from '@inertiajs/inertia-vue3'
+import { useForm } from "@inertiajs/inertia-vue3";
 import axios from "axios";
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 export default {
-  setup() {
-    const postData = useForm({
-           code: "",
-          name: "",
-          branch_id: "",
-          is_active: true,
-          responsibility: "",
-          address: "",
-          website: "",
-          email: "",
-          phone: "",
-          mobile: "",
-          //_token: this.$page.props.csrf_token,
-    });
-    return { postData };
-  },
+//   setup() {
+//     const form = Inertia.form({
+//       code:null,
+//       name: null,
+//       branch_id: null,
+//       is_active: true,
+//       responsibility: null,
+//       address: null,
+//       website:null,
+//       email: null,
+//       phone:null,
+//       mobile: null,
+//       //_token: this.$page.props.csrf_token,
+//     });
+//     return { form };
+//   },
   //props: ["branchInformaion", "nodeId"],
   props: {
     branchInformaion: Object,
     nodeId: String,
-    errors: Object,
+     errors: Object,
   },
   components: {
     BasicInformation,
@@ -106,53 +108,70 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
-      //   postData: reactive({
-      //     code: "",
-      //     name: "",
-      //     branch_id: "",
-      //     is_active: true,
-      //     responsibility: "",
-      //     address: "",
-      //     website: "",
-      //     email: "",
-      //     phone: "",
-      //     mobile: "",
-      //     _token: this.$page.props.csrf_token,
-      //   }),
+     form : Inertia.form({
+      code:null,
+      name: null,
+      branch_id: null,
+      is_active: true,
+      responsibility: null,
+      address: null,
+      website:null,
+      email: null,
+      phone:null,
+      mobile: null,
+      })
+      //_token: this.$page.props.csrf_token,
+
+////////////////////////////////////
+        // postData: reactive({
+        //   code: "",
+        //   name: "",
+        //   branch_id: "",
+        //   is_active: true,
+        //   responsibility: "",
+        //   address: "",
+        //   website: "",
+        //   email: "",
+        //   phone: "",
+        //   mobile: "",
+        //   _token: this.$page.props.csrf_token,
+        // }),
     };
   },
   methods: {
     saveMain(data) {
-      (this.postData.code = data.code),
-        (this.postData.name = data.name),
-        (this.postData.branch_id = data.branch_id);
-      this.postData.is_active = data.is_active;
+      (this.form.code = data.code),
+        (this.form.name = data.name),
+        (this.form.branch_id = data.branch_id);
+      this.form.is_active = data.is_active;
     },
     saveBasic(data) {
-      (this.postData.responsibility = data.responsibility),
-        (this.postData.address = data.address),
-        (this.postData.website = data.website),
-        (this.postData.email = data.email),
-        (this.postData.phone = data.phone),
-        (this.postData.mobile = data.mobile);
+      (this.form.responsibility = data.responsibility),
+        (this.form.address = data.address),
+        (this.form.website = data.website),
+        (this.form.email = data.email),
+        (this.form.phone = data.phone),
+        (this.form.mobile = data.mobile);
     },
     saveExtra(data) {},
-    submit() {
-      console.log(this.postData.errors)
+    storeBranch() {
+      //console.log(this.postData.errors)
       //this.$store.dispatch("branches/registerBranch", this.postData);
-      Inertia.post(route("branch.store"), this.postData);
-      //    axios.post(route("branch.store", this.postData)).then((response) => console.log(response)).catch((error) => console.log(error))
-      console.log(this.postData)
+      //console.log(this.errors)
+      Inertia.post(route("branch.store"), this.form);
+  console.log(this.form)
+    //   axios.post(route("branch.store", this.postData)).then(response => alert('Wahoo!'))
+      //console.log(this.postData)
     },
-    newBranch() {
-      this.postData = {};
-      this.postData.is_active = true;
-    },
+    // newBranch() {
+    //   this.postData = {};
+    //   this.postData.is_active = true;
+    // },
     updateBranch() {
-      Inertia.post(route("branch.update", this.nodeId), this.postData);
+      Inertia.post(route("branch.update", this.nodeId), this.form);
     },
     deleteBranch() {
-      Inertia.get(route("branch.delete", this.nodeId), this.postData);
+      Inertia.get(route("branch.delete", this.nodeId), this.form);
     },
     confirmError() {},
   },
