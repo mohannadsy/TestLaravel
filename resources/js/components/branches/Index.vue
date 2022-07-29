@@ -13,8 +13,9 @@
     </template>
   </base-dialog>
   <div class="row">
+   <form @submit.prevent="storeBranch">
     <div class="col border-right">
-    <form>
+
       <main-infromation
         @save-main="saveMain"
         :branchInformaion="branchInformaion"
@@ -23,7 +24,7 @@
       >
         ></main-infromation
       >
-      </form>
+
       <!-- <h1 v-for="message in messages" :key="message.id">{{ message }}</h1> -->
       <div class="row a mt-2">
         <div class="col-5">
@@ -42,7 +43,7 @@
 
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
-        <element-button @click="storeBranch">حفظ</element-button>
+        <element-button :type="submit">حفظ</element-button>
         <element-button :type="button" @click="newBranch">جديد</element-button>
         <element-button :type="button" @click="updateBranch"
           >تعديل</element-button
@@ -51,7 +52,9 @@
           >حذف</element-button
         >
       </div>
+
     </div>
+   </form>
   </div>
 </template>
 

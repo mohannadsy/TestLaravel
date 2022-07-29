@@ -30,32 +30,32 @@ class BranchController extends Controller
 //        return $groupPermissions;
         return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
     }
- public function store(Request $request)
-{
-    $request->validate([
-        'code' => 'required|string|max:255',
-        'name' => 'required|string|max:255',
-    ]);
+//  public function store(Request $request)
+// {
+//     $request->validate([
+//         'code' => 'required|string|max:255',
+//         'name' => 'required|string|max:255',
+//     ]);
 
-    Branch::create([
-        'code' => $request->code,
-        'name' => $request->name
-    ]);
-    sleep(1);
+//     Branch::create([
+//         'code' => $request->code,
+//         'name' => $request->name
+//     ]);
+//     sleep(1);
 
-    return redirect()->route('branch.index')->with('message', 'Category Created Successfully');
-}
-//    public function store(BranchRequest $request)
-//    {
-//        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
-//        $parameters = ['request' => $request, 'id' => $id];
-//        //insert to Database
-//        $storeBranch = Branch::create($request->validate());
-//        $this->callActivityMethod('store', $parameters);
-//        return $data = 'store is successfully';
-// //        return redirect()->back()->with(['store is successfully']);
-// //         return Inertia::render('Branches/Index',compact($data));
-//    }
+//     return redirect()->route('branch.index')->with('message', 'Category Created Successfully');
+// }
+   public function store(BranchRequest $request)
+   {
+       $id = Branch::orderBy('id', 'desc')->first()->id + 1;
+       $parameters = ['request' => $request, 'id' => $id];
+       //insert to Database
+       $storeBranch = Branch::create($request->validate());
+       $this->callActivityMethod('store', $parameters);
+       return $data = 'store is successfully';
+//        return redirect()->back()->with(['store is successfully']);
+//         return Inertia::render('Branches/Index',compact($data));
+   }
 
 //     public function store(Request $request)
 //     {
