@@ -24,15 +24,15 @@ class StoreBranchRequest extends FormRequest
     public function rules()
     {
         return [
-         'code'                   =>'required|string|unique:branches,code',
+          'code'                   =>'required|string|unique:branches,code',
           'name'                   =>'required|max:50|string|unique:branches,name' ,
-          'branch_id'              =>'max:50|numeric' ,
-          'responsibility'         =>'max:250|string',
-          'address'                =>'max:100|string',
-          'website'                =>'string|unique:branches,website',
-          'email'                  =>'string|email|unique:branches,email',
-          'phone'                  =>'max:50|string|unique:branches,phone',
-          'mobile'                 =>'max:50|string|unique:branches,mobile',
+//          'branch_id'              =>'max:50|numeric' ,
+//          'responsibility'         =>'max:250|string',
+//          'address'                =>'max:100|string',
+//          'website'                =>'string|unique:branches,website',
+//          'email'                  =>'string|email|unique:branches,email',
+//          'phone'                  =>'max:50|string|unique:branches,phone',
+//          'mobile'                 =>'max:50|string|unique:branches,mobile',
 
         ];
     }
