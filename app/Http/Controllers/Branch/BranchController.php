@@ -108,7 +108,7 @@ class BranchController extends Controller
         $validator= Validator::make($request->all(),$rules,$messages);
         if($validator->fails())
         {
-            return $validator->errors();
+            return redirect()->back()->withErrors($validator)->withInputs($request->all());
         }
          Branch::create([
              'code'                   =>$request -> code ,
@@ -126,7 +126,7 @@ class BranchController extends Controller
         $data= successfully ;
         $this->callActivityMethod('store', $parameters);
         return $data;
-//             return Inertia::render('Branches/Index',compact('data'));
+//             return Inertia::render('BranchAndUser/Index',compact('data'));
     }
     protected function getMessages()
     {
