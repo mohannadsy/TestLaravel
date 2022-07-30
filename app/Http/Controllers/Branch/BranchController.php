@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Branch;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBranchRequest;
 use App\Models\Branch;
 use App\Http\Requests\BranchRequest;
 use App\Models\PermissionGroup;
@@ -176,19 +177,9 @@ class BranchController extends Controller
 //
 //    }
 
-    public function store(Request $request)
+    public function store(StoreBranchRequest $request)
     {
-         Branch::create([
-             'code'               =>$request->code ,
-              'name'              =>$request->name ,
-              'branch_id'         =>$request->branch_id ,
-              'responsibility'    =>$request->responsibility ,
-              'address'           =>$request->address ,
-              'website'           =>$request->website ,
-              'email'             =>$request->email ,
-              'phone'             =>$request->phone ,
-              'mobile'            =>$request->mobile ,
-         ]);
+         Branch::create($request->validated());
         return redirect()->route('branch.index');
     }
 
