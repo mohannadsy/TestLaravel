@@ -13,7 +13,7 @@
     </template>
   </base-dialog>
   <div class="row">
-   <form @submit.prevent="storeBranch">
+   <form @submit.prevent="form.post(route('branch.store'))">
     <div class="col border-right">
 
       <main-infromation
@@ -43,7 +43,7 @@
 
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
-        <element-button :type="submit">حفظ</element-button>
+        <element-button :type="submit" :disabled="form.processing">حفظ</element-button>
         <element-button :type="button" @click="newBranch">جديد</element-button>
         <element-button :type="button" @click="updateBranch"
           >تعديل</element-button
@@ -74,22 +74,22 @@ import axios from "axios";
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 export default {
-//   setup() {
-//     const form = Inertia.form({
-//       code:null,
-//       name: null,
-//       branch_id: null,
-//       is_active: true,
-//       responsibility: null,
-//       address: null,
-//       website:null,
-//       email: null,
-//       phone:null,
-//       mobile: null,
-//       //_token: this.$page.props.csrf_token,
-//     });
-//     return { form };
-//   },
+  setup() {
+    const form = useForm({
+      code:'',
+      name: '',
+      branch_id: '',
+      is_active: '',
+      responsibility: '',
+      address: '',
+      website:'',
+      email: '',
+      phone:'',
+      mobile: '',
+      //_token: this.$page.props.csrf_token,
+    });
+    return { form };
+  },
   //props: ["branchInformaion", "nodeId"],
   props: {
     branchInformaion: Object,
@@ -111,18 +111,18 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
-     form : Inertia.form({
-      code:null,
-      name: null,
-      branch_id: null,
-      is_active: true,
-      responsibility: null,
-      address: null,
-      website:null,
-      email: null,
-      phone:null,
-      mobile: null,
-      })
+    //  form : Inertia.form({
+    //   code:null,
+    //   name: null,
+    //   branch_id: null,
+    //   is_active: true,
+    //   responsibility: null,
+    //   address: null,
+    //   website:null,
+    //   email: null,
+    //   phone:null,
+    //   mobile: null,
+    //   })
       //_token: this.$page.props.csrf_token,
 
 ////////////////////////////////////

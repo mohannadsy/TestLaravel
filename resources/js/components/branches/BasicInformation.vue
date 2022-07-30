@@ -40,7 +40,7 @@
         >
         <div class="col-md-8">
           <element-input
-            type="text"
+            type="email"
             @change="objChanged"
             v-model.trim="myObj.email"
           />

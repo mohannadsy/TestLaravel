@@ -2,8 +2,9 @@
   <div class="row px-3 mt-1 pb-2">
     <page-title>بطاقة فرع</page-title>
   </div>
-  <form>
+  <form @submit.prevent="form.post(route('branch.store'))">
   <div class="row">
+
     <div class="col-md-5">
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-4">رمز الفرع</elemet-label>
@@ -26,7 +27,7 @@
             v-model.trim="myObj.name"
           />
         </div>
-        <!-- <div v-if="form.errors.name">{{ form.errors.name }}</div> -->
+       <div v-if="form.errors.name">{{ form.errors.name }}</div>
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-4">
@@ -40,8 +41,11 @@
           />
         </div>
       </div>
+
+
     </div>
-    <div class="col-md-4 box">
+
+  <div class="col-md-4 box">
       <div :class="{ active: myObj.is_active }" class="toggle_container">
         <ToggleButton
           v-model="myObj.is_active"
