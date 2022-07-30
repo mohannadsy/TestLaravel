@@ -2,7 +2,7 @@
   <div class="row px-3 mt-1 pb-2">
     <page-title>بطاقة فرع</page-title>
   </div>
-  <form method="POST">
+  <form>
   <div class="row">
     <div class="col-md-5">
       <div class="form-group row mt-2">
@@ -26,7 +26,7 @@
             v-model.trim="myObj.name"
           />
         </div>
-        <!-- <div v-if="postData.errors.name">{{ postData.errors.name }}</div> -->
+        <!-- <div v-if="form.errors.name">{{ form.errors.name }}</div> -->
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-4">
@@ -64,15 +64,15 @@ import ElementInput from "../../Shared/ElementInput.vue";
 import ToggleButton from "../../Shared/ToggleButton.vue";
 import { useForm } from '@inertiajs/inertia-vue3'
 export default {
-  setup() {
-    const myObj = useForm({
-      code: "",
-      name: "",
-      branch_id: "",
-      is_active: true,
-    });
-    return { myObj };
-  },
+//   setup() {
+//     const myObj = useForm({
+//       code: "",
+//       name: "",
+//       branch_id: "",
+//       is_active: true,
+//     });
+//     return { myObj };
+//   },
   props: ["branchInformaion", "form","errors"],
   emits: ["save-main"],
   components: {
@@ -83,12 +83,12 @@ export default {
   },
   data() {
     return {
-        // myObj: {
-        //   code: "",
-        //   name: "",
-        //   branch_id: "",
-        //   is_active: true,
-        // },
+        myObj: {
+          code: "",
+          name: "",
+          branch_id: "",
+          is_active: true,
+        },
     };
   },
   watch: {
