@@ -7,8 +7,10 @@
 </template>
 
 <script>
+    import Icon from '@/Shared/Icon'
     export default {
-        name: "LanguageSelector"
+        name: "LanguageSelector",
+
     }
 </script>
 
