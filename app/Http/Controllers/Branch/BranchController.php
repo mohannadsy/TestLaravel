@@ -179,8 +179,9 @@ class BranchController extends Controller
 
     public function store(StoreBranchRequest $request)
     {
+         sleep(2);
          Branch::create($request->validated());
-        return redirect()->route('branch.index');
+         return redirect()->route('branch.index')->with('message','Branch created successfully');
     }
 
 }
