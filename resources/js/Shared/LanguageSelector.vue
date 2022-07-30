@@ -10,6 +10,17 @@
     import Icon from '@/Shared/Icon'
     export default {
         name: "LanguageSelector",
+        components:{
+            Icon,
+        },
+        computed:{
+            selectable_locale() {
+                if(this.$page.locale=='ar'){
+                return 'en';
+            }
+          return 'ar'
+            }
+        },
 
     }
 </script>
