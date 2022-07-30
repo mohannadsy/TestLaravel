@@ -10,7 +10,7 @@ use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
- use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
 //use Illuminate\Validation\Validator;
 use Spatie\Permission\Models\Permission;
 
@@ -108,6 +108,7 @@ class BranchController extends Controller
         $validator= Validator::make($request->all(),$rules,$messages);
         if($validator->fails())
         {
+            dd($this->messages());
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
         }
          Branch::create([
@@ -123,7 +124,7 @@ class BranchController extends Controller
          ]);
         $id = Branch::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $data= 'successfully' ;
+        $data= successfully ;
         $this->callActivityMethod('store', $parameters);
         return $data;
 //             return Inertia::render('BranchAndUser/Index',compact('data'));
