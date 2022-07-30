@@ -108,7 +108,6 @@ class BranchController extends Controller
         $validator= Validator::make($request->all(),$rules,$messages);
         if($validator->fails())
         {
-            dd($this->messages());
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
         }
          Branch::create([
