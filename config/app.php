@@ -189,6 +189,7 @@ return [
 	    Intervention\Image\ImageServiceProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
+        browner12\helpers\HelperServiceProvider::class,
 
 
 
