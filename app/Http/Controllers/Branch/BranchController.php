@@ -123,7 +123,7 @@ class BranchController extends Controller
          ]);
         $id = Branch::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $data= successfully ;
+        $data= 'successfully' ;
         $this->callActivityMethod('store', $parameters);
         return $data;
 //             return Inertia::render('BranchAndUser/Index',compact('data'));
