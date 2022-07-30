@@ -10,8 +10,8 @@ use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-// suse Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Validator;
+ use Illuminate\Support\Facades\Validator;
+//use Illuminate\Validation\Validator;
 use Spatie\Permission\Models\Permission;
 
 
