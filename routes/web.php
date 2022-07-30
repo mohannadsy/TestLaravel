@@ -21,6 +21,12 @@ Route::get('/', function () {
     return Inertia::render('Auth/Login');
 });
 
+Route::get('language/{language}', function ($language) {
+    Session()->put('locale',$language);
+    return redirect()->back();
+})->name('language');
+
+
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
 //         'canLogin' => Route::has('login'),
