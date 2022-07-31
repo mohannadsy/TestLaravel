@@ -6,7 +6,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
-
+import Vue from 'vue'
 library.add(fas, fab);
 
 const appName = window.document.getElementsByTagName('title')[0];
@@ -33,7 +33,7 @@ import style from './../assets/style.css'
 // app.use(plugin).mount(el);
 // app.use(store);
 
-
+// Vue.mixin(require('./base'));
 
 createInertiaApp({
     title: (title) => `${title}`,
@@ -44,7 +44,7 @@ createInertiaApp({
             .use(store)
             .use(style)
             .component('fa', FontAwesomeIcon)
-            .mixin({ methods: { route } })
+            .mixin({ methods: { route } }, require('./base'))
             .mount(el);
     },
 });
