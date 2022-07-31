@@ -4,6 +4,7 @@ namespace App\Traits\Branch;
 
 use App\Models\Branch;
 use App\Models\PermissionGroup;
+use Closure;
 use Illuminate\Support\Facades\Config;
 use Spatie\Permission\Models\Permission;
 
@@ -52,6 +53,24 @@ trait  BranchTrait
     {
         $permissions = PermissionGroup::select('caption_'.Config::get('app.locale').' as caption','id')->with(['permissions'])->get();
         return $permissions;
+    }
+//switch between languages
+    public function handle($request , Closure $next)
+    {
+        if(request('change_language')) {
+            session()->put('language', request('change_language'));
+            $language = request(change_language);
+        }
+        elseif(session('language')){
+            $language=session('language');
+        }
+        elseif(config('app.locale')){
+            $language=config('app.locale');
+        }
+       if(isset($language)&& config('app.languages.' .$language)){
+           app()->setLocale($language);
+       }
+       return $next($request);
     }
 
 
