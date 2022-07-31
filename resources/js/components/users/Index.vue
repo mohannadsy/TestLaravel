@@ -43,7 +43,7 @@
 
 <script>
 import { Inertia } from "@inertiajs/inertia";
-import Home from "../../Pages/Home.vue";
+import Home from "../../Pages/Home1.vue";
 import BasicInformation from "./BasicInformation.vue";
 import Permissions from "./Permissions.vue";
 import ExtraOptions from "./ExtraOptions.vue";
