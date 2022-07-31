@@ -68,7 +68,7 @@ export default {
       this.selected = [];
       if(!this.select_all){
           for (let i in this.selected){
-            this.selected.push(this.selected[i].id);
+            this.selected.push(this.selected[i]);
           }
       }
     }
