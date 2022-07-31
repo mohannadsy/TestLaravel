@@ -76,7 +76,7 @@ import ElementInput from "../../Shared/ElementInput.vue";
 
 export default {
   emits: ["save-basic"],
-  props: ["branchInformaion", "postData"],
+  props: ["branchInformaion", "form","errors"],
   components: {
     ElemetLabel,
     ElementInput,
@@ -94,8 +94,8 @@ export default {
     };
   },
   watch: {
-    postData() {
-      this.myObj = this.postData;
+    form() {
+      this.myObj = this.form;
     },
     branchInformaion() {
       Object.assign(this.myObj, this.branchInformaion);

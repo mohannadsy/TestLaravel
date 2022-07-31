@@ -2,7 +2,7 @@
   <div class="row px-3 mt-1 pb-2">
     <page-title>بطاقة فرع</page-title>
   </div>
-  <form @submit.prevent="form.post(route('branch.store'))">
+  <form>
   <div class="row">
 
     <div class="col-md-5">

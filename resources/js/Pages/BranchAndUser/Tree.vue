@@ -76,6 +76,7 @@ export default {
         this.nodeId = id;
       }
       this.$emit("node-type", { nodeId: this.nodeId, nodeType: this.nodeType });
+
     },
   },
 };

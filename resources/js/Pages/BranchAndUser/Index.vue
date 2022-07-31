@@ -13,10 +13,10 @@
       <branch-form
       :branchInformaion="branchInformaion"
       :nodeId="nodeId"
-      v-show="nodeType == 'branches'"
+      v-if="nodeType === 'branches'"
       ></branch-form>
       <user-form
-        v-show="nodeType == 'users'"
+        v-if="nodeType === 'users'"
         :groupPermissions="$page['props']['groupPermissions']"
       ></user-form>
     </div>

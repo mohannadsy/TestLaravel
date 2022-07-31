@@ -13,7 +13,7 @@
     </template>
   </base-dialog>
   <div class="row">
-   <form @submit.prevent="form.post(route('branch.store'))">
+   <form @submit.prevent="storeBranch">
     <div class="col border-right">
 
       <main-infromation
@@ -35,7 +35,7 @@
       </div>
       <basic-information
         :branchInformaion="branchInformaion"
-        :postData="postData"
+        :form="form"
         @save-basic="saveBasic"
         v-if="activeTab === 'BasicInformation'"
       />
@@ -43,7 +43,7 @@
 
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
-        <element-button :type="submit" :disabled="form.processing">حفظ</element-button>
+        <element-button :type="submit" @click="storeBranch">حفظ</element-button>
         <element-button :type="button" @click="newBranch">جديد</element-button>
         <element-button :type="button" @click="updateBranch"
           >تعديل</element-button
@@ -74,23 +74,23 @@ import axios from "axios";
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 export default {
-  setup() {
-    const form = useForm({
-      code:'',
-      name: '',
-      branch_id: '',
-      is_active: '',
-      responsibility: '',
-      address: '',
-      website:'',
-      email: '',
-      phone:'',
-      mobile: '',
-      //_token: this.$page.props.csrf_token,
-    });
-    return { form };
-  },
-  //props: ["branchInformaion", "nodeId"],
+//   setup() {
+//     const form = useForm({
+//       code:'',
+//       name: '',
+//       branch_id: '',
+//       is_active: '',
+//       responsibility: '',
+//       address: '',
+//       website:'',
+//       email: '',
+//       phone:'',
+//       mobile: '',
+//       //_token: this.$page.props.csrf_token,
+//     });
+//     return { form };
+//   },
+//   props: ["branchInformaion", "nodeId"],
   props: {
     branchInformaion: Object,
     nodeId: String,
@@ -111,19 +111,19 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
-    //  form : Inertia.form({
-    //   code:null,
-    //   name: null,
-    //   branch_id: null,
-    //   is_active: true,
-    //   responsibility: null,
-    //   address: null,
-    //   website:null,
-    //   email: null,
-    //   phone:null,
-    //   mobile: null,
-    //   })
-      //_token: this.$page.props.csrf_token,
+     form : useForm({
+      code:null,
+      name: null,
+      branch_id: null,
+      is_active: true,
+      responsibility: null,
+      address: null,
+      website:null,
+      email: null,
+      phone:null,
+      mobile: null,
+      })
+    //   _token: this.$page.props.csrf_token,
 
 ////////////////////////////////////
         // postData: reactive({
@@ -166,10 +166,11 @@ export default {
     //   axios.post(route("branch.store", this.postData)).then(response => alert('Wahoo!'))
       //console.log(this.postData)
     },
-    // newBranch() {
-    //   this.postData = {};
-    //   this.postData.is_active = true;
-    // },
+    newBranch() {
+      this.form = {};
+      console.log('new')
+      this.form.is_active = true;
+    },
     updateBranch() {
       Inertia.post(route("branch.update", this.nodeId), this.form);
     },
