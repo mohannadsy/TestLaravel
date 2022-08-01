@@ -13,48 +13,54 @@
     </template>
   </base-dialog>
   <div class="row">
-   <form @submit.prevent="storeBranch">
-    <div class="col border-right">
+    <form>
+      <div class="col border-right">
+        <main-infromation
+          @save-main="saveMain"
+          :branchInformaion="branchInformaion"
+          :form="form"
+          :errors="errors"
+        >
+          ></main-infromation
+        >
 
-      <main-infromation
-        @save-main="saveMain"
-        :branchInformaion="branchInformaion"
-        :form="form"
-        :errors="errors"
-      >
-        ></main-infromation
-      >
+        <!-- <h1 v-for="message in messages" :key="message.id">{{ message }}</h1> -->
+        <div class="row a mt-2">
+          <div class="col-5">
+            <title-button @click="activeTab = 'BasicInformation'"
+              >معلومات أساسية</title-button
+            >
+          </div>
+        </div>
+        <basic-information
+          :branchInformaion="branchInformaion"
+          :form="form"
+          :newForm="newForm"
+          @save-basic="saveBasic"
+          v-if="activeTab === 'BasicInformation'"
+        />
+      </div>
 
-      <!-- <h1 v-for="message in messages" :key="message.id">{{ message }}</h1> -->
-      <div class="row a mt-2">
-        <div class="col-5">
-          <title-button @click="activeTab = 'BasicInformation'"
-            >معلومات أساسية</title-button
+      <div class="row justify-content-end mb-2">
+        <div class="col-md-4">
+          <element-button
+            :type="'button'"
+            :disabled="form.processing"
+            @click="storeBranch"
+            >حفظ</element-button
+          >
+          <element-button :type="'button'" @click="newBranch"
+            >جديد</element-button
+          >
+          <element-button :type="'button'" @click="updateBranch"
+            >تعديل</element-button
+          >
+          <element-button :type="'button'" @click="deleteBranch"
+            >حذف</element-button
           >
         </div>
       </div>
-      <basic-information
-        :branchInformaion="branchInformaion"
-        :form="form"
-        @save-basic="saveBasic"
-        v-if="activeTab === 'BasicInformation'"
-      />
-    </div>
-
-    <div class="row justify-content-end mb-2">
-      <div class="col-md-4">
-        <element-button :type="submit" @click="storeBranch">حفظ</element-button>
-        <element-button :type="button" @click="newBranch">جديد</element-button>
-        <element-button :type="button" @click="updateBranch"
-          >تعديل</element-button
-        >
-        <element-button :type="button" @click="deleteBranch"
-          >حذف</element-button
-        >
-      </div>
-
-    </div>
-   </form>
+    </form>
   </div>
 </template>
 
@@ -74,27 +80,10 @@ import axios from "axios";
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 export default {
-//   setup() {
-//     const form = useForm({
-//       code:'',
-//       name: '',
-//       branch_id: '',
-//       is_active: '',
-//       responsibility: '',
-//       address: '',
-//       website:'',
-//       email: '',
-//       phone:'',
-//       mobile: '',
-//       //_token: this.$page.props.csrf_token,
-//     });
-//     return { form };
-//   },
-//   props: ["branchInformaion", "nodeId"],
   props: {
     branchInformaion: Object,
     nodeId: String,
-     errors: Object,
+    errors: Object,
   },
   components: {
     BasicInformation,
@@ -111,34 +100,19 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
-     form : useForm({
-      code:null,
-      name: null,
-      branch_id: null,
-      is_active: true,
-      responsibility: null,
-      address: null,
-      website:null,
-      email: null,
-      phone:null,
-      mobile: null,
-      })
-    //   _token: this.$page.props.csrf_token,
-
-////////////////////////////////////
-        // postData: reactive({
-        //   code: "",
-        //   name: "",
-        //   branch_id: "",
-        //   is_active: true,
-        //   responsibility: "",
-        //   address: "",
-        //   website: "",
-        //   email: "",
-        //   phone: "",
-        //   mobile: "",
-        //   _token: this.$page.props.csrf_token,
-        // }),
+      form: useForm({
+        code: "",
+        name: "",
+        branch_id: "",
+        is_active: true,
+        responsibility: "",
+        address: "",
+        website: "",
+        email: "",
+        phone: "",
+        mobile: "",
+        _token: this.$page.props.csrf_token,
+      }),
     };
   },
   methods: {
@@ -158,21 +132,26 @@ export default {
     },
     saveExtra(data) {},
     storeBranch() {
-      //console.log(this.postData.errors)
-      //this.$store.dispatch("branches/registerBranch", this.postData);
-      //console.log(this.errors)
-      Inertia.post(route("branch.store"), this.form);
-  console.log(this.form)
-    //   axios.post(route("branch.store", this.postData)).then(response => alert('Wahoo!'))
-      //console.log(this.postData)
+      this.form.post(route("branch.store"));
+      console.log(this.form);
     },
     newBranch() {
-      this.form = {};
-      console.log('new')
-      this.form.is_active = true;
+      this.form = useForm({
+        code: "",
+        name: "",
+        branch_id: "",
+        is_active: true,
+        responsibility: "",
+        address: "",
+        website: "",
+        email: "",
+        phone: "",
+        mobile: "",
+        _token: this.$page.props.csrf_token,
+      });
     },
     updateBranch() {
-      Inertia.post(route("branch.update", this.nodeId), this.form);
+      this.form.post(route("branch.update", this.nodeId));
     },
     deleteBranch() {
       Inertia.get(route("branch.delete", this.nodeId), this.form);

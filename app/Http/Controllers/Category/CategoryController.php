@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Category;
 
 use App\Models\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Requests\StoreCategoryRequest;
+
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Category\CategoryTrait;
 use Inertia\Inertia;
@@ -28,7 +30,7 @@ class CategoryController extends Controller
         return Category::all();
     }
 
-    public function store(CategoryRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
         $id = Category::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
@@ -37,7 +39,7 @@ class CategoryController extends Controller
         return Inertia::render('', compact('category'));;
     }
 
-    public function update(CategoryRequest $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $category = Category::find($id)->update($request->all());
