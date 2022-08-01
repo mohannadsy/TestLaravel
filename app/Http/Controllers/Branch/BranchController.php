@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Branch;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBranchRequest;
-use App\Http\Requests\UpdateBranchRequest;
 use App\Models\Branch;
 use App\Http\Requests\BranchRequest;
 use App\Models\PermissionGroup;
@@ -79,15 +78,17 @@ class BranchController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $branch;
         }
-        return 'Branch not Found';
+//        return 'Branch not Found';
+        return __('messageBranchController.branch_show');
     }
 
-    public function update(UpdateBranchRequest $request, $id)
+    public function update(BranchRequest $request, $id)
     {
         $paramters = ['request' => $request, 'id' => $id];
         return $branch = Branch::find($id)->update($request->all());
         $this->callActivityMethod('update', $paramters);
-        return 'updated successfully';
+//        return 'updated successfully';
+        return __('messageCommonController.update');
     }
 
     public function delete($id) //  delete - can be restored
@@ -95,13 +96,16 @@ class BranchController extends Controller
         $paramters = ['id' => $id];
         $branch = Branch::find($id);
         if ($this->isRootBranch($id))
-            return "Root Branch isn't deleted";
+//            return "Root Branch isn't deleted";
+            return __('messageBranchController.RootBranch_delete');
         if (!$this->numOfSubBranches($id) > 0) {
             $branch->delete();
             $this->callActivityMethod('delete', $paramters);
-            return "Branch is deleted successfully";
+//            return "Branch is deleted successfully";
+            return __('messageCommonController.delete');
         } else
-            return "it is not possible to delete a branch that contains branches within it";
+//            return "it is not possible to delete a branch that contains branches within it";
+            return __('messageBranchController.branch_delete');
     }
 //    public function store(Request $request)
 //    {
@@ -181,11 +185,13 @@ class BranchController extends Controller
     public function store(StoreBranchRequest $request)
     {
 //        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
-          sleep(2);
-          Branch::create($request->validated());
+        sleep(2);
+        Branch::create($request->validated());
 //        $parameters = ['request' => $request, 'id' => $id];
 //        $this->callActivityMethod('store', $parameters);
-          return redirect()->route('branch.index')->with('message','Branch created successfully');
+//          return redirect()->route('branch.index')->with('message','Branch created successfully');
+
+        return redirect()->route('branch.index')->with('message',__('messageCommonController.store'));
 
     }
 
