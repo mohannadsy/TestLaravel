@@ -16,6 +16,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/slack-notification-channel": "^2.4",
         "laravel/tinker": "^2.7",
+        "mcamara/laravel-localization": "^1.7",
         "spatie/laravel-permission": "^5.5",
         "tightenco/ziggy": "^1.0"
     },
@@ -35,7 +36,10 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15166f917df30eab45e17991d692ba785944a01f
     },
     "autoload-dev": {
         "psr-4": {

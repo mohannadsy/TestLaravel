@@ -15,8 +15,11 @@ use Barryvdh\Debugbar\Facades;
 
 
 //------- Users ------//
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
 Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
+    Route::get('mcamara', [UserController::class, 'mcamara']);
+
     Route::get('index', [UserController::class, 'index'])->name('user.index');
     Route::post('store', [UserController::class, 'store'])->name('user.store');
     Route::get('show/{id}', [UserController::class, 'show'])->name('user.show');
@@ -27,6 +30,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');
     Route::get('get-main-tree', [UserController::class, 'tree'])->name('user.tree');
     Route::get('get-user-permissions/{id}', [UserController::class, 'getUserPermissions'])->name('user.getUserPermissions');
+});
 });
 
 

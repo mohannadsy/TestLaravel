@@ -69,7 +69,7 @@ import ToggleButton from "../../Shared/ToggleButton.vue";
 import { useForm } from '@inertiajs/inertia-vue3'
 export default {
 //   setup() {
-//     const myObj = useForm({
+//     let myObj = useForm({
 //       code: "",
 //       name: "",
 //       branch_id: "",
@@ -77,7 +77,7 @@ export default {
 //     });
 //     return { myObj };
 //   },
-  props: ["branchInformaion", "form","errors"],
+  props: ["branchInformaion", "form","errors",],
   emits: ["save-main"],
   components: {
     PageTitle,
@@ -87,17 +87,17 @@ export default {
   },
   data() {
     return {
-        myObj: {
+        myObj: useForm({
           code: "",
           name: "",
           branch_id: "",
           is_active: true,
-        },
+        }),
     };
   },
   watch: {
-    form() {
-      this.myObj = this.form;
+    form(){
+        this.myObj = this.form
     },
     branchInformaion() {
       Object.assign(this.myObj, this.branchInformaion);

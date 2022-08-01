@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\CostCenter;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CostCentersRequest;
+use App\Http\Requests\UpdateCostCentersRequest;
+use App\Http\Requests\StoreCostCentersRequest;
 use App\Models\CostCenter;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\CostCenter\CostCenterTrait;
@@ -21,7 +22,7 @@ class CostCenterController extends Controller
 //        return Inertia::render('',compact());
     }
 
-    public function store(CostCentersRequest $request)
+    public function store(StoreCostCentersRequest $request)
     {
         $id = CostCenter::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
@@ -44,7 +45,7 @@ class CostCenterController extends Controller
     }
 
 
-    public function update(CostCentersRequest $request, $id)
+    public function update(UpdateCostCentersRequest $request, $id)
     {
         $paramters = ['request' => $request, 'id' => $id];
         return $CostCenter = CostCenter::find($id)->update($request->all());

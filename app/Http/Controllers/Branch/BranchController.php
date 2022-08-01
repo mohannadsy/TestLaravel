@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Branch;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBranchRequest;
+use App\Http\Requests\UpdateBranchRequest;
 use App\Models\Branch;
 use App\Http\Requests\BranchRequest;
 use App\Models\PermissionGroup;
@@ -81,7 +82,7 @@ class BranchController extends Controller
         return 'Branch not Found';
     }
 
-    public function update(BranchRequest $request, $id)
+    public function update(UpdateBranchRequest $request, $id)
     {
         $paramters = ['request' => $request, 'id' => $id];
         return $branch = Branch::find($id)->update($request->all());
@@ -185,6 +186,7 @@ class BranchController extends Controller
 //        $parameters = ['request' => $request, 'id' => $id];
 //        $this->callActivityMethod('store', $parameters);
           return redirect()->route('branch.index')->with('message','Branch created successfully');
+
     }
 
 }

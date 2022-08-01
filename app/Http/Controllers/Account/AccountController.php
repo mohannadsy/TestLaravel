@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AccountRequest;
+use App\Http\Requests\UpdateAccountRequest;
+use App\Http\Requests\StoreAccountRequest;
+
 use App\Models\Account;
 use App\Traits\Account\AccountTrait;
 use App\Traits\ActivityLog\ActivityLog;
@@ -29,7 +31,7 @@ class AccountController extends Controller
         return Account::all();
     }
 
-    public function store(AccountRequest $request)
+    public function store(StoreAccountRequest $request)
     {
         $id = Account::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
@@ -49,7 +51,7 @@ class AccountController extends Controller
         return 'Account not Found';
     }
 
-    public function update(AccountRequest $request, $id)
+    public function update(UpdateAccountRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $account = Account::find($id)->get();

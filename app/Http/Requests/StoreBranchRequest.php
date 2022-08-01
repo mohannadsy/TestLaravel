@@ -24,8 +24,8 @@ class StoreBranchRequest extends FormRequest
     public function rules()
     {
         return [
-          'code'                   =>'required|string|unique:branches,code',
-          'name'                   =>'required|max:50|string|unique:branches,name' ,
+            'code'                   =>'required|string',
+            'name'                   =>'required|max:50' ,
 //          'branch_id'              =>'max:50|numeric' ,
 //          'responsibility'         =>'max:250|string',
 //          'address'                =>'max:100|string',
