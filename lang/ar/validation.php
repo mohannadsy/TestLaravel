@@ -82,12 +82,12 @@ return [
         'string' => 'The :attribute must be less than or equal to :value characters.',
     ],
     'mac_address' => 'The :attribute must be a valid MAC address.',
-    'max' => [
-        'array' => 'The :attribute must not have more than :max items.',
-        'file' => 'The :attribute must not be greater than :max kilobytes.',
-        'numeric' => 'The :attribute must not be greater than :max.',
-        'string' => 'The :attribute must not be greater than :max characters.',
-    ],
+//    'max' => [
+//        'array' => 'The :attribute must not have more than :max items.',
+//        'file' => 'The :attribute must not be greater than :max kilobytes.',
+//        'numeric' => 'The :attribute must not be greater than :max.',
+//        'string' => 'The :attribute must not be greater than :max characters.',
+//    ],
     'mimes' => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
@@ -129,7 +129,7 @@ return [
         'string' => 'The :attribute must be :size characters.',
     ],
     'starts_with' => 'The :attribute must start with one of the following: :values.',
-    'string' => 'The :attribute must be a string.',
+//    'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid timezone.',
 //    'unique' => 'The :attribute has already been taken.',
     'uploaded' => 'The :attribute failed to upload.',
@@ -142,6 +142,9 @@ return [
 
     'unique' => ' الحقل يجب أن يكون فريد ',
     'required' => ' الحقل يجب أن يكون موجود ',
+    'max' =>'طول هذا الحقل يجب ألأ يتجاوز ال 50 محرف ',
+    'string'=>'هذا الحقل يجب أن يكون محارف',
+    'number'=>'هذا الحقل يجب أن يكون أرقام',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
