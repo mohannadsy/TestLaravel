@@ -97,7 +97,7 @@ export default {
   },
   watch: {
     form() {
-      this.myObj = this.form;
+      Object.assign(this.myObj, this.form);
     },
     branchInformaion() {
       Object.assign(this.myObj, this.branchInformaion);
