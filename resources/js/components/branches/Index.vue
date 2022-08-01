@@ -172,7 +172,16 @@ export default {
       //console.log(this.postData)
     },
     newBranch() {
-      this.form.code = '43';
+      this.form = useForm({ code: "",
+      name: "",
+      branch_id: "",
+      is_active: "",
+      responsibility: "",
+      address: "",
+      website: "",
+      email: "",
+      phone: "",
+      mobile: "",});
       console.log(this.form.code)
     },
     updateBranch() {
