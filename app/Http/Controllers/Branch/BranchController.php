@@ -186,6 +186,7 @@ class BranchController extends Controller
 //        $parameters = ['request' => $request, 'id' => $id];
 //        $this->callActivityMethod('store', $parameters);
           return redirect()->route('branch.index')->with('message','Branch created successfully');
+
     }
 
 }

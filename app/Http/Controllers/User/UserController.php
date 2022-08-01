@@ -114,5 +114,12 @@ class UserController extends Controller
 
     }
 
+
+
+    public function mcamara(){
+        return  __("validation.Branch Stored");
+    }
+
+
 }
 
