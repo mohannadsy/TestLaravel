@@ -59,7 +59,7 @@ trait  BranchTrait
     {
         if(request('change_language')) {
             session()->put('language', request('change_language'));
-            $language = request(change_language);
+            $language = request("change_language");
         }
         elseif(session('language')){
             $language=session('language');
