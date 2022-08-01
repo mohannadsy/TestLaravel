@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Item;
 use App\Models\Item;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreItemRequest;
+use App\Http\Requests\UpdateItemRequest;
 use App\Traits\ActivityLog\ActivityLog;
 
 class ItemController extends Controller
@@ -52,7 +53,7 @@ class ItemController extends Controller
     }
 
 
-    public function update(StoreItemRequest $request, $id)
+    public function update(UpdateItemRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $item = Item::find($id)->update($request->all());

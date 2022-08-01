@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Models\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateClientRequest;
+use App\Http\Requests\StoreClientRequest;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
 
@@ -30,7 +31,7 @@ class ClientController extends Controller
     }
 
 
-    public function store(UpdateClientRequest $request)
+    public function store(StoreClientRequest $request)
     {
         $id = Client::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];

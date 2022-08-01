@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\PermissionGroup;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
@@ -53,7 +54,7 @@ class UserController extends Controller
     }
 
 
-    public function update(StoreUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $url = $this->getImageURL($request);

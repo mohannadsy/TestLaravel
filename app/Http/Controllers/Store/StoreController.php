@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Store;
 
 
+use App\Http\Requests\UpdateStoreRequest;
 use App\Models\Store;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStoreRequest;
@@ -50,7 +51,7 @@ class StoreController extends Controller
     }
 
 
-    public function update(StoreStoreRequest $request, $id)
+    public function update(UpdateStoreRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $store = Store::find($id)->update($request->all());

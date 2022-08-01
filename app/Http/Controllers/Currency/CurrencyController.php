@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Currency;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCurrencyRequest;
+use App\Http\Requests\StoreCurrencyRequest;
 use App\Models\Currency;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Currency\CurrencyTrait;
@@ -30,7 +31,7 @@ class CurrencyController extends Controller
         return Currency::all();
     }
 
-    public function store(UpdateCurrencyRequest $request)
+    public function store(StoreCurrencyRequest $request)
     {
         $id = Currency::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
