@@ -33,6 +33,7 @@ class UserController extends Controller
 
     public function index()
     {
+        print 'new  ';
         $parameters = ['id' => null];
         $this->callActivityMethod('index', $parameters);
         $user = User::select('id', 'name', 'code')->get();
