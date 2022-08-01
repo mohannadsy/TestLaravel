@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class StoreStoreRequest extends FormRequest
 {
 
     public function authorize()
@@ -25,5 +25,4 @@ class CategoryRequest extends FormRequest
 
         ];
     }
-
 }

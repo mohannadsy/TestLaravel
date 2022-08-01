@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UnitRequest extends FormRequest
+class StoreItemRequest extends FormRequest
 {
 
     public function authorize()
@@ -12,13 +12,8 @@ class UnitRequest extends FormRequest
         return true;
     }
 
-    public function rules()
-    {
-        return [
 
-        ];
-    }
-    public function messages()
+    public function rules()
     {
         return [
 

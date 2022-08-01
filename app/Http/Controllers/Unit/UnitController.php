@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Unit;
 
 use App\Models\Unit;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UnitRequest;
+use App\Http\Requests\StoreUnitRequest;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Unit\UnitTrait;
 
@@ -28,7 +28,7 @@ class UnitController extends Controller
         return Unit::all();
     }
 
-    public function store(UnitRequest $request)
+    public function store(StoreUnitRequest $request)
     {
         $id = Unit::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
@@ -38,7 +38,7 @@ class UnitController extends Controller
         return Inertia::render('', compact('unit'));;
     }
 
-    public function update(UnitRequest $request, $id)
+    public function update(StoreUnitRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $unit = Unit::find($id)->update($request->all());

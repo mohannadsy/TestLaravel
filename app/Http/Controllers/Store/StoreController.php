@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Store;
 
 use App\Models\Store;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRequest;
+use App\Http\Requests\StoreStoreRequest;
 use App\Traits\ActivityLog\ActivityLog;
 
 class StoreController extends Controller
@@ -29,7 +29,7 @@ class StoreController extends Controller
     }
 
 
-    public function store(StoreRequest $request)
+    public function store(StoreStoreRequest $request)
     {
         $id = Store::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
@@ -50,7 +50,7 @@ class StoreController extends Controller
     }
 
 
-    public function update(StoreRequest $request, $id)
+    public function update(StoreStoreRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $store = Store::find($id)->update($request->all());
