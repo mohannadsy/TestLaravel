@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Item;
 
 use App\Models\Item;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ItemRequest;
+use App\Http\Requests\StoreItemRequest;
+use App\Http\Requests\UpdateItemRequest;
 use App\Traits\ActivityLog\ActivityLog;
 
 class ItemController extends Controller
@@ -31,7 +32,7 @@ class ItemController extends Controller
     }
 
 
-    public function store(ItemRequest $request)
+    public function store(StoreItemRequest $request)
     {
         $id = Item::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
@@ -52,7 +53,7 @@ class ItemController extends Controller
     }
 
 
-    public function update(ItemRequest $request, $id)
+    public function update(UpdateItemRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $item = Item::find($id)->update($request->all());

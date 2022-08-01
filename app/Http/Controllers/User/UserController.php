@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\PermissionGroup;
 use App\Models\User;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\StoreUserRequest;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
 use App\Traits\User\AdminTrait;
@@ -39,7 +40,7 @@ class UserController extends Controller
         return Inertia::render('BranchAndUser/Index', compact('user'));
     }
 
-    public function store(UserRequest $request)
+    public function store(StoreUserRequest $request)
     {
         $id = User::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
@@ -53,7 +54,7 @@ class UserController extends Controller
     }
 
 
-    public function update(UserRequest $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
         $url = $this->getImageURL($request);
