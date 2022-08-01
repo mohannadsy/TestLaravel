@@ -5,15 +5,19 @@
             v-for="(groupPermission, index) in groupPermissions"
             :key="index"
         >
-            <button @click="ToggleIsExpanded(index)">
-                <span class="rightAngle" :class="angle[index]"></span>
-            </button>
-            <elemet-label> {{ groupPermission.caption }}</elemet-label>
-            <checkbox-switch
+             <checkbox-switch
                 v-model="select_all"
                 @click="select"
             ></checkbox-switch>
             <elemet-label>تحديد الكل</elemet-label>
+            <button @click="ToggleIsExpanded(index)">
+                <span class="rightAngle" :class="angle[index]"></span>
+            </button>
+            <elemet-label> {{ groupPermission.caption }}</elemet-label>
+      
+            
+           
+            
             <ul>
                 <div v-show="isExpanded[index]">
                     <li
@@ -23,7 +27,7 @@
                     >
                         <checkbox-switch
                             :checked="permission.is_active ? true : false"
-                            v-model="selected"
+                            v-model="selected[i]"
                         >
                         </checkbox-switch>
                         {{ permission.caption }}
@@ -39,7 +43,6 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementCheckbox from "../../Shared/ElementCheckbox.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 // import CheckboxSwitchedLabel from "../../Shared/CheckboxSwitchedLabel.vue";
-import axios from "axios";
 
 export default {
   data() {
@@ -65,7 +68,9 @@ export default {
      this.angle[index]=="angleDown" ? this.angle[index]="" : this.angle[index]="angleDown";
     },
     select(){
-      this.selected = [];
+        
+      //this.selected = [];
+      console.log(this.selected)
       if(!this.select_all){
           for (let i in this.selected){
             this.selected.push(this.selected[i]);
