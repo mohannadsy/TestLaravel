@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateUserRequest;
+
 use App\Models\PermissionGroup;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
 use App\Traits\User\AdminTrait;
@@ -50,7 +51,8 @@ class UserController extends Controller
 //      $this->givePermissionTo($request->permissions);
         $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('BranchAndUser/Index', compact('user'))->with('message', 'User Created Successfully');
+//        $message = __('messageCommonController.store');
+        return Inertia::render('BranchAndUser/Index', compact('user'))->with('message', __('user.user store'));
     }
 
 
@@ -69,9 +71,15 @@ class UserController extends Controller
         $parameters = ['id' => $id];
         if ($this->isNotSuperAdmin($id)) {
             $user = User::find($id);
-            return $user ? $user->delete() && $this->callActivityMethod('delete  ', $parameters) : 'User not Found';
+//            return $user ?  __('user.user delete success')  && $user->delete() && $this->callActivityMethod('delete  ', $parameters) : __('user.user delete error');
+            if (User::find($id)) {
+                $user->delete();
+                $this->callActivityMethod('delete  ', $parameters);
+               return __('user.user delete success');
+
+            } else   return __('user.user delete error');
         }
-        return "Super Admin Can not be Deleted";
+        return __('user.admin delete');
     }
 
     public function show($id)
@@ -112,12 +120,6 @@ class UserController extends Controller
         }
         return $groupPermissions;
 
-    }
-
-
-
-    public function mcamara(){
-        return  __("validation.Branch Stored");
     }
 
 

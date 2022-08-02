@@ -14,8 +14,8 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return $rules = [
-//            'code' => 'required|string|unique:users,code',
-//            'name' => 'required|max:50|string|unique:users,name',
+            'code' => 'required|string|unique:users,code',
+            'name' => 'required|max:50|string|unique:users,name',
 //            'email' => 'string|email|unique:users,email',
 //            'password' => 'required|min:6|password|unique:users,password',
 //            'role' => 'string:users,role',
@@ -37,14 +37,14 @@ class StoreUserRequest extends FormRequest
     {
         return $messages = [
 
-//            'code.required' => 'رمز المستخدم يجب أن يُدخل',
-//            'code.unique' => 'رمز المستخدم موجود سابقاً ',
-//            'code.string' => 'رمز المستخدم يجب أن يكون محارف ',
+            'code.required' => __('user.code required'),
+            'code.unique' => __('user.code unique'),
+            'code.string' => __('user.code string'),
 //
-//            'name.required' => 'اسم المستخدم يجب أن يُدخل',
-//            'name.max' => 'اسم المستخدم تجاوز 50 محرف',
-//            'name.unique' => 'اسم المستخدم موجود سابقا',
-//            'name.string' => 'اسم المستخدم يجب أن يكون محارف',
+            'name.required' => __('user.name required'),
+            'name.max' => __('user.name max'),
+            'name.unique' => __('user.name unique'),
+            'name.string' =>__('user.name string'),
 //
 //            'email.required' => 'البريد الالكتروني يجب أن يكون موجود',
 //            'email.unique' => 'البريد الالكتروني مُدخل سابقاً لمستخدم آخر',
