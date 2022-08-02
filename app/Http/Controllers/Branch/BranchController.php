@@ -79,7 +79,7 @@ class BranchController extends Controller
             return $branch;
         }
 //        return 'Branch not Found';
-        return __('messageBranchController.branch_show');
+        return __('branch.branch show');
     }
 
     public function update(BranchRequest $request, $id)
@@ -88,7 +88,7 @@ class BranchController extends Controller
         return $branch = Branch::find($id)->update($request->all());
         $this->callActivityMethod('update', $paramters);
 //        return 'updated successfully';
-        return __('common.messages.update');
+        return __('common.update');
     }
 
     public function delete($id) //  delete - can be restored
@@ -97,15 +97,15 @@ class BranchController extends Controller
         $branch = Branch::find($id);
         if ($this->isRootBranch($id))
 //            return "Root Branch isn't deleted";
-            return __('messageBranchController.RootBranch_delete');
+            return __('branch.Root Branch delete');
         if (!$this->numOfSubBranches($id) > 0) {
             $branch->delete();
             $this->callActivityMethod('delete', $paramters);
 //            return "Branch is deleted successfully";
-            return __('common.messages.delete');
+            return __('common.delete');
         } else
 //            return "it is not possible to delete a branch that contains branches within it";
-            return __('messageBranchController.branch_delete');
+            return __('branch.branch delete');
     }
 //    public function store(Request $request)
 //    {
@@ -184,14 +184,14 @@ class BranchController extends Controller
 
     public function store(StoreBranchRequest $request)
     {
-//        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
-        sleep(2);
+        $id = Branch::orderBy('id', 'desc')->first()->id + 1;
+//        sleep(2);
         Branch::create($request->validated());
-//        $parameters = ['request' => $request, 'id' => $id];
-//        $this->callActivityMethod('store', $parameters);
+        $parameters = ['request' => $request, 'id' => $id];
+        $this->callActivityMethod('store', $parameters);
 //          return redirect()->route('branch.index')->with('message','Branch created successfully');
 
-        return redirect()->route('branch.index')->with('message',__('common.messages.store'));
+        return redirect()->route('branch.index')->with('message',__('common.store'));
 
     }
 

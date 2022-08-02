@@ -1,6 +1,16 @@
 <?php
-
 return [
+     // Messages
+    'branch_show' => ' Ramo non trovato',
+    'RootBranch_delete' => 'Il ramo radice non viene eliminato',
+    'branch_delete' => 'Non è possibile eliminare questo ramo perché contiene rami impliciti',
+
+
+
+
+
+
+    // Validation
     'code.required'          =>'È necessario inserire il codice filiale ',
     'code.unique'            =>'Il codice della filiale esiste già',
     'code.string'            => 'Il codice della filiale deve essere caratteri',

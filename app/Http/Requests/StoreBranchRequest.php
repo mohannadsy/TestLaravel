@@ -40,13 +40,13 @@ class StoreBranchRequest extends FormRequest
     public function messages()
     {
         return $messages = [
-            'code.required'          =>__('validationBranch.code_required'),
-            'code.unique'            => __('validationBranch.code_unique'),
-            'code.string'            => __('validationBranch.code_string'),
-            'name.required'          => __('validationBranch.name_required'),
-            'name.max'               => __('validationBranch.name_max'),
-            'name.unique'            => __('validationBranch.name_unique '),
-            'name.string'            => __('validationBranch.name_string '),
+            'code.required'          =>__('branch.code required'),
+            'code.unique'            => __('branch.code unique'),
+            'code.string'            => __('branch.code string'),
+            'name.required'          => __('branch.name required'),
+            'name.max'               => __('branch.name max'),
+            'name.unique'            => __('branch.name unique '),
+            'name.string'            => __('branch.name string '),
 
 
 //            'code.required'          => 'رمز الفرع يجب أن يُدخل',
