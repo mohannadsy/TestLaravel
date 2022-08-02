@@ -71,7 +71,7 @@ class UserController extends Controller
         $parameters = ['id' => $id];
         if ($this->isNotSuperAdmin($id)) {
             $user = User::find($id);
-//            return $user ?  $user->delete() && $this->callActivityMethod('delete  ', $parameters) && __('user.user delete success')  : __('user.user delete error');
+//            return $user ?  __('user.user delete success')  && $user->delete() && $this->callActivityMethod('delete  ', $parameters) : __('user.user delete error');
             if (User::find($id)) {
                 $user->delete();
                 $this->callActivityMethod('delete  ', $parameters);

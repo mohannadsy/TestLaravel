@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'code.required'          =>'Branch code must be entered ',
+    'code_required'          =>'Branch code must be entered ',
     'code.unique'            =>'Branch code already existsً',
     'code.string'            => 'Branch code must be characters',
     'name.required'          => 'Branch name must be entered ',
