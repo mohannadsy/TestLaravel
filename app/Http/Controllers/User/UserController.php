@@ -51,7 +51,7 @@ class UserController extends Controller
         $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
 //        $message = __('messageCommonController.store');
-        return Inertia::render('BranchAndUser/Index', compact('user'))->with('message', 'User Created Successfully');
+        return Inertia::render('BranchAndUser/Index', compact('user'))->with('message', __('user.user store'));
     }
 
 
@@ -70,9 +70,9 @@ class UserController extends Controller
         $parameters = ['id' => $id];
         if ($this->isNotSuperAdmin($id)) {
             $user = User::find($id);
-            return $user ? $user->delete() && $this->callActivityMethod('delete  ', $parameters) : 'User not Found';
+            return $user ? $user->delete() && $this->callActivityMethod('delete  ', $parameters) : __('user.user delete');
         }
-        return "Super Admin Can not be Deleted";
+        return __('user.admin delete');
     }
 
     public function show($id)

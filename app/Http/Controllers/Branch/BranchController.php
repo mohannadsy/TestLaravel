@@ -88,7 +88,7 @@ class BranchController extends Controller
         return $branch = Branch::find($id)->update($request->all());
         $this->callActivityMethod('update', $paramters);
 //        return 'updated successfully';
-        return __('messageCommonController.update');
+        return __('common.messages.update');
     }
 
     public function delete($id) //  delete - can be restored
@@ -102,7 +102,7 @@ class BranchController extends Controller
             $branch->delete();
             $this->callActivityMethod('delete', $paramters);
 //            return "Branch is deleted successfully";
-            return __('messageCommonController.delete');
+            return __('common.messages.delete');
         } else
 //            return "it is not possible to delete a branch that contains branches within it";
             return __('messageBranchController.branch_delete');
@@ -191,7 +191,7 @@ class BranchController extends Controller
 //        $this->callActivityMethod('store', $parameters);
 //          return redirect()->route('branch.index')->with('message','Branch created successfully');
 
-        return redirect()->route('branch.index')->with('message',__('messageCommonController.store'));
+        return redirect()->route('branch.index')->with('message',__('common.messages.store'));
 
     }
 
