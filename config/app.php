@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -206,6 +206,8 @@ return [
 
 
         Spatie\Permission\PermissionServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+
 
 
 
@@ -228,4 +230,6 @@ return [
     ])->toArray(),
     'Image' => Intervention\Image\Facades\Image::class,
     'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+    'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+
 ];

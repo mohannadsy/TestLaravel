@@ -5,8 +5,15 @@
         class="default-pointer"
         @click="toggle"
         @dblclick="makeFolder"
-        v-if="isFolder"
-        >{{ isOpen ? "-" : "+" }}</span
+        v-if="isFolder"> 
+        <fa v-if="isOpen" icon="caret-down" />
+        <fa v-else icon="caret-left" />
+
+        <!-- <fa v-if="isOpen"  icon="circle-minus" />
+        <fa v-else icon="circle-plus" /> -->
+
+
+        </span
       >
       <span
         :class="{ bold: isFolder }"
@@ -17,6 +24,7 @@
     </div>
     <ul v-show="isOpen" v-if="isFolder">
       <tree-item
+       class="branches"
         v-for="(childBranch, index) in item.branches"
         :key="index"
         :item="childBranch"
@@ -24,6 +32,7 @@
         @node-type="this.$emit('node-type', $event)"
       ></tree-item>
       <tree-item
+        class="users"
         v-for="(childUsers, index) in item.users"
         :key="index"
         :item="childUsers"
@@ -86,11 +95,28 @@ export default {
   cursor: pointer;
 }
 .default-pointer {
-  cursor: default;
+  cursor: pointer;
+  font-size: 25px;
+  margin: 0px 3px;
 }
-ul {
-  padding-left: 1em;
-  line-height: 1.5em;
+ul,li {
+  line-height:0.5 ;
+ 
+
+}
+.branches  {
+  /* padding-left: 1em;
+  line-height: 0.5em; */
   list-style-type: none;
+  margin:0;
+  padding: 0;
+  
+  /* margin:3px; */
+}
+.users{
+  color:blue;
+  line-height: 1 em;
+ 
+
 }
 </style>
