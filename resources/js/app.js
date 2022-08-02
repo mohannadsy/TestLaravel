@@ -7,6 +7,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import Vue from 'vue'
+import { i18n } from './i18n'
 library.add(fas, fab);
 
 const appName = window.document.getElementsByTagName('title')[0];
@@ -42,6 +43,7 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .use(store)
+            .use(i18n)
             .use(style)
             .component('fa', FontAwesomeIcon)
             .mixin({ methods: { route } }, require('./base'))

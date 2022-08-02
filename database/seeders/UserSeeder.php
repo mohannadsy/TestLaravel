@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     {
         // user 1
         $userMohannad = User::create([
-            'code' => '1',
+            'code' => 1,
             'name' => 'Super Admin',
             'email' => 'superAdmin@gmail.com',
             'password' => bcrypt('12345superadmin'),
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
 //        $userMohannad->givePermissionTo('show-user');
         // user 2
         $userNoor = User::create([
-            'code' => '2',
+            'code' => 2,
             'name' => 'Noor Al-kinj',
             'email' => 'noor@gmail.com',
             'password' => bcrypt('12345noor'),
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
         // user 3 -> 10
 //        for ($i = 3; $i <= 6; $i++)
             $userClauda = User::create([
-                'code' => 5,
+                'code' => 3,
                 'name' => 'Clauda Al-Rakkad' ,
                 'email' => "clauda@gmail.com",
                 'password' => bcrypt('12345clauda'),
@@ -89,5 +89,51 @@ class UserSeeder extends Seeder
             ]);
         $userClauda->assignRole('Cacher');
 //        $userClauda->givePermissionTo('store-user');
+
+
+        $userNoor = User::create([
+            'code' => 4,
+            'name' => 'Sara Abdo',
+            'email' => 'sara@gmail.com',
+            'password' => bcrypt('12345sara'),
+            'role' => 'Accountant',
+            'profile_photo_path' => 'qqq',
+            'branch_id' => '2',
+            'first_name' => 'a',
+            'middle_name' => 's',
+            'last_name' => 's',
+            'phone' => '09955556374',
+            'mobile' => '0414949494',
+            'id_number' => '001123938373774',
+            'notes' => 'notes',
+            'account_box_id' => 0,
+            'store_id' => 0,
+            'is_active' => false,
+            'security_degree' => 1,
+            'security_level' => 1
+        ]);
+
+
+        $userNoor = User::create([
+            'code' => 5,
+            'name' => 'Raghad Nanou',
+            'email' => 'raghad@gmail.com',
+            'password' => bcrypt('12345raghad'),
+            'role' => 'Accountant',
+            'profile_photo_path' => 'qqq',
+            'branch_id' => '2',
+            'first_name' => 'a',
+            'middle_name' => 's',
+            'last_name' => 's',
+            'phone' => '09955556374',
+            'mobile' => '0414949494',
+            'id_number' => '001123938373774',
+            'notes' => 'notes',
+            'account_box_id' => 0,
+            'store_id' => 0,
+            'is_active' => false,
+            'security_degree' => 1,
+            'security_level' => 1
+        ]);
     }
 }

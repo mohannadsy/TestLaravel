@@ -137,7 +137,10 @@ return [
     'uuid' => 'The :attribute must be a valid UUID.',
 
 
-    'Branch Stored' => 'تم تخزين الفرع بنجاح',
+
+
+
+
 
     'unique' => ' الحقل يجب أن يكون فريد ',
     'required' => ' الحقل يجب أن يكون موجود ',
