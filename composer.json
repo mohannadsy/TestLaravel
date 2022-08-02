@@ -36,14 +36,7 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
-<<<<<<< HEAD
-       
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> 15166f917df30eab45e17991d692ba785944a01f
->>>>>>> a4ce7c818b780d648f277ba797691744cc5640d8
     },
     "autoload-dev": {
         "psr-4": {
