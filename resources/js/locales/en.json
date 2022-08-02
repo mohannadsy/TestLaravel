@@ -16,6 +16,11 @@
     "branchEnabled":"Enabled",
     "branchDisabled":"Not Enabled",
 
+    "branchSave":"Save",
+    "branchNew":"New",
+    "branchUpdate":"Update",
+    "branchDelete":"Delete",
+
     "userCard":"User Cerd",
     "usercode":"User Code",
     "userName":"User Name",
@@ -38,7 +43,15 @@
     "userPhone":"phone",
     "userMobile":"Mobile",
     "idNumber": "ID NUMBER",
-    "userNotes":"Notes"
+    "userNotes":"Notes",
+
+    "defaultCashOnHand":"Default Cash On Hand",
+    "defaultRepository":"Default Repository",
+
+    "userSave":"Save",
+    "UserNew":"New",
+    "userUpdate":"Update",
+    "userDelete":"Delete"
 
 
 

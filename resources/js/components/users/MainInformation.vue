@@ -3,7 +3,7 @@
     <div class="col-md-5">
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-3"
-          >رمز المستخدم</elemet-label
+          >{{$t('usercode')}} </elemet-label
         >
         <div class="col-8">
           <element-input
@@ -16,7 +16,7 @@
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-3" style="padding-left: 6px"
-          >اسم المستخدم</elemet-label
+          > {{$t('userName')}}</elemet-label
         >
         <div class="col-8">
           <element-input
@@ -29,7 +29,7 @@
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-3" style="padding-left: 6px"
-          >البريد الالكتروني</elemet-label
+          >{{$t('userEmail')}} </elemet-label
         >
         <div class="col-8">
           <element-input
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3">كلمة المرور</elemet-label>
+        <elemet-label class="col-form-label col-md-3">{{$t('userPassword')}} </elemet-label>
         <div class="col-8">
           <element-input
             type="text"
@@ -54,7 +54,7 @@
     </div>
     <div class="col-md-4">
       <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-2">الفرع </elemet-label>
+        <elemet-label class="col-form-label col-2">{{$t('branch')}} </elemet-label>
         <div class="col-8">
           <element-input
             type="text"
@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-2" style="padding-top:15px;">الصفة</elemet-label>
+        <elemet-label class="col-form-label col-2" style="padding-top:15px;">{{$t('userRole')}}</elemet-label>
         <div class="col-8">
           <v-select
             :options="roleOptions"
@@ -83,8 +83,8 @@
           ></checkbox-switch>
         </div>
         <div class="col-md-3">
-          <label v-if="myObj.active"> مفعل</label>
-          <label v-else>غير مفعل</label>
+          <label v-if="myObj.active"> {{$t('userEnabled')}}</label>
+          <label v-else> {{$t('userNotEnabled')}}</label>
         </div>
       </div>
     </div>

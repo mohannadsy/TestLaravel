@@ -2,7 +2,7 @@
   <div class="row mt-2">
     <div class="col-md-6">
       <div class="form-group row mt-3">
-        <elemet-label class="col-form-label col-3"> المسؤولية</elemet-label>
+        <elemet-label class="col-form-label col-3"> {{$t('responsibility')}}</elemet-label>
         <div class="col-md-8">
           <element-input
             type="text"
@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-3">العنوان </elemet-label>
+        <elemet-label class="col-form-label col-3">{{$t('address')}} </elemet-label>
         <div class="col-md-8">
           <element-input
             type="text"
@@ -23,7 +23,7 @@
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-3">
-          موقع الانترنت</elemet-label
+          {{$t('netWebsite')}} </elemet-label
         >
         <div class="col-md-8">
           <element-input
@@ -36,7 +36,7 @@
 
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-3">
-          البريد الالكتروني</elemet-label
+          {{$t('branchEmail')}} </elemet-label
         >
         <div class="col-md-8">
           <element-input
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3">هاتف</elemet-label>
+        <elemet-label class="col-form-label col-md-3">{{$t('branchPhone')}}</elemet-label>
         <div class="col-md-8">
           <element-input
             type="text"
@@ -57,7 +57,7 @@
         </div>
       </div>
       <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3">جوال</elemet-label>
+        <elemet-label class="col-form-label col-md-3">{{$t('branchMobile')}}</elemet-label>
         <div class="col-md-8">
           <element-input
             type="text"

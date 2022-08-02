@@ -29,7 +29,7 @@
         <div class="row a mt-2">
           <div class="col-5">
             <title-button @click="activeTab = 'BasicInformation'"
-              >معلومات أساسية</title-button
+              >{{$t('basicInformation')}} </title-button
             >
           </div>
         </div>
@@ -48,16 +48,16 @@
             :type="'button'"
             :disabled="form.processing"
             @click="storeBranch"
-            >حفظ</element-button
+            >{{$t('branchSave')}}</element-button
           >
           <element-button :type="'button'" @click="newBranch"
-            >جديد</element-button
+            >{{$t('branchNew')}}</element-button
           >
           <element-button :type="'button'" @click="updateBranch"
-            >تعديل</element-button
+            >{{$t('branchUpdate')}}</element-button
           >
           <element-button :type="'button'" @click="deleteBranch"
-            >حذف</element-button
+            >{{$t('branchDelete')}}</element-button
           >
         </div>
       </div>
