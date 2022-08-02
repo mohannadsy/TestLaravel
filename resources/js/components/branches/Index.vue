@@ -12,6 +12,7 @@
       <base-button @click="confirmError">Okay</base-button>
     </template>
   </base-dialog>
+  <locale-switcher/>
   <div class="row">
     <form>
       <div class="col border-right">
@@ -65,6 +66,7 @@
 </template>
 
 <script>
+import localeSwitcher from './localeSwitcher.vue'
 import MainInfromation from "./MainInfromation.vue";
 import BasicInformation from "./BasicInformation.vue";
 import PageTitle from "../../Shared/PageTitle.vue";
@@ -86,6 +88,7 @@ export default {
     errors: Object,
   },
   components: {
+    localeSwitcher,
     BasicInformation,
     PageTitle,
     ElemetLabel,
