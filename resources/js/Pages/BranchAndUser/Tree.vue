@@ -11,8 +11,6 @@
 
         <!-- <fa v-if="isOpen"  icon="circle-minus" />
         <fa v-else icon="circle-plus" /> -->
-
-
         </span
       >
       <span
@@ -99,11 +97,11 @@ export default {
   font-size: 25px;
   margin: 0px 3px;
 }
-ul,li {
+/* ul,li {
   line-height:0.5 ;
  
 
-}
+} */
 .branches  {
   /* padding-left: 1em;
   line-height: 0.5em; */
@@ -115,8 +113,5 @@ ul,li {
 }
 .users{
   color:blue;
-  line-height: 1 em;
- 
-
 }
 </style>

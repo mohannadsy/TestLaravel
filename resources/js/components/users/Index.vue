@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md">
         <div class="row px-3 mt-1 ">
-          <page-title>بطاقة مستخدم</page-title>
+          <page-title> {{$t('userCard')}}</page-title>
         </div>
         <form>
           <main-information @save-main="saveMain"></main-information>
@@ -12,13 +12,13 @@
         <div class="row a mt-2">
           <div class="col-5">
             <title-button @click="activeTab = 'BasicInformation'"
-              >معلومات أساسية</title-button
+              > {{$t('userBasicInfo')}}</title-button
             >
             <title-button @click="activeTab = 'Permissions'"
-              >صلاحيات</title-button
+              >{{$t('userPermissions')}}</title-button
             >
             <title-button @click="activeTab = 'ExtraOptions'"
-              >خيارات إضافية</title-button
+              >{{$t('userAdditionalOptions')}} </title-button
             >
           </div>
         </div>
@@ -30,10 +30,10 @@
         <extra-options v-if="activeTab === 'ExtraOptions'" />
         <div class="row justify-content-end mb-2">
           <div class="col-md-4">
-            <element-button @click="submit">حفظ</element-button>
-            <element-button>جديد</element-button>
-            <element-button>تعديل</element-button>
-            <element-button>حذف</element-button>
+            <element-button @click="submit">{{$t('userSave')}} </element-button>
+            <element-button>{{$t('UserNew')}} </element-button>
+            <element-button>{{$t('userUpdate')}} </element-button>
+            <element-button>{{$t('userDelete')}} </element-button>
           </div>
         </div>
       </div>

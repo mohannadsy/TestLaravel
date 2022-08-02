@@ -12,6 +12,7 @@
       <base-button @click="confirmError">Okay</base-button>
     </template>
   </base-dialog>
+  <locale-switcher/>
   <div class="row">
     <form>
       <div class="col border-right">
@@ -28,7 +29,7 @@
         <div class="row a mt-2">
           <div class="col-5">
             <title-button @click="activeTab = 'BasicInformation'"
-              >معلومات أساسية</title-button
+              >{{$t('basicInformation')}} </title-button
             >
           </div>
         </div>
@@ -47,16 +48,16 @@
             :type="'button'"
             :disabled="form.processing"
             @click="storeBranch"
-            >حفظ</element-button
+            >{{$t('branchSave')}}</element-button
           >
           <element-button :type="'button'" @click="newBranch"
-            >جديد</element-button
+            >{{$t('branchNew')}}</element-button
           >
           <element-button :type="'button'" @click="updateBranch"
-            >تعديل</element-button
+            >{{$t('branchUpdate')}}</element-button
           >
           <element-button :type="'button'" @click="deleteBranch"
-            >حذف</element-button
+            >{{$t('branchDelete')}}</element-button
           >
         </div>
       </div>
@@ -65,6 +66,7 @@
 </template>
 
 <script>
+import localeSwitcher from './localeSwitcher.vue'
 import MainInfromation from "./MainInfromation.vue";
 import BasicInformation from "./BasicInformation.vue";
 import PageTitle from "../../Shared/PageTitle.vue";
@@ -86,6 +88,7 @@ export default {
     errors: Object,
   },
   components: {
+    localeSwitcher,
     BasicInformation,
     PageTitle,
     ElemetLabel,
