@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateUserRequest;
+
 use App\Models\PermissionGroup;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Image\ImageTrait;
 use App\Traits\User\AdminTrait;
@@ -70,7 +71,13 @@ class UserController extends Controller
         $parameters = ['id' => $id];
         if ($this->isNotSuperAdmin($id)) {
             $user = User::find($id);
-            return $user ? $user->delete() && $this->callActivityMethod('delete  ', $parameters) : __('user.user delete');
+//            return $user ?  $user->delete() && $this->callActivityMethod('delete  ', $parameters) && __('user.user delete success')  : __('user.user delete error');
+            if (User::find($id)) {
+                $user->delete();
+                $this->callActivityMethod('delete  ', $parameters);
+               return __('user.user delete success');
+
+            } else   return __('user.user delete error');
         }
         return __('user.admin delete');
     }
