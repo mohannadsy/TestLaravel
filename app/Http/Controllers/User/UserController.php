@@ -50,6 +50,7 @@ class UserController extends Controller
 //      $this->givePermissionTo($request->permissions);
         $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
+//        $message = __('messageCommonController.store');
         return Inertia::render('BranchAndUser/Index', compact('user'))->with('message', 'User Created Successfully');
     }
 
@@ -112,12 +113,6 @@ class UserController extends Controller
         }
         return $groupPermissions;
 
-    }
-
-
-
-    public function mcamara(){
-        return  __("validation.Branch Stored");
     }
 
 

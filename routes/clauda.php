@@ -18,7 +18,6 @@ use Barryvdh\Debugbar\Facades;
 //Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
 Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
-    Route::get('mcamara', [UserController::class, 'mcamara']);
 
     Route::get('index', [UserController::class, 'index'])->name('user.index');
     Route::post('store', [UserController::class, 'store'])->name('user.store');
@@ -32,6 +31,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('get-user-permissions/{id}', [UserController::class, 'getUserPermissions'])->name('user.getUserPermissions');
 });
 //});
+
 
 
 //------- Currency ------//
