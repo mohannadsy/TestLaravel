@@ -1,6 +1,6 @@
 <template>
   <div class="row px-3 mt-1 pb-2">
-    <page-title>بطاقة فرع</page-title>
+    <page-title>{{$t('branchCard')}}</page-title>
   </div>
   <form>
     <div class="row">
