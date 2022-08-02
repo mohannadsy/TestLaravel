@@ -6,6 +6,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
+import { createI18n } from 'vue-i18n'
 import Vue from 'vue'
 library.add(fas, fab);
 
@@ -34,7 +35,13 @@ import style from './../assets/style.css'
 // app.use(store);
 
 // Vue.mixin(require('./base'));
-
+const i18n = createI18n({
+    locale: 'en',
+    fallbackLocale: 'en',
+    messages: {
+        en
+    }
+});
 createInertiaApp({
     title: (title) => `${title}`,
     resolve: (name) => require(`./Pages/${name}.vue`),
@@ -42,6 +49,7 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .use(store)
+            .use(i18n)
             .use(style)
             .component('fa', FontAwesomeIcon)
             .mixin({ methods: { route } }, require('./base'))
