@@ -109,7 +109,6 @@ return [
         'string'  => 'يجب أن يحتوي النص :attribute على :size حروفٍ/حرفًا بالضبط.',
         'array'   => 'يجب أن يحتوي :attribute على :size عنصرٍ/عناصر بالضبط.',
     ],
-<<<<<<< HEAD
     'starts_with' => 'يجب أن يبدأ :attribute بأحد القيم التالية: :values',
     'string'      => 'يجب أن يكون :attribute نصًا.',
     'timezone'    => 'يجب أن يكون :attribute نطاقًا زمنيًا صحيحًا.',
@@ -118,22 +117,6 @@ return [
     'url'         => 'صيغة الرابط :attribute غير صحيحة.',
     'uuid'        => ':attribute يجب أن يكون بصيغة UUID سليمة.',
 
-=======
-    'starts_with' => 'The :attribute must start with one of the following: :values.',
-//    'string' => 'The :attribute must be a string.',
-    'timezone' => 'The :attribute must be a valid timezone.',
-//    'unique' => 'The :attribute has already been taken.',
-    'uploaded' => 'The :attribute failed to upload.',
-    'url' => 'The :attribute must be a valid URL.',
-    'uuid' => 'The :attribute must be a valid UUID.',
-
-
-    'unique' => 'هذا :attribute  يجب أن يكون فريد ',
-    'required' => ' الحقل يجب أن يكون موجود ',
-    'max' => 'طول هذا الحقل يجب ألأ يتجاوز ال 50 محرف ',
-    'string' => 'هذا الحقل يجب أن يكون محارف',
-//    'numeric' => 'هذا الحقل يجب أن يكون أرقام',
->>>>>>> 586c7759b78cc3972b0c4936ce50fe225928d4e1
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -162,7 +145,6 @@ return [
     |
     */
 
-<<<<<<< HEAD
     'attributes' => [
         'name'                  => 'الاسم',
         'code'                  => 'الرمز',
@@ -195,8 +177,4 @@ return [
         'available'             => 'مُتاح',
         'size'                  => 'الحجم',
     ],
-=======
-    'attributes' => ['code' => 'رمز '],
-
->>>>>>> 586c7759b78cc3972b0c4936ce50fe225928d4e1
 ];
