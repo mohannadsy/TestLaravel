@@ -38,6 +38,12 @@ Route::get('/test23', function () {
     return Item::find(1)->additive_IDs[0];
 });
 
+Route::put('/laravel-language/{key}', function ($key) {
+    session()->put('locale', $key);
+    return redirect()->back();
+});
+
+
 
 Route::get('getLocal', [UserController::class, 'getLocal'])->name('user.getLocal');
 
