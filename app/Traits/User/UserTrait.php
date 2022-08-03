@@ -113,4 +113,9 @@ trait  UserTrait
         return $groupPermissions;
 
     }
+
+
+    public function getLocal(){
+        return Config::get('app.locale');
+    }
 }

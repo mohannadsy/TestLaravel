@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Account;
+use App\Models\Item;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Currency\CurrencyController;
@@ -32,6 +33,13 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 });
 //});
 
+
+Route::get('/test23', function () {
+    return Item::find(1)->additive_IDs[0];
+});
+
+
+Route::get('getLocal', [UserController::class, 'getLocal'])->name('user.getLocal');
 
 
 //------- Currency ------//
