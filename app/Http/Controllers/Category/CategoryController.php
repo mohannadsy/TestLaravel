@@ -55,7 +55,7 @@ class CategoryController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $category;
         }
-        return 'Category not Found';
+        return __('category.category delete error');
     }
 
 
@@ -64,8 +64,8 @@ class CategoryController extends Controller
         $parameters = ['id' => $id];
         if ($this->isNotContainItems($id)) {
             $category = Category::find($id);
-            return $category ? $category->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Category not Found';
+            return $category ? $category->delete() && $this->callActivityMethod('delete  ', $parameters) : __('category.category delete error');
         }
-        return "Default Category Can not be Deleted";
+        return __('category.category delete error');
     }
 }
