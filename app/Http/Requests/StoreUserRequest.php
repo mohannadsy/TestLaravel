@@ -33,17 +33,17 @@ class StoreUserRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return $messages = [
-
-            'code.required' => __('user.code required'),
-            'code.unique' => __('user.code unique'),
-            'code.string' => __('user.code string'),
-            'name.required' => __('user.name required'),
-            'name.max' => __('user.name max'),
-            'name.unique' => __('user.name unique'),
-            'name.string' => __('user.name string'),
+//    public function messages()
+//    {
+//        return $messages = [
+//
+//            'code.required' => __('user.code required'),
+//            'code.unique' => __('user.code unique'),
+//            'code.string' => __('user.code string'),
+//            'name.required' => __('user.name required'),
+//            'name.max' => __('user.name max'),
+//            'name.unique' => __('user.name unique'),
+//            'name.string' => __('user.name string'),
 
 //            'email.required' => 'البريد الالكتروني يجب أن يكون موجود',
 //            'email.unique' => 'البريد الالكتروني مُدخل سابقاً لمستخدم آخر',
@@ -70,8 +70,8 @@ class StoreUserRequest extends FormRequest
 //            'account-box_id' => ' ',
 //            'store_id' => ' ',
 //            'is_active',
-        ];
-    }
+//        ];
+//    }
 
 
 }
