@@ -10,6 +10,7 @@ export const i18n = createI18n({
     messages: { 'en': messages }
 })
 
+
 export function setI18nLanguage(i18n, locale) {
     if (i18n.mode === 'legacy') {
         i18n.global.locale = locale
