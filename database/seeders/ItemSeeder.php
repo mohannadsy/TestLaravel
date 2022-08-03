@@ -19,6 +19,7 @@ class ItemSeeder extends Seeder
             'is_inherited' => false,
             'security_degree' => 1,
             'category_id' => 1,
+//            'branch_id'=>1,
             'place' => 'place 1',
             'manufacture_company' => 'update', // الشركة المصنعة
             'origin_country' => 'syria',//بلط المنشأ
@@ -37,15 +38,16 @@ class ItemSeeder extends Seeder
             'type' => 'origin',
             'product_date' => '6/3/2023',
 
-            'force_on_output' => false,
-            'force_on_input' => true,
+            'expiration_date_force_on_input' => false,
+            'expiration_date_force_on_output' => true,
 
             'aggregate_item' => false,
             'modified_item' => false,
-
+            'serial_number_force_on_input'=>false,
+            'serial_number_force_on_output'=>false,
             'is_service' => false,
             'is_stored' => false,
-            'origin' => true,
+            'is_origin' => true,
 
 
         ]);

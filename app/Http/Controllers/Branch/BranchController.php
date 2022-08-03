@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Branch;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBranchRequest;
+use App\Http\Requests\UpdateBranchRequest;
 use App\Models\Branch;
 use App\Http\Requests\BranchRequest;
 use App\Models\PermissionGroup;
@@ -82,7 +83,7 @@ class BranchController extends Controller
         return __('branch.branch show');
     }
 
-    public function update(BranchRequest $request, $id)
+    public function update(UpdateBranchRequest $request, $id)
     {
         $paramters = ['request' => $request, 'id' => $id];
         return $branch = Branch::find($id)->update($request->all());

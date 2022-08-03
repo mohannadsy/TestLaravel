@@ -19,7 +19,6 @@ return new class extends Migration {
 
             $table->integer('security_degree');
 
-            $table->integer('category_id');
             $table->string('place');
             $table->string('manufacture_company');
             $table->string('origin_country');
@@ -35,14 +34,16 @@ return new class extends Migration {
 
             $table->string('type');
             $table->string('product_date');
-            $table->boolean('force_on_output');
-            $table->boolean('force_on_input');
+            $table->boolean('expiration_date_force_on_input');
+            $table->boolean('expiration_date_force_on_output');
             $table->boolean('aggregate_item');
             $table->boolean('modified_item');
+            $table->boolean('serial_number_force_on_input');
+            $table->boolean('serial_number_force_on_output');
 
             $table->boolean('is_service');
             $table->boolean('is_stored');
-            $table->boolean('origin');
+            $table->boolean('is_origin');
 
             $table->timestamps();
             // updates : add branch in all cards
@@ -53,6 +54,9 @@ return new class extends Migration {
 
             $table->unsignedBigInteger('unit_id');
             $table->foreign('unit_id')->references('id')->on('units');
+
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
 
         });
     }

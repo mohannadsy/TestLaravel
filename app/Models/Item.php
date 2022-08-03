@@ -11,16 +11,17 @@ class Item extends Model
 
 
     protected $fillable = [
-        // general
+
+        // basics
         'code',
         'name',
         'latin_name',
-
-        'is_active',
-        'is_inherited',
-
+        'is_active',// مفعلة
+        'is_inherited',// مورثة
         'security_degree',
 
+
+        // general
         'category_id', // صنف
         'place',//مكان التواجد
         'manufacture_company', // الشركة المصنعة
@@ -34,22 +35,31 @@ class Item extends Model
         'notes',
 
 
-        // خيارات
+        // units
+        'unit_id',
+
+
+        // options
         'type',
         'product_date',// تاريخ الانتاج
 
-        'force_on_output',//فرض عند الاخراج
-        'force_on_input',//فرض عند الادخال
+        // تاريخ انتهاء الصلاحية
+        'expiration_date_force_on_input',//فرض عند الادخال
+        'expiration_date_force_on_output',//فرض عند الاخراج
 
         'aggregate_item',//مادة تجميعية
-        'modified_item',
+        'modified_item',//مادة معدلة
 
+        //   رقم تسلسلي
+        'serial_number_force_on_input',//فرض عند الادخال
+        'serial_number_force_on_output',//فرض عند الاخراج
+
+         // item type
         'is_service', //مادة خدمية
         'is_stored',// مادة مستودعية
-        'origin', //مادة أصل
+        'is_origin', //مادة أصل
 
 
-        'unit_id',
 
         //  أسعار
 //

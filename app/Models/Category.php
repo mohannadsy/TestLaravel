@@ -27,7 +27,7 @@ class Category extends Model
 
     public function items()
     {
-        return $this->belongsTo(Item::class, 'branch_id');
+        return $this->belongsTo(Item::class, 'category_id');
     }
 
 }

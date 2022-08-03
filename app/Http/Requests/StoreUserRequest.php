@@ -40,12 +40,11 @@ class StoreUserRequest extends FormRequest
             'code.required' => __('user.code required'),
             'code.unique' => __('user.code unique'),
             'code.string' => __('user.code string'),
-//
             'name.required' => __('user.name required'),
             'name.max' => __('user.name max'),
             'name.unique' => __('user.name unique'),
-            'name.string' =>__('user.name string'),
-//
+            'name.string' => __('user.name string'),
+
 //            'email.required' => 'البريد الالكتروني يجب أن يكون موجود',
 //            'email.unique' => 'البريد الالكتروني مُدخل سابقاً لمستخدم آخر',
 //            'email.string' => ' البريد الالكتروني  يجب أن يكون محارف',
