@@ -43,9 +43,12 @@ export default {
 </template>
 
 <script>
+import { loadLocaleMessages, setI18nLanguage, i18n } from "../../i18n";
 export default {
     methods: {
         switchLanguage(key) {
+            loadLocaleMessages(i18n, key);
+      setI18nLanguage(i18n, key);
             this.$i18n.locale = key;
             this.$inertia.put('/laravel-language/' + key);
         },
