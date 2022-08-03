@@ -7,7 +7,7 @@ export const SUPPORT_LOCALES = ['en', 'ar']
 export const i18n = createI18n({
     locale: 'en',
     fallbackLocale: 'en',
-    messages: { 'en': messages }
+    messages: { loadLocaleMessages }
 })
 
 export function setI18nLanguage(i18n, locale) {
