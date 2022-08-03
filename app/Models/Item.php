@@ -54,12 +54,21 @@ class Item extends Model
         'serial_number_force_on_input',//فرض عند الادخال
         'serial_number_force_on_output',//فرض عند الاخراج
 
-         // item type
+        // item type
         'is_service', //مادة خدمية
         'is_stored',// مادة مستودعية
         'is_origin', //مادة أصل
 
+        // Stores Amounts
 
+        'store_id',
+        'amount',
+        'amount_sum',
+
+
+
+        'is_additive',
+        'additive_IDs',
 
         //  أسعار
 //
@@ -96,12 +105,6 @@ class Item extends Model
 //        'item_limits',
 
 
-        // كميات مستودعات
-//
-//        'store_id',
-//        'amount',
-//        'amount_sum',
-//
 //        //معدلات المواد
 //        'rate',//معدل
 //        //بدائل المادة
@@ -110,6 +113,10 @@ class Item extends Model
 
         // updates : add branch in all cards
         'branch_id'
+    ];
+
+    protected $casts = [
+        'additive_IDs' => 'array',
     ];
 
 
