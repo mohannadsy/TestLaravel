@@ -12,7 +12,7 @@ export default {
       setI18nLanguage(i18n, this.locale);
     //   if (this.locale == "en") {
     //     const style = document.createElement("style");
-    //     style.innerHTML = `*{direction:ltr!important}`;
+    //     style.innerHTML = `*{direction:ltr!important;}`;
     //     document.head.appendChild(style);
     //   } else if (this.locale == "ar") {
     //     const style = document.createElement("style");
