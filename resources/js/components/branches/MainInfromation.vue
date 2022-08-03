@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-4">رمز الفرع</elemet-label>
+          <elemet-label class="col-form-label col-md-4">{{$t('branchCode')}} </elemet-label>
           <div class="col-8">
             <element-input
               type="text"
@@ -18,7 +18,7 @@
           <div v-if="form.errors.code">{{ form.errors.code }}</div>
         </div>
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-4">اسم الفرع</elemet-label>
+          <elemet-label class="col-form-label col-md-4">{{$t('branchName')}} </elemet-label>
           <div class="col-8">
             <element-input
               type="text"
@@ -30,8 +30,7 @@
         </div>
         <div class="form-group row mt-2">
           <elemet-label class="col-form-label col-md-4">
-            الفرع الرئيسي</elemet-label
-          >
+            {{$t('mainBranch')}} </elemet-label>
           <div class="col-8">
             <element-input
               type="text"

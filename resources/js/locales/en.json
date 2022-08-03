@@ -1,3 +1,63 @@
 {
-    "branchCard": "Branch Card"
+   
+
+    "branchCard": "Branch Card",
+    "branchCode":"Branch Code",
+    "branchName":"Branch Name",
+    "mainBranch":"Main Branch",
+
+    "basicInformation":"Basic Information",
+    "responsibility":"Responsibility",
+    "address":"Address",
+    "netWebsite":"Net Website",
+    "branchEmail":"Email",
+    "branchPhone":"Phone",
+    "branchMobile":"Mobile",
+    "branchEnabled":"Enabled",
+    "branchDisabled":"Not Enabled",
+
+    "branchSave":"Save",
+    "branchNew":"New",
+    "branchUpdate":"Update",
+    "branchDelete":"Delete",
+
+    "userCard":"User Cerd",
+    "usercode":"User Code",
+    "userName":"User Name",
+    "userEmail":"Email",
+    "userPassword":"Password",
+    "branch":"Branch",
+    "userRole":"Role",
+    "userEnabled":"Enabled",
+    "userNotEnabled":"Not Enabled",
+
+
+    "userBasicInfo":"Basic Information",
+    "userPermissions":"Permissions",
+    "userAdditionalOptions":"Additional Options",
+
+
+    "firstName":"First Name",
+    "fatherName":"Father Name",
+    "lastName":"Last Name",
+    "userPhone":"phone",
+    "userMobile":"Mobile",
+    "idNumber": "ID NUMBER",
+    "userNotes":"Notes",
+
+    "defaultCashOnHand":"Default Cash On Hand",
+    "defaultRepository":"Default Repository",
+
+    "userSave":"Save",
+    "UserNew":"New",
+    "userUpdate":"Update",
+    "userDelete":"Delete"
+
+
+
+
+
+
+
+
 }

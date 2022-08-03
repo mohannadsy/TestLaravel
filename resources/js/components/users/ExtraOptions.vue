@@ -3,7 +3,7 @@
     <div class="col-md-5">
       <div class="form-group row mt-3">
         <elemet-label class="col-form-label col-4"
-          >الصندوق الافتراضي</elemet-label
+          > {{$t('defaultCashOnHand')}}</elemet-label
         >
         <div class="col-7">
           <element-input type="text" class="form-control" />
@@ -11,7 +11,7 @@
       </div>
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-4"
-          >المستودع الافتراضي</elemet-label
+          > {{$t('defaultRepository')}}</elemet-label
         >
         <div class="col-md-7">
           <element-input type="text" class="form-control" />
