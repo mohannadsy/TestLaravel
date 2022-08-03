@@ -27,6 +27,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('branch_id')->nullable()->default(1);
             $table->foreign('branch_id')->references('id')->on('branches');
 
+
         });
     }
 
