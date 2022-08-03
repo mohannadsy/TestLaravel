@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateAccountRequest;
 use App\Http\Requests\StoreAccountRequest;
-
 use App\Models\Account;
 use App\Traits\Account\AccountTrait;
 use App\Traits\ActivityLog\ActivityLog;
@@ -48,7 +47,7 @@ class AccountController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $account;
         }
-        return 'Account not Found';
+        return __('account.account delete error');
     }
 
     public function update(UpdateAccountRequest $request, $id)
@@ -63,7 +62,7 @@ class AccountController extends Controller
     {
         $parameters = ['id' => $id];
         $account = Account::find($id);
-        return $account ? $account->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Account not Found';
+//        return $account ? $account->delete() && $this->callActivityMethod('delete  ', $parameters) : __('account.account delete error');
     }
 
 

@@ -22,8 +22,9 @@ DatabaseSeeder extends Seeder
             ClientSeeder::class,
             StoreSeeder::class,
             UnitSeeder::class,
-            ItemSeeder::class,
             CategorySeeder::class,
+            ItemSeeder::class,
+
 
         ]);
 

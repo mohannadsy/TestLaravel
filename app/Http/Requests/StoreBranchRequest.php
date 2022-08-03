@@ -6,21 +6,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreBranchRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return [
@@ -37,16 +28,16 @@ class StoreBranchRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return $messages = [
-            'code.required'          =>__('branch.code required'),
-            'code.unique'            => __('branch.code unique'),
-            'code.string'            => __('branch.code string'),
-            'name.required'          => __('branch.name required'),
-            'name.max'               => __('branch.name max'),
-            'name.unique'            => __('branch.name unique '),
-            'name.string'            => __('branch.name string '),
+//    public function messages()
+//    {
+//        return $messages = [
+//            'code.required'          =>__('branch.code required'),
+//            'code.unique'            => __('validation.code unique'),
+//            'code.string'            => __('branch.code string'),
+//            'name.required'          => __('branch.name required'),
+//            'name.max'               => __('branch.name max'),
+//            'name.unique'            => __('branch.name unique '),
+//            'name.string'            => __('branch.name string '),
 
 
 //            'code.required'          => 'رمز الفرع يجب أن يُدخل',
@@ -76,8 +67,8 @@ class StoreBranchRequest extends FormRequest
 //            'mobile.unique'          => 'رقم الموبايل مُدخل سابقاً لفرع آخر ',
 //            'mobile.string'          =>'رقم الموبايل يجب أن يكون محارف ',
 
-        ];
-    }
+//        ];
+//    }
 
 
 }
