@@ -31,7 +31,6 @@ return new class extends Migration {
             $table->string('photo');
 
 
-
             $table->string('type');
             $table->string('product_date');
             $table->boolean('expiration_date_force_on_input');
@@ -45,11 +44,17 @@ return new class extends Migration {
             $table->boolean('is_stored');
             $table->boolean('is_origin');
 
+
+            $table->integer('store_id');
+            $table->float('amount');
+            $table->float('amount_sum');
+            $table->boolean('is_additive');
+            $table->json('additive_IDs');
+
             $table->timestamps();
             // updates : add branch in all cards
             $table->unsignedBigInteger('branch_id')->nullable()->default(1);
             $table->foreign('branch_id')->references('id')->on('branches');
-
 
 
             $table->unsignedBigInteger('unit_id');

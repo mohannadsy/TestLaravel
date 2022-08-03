@@ -34,7 +34,6 @@ class ItemSeeder extends Seeder
             'unit_id' => 5,
 
 
-
             'type' => 'origin',
             'product_date' => '6/3/2023',
 
@@ -43,12 +42,18 @@ class ItemSeeder extends Seeder
 
             'aggregate_item' => false,
             'modified_item' => false,
-            'serial_number_force_on_input'=>false,
-            'serial_number_force_on_output'=>false,
+            'serial_number_force_on_input' => false,
+            'serial_number_force_on_output' => false,
             'is_service' => false,
             'is_stored' => false,
             'is_origin' => true,
 
+            'store_id' => 1,
+            'amount' => 12,
+            'amount_sum' => 32,
+
+            'is_additive' => true,
+            'additive_IDs' => '{1,4}',
 
         ]);
 

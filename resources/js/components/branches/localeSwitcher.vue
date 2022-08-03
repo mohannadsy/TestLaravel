@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 import { loadLocaleMessages, setI18nLanguage, i18n } from "../../i18n";
 export default {
   data() {
@@ -31,4 +31,27 @@ export default {
       <option value="en">English</option>
     </select>
   </div>
+</template> -->
+
+<template>
+     <div v-if="$i18n.locale == 'en'">
+      <a @click.prevent="switchLanguage('ar')" href="#"> Arabic </a>
+  </div>
+  <div v-if="$i18n.locale == 'ar'">
+      <a @click.prevent="switchLanguage('en')" href="#"> English </a>
+  </div>
 </template>
+
+<script>
+import { loadLocaleMessages, setI18nLanguage, i18n } from "../../i18n";
+export default {
+    methods: {
+        switchLanguage(key) {
+            loadLocaleMessages(i18n, key);
+      setI18nLanguage(i18n, key);
+            this.$i18n.locale = key;
+            this.$inertia.put('/laravel-language/' + key);
+        },
+    },
+}
+</script>
