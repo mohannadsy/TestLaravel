@@ -34,24 +34,24 @@ export default {
 </template> -->
 
 <template>
-     <div v-if="$i18n.locale == 'en'">
-      <a @click.prevent="switchLanguage('ar')" href="#"> Arabic </a>
+  <div v-if="$i18n.locale == 'en'">
+    <a @click.prevent="switchLanguage('ar')" href="#"> English </a>
   </div>
   <div v-if="$i18n.locale == 'ar'">
-      <a @click.prevent="switchLanguage('en')" href="#"> English </a>
+    <a @click.prevent="switchLanguage('en')" href="#"> Arabic </a>
   </div>
 </template>
 
 <script>
 import { loadLocaleMessages, setI18nLanguage, i18n } from "../../i18n";
 export default {
-    methods: {
-        switchLanguage(key) {
-            loadLocaleMessages(i18n, key);
+  methods: {
+    switchLanguage(key) {
+      loadLocaleMessages(i18n, key);
       setI18nLanguage(i18n, key);
-            this.$i18n.locale = key;
-            this.$inertia.put('/laravel-language/' + key);
-        },
+      this.$i18n.locale = key;
+      this.$inertia.put("/laravel-language/" + key);
     },
-}
+  },
+};
 </script>
