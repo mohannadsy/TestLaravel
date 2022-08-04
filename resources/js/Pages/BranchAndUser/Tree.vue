@@ -96,6 +96,9 @@ export default {
   cursor: pointer;
   font-size: 25px;
   margin: 0px 3px;
+  padding-bottom:20px;
+  height: 20;
+  width: 20;
 }
 /* ul,li {
   line-height:0.5 ;
@@ -103,15 +106,9 @@ export default {
 
 } */
 .branches  {
-  /* padding-left: 1em;
-  line-height: 0.5em; */
   list-style-type: none;
   margin:0;
   padding: 0;
-  
-  /* margin:3px; */
 }
-.users{
-  color:blue;
-}
+
 </style>
