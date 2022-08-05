@@ -6,7 +6,7 @@
           <page-title> {{$t('userCard')}}</page-title>
         </div>
         <form>
-          <main-information @save-main="saveMain"></main-information>
+          <main-information :branchInformaion="branchInformaion" @save-main="saveMain"></main-information>
         </form>
         <!-- <hr class="new1"> -->
         <div class="row a mt-2">
@@ -23,11 +23,12 @@
           </div>
         </div>
         <basic-information
+        :branchInformaion="branchInformaion"
           v-if="activeTab === 'BasicInformation'"
           @save-basic="saveBasic"
         ></basic-information>
         <permissions v-if="activeTab === 'Permissions'" :groupPermissions="$page['props']['groupPermissions']"/>
-        <extra-options v-if="activeTab === 'ExtraOptions'" />
+        <extra-options :branchInformaion="branchInformaion" v-if="activeTab === 'ExtraOptions'" />
         <div class="row justify-content-end mb-2">
           <div class="col-md-4">
             <element-button @click="submit">{{$t('userSave')}} </element-button>
@@ -56,6 +57,7 @@ import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInformation from "./MainInformation.vue";
 import { reactive } from "vue";
+import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   components: {
     MainInformation,
@@ -72,13 +74,16 @@ export default {
     TitleButton,
   },
    props: {
-        groupPermissions:Array,
-    },
+    groupPermissions:Array,
+    branchInformaion: Object,
+    nodeId: String,
+    errors: Object,
+  },
   data() {
     return {
       activeTab: "BasicInformation",
-      postData: reactive({
-        code: "",
+     form: useForm({
+     code: "",
         name: "",
         email: "",
         password: "",
@@ -97,21 +102,21 @@ export default {
   },
   methods: {
     saveMain(data) {
-      (this.postData.code = data.code),
-        (this.postData.name = data.name),
-        (this.postData.email = data.email),
-        (this.postData.password = data.password),
-        (this.postData.branch_id = data.branch_id);
-      this.postData.role = data.role;
+      (this.form.code = data.code),
+        (this.form.name = data.name),
+        (this.form.email = data.email),
+        (this.form.password = data.password),
+        (this.form.branch_id = data.branch_id);
+      this.form.role = data.role;
     },
     saveBasic(data) {
-      (this.postData.first_name = data.first_name),
-        (this.postData.middle_name = data.middle_name),
-        (this.postData.last_name = data.last_name),
-        (this.postData.phone = data.phone),
-        (this.postData.mobile = data.mobile);
-      this.postData.id_number = data.id_number;
-      this.postData.notes = data.notes;
+      (this.form.first_name = data.first_name),
+        (this.form.middle_name = data.middle_name),
+        (this.form.last_name = data.last_name),
+        (this.form.phone = data.phone),
+        (this.form.mobile = data.mobile);
+      this.form.id_number = data.id_number;
+      this.form.notes = data.notes;
     },
     saveExtra(data) {},
     submit() {

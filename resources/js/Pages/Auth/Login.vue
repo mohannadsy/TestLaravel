@@ -1,8 +1,8 @@
 <template>
     <Head title="Log in" />
 
-    <jet-authentication-card>
-        <div class="card-body">
+    <jet-authentication-card >
+        <div class="card-body  ">
             <jet-validation-errors class="mb-3" />
 
             <div

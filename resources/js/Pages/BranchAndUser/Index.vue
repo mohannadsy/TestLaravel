@@ -17,6 +17,8 @@
       ></branch-form>
       <user-form
         v-if="nodeType === 'users'"
+         :branchInformaion="branchInformaion"
+      :nodeId="nodeId"
         :groupPermissions="$page['props']['groupPermissions']"
       ></user-form>
     </div>
@@ -39,16 +41,21 @@ export default {
     branches: Array,
     branchesWithUsers: Array,
     groupPermissions: Array,
+    user:Array
   },
   components: {
     userForm: Index,
     branchForm: IndexVue,
     Tree,
   },
+  created(){
+    console.log(this.user)
+  },
   methods: {
     // saveData() {
     //   this.$store.dispatch("branches/loadBranches");
     // },
+
     async getNodeType({ nodeId, nodeType }) {
       this.nodeType = nodeType;
       this.nodeId = nodeId;

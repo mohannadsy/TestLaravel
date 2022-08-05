@@ -36,7 +36,6 @@
         <basic-information
           :branchInformaion="branchInformaion"
           :form="form"
-          :newForm="newForm"
           @save-basic="saveBasic"
           v-if="activeTab === 'BasicInformation'"
         />

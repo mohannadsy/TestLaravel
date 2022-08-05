@@ -115,10 +115,16 @@ export default {
     };
   },
   emits: ["save-basic"],
+  props: ["branchInformaion", "form"],
   components: {
     ElemetLabel,
     ElementInput,
     TextArea,
+  },
+    watch: {
+    branchInformaion() {
+      Object.assign(this.myObj, this.branchInformaion);
+    },
   },
   methods: {
     objChanged() {
