@@ -19,11 +19,6 @@ class UpdateCategoryRequest extends FormRequest
 
         ];
     }
-//    public function messages()
-//    {
-//        return [
-//
-//        ];
-//    }
+
 
 }

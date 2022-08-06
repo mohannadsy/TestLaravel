@@ -33,45 +33,6 @@ class StoreUserRequest extends FormRequest
         ];
     }
 
-//    public function messages()
-//    {
-//        return $messages = [
-//
-//            'code.required' => __('user.code required'),
-//            'code.unique' => __('user.code unique'),
-//            'code.string' => __('user.code string'),
-//            'name.required' => __('user.name required'),
-//            'name.max' => __('user.name max'),
-//            'name.unique' => __('user.name unique'),
-//            'name.string' => __('user.name string'),
-
-//            'email.required' => 'البريد الالكتروني يجب أن يكون موجود',
-//            'email.unique' => 'البريد الالكتروني مُدخل سابقاً لمستخدم آخر',
-//            'email.string' => ' البريد الالكتروني  يجب أن يكون محارف',
-//            'email.email' => '  ما تم إدخاله غير متوافق مع صيغة البريد الالكتروني',
-//
-//            'password.required' => 'كلمة المرور يجب أن تكون موجودة',
-//            'password.unique' => 'كلمة المرور مُدخلة سابقاً لمستخدم آخر',
-//            'password.min' => ' كلمة المرور يجب أن تكون 6 محارف على الأقل ',
-//
-//            'role.string' => 'صفة لامستخدم يجب أن تكون محارف',
-//
-//            'branch_id.max' => 'رمز الفرع الرئيسي تجاوز 50 رقم',
-//            'branch_id.numeric' => 'رمز الفرع الرئيسي يجب أن يكون ارقام',
-//
-//            'phone.max' => 'رقم الهاتف تجاوز 50 رقم',
-//            'phone.unique' => 'رقم الهاتف مُدخل سابقاً لمستخدم آخر',
-//            'phone.string' => 'رقم الهاتف يجب أن يكون محارف',
-//            'mobile.max' => 'رقم الموبايل تجاوز 50 محرف',
-//            'mobile.unique' => 'رقم الموبايل مُدخل سابقاً لمستخدم آخر',
-//            'mobile.string' => 'رقم الموبايل يجب أن يكون محارف',
-//            'id_number.max' => 'الرقم الوطني تجاوز 50 محرف ',
-//            'id_number.numeric' => 'الرقم الوطني يجب أن يكون أرقام',
-//            'account-box_id' => ' ',
-//            'store_id' => ' ',
-//            'is_active',
-//        ];
-//    }
 
 
 }
