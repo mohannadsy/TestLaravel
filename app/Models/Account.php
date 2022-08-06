@@ -51,6 +51,13 @@ class Account extends Model
         // updates : add branch in all cards
         'branch_id'
     ];
+    protected $casts = [
+        'aggregate_ids' => 'array',
+        'distributive_ids' => 'array',
+
+
+    ];
+
 
     public function accounts()
     {

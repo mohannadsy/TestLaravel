@@ -37,6 +37,8 @@ return new class extends Migration {
             $table->float('automatic_discount_on_sale');
             $table->float('added_value_tax');
             $table->string('pricing_method');
+            $table->boolean('is_deafault')->default(false);
+
 
         });
     }

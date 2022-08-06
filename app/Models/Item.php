@@ -80,31 +80,6 @@ class Item extends Model
 //        'Price_before_increase',
 
 
-//        // Unites
-//
-//        'unit1_name',
-//        'unit1_barcode',
-//
-//
-//        'unit2_name',
-//        'unit2_barcode',
-//        'conversion_factor',//عامل التحويل
-//        'unit_id',
-//        'not fixed',
-//
-//        'unit3_name',
-//        'unit3_barcode',
-//
-//        'unit4_name',
-//        'unit4_barcode',
-//
-//        'unit5_name',
-//        'unit5_barcode',
-//
-//        'default_unit',
-//        'item_limits',
-
-
 //        //معدلات المواد
 //        'rate',//معدل
 //        //بدائل المادة
@@ -132,7 +107,7 @@ class Item extends Model
 
     public function units()
     {
-        return $this->hasMany(Unit::class, 'unit_id');
+        return $this->hasMany(Unit::class, 'item_id');
     }
 
 }

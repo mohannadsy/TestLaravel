@@ -40,6 +40,6 @@ class Client extends Model
 
     public function account()
     {
-        return $this->belongsTo(Account::class, 'client_id');
+        return $this->belongsTo(Account::class, 'account_id');
     }
 }

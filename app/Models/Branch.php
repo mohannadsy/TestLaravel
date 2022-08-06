@@ -64,4 +64,8 @@ class Branch extends Model
     {
         return $this->hasMany(Store::class, 'branch_id');
     }
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'branch_id');
+    }
 }
