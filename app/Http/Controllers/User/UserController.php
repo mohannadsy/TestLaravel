@@ -52,7 +52,7 @@ class UserController extends Controller
         $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
 //        $message = __('messageCommonController.store');
-        return Inertia::render('BranchAndUser/Index', compact('user'))->with('message', __('user.user store'));
+        return Inertia::render('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
     }
 
 
@@ -64,6 +64,7 @@ class UserController extends Controller
         $request->profile_photo_path = $url;
         $user = User::find($id)->update($request->all());
         $this->callActivityMethod('update', $parameters);
+        return __('common.update');
     }
 
     public function delete($id)
@@ -75,7 +76,7 @@ class UserController extends Controller
             if (User::find($id)) {
                 $user->delete();
                 $this->callActivityMethod('delete  ', $parameters);
-               return __('user.user delete success');
+               return __('common.delete ');
 
             } else   return __('user.user delete error');
         }
@@ -101,7 +102,7 @@ class UserController extends Controller
             }
             return Inertia::render('BranchAndUser/show', compact('groupPermissions', 'user'));
         }
-        return 'User not Found';
+        return __('user.user delete error');;
     }
 
     public function showRole($id)

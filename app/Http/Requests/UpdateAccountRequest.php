@@ -34,24 +34,4 @@ class UpdateAccountRequest extends FormRequest
     }
 
 
-//    public function messages()
-//    {
-//        return $message = [
-////            'name' => '',
-////            'code' => '',
-////            'latin_name' => '',
-////            'type' => '',
-////            'account_id' => '',
-////            'final_account_id' => '',
-////            'is_final' => '',
-////            'cost_center_id' => '',
-////            'currency_id' => '',
-////            'equality' => '',
-////            'budget' => '',
-////            'nature' => '',
-////            'current_balance' => '',
-////            'results' => '',
-////            'notes' => '',
-//        ];
-//    }
 }

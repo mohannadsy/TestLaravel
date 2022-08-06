@@ -25,7 +25,7 @@ class Item extends Model
         'category_id', // صنف
         'place',//مكان التواجد
         'manufacture_company', // الشركة المصنعة
-        'origin_country',//بلط المنشأ
+        'origin_country',//بلد المنشأ
         'source',//المصدر
         'caliber',//العيار
         'chemical_composition',//تركيب كيميائي

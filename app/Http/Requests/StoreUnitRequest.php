@@ -18,10 +18,4 @@ class StoreUnitRequest extends FormRequest
 
         ];
     }
-//    public function messages()
-//    {
-//        return [
-//
-//        ];
-//    }
 }
