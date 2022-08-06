@@ -6,11 +6,11 @@
         @click="toggle"
         @dblclick="makeFolder"
         v-if="isFolder"> 
-        <fa v-if="isOpen" icon="caret-down" />
-        <fa v-else icon="caret-left" />
+        <!-- <fa v-if="isOpen" icon="caret-down" />
+        <fa v-else icon="caret-left" /> -->
 
-        <!-- <fa v-if="isOpen"  icon="circle-minus" />
-        <fa v-else icon="circle-plus" /> -->
+       <fa v-if="isOpen"  icon="circle-minus"  />
+        <fa v-else icon="circle-plus"/>
         </span
       >
       <span
@@ -91,14 +91,13 @@ export default {
 <style scoped>
 .pointer {
   cursor: pointer;
+  /* font-size: 17px; */
 }
 .default-pointer {
   cursor: pointer;
-  font-size: 25px;
+  font-size: 20px;
   margin: 0px 3px;
   padding-bottom:20px;
-  height: 20;
-  width: 20;
 }
 /* ul,li {
   line-height:0.5 ;

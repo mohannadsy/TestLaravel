@@ -3,12 +3,15 @@ import { createApp, h } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
+import store from './store/index.js';
+import style from './../assets/style.css';
 import Vue from 'vue'
 import { i18n } from './i18n'
-library.add(fas, fab);
+library.add(fas, fab,far);
 
 const appName = window.document.getElementsByTagName('title')[0];
 
@@ -16,8 +19,7 @@ const appName = window.document.getElementsByTagName('title')[0];
 // import { createApp, h } from 'vue';
 // import { App, plugin } from '@inertiajs/inertia-vue3';
 // import { InertiaProgress } from '@inertiajs/progress';
-import store from './store/index.js';
-import style from './../assets/style.css'
+
 
 // const el = document.getElementById('app');
 

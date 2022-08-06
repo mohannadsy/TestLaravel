@@ -12,14 +12,13 @@ Raghad, [8/6/2022 11:18 AM]
     </div>
     <div class="col-9">
       <branch-form
-      :branchInformaion="branchInformaion"
-      :nodeId="nodeId"
-      v-if="nodeType === 'branches'"
+        :branchInformaion="branchInformaion"
+        :branchId="branchId"
+        v-if="nodeType === 'branches'"
       ></branch-form>
       <user-form
         v-if="nodeType === 'users'"
-         :branchInformaion="branchInformaion"
-      :nodeId="nodeId"
+        :branchInformaion="branchInformaion"
         :groupPermissions="$page['props']['groupPermissions']"
       ></user-form>
     </div>
@@ -34,7 +33,8 @@ export default {
   data() {
     return {
       nodeType: "branches",
-      nodeId: "",
+      branchId: "",
+      userId: "",
       branchInformaion: {},
     };
   },
@@ -42,15 +42,12 @@ export default {
     branches: Array,
     branchesWithUsers: Array,
     groupPermissions: Array,
-    user:Array
+    user: Array,
   },
   components: {
     userForm: Index,
     branchForm: IndexVue,
     Tree,
-  },
-  created(){
-    console.log(this.user)
   },
   methods: {
     // saveData() {
@@ -59,9 +56,16 @@ export default {
 
     async getNodeType({ nodeId, nodeType }) {
       this.nodeType = nodeType;
-      this.nodeId = nodeId;
-      let res = await axios.get(route("branch.show", this.nodeId));
+      if (nodeType === "branches") {
+        this.branchId = nodeId;
+      } else {
+        this.userId = nodeId;
+      }
+      let res = await axios.get(route("branch.show", this.branchId));
       this.branchInformaion = JSON.parse(JSON.stringify(res.data));
+        let result = await axios.get(route("user.show"),this.userId);
+        console.log(JSON.parse(JSON.stringify(result.data)));
+        console.lpg(this.user)
     },
   },
 };

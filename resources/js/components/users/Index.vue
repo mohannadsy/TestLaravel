@@ -76,7 +76,7 @@ export default {
    props: {
     groupPermissions:Array,
     branchInformaion: Object,
-    nodeId: String,
+    branchId: String,
     errors: Object,
   },
   data() {
