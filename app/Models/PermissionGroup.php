@@ -21,7 +21,4 @@ class PermissionGroup extends Model
 
 
 
-//    protected $casts = [
-//        'caption' => 'array',
-//    ];
 }

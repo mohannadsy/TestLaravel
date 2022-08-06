@@ -35,13 +35,15 @@ class Unit extends Model
         'automatic_discount_on_sale', // حسم تلقائي عند المبيع
         'added_value_tax',// ضريبة القيمة المضافة
         'pricing_method',
+        'is_deafault',
+        'item_id',
 
 
     ];
 
     public function item()
     {
-        return $this->belongsTo(Item::class, 'unit_id');
+        return $this->belongsTo(Item::class, 'item_id');
     }
 
 }

@@ -31,4 +31,8 @@ class CostCenter extends Model
         {
             return $this->belongsTo('App\Models\CostCenters', 'center_id');
         }
+        public function branch()
+        {
+            return $this->belongsTo(Branch::class, 'branch_id');
+        }
 }
