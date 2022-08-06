@@ -35,6 +35,7 @@ class Unit extends Model
         'automatic_discount_on_sale', // حسم تلقائي عند المبيع
         'added_value_tax',// ضريبة القيمة المضافة
         'pricing_method',
+        'is_deafault',
 
 
     ];

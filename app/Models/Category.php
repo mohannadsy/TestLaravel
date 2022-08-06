@@ -27,7 +27,7 @@ class Category extends Model
 
     public function items()
     {
-        return $this->belongsTo(Item::class, 'category_id');
+        return $this->hasMany(Item::class, 'category_id');
     }
 
 }
