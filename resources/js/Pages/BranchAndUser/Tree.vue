@@ -5,7 +5,7 @@
         class="default-pointer"
         @click="toggle"
         @dblclick="makeFolder"
-        v-if="isFolder"> 
+        v-if="isFolder">
         <fa v-if="isOpen" icon="caret-down" />
         <fa v-else icon="caret-left" />
 
@@ -102,7 +102,7 @@ export default {
 }
 /* ul,li {
   line-height:0.5 ;
- 
+
 
 } */
 .branches  {
