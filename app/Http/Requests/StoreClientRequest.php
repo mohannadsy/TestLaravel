@@ -39,30 +39,4 @@ class StoreClientRequest extends FormRequest
     }
 
 
-//    public function messages()
-//    {
-//        return $messages = [
-//
-////            'name' => '',
-////            'notes' => '',
-////            'photo' => '',
-////            'gender' => '',
-////            'nationality' => '',
-////            'work' => '',
-////            'birth_place' => '',
-////            'birth_data' => '',
-////            'record_number' => '',
-////            'address' => '',
-////            'email_prefix' => '',
-////            'phone' => '',
-////            'mobile' => '',
-////            'fax' => '',
-////            'email' => '',
-////            'default_price' => '',
-////            'discount_rate' => '',
-////            'discount_account' => '',
-////            'payment_conditions' => '',
-////            'account_id' => '',
-//        ];
-//    }
 }

@@ -19,11 +19,6 @@ class StoreCategoryRequest extends FormRequest
 
         ];
     }
-    public function messages()
-    {
-        return [
 
-        ];
-    }
 
 }
