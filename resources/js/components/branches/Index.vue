@@ -83,7 +83,7 @@ import { Inertia } from "@inertiajs/inertia";
 export default {
   props: {
     branchInformaion: Object,
-    nodeId: String,
+    branchId: String,
     errors: Object,
   },
   components: {
@@ -153,10 +153,10 @@ export default {
       });
     },
     updateBranch() {
-      this.form.post(route("branch.update", this.nodeId));
+      this.form.post(route("branch.update", this.branchId));
     },
     deleteBranch() {
-      Inertia.get(route("branch.delete", this.nodeId), this.form);
+      Inertia.get(route("branch.delete", this.branchId), this.form);
     },
     confirmError() {},
   },

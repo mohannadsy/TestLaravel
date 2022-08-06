@@ -99,7 +99,7 @@ class UserController extends Controller
                     }
                 }
             }
-            return Inertia::render('BranchAndUser/show', compact('groupPermissions', 'user'));
+            return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
         }
         return 'User not Found';
     }
