@@ -18,12 +18,12 @@ Raghad, [8/6/2022 11:18 AM]
       ></branch-form>
       <user-form
         v-if="nodeType === 'users'"
-        :userInformaion="userInformaion"
+        :userPermissions="userPermissions"
+        :userInformation="userInformation"
         :userId="userId"
         :groupPermissions="$page['props']['groupPermissions']"
       ></user-form>
     </div>
-    <h1>{{ user }}</h1>
   </div>
 </template>
 <script>
@@ -38,7 +38,8 @@ export default {
       branchId: "",
       userId: "",
       branchInformaion: {},
-      userInformaion:{}
+      userInformation: {},
+      userPermissions: [],
     };
   },
   props: {
@@ -63,10 +64,22 @@ export default {
         this.branchId = nodeId;
         let res = await axios.get(route("branch.show", this.branchId));
         this.branchInformaion = JSON.parse(JSON.stringify(res.data));
+        console.log(this.branchInformaion);
       } else {
         this.userId = nodeId;
         console.log(this.userId);
-        this.userInformaion = this.$inertia.get(route("user.show", this.userId));
+        // this.userInfromation = this.$inertia.get(route("user.show", this.userId));
+        // this.userInfromation = this.user
+        let result = await axios.get(route("user.show", this.userId));
+        this.userPermissions = JSON.parse(JSON.stringify(result.data));
+        let result1 = await axios.get(route("user.showUser", this.userId));
+        this.userInformation = JSON.parse(JSON.stringify(result1.data));
+        //    this.userInformaion = JSON.parse(JSON.stringify(userInfo.data));
+        //  this.userInformation = JSON.parse(JSON.stringify(result.data));
+
+        console.log(this.userInformation);
+        // console.log(JSON.parse(JSON.stringify(result.data)))
+        // console.log(typeof(this.userInformaion));
       }
 
       //   console.log(JSON.parse(JSON.stringify(result.data)));

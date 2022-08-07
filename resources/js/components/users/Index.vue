@@ -6,7 +6,7 @@
           <page-title> {{$t('userCard')}}</page-title>
         </div>
         <form>
-          <main-information :userInformaion="userInformaion" @save-main="saveMain"></main-information>
+          <main-information :userInformation="userInformation" @save-main="saveMain"></main-information>
         </form>
         <!-- <hr class="new1"> -->
         <div class="row a mt-2">
@@ -23,12 +23,12 @@
           </div>
         </div>
         <basic-information
-        :userInformaion="userInformaion"
+        :userInformation="userInformation"
           v-if="activeTab === 'BasicInformation'"
           @save-basic="saveBasic"
         ></basic-information>
-        <permissions v-if="activeTab === 'Permissions'" :groupPermissions="$page['props']['groupPermissions']"/>
-        <extra-options :userInformaion="userInformaion" v-if="activeTab === 'ExtraOptions'" />
+        <permissions v-if="activeTab === 'Permissions'" :groupPermissions="$page['props']['groupPermissions']" :userPermissions="userPermissions"/>
+        <extra-options :userInformation="userInformation" v-if="activeTab === 'ExtraOptions'" />
         <div class="row justify-content-end mb-2">
           <div class="col-md-4">
             <element-button @click="submit">{{$t('userSave')}} </element-button>
@@ -75,7 +75,8 @@ export default {
   },
    props: {
     groupPermissions:Array,
-    userInformaion: Object,
+    userPermissions: Array,
+    userInformation:Object,
     userId: String,
     errors: Object,
   },
