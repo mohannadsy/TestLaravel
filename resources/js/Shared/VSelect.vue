@@ -1,6 +1,6 @@
 <template>
-    <select class="form-select" @change="handleChange($event)">
-        <option  v-for="(option, i) in options" :key="i" :selected="value" >
+    <select class="form-select" v-model="selectedOption"  @input="event => { $emit('input', event.target.value) }" >
+        <option  v-for="(option, i) in options" :key="i" :value="option">
             {{ option }}
         </option>
     </select>
@@ -8,22 +8,27 @@
 
 <script>
 export default {
-    props: {
-        options: {
-            type: Array,
-            default: () => [],
-        },
-        value:{
-            default:""
-        }
-
-    },
-    methods:{
-        handleChange(e){
-            // console.log(e.target.value + "raghad");
-        }
+  props: {
+    value: null,
+    options: {
+      type: Object,
+      required: true
     }
-};
+  },
+  data () {
+    return {
+      selectedOption: null
+    }
+  },
+  mounted () {
+    this.selectedOption = this.value
+  },
+  watch: {
+    value(newValue) {
+      this.selectedOption = newValue
+    }
+  }
+}
 </script>
 
 <style>
