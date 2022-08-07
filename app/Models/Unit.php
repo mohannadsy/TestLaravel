@@ -15,14 +15,22 @@ class Unit extends Model
         'convert_parameter',
         'unit_id',
 
+        'not_fixed',
+
         'default_unit',
-        'item_limit',
+        'item_limits',
 
-
-        'value',
-        'gain',
-        'percentage_gain',
         // Prices
+
+
+        'automatic_price_calculation',  // حساب تلقائي للأسعار
+
+
+        'value',// قيمة
+        'gain',// ربح
+        'percentage_gain',//ربح %
+
+
 
         'last_purchase',
         'middle_purchase',
@@ -31,12 +39,13 @@ class Unit extends Model
         'cost',
 
         'currency_id',
+
         'equality', // تعادل
         'automatic_discount_on_sale', // حسم تلقائي عند المبيع
         'added_value_tax',// ضريبة القيمة المضافة
         'pricing_method',
-        'is_deafault',
-        'item_id',
+        'is_default',
+
 
 
     ];

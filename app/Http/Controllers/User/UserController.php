@@ -100,9 +100,11 @@ class UserController extends Controller
                     }
                 }
             }
-            return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
+            return $user ,$groupPermissions;
+
+//            return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
         }
-        return __('user.user delete error');;
+        return __('user.user delete error');
     }
 
     public function showRole($id)

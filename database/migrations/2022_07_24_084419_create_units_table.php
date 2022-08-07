@@ -14,6 +14,9 @@ return new class extends Migration {
             $table->string('barcode');
             $table->string('convert_parameter');
             $table->unsignedBigInteger('unit_id');
+            $table->boolean('not_fixed');
+            $table->boolean('automatic_price_calculation');
+
             $table->string('default_unit');
             $table->string('item_limit');
 
@@ -37,7 +40,7 @@ return new class extends Migration {
             $table->float('automatic_discount_on_sale');
             $table->float('added_value_tax');
             $table->string('pricing_method');
-            $table->boolean('is_deafault')->default(false);
+            $table->boolean('is_default')->default(false);
 
 
         });
