@@ -149,6 +149,7 @@ class UnitSeeder extends Seeder
 
             'not_fixed' => false,
 
+            'automatic_price_calculation' => false,
 
             'value' => 43.4,
             'gain' => 43,

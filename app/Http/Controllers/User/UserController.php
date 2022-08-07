@@ -76,7 +76,7 @@ class UserController extends Controller
             if (User::find($id)) {
                 $user->delete();
                 $this->callActivityMethod('delete  ', $parameters);
-               return __('common.delete ');
+                return __('common.delete ');
 
             } else   return __('user.user delete error');
         }
@@ -101,11 +101,14 @@ class UserController extends Controller
                 }
             }
 //            return $user , $groupPermissions;
-                    return redirect()->route('branch.index')->with(compact('user','groupPermissions'));
+//            API
+//        return redirect()->route('branch.index')->with(compact('user','groupPermissions'));
 
 
-//            return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
+//         Inertia
         }
+        return inertia('BranchAndUser/Index', compact('groupPermissions', 'user'));
+
         return __('user.user delete error');
     }
 
