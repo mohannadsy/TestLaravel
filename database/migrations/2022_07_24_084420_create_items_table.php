@@ -54,8 +54,8 @@ return new class extends Migration {
             $table->string('code_starts_with');
             $table->string('name_starts_with');
             $table->string('color');
-//            $table->string('size');
-            $table->string('height');
+//            $table->float('size');
+            $table->float('height');
 //            $table->float('width');
             $table->float('length');
 
