@@ -68,4 +68,5 @@ class Branch extends Model
     {
         return $this->hasMany(Category::class, 'branch_id');
     }
+
 }

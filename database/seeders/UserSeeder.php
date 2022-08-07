@@ -33,12 +33,12 @@ class UserSeeder extends Seeder
             'security_level' => 1
         ]);
         $userMohannad->assignRole('Admin');
-//        $userMohannad->assignRole('Accountant');
-//        $userMohannad->givePermissionTo('update-permission');
-//        $userMohannad->givePermissionTo('store-user');
-//        $userMohannad->givePermissionTo('delete-user');
-//        $userMohannad->givePermissionTo('show-user');
-        // user 2
+        $userMohannad->assignRole('Accountant');
+        $userMohannad->givePermissionTo('update-permission');
+        $userMohannad->givePermissionTo('store-user');
+        $userMohannad->givePermissionTo('delete-user');
+        $userMohannad->givePermissionTo('show-user');
+//         user 2
         $userNoor = User::create([
             'code' => 2,
             'name' => 'Noor Al-kinj',
@@ -61,8 +61,8 @@ class UserSeeder extends Seeder
             'security_level' => 1
         ]);
         $userNoor->assignRole('Accountant');
-//        $userNoor->givePermissionTo('update-role');
-//        $userNoor->givePermissionTo('store-permission');
+        $userNoor->givePermissionTo('update-role');
+        $userNoor->givePermissionTo('store-permission');
 
 
         // user 3 -> 10
@@ -88,7 +88,7 @@ class UserSeeder extends Seeder
                 'security_level' => 1
             ]);
         $userClauda->assignRole('Cacher');
-//        $userClauda->givePermissionTo('store-user');
+        $userClauda->givePermissionTo('store-user');
 
 
         $userNoor = User::create([

@@ -38,6 +38,12 @@ Route::get('/test23', function () {
     return Item::find(1)->additive_IDs[0];
 });
 
+
+Route::get('/per', function () {
+    return \App\Models\User::find(2)->permissions;
+});
+
+
 Route::put('/laravel-language/{key}', function ($key) {
     session()->put('locale', $key);
     return redirect()->back();

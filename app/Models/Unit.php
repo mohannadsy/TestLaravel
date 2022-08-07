@@ -55,4 +55,13 @@ class Unit extends Model
         return $this->belongsTo(Item::class, 'item_id');
     }
 
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
+    public function units()
+    {
+        return $this->hasMany(Unit::class, 'unit_id');
+    }
+
 }
