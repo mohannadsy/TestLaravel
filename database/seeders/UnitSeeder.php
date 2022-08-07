@@ -21,7 +21,7 @@ class UnitSeeder extends Seeder
 
 
             'default_unit' => 'unit1',
-            'item_limit' => 'item_limit',
+            'item_limit' => 23,
 
 
             'automatic_price_calculation' => false,
@@ -60,7 +60,7 @@ class UnitSeeder extends Seeder
 
 
             'default_unit' => 'unit1',
-            'item_limit' => 'item_limit',
+            'item_limit' => 25,
 
             'last_purchase' => 4.5,
             'middle_purchase' => 4.5,
@@ -92,7 +92,7 @@ class UnitSeeder extends Seeder
 
 
             'default_unit' => 'unit1',
-            'item_limit' => 'item_limit',
+            'item_limit' => 25,
 
             'last_purchase' => 4.5,
             'middle_purchase' => 4.5,
@@ -124,7 +124,7 @@ class UnitSeeder extends Seeder
 
 
             'default_unit' => 'unit1',
-            'item_limit' => 'item_limit',
+            'item_limit' => 155,
 
 
             'last_purchase' => 4.5,
@@ -156,7 +156,7 @@ class UnitSeeder extends Seeder
             'percentage_gain' => '23',
 
             'default_unit' => 'unit1',
-            'item_limit' => 'item_limit',
+            'item_limit' => 45,
 
 
             'last_purchase' => 4.5,
