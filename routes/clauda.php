@@ -39,9 +39,6 @@ Route::get('/test23', function () {
 });
 
 
-Route::get('/per', function () {
-    return \App\Models\User::find(2)->permissions;
-});
 
 
 Route::put('/laravel-language/{key}', function ($key) {
