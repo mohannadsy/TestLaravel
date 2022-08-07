@@ -1,5 +1,18 @@
 <template>
   <div>
+    <page-title class="py-2"><span><fa class="px-2"  icon="users" /></span> {{$t('branchesAndUsers')}}</page-title>
+    <div class="row py-2 border-bottom border-dark">
+      <div class="col-4" style="padding-left:0">
+       <button class="building px-2"><span ><fa class="fa" icon="building" /></span></button>
+       <button class="building px-2"><span><fa class="fa" icon="user-plus" /></span></button>
+       <button class="building px-2"><span><fa class="fa"  icon="magnifying-glass"/></span></button>
+      </div>
+     
+       <div class="col-7" style="padding-right:3;">
+        <element-input ></element-input>
+       </div>
+       
+    </div>
     <div>
       <span
         class="default-pointer"
@@ -43,8 +56,16 @@
 
 <script>
 import axios from "axios";
+import PageTitle from "../../Shared/PageTitle.vue";
+import Button from '../../Jetstream/Button.vue';
+import ElementInput from "../../Shared/ElementInput.vue";
 export default {
   name: "treeItem",
+  components:{
+    PageTitle,
+    Button,
+    ElementInput
+},
   props: {
     item: Array,
   },
@@ -89,6 +110,24 @@ export default {
 };
 </script>
 <style scoped>
+.fa{
+  font-size: 25px;
+}
+.building{
+  border:none;
+  background-color: #f3f4f6;
+}
+.a{
+  /* -webkit-text-decoration-line: overline;
+  text-decoration-line: overline; */
+  /* border-bottom: 3px solid black; */
+    --bs-gutter-x: 1rem;
+   margin-left: 0;
+}
+.building span{
+  font-size:15px ;
+}
+
 .pointer {
   cursor: pointer;
   /* font-size: 17px; */
