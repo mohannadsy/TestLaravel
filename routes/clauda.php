@@ -42,6 +42,10 @@ Route::get('/test23', function () {
 });
 
 
+Route::get('/test', function () {
+    return \App\Models\Branch::with('branches')->get();
+});
+
 
 
 Route::put('/laravel-language/{key}', function ($key) {
