@@ -36,7 +36,7 @@ class Account extends Model
         'creditor',
         'debtor',
         'balance',
-        'client_id',
+//        'client_id',
 
         'debtor_and_creditor', // مدين ودائن معا
         'not_debtor_not_creditor',// لا دائن ولا مدين

@@ -107,7 +107,7 @@ class Item extends Model
 
     public function units()
     {
-        return $this->hasMany(Unit::class, 'item_id');
+        return $this->hasMany(Unit::class, 'unit_id');
     }
 
 }
