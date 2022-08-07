@@ -4,10 +4,10 @@
     <div class="row a py-2">
       <div class="col-4" style="padding-left:0">
        <element-button class="building px-2"
-       
+        @click="newBranch"
        ><span ><fa class="fa" icon="building" /></span></element-button>
-       <button class="building px-2"><span><fa class="fa" icon="user-plus" /></span></button>
-       <button class="building px-2"><span><fa class="fa"  icon="magnifying-glass"/></span></button>
+       <element-button class="building px-2"><span><fa class="fa" icon="user-plus" /></span></element-button>
+       <element-button class="building px-2"><span><fa class="fa"  icon="magnifying-glass"/></span></element-button>
       </div>
      
        <div class="col-7" style="padding-right:3;">
@@ -30,7 +30,25 @@ export default {
     PageTitle,
     ElementButton,
     ElementInput
-},
+    },
+    props:{},
+    methods:{
+        newBranch(){
+        this.form = useForm({
+        code: "",
+        name: "",
+        branch_id: "",
+        is_active: true,
+        responsibility: "",
+        address: "",
+        website: "",
+        email: "",
+        phone: "",
+        mobile: "",
+        _token: this.$page.props.csrf_token,
+      });
+        },
+    },
     
 }
 </script>
