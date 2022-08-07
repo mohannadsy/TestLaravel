@@ -23,9 +23,9 @@ class Item extends Model
         'code_starts_with',
         'name_starts_with',
         'color',
-        'size',
+//        'size',
         'height',// ارتفاع
-        'width', // عرض
+//        'width', // عرض
         'length ',//طول
 
 

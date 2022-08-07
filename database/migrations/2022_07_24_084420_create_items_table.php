@@ -51,6 +51,16 @@ return new class extends Migration {
             $table->boolean('is_additive');
             $table->json('additive_IDs');
 
+            $table->string('code_starts_with');
+            $table->string('name_starts_with');
+            $table->string('color');
+//            $table->string('size');
+            $table->string('height');
+//            $table->float('width');
+            $table->float('length');
+
+
+
             $table->timestamps();
             // updates : add branch in all cards
             $table->unsignedBigInteger('branch_id')->nullable()->default(1);

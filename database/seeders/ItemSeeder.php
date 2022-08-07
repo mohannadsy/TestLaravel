@@ -57,7 +57,16 @@ class ItemSeeder extends Seeder
                     '1' => ['2'],
                     '2' => ['3'],
                     '3' => ['7'],
-                ]
+                ],
+
+
+            'code_starts_with'  =>'tt2',
+            'name_starts_with'  =>'name',
+            'color'             =>'blue',
+//            'size'              =>'50',
+            'height'            =>14,
+//            'width'             =>'44',
+            'length'            =>4,
             ]
 
         );
