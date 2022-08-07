@@ -33,17 +33,15 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');
     Route::get('get-main-tree', [UserController::class, 'tree'])->name('user.tree');
     Route::get('get-user-permissions/{id}', [UserController::class, 'getUserPermissions'])->name('user.getUserPermissions');
+
+    Route::get('get-Roles', [UserController::class, 'getRoles'])->name('user.getRoles');
+
 });
 //});
 
 
 Route::get('/test23', function () {
     return Item::find(1)->additive_IDs[0];
-});
-
-
-Route::get('/test', function () {
-    return \App\Models\Branch::with('branches')->get();
 });
 
 
