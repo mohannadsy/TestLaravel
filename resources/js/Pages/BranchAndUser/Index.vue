@@ -2,6 +2,7 @@ Raghad, [8/6/2022 11:18 AM]
 <template>
   <div class="row">
     <div class="col-3">
+       <add-section></add-section>
       <tree
         v-for="branch in branchesWithUsers"
         :key="branch.name"
@@ -30,6 +31,7 @@ Raghad, [8/6/2022 11:18 AM]
 import Index from "../../components/users/Index.vue";
 import IndexVue from "../../components/branches/Index.vue";
 import Tree from "./Tree.vue";
+import addSection from "./addSection.vue";
 import axios from "axios";
 export default {
   data() {
@@ -52,6 +54,7 @@ export default {
     userForm: Index,
     branchForm: IndexVue,
     Tree,
+    addSection,
   },
   methods: {
     // saveData() {
