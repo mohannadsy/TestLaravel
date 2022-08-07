@@ -97,6 +97,7 @@ export default {
         mobile: "",
         id_number: "",
         notes: "",
+         is_active: true,
         _token: this.$page.props.csrf_token,
       }),
     };
@@ -108,7 +109,8 @@ export default {
         (this.form.email = data.email),
         (this.form.password = data.password),
         (this.form.branch_id = data.branch_id);
-      this.form.role = data.role;
+      (this.form.role = data.role);
+      this.form.is_active = data.is_active;
     },
     saveBasic(data) {
       (this.form.first_name = data.first_name),

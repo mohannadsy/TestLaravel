@@ -38,9 +38,17 @@ class AccountSeeder extends Seeder
             'is_aggregate' => false,
             'is_distributive' => false,
             'security_degree' => 1,// سرية
-            'aggregate_ids' => '{}',
-            'distributive_ids' => '{}',
-            'branch_id'=>1
+            'aggregate_ids' => [
+                '1' => ['2'],
+                '2' => ['3'],
+                '3' => ['7'],
+            ],
+            'distributive_ids' => [
+                '1' => ['2'],
+                '2' => ['3'],
+                '3' => ['7'],
+            ],
+            'branch_id' => 1
         ]);
 
         $finalAccount = Account::create([
@@ -72,9 +80,17 @@ class AccountSeeder extends Seeder
             'is_aggregate' => false,
             'is_distributive' => false,
             'security_degree' => 2, // سرية
-            'aggregate_ids' => '{"id":1,"id":4}',
-            'distributive_ids' => '{}',
-            'branch_id'=>2,
+            'aggregate_ids' => [
+                '1' => ['2'],
+                '2' => ['3'],
+                '3' => ['7'],
+            ],
+            'distributive_ids' => [
+                '1' => ['2'],
+                '2' => ['3'],
+                '3' => ['7'],
+            ],
+            'branch_id' => 2,
         ]);
 
         $account2 = Account::create([
@@ -105,9 +121,17 @@ class AccountSeeder extends Seeder
             'is_distributive' => false,
             'security_degree' => 3, // سرية
 
-            'aggregate_ids' => '{}',
-            'distributive_ids' => '{"id":1,"id":4}',
-            'branch_id'=>3,
+            'aggregate_ids' => [
+                '1' => ['2'],
+                '2' => ['3'],
+                '3' => ['7'],
+            ],
+            'distributive_ids' => [
+                '1' => ['2'],
+                '2' => ['3'],
+                '3' => ['7'],
+            ],
+            'branch_id' => 3,
         ]);
 
 
@@ -139,9 +163,17 @@ class AccountSeeder extends Seeder
             'is_distributive' => true,
             'security_degree' => 4, // سرية
 
-            'aggregate_ids' => '{}',
-            'distributive_ids' => '{}',
-            'branch_id'=>4,
+            'aggregate_ids' => [
+                '1' => ['2'],
+                '2' => ['3'],
+                '3' => ['7'],
+            ],
+            'distributive_ids' => [
+                '1' => ['2'],
+                '2' => ['3'],
+                '3' => ['7'],
+            ],
+            'branch_id' => 4,
         ]);
 
     }

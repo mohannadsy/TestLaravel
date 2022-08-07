@@ -33,14 +33,23 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');
     Route::get('get-main-tree', [UserController::class, 'tree'])->name('user.tree');
     Route::get('get-user-permissions/{id}', [UserController::class, 'getUserPermissions'])->name('user.getUserPermissions');
+
+    Route::get('get-Roles', [UserController::class, 'getRoles'])->name('user.getRoles');
+
 });
 //});
 
 
-Route::get('/test23', function () {
-    return Item::find(1)->additive_IDs[0];
-});
+//Route::get('/test23', function () {
+//    return Item::find(1)->additive_IDs[0];
+//});
 
+Route::get('/item', function () {
+//    return Item::find(1)->additive_IDs[1];
+//    return var_dump(Account::find(1)->aggregate_ids);
+//    return var_dump(Account::find(1)->distributive_ids);
+//    return Item::find(1)->additive_IDs;
+});
 
 
 
@@ -48,7 +57,6 @@ Route::put('/laravel-language/{key}', function ($key) {
     session()->put('locale', $key);
     return redirect()->back();
 });
-
 
 
 Route::get('getLocal', [UserController::class, 'getLocal'])->name('user.getLocal');

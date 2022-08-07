@@ -29,11 +29,11 @@ class Branch extends Model
     ];
     public function branches()
     {
-        return $this->hasMany('App\Models\Branch', 'branch_id')->with(['branches', 'users'])->select('id', 'name', 'code', 'branch_id');
+        return $this->hasMany(Branch::class, 'branch_id')->with('branches', 'users')->select('id', 'name', 'code', 'branch_id');
     }
     public function users()
     {
-        return $this->hasMany('App\Models\User', 'branch_id')->select('id', 'name', 'code', 'branch_id');
+        return $this->hasMany(User::class, 'branch_id')->select('id', 'name', 'code', 'branch_id');
     }
     public function branch()
     {

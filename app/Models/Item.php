@@ -18,6 +18,17 @@ class Item extends Model
         'latin_name',
         'is_active',// مفعلة
         'is_inherited',// مورثة
+
+        // new
+        'code_starts_with',
+        'name_starts_with',
+        'color',
+        'size',
+        'height',// ارتفاع
+        'width', // عرض
+        'length ',//طول
+
+
         'security_degree',
 
 
@@ -66,7 +77,6 @@ class Item extends Model
         'amount_sum',
 
 
-
         'is_additive',
         'additive_IDs',
 
@@ -107,7 +117,7 @@ class Item extends Model
 
     public function units()
     {
-        return $this->hasMany(Unit::class, 'item_id');
+        return $this->hasMany(Unit::class, 'unit_id');
     }
 
 }
