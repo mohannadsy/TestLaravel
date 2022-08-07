@@ -142,5 +142,5 @@ class UserController extends Controller
             $this->callActivityMethod('show', $parameters);
         }
 
-    }
+    }}
 
