@@ -168,8 +168,6 @@ button {
   margin: 2px;
 }
 div.a {
-  -webkit-text-decoration-line: overline;
-  text-decoration-line: overline;
-  border-top: 3px solid black;
+  border-top-style: solid;
 }
 </style>

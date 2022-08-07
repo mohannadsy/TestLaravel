@@ -73,7 +73,7 @@
           $t("userRole")
         }}</elemet-label>
         <div class="col-8">
-          <v-select :options="roleOptions"  @change="objChanged($event)"  v-model="myObj.role" />
+          <v-select :options="roleOptions" @change="roleChange($event)" @input="$event" v-model="myObj.role" />
         </div>
       </div>
       <div class="form-group row mt-2">
@@ -121,7 +121,7 @@ export default {
   },
   data() {
     return {
-        roleOptions: ["Admin", "Accountant", "Cacher"],
+      roleOptions: ["Admin","Cacher","Accountant"],
       myObj: {
         code: "",
         name: "",
@@ -146,10 +146,10 @@ export default {
       this.myObj.role = e.target.value;
       this.$emit("save-main", this.myObj);
     },
-    // roleChange(e) {
-    //   this.myObj.role = e.target.value;
-    //   this.$emit("save-main", this.myObj);
-    // },
+    roleChange(e) {
+      this.myObj.role = e.target.value;
+      this.$emit("save-main", this.myObj);
+    },
     switch_on() {
       this.myObj.active = !this.myObj.active;
     },

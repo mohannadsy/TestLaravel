@@ -91,7 +91,6 @@ export default {
 <style scoped>
 .pointer {
   cursor: pointer;
-  /* font-size: 17px; */
 }
 .default-pointer {
   cursor: pointer;
@@ -99,15 +98,9 @@ export default {
   margin: 0px 3px;
   padding-bottom:20px;
 }
-/* ul,li {
-  line-height:0.5 ;
- 
-
-} */
 .branches  {
   list-style-type: none;
   margin:0;
   padding: 0;
 }
-
 </style>
