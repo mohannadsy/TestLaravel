@@ -18,6 +18,17 @@ class Item extends Model
         'latin_name',
         'is_active',// مفعلة
         'is_inherited',// مورثة
+
+        // new
+        'code_starts_with',
+        'name_starts_with',
+        'color',
+        'size',
+        'height',// ارتفاع
+        'width', // عرض
+        'length ',//طول
+
+
         'security_degree',
 
 
@@ -64,7 +75,6 @@ class Item extends Model
         'store_id',
         'amount',
         'amount_sum',
-
 
 
         'is_additive',
