@@ -122,6 +122,9 @@ export default {
     TextArea,
   },
     watch: {
+        form() {
+      this.myObj = this.form;
+    },
     userInformation() {
       Object.assign(this.myObj, this.userInformation);
     },

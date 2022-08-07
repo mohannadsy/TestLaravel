@@ -67,9 +67,10 @@
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-2" style="padding-top:15px;">{{$t('userRole')}}</elemet-label>
         <div class="col-8">
-          <v-select
+          <element-input
+           type="text"
+            class="form-control"
             :options="roleOptions"
-           
             v-model="myObj.role"
           />
         </div>
@@ -119,26 +120,29 @@ export default {
   },
   data() {
     return {
-      rvalue: "",
-      roleOptions: [" عام", "محاسب", "كاشير"],
+    //   roleOptions: ["عام", "محاسب", "كاشير"],
       myObj: {
         code: "",
         name: "",
         email: "",
         password: "",
         branch_id: "",
-        role: "مدير عام",
+        role: "",
         is_active: true,
       },
     };
   },
    watch: {
+    form() {
+      this.myObj = this.form;
+    },
     userInformation() {
       Object.assign(this.myObj, this.userInformation);
     },
   },
   methods: {
-    objChanged() {
+    objChanged(e) {
+        //  this.myObj.role = e.target.value;
       this.$emit("save-main", this.myObj);
     },
     // roleChange(e) {
