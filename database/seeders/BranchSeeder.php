@@ -25,7 +25,7 @@ class BranchSeeder extends Seeder
         Branch::create([
             'code' => '2',
             'name' => 'Branch1',
-            'branch_id' => '1 ',
+            'branch_id' =>1,
             'responsibility' => '',
             'address' => '',
             'website' => 'branch1.com',
@@ -39,7 +39,7 @@ class BranchSeeder extends Seeder
         Branch::create([
             'code' => '3',
             'name' => 'Branch2',
-            'branch_id' => '2',
+            'branch_id' => 2,
             'responsibility' => '',
             'address' => '',
             'website' => 'branch2.com',
@@ -52,7 +52,7 @@ class BranchSeeder extends Seeder
         Branch::create([
             'code' => '4',
             'name' => 'Branch3',
-            'branch_id' => '3',
+            'branch_id' => 3,
             'responsibility' => '',
             'address' => '',
             'website' => 'branch3.com',
@@ -65,7 +65,7 @@ class BranchSeeder extends Seeder
         Branch::create([
             'code' => '5',
             'name' => 'Branch4',
-            'branch_id' => '3',
+            'branch_id' => 3,
             'responsibility' => '',
             'address' => '',
             'website' => 'branch4.com',
@@ -78,7 +78,7 @@ class BranchSeeder extends Seeder
         Branch::create([
             'code' => '6',
             'name' => 'Branch5',
-            'branch_id' => '3',
+            'branch_id' => 3,
             'responsibility' => '',
             'address' => '',
             'website' => 'branch5.com',
