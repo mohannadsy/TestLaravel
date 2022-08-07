@@ -40,8 +40,15 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 //});
 
 
-Route::get('/test23', function () {
-    return Item::find(1)->additive_IDs[0];
+//Route::get('/test23', function () {
+//    return Item::find(1)->additive_IDs[0];
+//});
+
+Route::get('/item', function () {
+//    return Item::find(1)->additive_IDs[1];
+//    return var_dump(Account::find(1)->aggregate_ids);
+//    return var_dump(Account::find(1)->distributive_ids);
+//    return Item::find(1)->additive_IDs;
 });
 
 
@@ -50,7 +57,6 @@ Route::put('/laravel-language/{key}', function ($key) {
     session()->put('locale', $key);
     return redirect()->back();
 });
-
 
 
 Route::get('getLocal', [UserController::class, 'getLocal'])->name('user.getLocal');
