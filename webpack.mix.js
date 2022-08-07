@@ -12,10 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js').vue()
-    .postCss(
-        "resources/assets/style.css",
-        "public/css", [require("bootstrap")]
-    )
+    .sass('resources/sass/app.scss', 'public/css')
     .webpackConfig(require('./webpack.config'));
 
 if (mix.inProduction()) {

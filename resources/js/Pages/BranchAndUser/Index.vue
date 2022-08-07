@@ -18,10 +18,12 @@ Raghad, [8/6/2022 11:18 AM]
       ></branch-form>
       <user-form
         v-if="nodeType === 'users'"
-        :branchInformaion="branchInformaion"
+        :userInformaion="userInformaion"
+        :userId="userId"
         :groupPermissions="$page['props']['groupPermissions']"
       ></user-form>
     </div>
+    <h1>{{ user }}</h1>
   </div>
 </template>
 <script>
@@ -36,13 +38,14 @@ export default {
       branchId: "",
       userId: "",
       branchInformaion: {},
+      userInformaion:{}
     };
   },
   props: {
     branches: Array,
     branchesWithUsers: Array,
     groupPermissions: Array,
-    user: Array,
+    user: Object,
   },
   components: {
     userForm: Index,
@@ -58,14 +61,16 @@ export default {
       this.nodeType = nodeType;
       if (nodeType === "branches") {
         this.branchId = nodeId;
+        let res = await axios.get(route("branch.show", this.branchId));
+        this.branchInformaion = JSON.parse(JSON.stringify(res.data));
       } else {
         this.userId = nodeId;
+        console.log(this.userId);
+        this.userInformaion = this.$inertia.get(route("user.show", this.userId));
       }
-      let res = await axios.get(route("branch.show", this.branchId));
-      this.branchInformaion = JSON.parse(JSON.stringify(res.data));
-        let result = await axios.get(route("user.show"),this.userId);
-        console.log(JSON.parse(JSON.stringify(result.data)));
-        console.lpg(this.user)
+
+      //   console.log(JSON.parse(JSON.stringify(result.data)));
+      //   console.lpg(this.user);
     },
   },
 };

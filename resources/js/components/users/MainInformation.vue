@@ -98,7 +98,7 @@ import VSelect from "../../Shared/VSelect.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import Label from "../../Jetstream/Label.vue";
 export default {
-    props: ["branchInformaion", "form"],
+    props: ["userInformaion", "form"],
   emits: ["save-main"],
   components: {
     ElemetLabel,
@@ -123,7 +123,7 @@ export default {
     };
   },
    watch: {
-    branchInformaion() {
+    userInformaion() {
       Object.assign(this.myObj, this.branchInformaion);
     },
   },

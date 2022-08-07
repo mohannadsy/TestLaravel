@@ -25,14 +25,14 @@
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 export default {
-  props: ["branchInformaion", "form"],
+  props: ["userInformaion", "form"],
   components: {
     ElemetLabel,
     ElementInput,
   },
     watch: {
-    branchInformaion() {
-      Object.assign(this.myObj, this.branchInformaion);
+    userInformaion() {
+      Object.assign(this.myObj, this.userInformaion);
     },
   },
 };

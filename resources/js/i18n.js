@@ -1,13 +1,13 @@
 import { nextTick } from 'vue'
 import { createI18n } from 'vue-i18n'
-import messages from './locales/en.json'
+import messages from './locales/ar.json'
 
 export const SUPPORT_LOCALES = ['en', 'ar']
 
 export const i18n = createI18n({
-    locale: 'en',
-    fallbackLocale: 'en',
-    messages: { loadLocaleMessages }
+    locale: 'ar',
+    fallbackLocale: 'ar',
+    messages: { ar: messages }
 })
 
 export function setI18nLanguage(i18n, locale) {
