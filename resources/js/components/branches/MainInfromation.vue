@@ -104,7 +104,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .box {
   text-align: center;
   margin-bottom: 30px;

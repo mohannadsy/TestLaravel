@@ -68,23 +68,31 @@
         <elemet-label class="col-form-label col-2" style="padding-top:15px;">{{$t('userRole')}}</elemet-label>
         <div class="col-8">
           <v-select
-            :options="myObj.roleOptions"
-            @change="roleChange($event)"
+            :options="roleOptions"
+           
             v-model="myObj.role"
           />
         </div>
       </div>
       <div class="form-group row mt-2">
-        <div class="col-md-2 justify-content-right">
+        <!-- <div class="col-md-2 justify-content-right">
           <checkbox-switch
             v-model="myObj.active"
             @change="switch_on()"
             checked
           ></checkbox-switch>
-        </div>
+        </div> -->
         <div class="col-md-3">
-          <label v-if="myObj.active"> {{$t('userEnabled')}}</label>
-          <label v-else> {{$t('userNotEnabled')}}</label>
+          <div :class="{ active: myObj.is_active }" class="toggle_container">
+          <ToggleButton
+            v-model="myObj.is_active"
+            @change="objChanged"
+            @change-name="triggerToggleEvent"
+            :defaultState="myObj.is_active"
+            labelEnableText="مفعل"
+            labelDisableText="غير مفعل"
+          />
+        </div>
         </div>
       </div>
     </div>
@@ -96,6 +104,7 @@ import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import VSelect from "../../Shared/VSelect.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
+import ToggleButton from "../../Shared/ToggleButton.vue";
 import Label from "../../Jetstream/Label.vue";
 export default {
     props: ["userInformation", "form"],
@@ -106,20 +115,20 @@ export default {
     VSelect,
     CheckboxSwitch,
     Label,
+    ToggleButton
   },
   data() {
     return {
       rvalue: "",
-      
+      roleOptions: [" عام", "محاسب", "كاشير"],
       myObj: {
         code: "",
         name: "",
         email: "",
         password: "",
         branch_id: "",
-        roleOptions: ["مدير عام", "محاسب", "كاشير"],
         role: "مدير عام",
-        active: true,
+        is_active: true,
       },
     };
   },
@@ -132,10 +141,10 @@ export default {
     objChanged() {
       this.$emit("save-main", this.myObj);
     },
-    roleChange(e) {
-      this.myObj.role = e.target.value;
-      this.$emit("save-main", this.myObj);
-    },
+    // roleChange(e) {
+    //   this.myObj.role = e.target.value;
+    //   this.$emit("save-main", this.myObj);
+    // },
     switch_on() {
       this.myObj.active = !this.myObj.active;
     },
@@ -143,5 +152,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.toggle_container {
+  margin: 0px auto;
+  background: #efefef;
+  width: 120px;
+  padding: 10px 0;
+  border-radius: 30px;
+  transition: all 0.25s;
+}
+.toggle_container.active {
+  background: #e9ffef;
+}
 </style>
