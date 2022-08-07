@@ -90,8 +90,8 @@ class UserController extends Controller
         if ($user) {
             $this->callActivityMethod('show', $parameters);
 //            return User::with('permissions')->find($id);
-            $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
-            foreach ($groupPermissions as $groups) {
+            $groupPermissionsclauda = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+            foreach ($groupPermissionsclauda as $groups) {
                 foreach ($groups->permissions as $permission) {
                     if ($user->hasPermissionTo($permission->name)) {
                         $permission->is_active = true;
@@ -100,14 +100,15 @@ class UserController extends Controller
                     }
                 }
             }
-//            return $user , $groupPermissions;
+            return $groupPermissionsclauda ;
+//            return $user;
 //            API
 //        return redirect()->route('branch.index')->with(compact('user','groupPermissions'));
 
 
 //         Inertia
         }
-        return inertia('BranchAndUser/Index', compact('groupPermissions', 'user'));
+//        return inertia('BranchAndUser/Index', compact('groupPermissions', 'user'));
 
 //        return __('user.user delete error');
     }

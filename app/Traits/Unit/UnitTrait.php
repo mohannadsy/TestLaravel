@@ -11,7 +11,7 @@ trait  UnitTrait
         return $id == 1;
     }
 
-    public function isNotDefaultCurrency($id)
+    public function isNotDefaultUnit($id)
     {
         return !$this->isDefaultUnit($id);
     }

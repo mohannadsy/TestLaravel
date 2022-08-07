@@ -42,7 +42,7 @@ class UnitSeeder extends Seeder
             'automatic_discount_on_sale' => 4.5,
             'added_value_tax' => 4.5,
             'pricing_method' => 'by cost',
-            'is_default' => false,
+//            'is_default' => false,
         ]);
         $unit2 = Unit::create([
             'name' => 'unit2',
@@ -73,7 +73,7 @@ class UnitSeeder extends Seeder
             'automatic_discount_on_sale' => 4.5,
             'added_value_tax' => 4.5,
             'pricing_method' => 'by cost',
-            'is_default' => false,
+//            'is_default' => false,
 
         ]);
         $unit3 = Unit::create([
@@ -105,7 +105,7 @@ class UnitSeeder extends Seeder
             'automatic_discount_on_sale' => 4.5,
             'added_value_tax' => 4.5,
             'pricing_method' => 'by cost',
-            'is_default' => false,
+//            'is_default' => false,
 
         ]);
         $unit4 = Unit::create([
@@ -138,7 +138,7 @@ class UnitSeeder extends Seeder
             'automatic_discount_on_sale' => 4.5,
             'added_value_tax' => 4.5,
             'pricing_method' => 'by cost',
-            'is_default' => false,
+//            'is_default' => false,
 
         ]);
         $unit5 = Unit::create([
@@ -170,7 +170,7 @@ class UnitSeeder extends Seeder
             'automatic_discount_on_sale' => 4.5,
             'added_value_tax' => 4.5,
             'pricing_method' => 'by cost',
-            'is_default' => false,
+//            'is_default' => false,
 
         ]);
 
