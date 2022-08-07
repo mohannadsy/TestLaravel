@@ -68,7 +68,7 @@
         <elemet-label class="col-form-label col-2" style="padding-top:15px;">{{$t('userRole')}}</elemet-label>
         <div class="col-8">
           <v-select
-            :options="roleOptions"
+            :options="myObj.roleOptions"
             @change="roleChange($event)"
             v-model="myObj.role"
           />
@@ -110,13 +110,14 @@ export default {
   data() {
     return {
       rvalue: "",
-      roleOptions: ["مدير عام", "محاسب", "كاشير"],
+      
       myObj: {
         code: "",
         name: "",
         email: "",
         password: "",
         branch_id: "",
+        roleOptions: ["مدير عام", "محاسب", "كاشير"],
         role: "مدير عام",
         active: true,
       },
