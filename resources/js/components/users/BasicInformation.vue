@@ -115,15 +115,15 @@ export default {
     };
   },
   emits: ["save-basic"],
-  props: ["userInformaion", "form"],
+  props: ["userInformation", "form"],
   components: {
     ElemetLabel,
     ElementInput,
     TextArea,
   },
     watch: {
-    userInformaion() {
-      Object.assign(this.myObj, this.userInformaion);
+    userInformation() {
+      Object.assign(this.myObj, this.userInformation);
     },
   },
   methods: {
