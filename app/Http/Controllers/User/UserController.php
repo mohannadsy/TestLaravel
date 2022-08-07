@@ -83,6 +83,7 @@ class UserController extends Controller
         return __('user.admin delete');
     }
 
+
     public function show($id)
     {
         $parameters = ['id' => $id];
@@ -100,7 +101,7 @@ class UserController extends Controller
                     }
                 }
             }
-            return $groupPermissionsclauda ;
+            return $groupPermissionsclauda;
 //            return $user;
 //            API
 //        return redirect()->route('branch.index')->with(compact('user','groupPermissions'));
@@ -112,6 +113,7 @@ class UserController extends Controller
 
 //        return __('user.user delete error');
     }
+
 
     public function showRole($id)
     {
@@ -131,6 +133,14 @@ class UserController extends Controller
 
     }
 
+    public function showUser($id)
+    {
+        $parameters = ['id' => $id];
+        $user = User::find($id);
+        if ($user) {
+            return User::find($id);
+            $this->callActivityMethod('show', $parameters);
+        }
 
-}
+    }
 
