@@ -100,7 +100,9 @@ class UserController extends Controller
                     }
                 }
             }
-            return $user ,$groupPermissions;
+//            return $user , $groupPermissions;
+                    return redirect()->route('branch.index')->with(compact('user','groupPermissions'));
+
 
 //            return Inertia::render('BranchAndUser/Index', compact('groupPermissions', 'user'));
         }
