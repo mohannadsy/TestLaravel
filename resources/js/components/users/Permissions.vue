@@ -2,7 +2,7 @@
     <div class="scroll pb-2">
         <ul
             class="main"
-            v-for="(groupPermission, index) in groupPermissions"
+            v-for="(userPermission, index) in userPermissions"
             :key="index"
         >
              <checkbox-switch
@@ -13,7 +13,7 @@
             <button @click="ToggleIsExpanded(index)">
                 <span class="rightAngle" :class="angle[index]"></span>
             </button>
-            <elemet-label> {{ groupPermission.caption }}</elemet-label>
+            <elemet-label> {{ userPermission.caption }}</elemet-label>
       
             
            
@@ -22,7 +22,7 @@
                 <div v-show="isExpanded[index]">
                     <li
                         class="col-3"
-                        v-for="(permission, i) in groupPermission.permissions"
+                        v-for="(permission, i) in userPermission.permissions"
                         :key="i"
                     >
                         <checkbox-switch
@@ -61,6 +61,7 @@ export default {
   },
   props: {
     groupPermissions: Array,
+    userPermissions:Array
   },
   methods: {
     ToggleIsExpanded(index) {

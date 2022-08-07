@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             'email' => 'superAdmin@gmail.com',
             'password' => bcrypt('12345superadmin'),
             'role' => 'Super Admin',// مدير عام
-            'branch_id' => '1',
+            'branch_id' => 3,
             'profile_photo_path' => 'qqq',
             'first_name' => 's',
             'middle_name' => 's',
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
         $userMohannad->givePermissionTo('store-user');
         $userMohannad->givePermissionTo('delete-user');
         $userMohannad->givePermissionTo('show-user');
-//         user 2
+        // user 2
         $userNoor = User::create([
             'code' => 2,
             'name' => 'Noor Al-kinj',
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345noor'),
             'role' => 'Accountant',
             'profile_photo_path' => 'qqq',
-            'branch_id' => '2',
+            'branch_id' => 1,
             'first_name' => 'a',
             'middle_name' => 's',
             'last_name' => 's',
@@ -98,7 +98,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345sara'),
             'role' => 'Accountant',
             'profile_photo_path' => 'qqq',
-            'branch_id' => '2',
+            'branch_id' => 4,
             'first_name' => 'a',
             'middle_name' => 's',
             'last_name' => 's',
@@ -121,7 +121,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345raghad'),
             'role' => 'Accountant',
             'profile_photo_path' => 'qqq',
-            'branch_id' => '2',
+            'branch_id' => 2,
             'first_name' => 'a',
             'middle_name' => 's',
             'last_name' => 's',

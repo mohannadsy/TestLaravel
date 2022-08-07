@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->boolean('automatic_price_calculation');
 
             $table->string('default_unit');
-            $table->string('item_limit');
+            $table->float('item_limit');
 
             $table->float('value');
             $table->float('gain');

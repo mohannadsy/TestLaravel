@@ -31,8 +31,8 @@ export default {
     ElementInput,
   },
     watch: {
-    userInformaion() {
-      Object.assign(this.myObj, this.userInformaion);
+    userInformation() {
+      Object.assign(this.myObj, this.userInformation);
     },
   },
 };
