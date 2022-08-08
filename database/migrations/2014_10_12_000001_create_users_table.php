@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('code')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable()->default(null);
             $table->string('role');
             $table->unsignedBigInteger('branch_id');
             $table->string('first_name');
@@ -25,11 +25,11 @@ return new class extends Migration {
             $table->string('mobile');
             $table->string('notes')->nullable();
             $table->string('id_number');
-            $table->integer('account_box_id');
-            $table->integer('store_id');
+            $table->integer('account_box_id')->nullable();
+            $table->integer('store_id')->nullable();
             $table->boolean('is_active');
-            $table->integer('security_degree');
-            $table->integer('security_level');
+            $table->integer('security_degree')->nullable();
+            $table->integer('security_level')->nullable();
             $table->rememberToken();
 //            $table->softDeletes();
             $table->timestamps();
