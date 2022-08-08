@@ -123,7 +123,8 @@ export default {
     },
     saveExtra(data) {},
     storeUser() {
-      this.form.post(route("user.store"));
+    //   this.form.post(route("user.store"));
+    this.$inertia.post(route("user.store"),this.form)
       console.log(this.form);
     },
      newUser() {
