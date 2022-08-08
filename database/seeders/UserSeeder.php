@@ -72,7 +72,7 @@ class UserSeeder extends Seeder
                 'name' => 'Clauda Al-Rakkad' ,
                 'email' => "clauda@gmail.com",
                 'password' => bcrypt('12345clauda'),
-                'role' => 'Casher',
+                'role' => 'Cacher',
                 'branch_id' => 2,
                 'first_name' => 's',
                 'middle_name' => 's',
