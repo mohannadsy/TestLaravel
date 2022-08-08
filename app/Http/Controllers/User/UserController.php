@@ -52,7 +52,7 @@ class UserController extends Controller
         $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
 //        $message = __('messageCommonController.store');
-        return Inertia::render('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
+        return inertia('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
     }
 
 
