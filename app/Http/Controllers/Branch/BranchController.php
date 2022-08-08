@@ -94,6 +94,7 @@ class BranchController extends Controller
 
     public function delete($id) //  delete - can be restored
     {
+
         $paramters = ['id' => $id];
         $branch = Branch::find($id);
         if ($this->isRootBranch($id))
