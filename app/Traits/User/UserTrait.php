@@ -115,12 +115,14 @@ trait  UserTrait
     }
 
 
-    public function getLocal(){
+    public function getLocal()
+    {
         return Config::get('app.locale');
     }
 
 
-    public function getRoles(){
-        return Role::select('id','name')->get();
+    public function getRoles()
+    {
+        return Role::select('id', 'name')->get();
     }
 }

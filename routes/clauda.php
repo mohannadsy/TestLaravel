@@ -16,7 +16,6 @@ use Barryvdh\Debugbar\Facades;
 
 
 //------- Users ------//
-//Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
 Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 
@@ -36,7 +35,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 
 
 });
-//});
+
 
 //------- Currency ------//
 
