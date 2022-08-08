@@ -186,7 +186,6 @@ class BranchController extends Controller
     public function store(StoreBranchRequest $request)
     {
         $id = Branch::orderBy('id', 'desc')->first()->id + 1;
-//        sleep(2);
         Branch::create($request->validated());
         $parameters = ['request' => $request, 'id' => $id];
         $this->callActivityMethod('store', $parameters);
