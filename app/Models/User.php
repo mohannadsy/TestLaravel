@@ -30,7 +30,7 @@ class User extends Authenticatable
         'code',
         'name',
         'email',
-        'password',
+//        'password',
 
         'role', // الصفة
         'branch_id',
