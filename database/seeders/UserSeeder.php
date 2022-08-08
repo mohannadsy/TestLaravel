@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Inertia\Testing\Concerns\Has;
 
 class UserSeeder extends Seeder
 {
@@ -15,7 +17,9 @@ class UserSeeder extends Seeder
             'code' => 1,
             'name' => 'Super Admin',
             'email' => 'superAdmin@gmail.com',
-            'password' => bcrypt('12345superadmin'),
+//            'password' => bcrypt('12345superadmin'),
+            'password' =>Hash::make('12345superadmin'),
+
             'role' => 'Admin',// مدير عام
             'branch_id' => 3,
             'profile_photo_path' => 'qqq',
@@ -43,7 +47,9 @@ class UserSeeder extends Seeder
             'code' => 2,
             'name' => 'Noor Al-kinj',
             'email' => 'noor@gmail.com',
-            'password' => bcrypt('12345noor'),
+//            'password' => bcrypt('12345noor'),
+            'password' =>Hash::make('12345noor'),
+
             'role' => 'Accountant',
             'profile_photo_path' => 'qqq',
             'branch_id' => 1,
@@ -71,7 +77,9 @@ class UserSeeder extends Seeder
                 'code' => 3,
                 'name' => 'Clauda Al-Rakkad' ,
                 'email' => "clauda@gmail.com",
-                'password' => bcrypt('12345clauda'),
+//                'password' => bcrypt('12345clauda'),
+                'password' =>Hash::make('12345clauda'),
+
                 'role' => 'Cacher',
                 'branch_id' => 2,
                 'first_name' => 's',
@@ -95,7 +103,8 @@ class UserSeeder extends Seeder
             'code' => 4,
             'name' => 'Sara Abdo',
             'email' => 'sara@gmail.com',
-            'password' => bcrypt('12345sara'),
+//            'password' => bcrypt('12345sara'),
+            'password' =>Hash::make('12345sara'),
             'role' => 'Accountant',
             'profile_photo_path' => 'qqq',
             'branch_id' => 4,
@@ -118,7 +127,8 @@ class UserSeeder extends Seeder
             'code' => 5,
             'name' => 'Raghad Nanou',
             'email' => 'raghad@gmail.com',
-            'password' => bcrypt('12345raghad'),
+//            'password' => bcrypt('12345raghad'),
+            'password' =>Hash::make('12345raghad'),
             'role' => 'Accountant',
             'profile_photo_path' => 'qqq',
             'branch_id' => 2,
