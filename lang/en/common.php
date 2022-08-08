@@ -3,6 +3,7 @@ return [
     'store'     => 'created successfully ',
     'update'    => 'updated successfully',
     'delete'    => 'deleted successfully',
+    'update error'=>'updated fails',
 
 
 

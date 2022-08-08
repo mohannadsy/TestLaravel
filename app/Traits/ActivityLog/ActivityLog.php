@@ -17,7 +17,7 @@ trait  ActivityLog
                 'operation' => $activity['operation'],
                 'user_id' => Auth::id(),
                 'table_id' => $activity['parameters']['id'],
-                'old_data' => 'data',
+                'old_data' => $activity['parameters']['old_data'],
             ]);
         } elseif ($activity['operation'] == 'delete') {
             Trash::create([
