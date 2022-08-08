@@ -10,4 +10,7 @@ class Activity extends Model
     use HasFactory;
 
     protected $fillable = ['table', 'operation', 'user_id', 'table_id', 'old_data'];
+    protected $casts = [
+        'old_data' => 'array',
+    ];
 }

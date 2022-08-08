@@ -22,6 +22,7 @@ class BranchController extends Controller
     use  ActivityLog;
     use  BranchTrait;
 
+
     public function index() //getAllBranches
     {
         $parameters = ['id' => null];
@@ -85,11 +86,21 @@ class BranchController extends Controller
 
     public function update(UpdateBranchRequest $request, $id)
     {
-        $paramters = ['request' => $request, 'id' => $id];
-        return $branch = Branch::find($id)->update($request->all());
-        $this->callActivityMethod('update', $paramters);
-//        return 'updated successfully';
-        return __('common.update');
+        $old_data=Branch::find($id)->toJson();
+        $paramters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
+        $branch = Branch::find($id);
+        if ($this->isRootBranch($id))
+        {
+            $Branch = $branch->update($request->except('code','branch_id'));
+            $this->callActivityMethod('update', $paramters);
+//            if( ['parameters']['code']!=$old_data->code)
+//                return __('common.update error');
+//            return __('common.update');
+        }
+        else
+             $branch->update($request->all());
+             $this->callActivityMethod('update', $paramters);
+            return __('common.update');
     }
 
     public function delete($id) //  delete - can be restored

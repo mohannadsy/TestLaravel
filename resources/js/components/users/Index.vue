@@ -31,7 +31,7 @@
         <extra-options :userInformation="userInformation" :form="form" v-if="activeTab === 'ExtraOptions'" />
         <div class="row justify-content-end mb-2">
           <div class="col-md-4">
-            <element-button @click="submit">{{$t('userSave')}} </element-button>
+            <element-button  @click="storeUser">{{$t('userSave')}} </element-button>
             <element-button  :type="'button'" @click="newUser">{{$t('UserNew')}} </element-button>
             <element-button>{{$t('userUpdate')}} </element-button>
             <element-button :type="'button'" @click="deleteUser">{{$t('userDelete')}} </element-button>
@@ -122,6 +122,10 @@ export default {
       this.form.notes = data.notes;
     },
     saveExtra(data) {},
+    storeUser() {
+      this.form.post(route("user.store"));
+      console.log(this.form);
+    },
      newUser() {
       this.form = useForm({
         code: "",
