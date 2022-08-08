@@ -91,7 +91,7 @@ class UserSeeder extends Seeder
         $userClauda->givePermissionTo('store-user');
 
 
-        $userNoor = User::create([
+        $userSara = User::create([
             'code' => 4,
             'name' => 'Sara Abdo',
             'email' => 'sara@gmail.com',
@@ -114,7 +114,7 @@ class UserSeeder extends Seeder
         ]);
 
 
-        $userNoor = User::create([
+        $userRaghad = User::create([
             'code' => 5,
             'name' => 'Raghad Nanou',
             'email' => 'raghad@gmail.com',
