@@ -28,8 +28,8 @@ return new class extends Migration {
             $table->integer('account_box_id')->nullable();
             $table->integer('store_id')->nullable();
             $table->boolean('is_active');
-            $table->integer('security_degree');
-            $table->integer('security_level');
+            $table->integer('security_degree')->nullable();
+            $table->integer('security_level')->nullable();
             $table->rememberToken();
 //            $table->softDeletes();
             $table->timestamps();
