@@ -73,24 +73,25 @@
           $t("userRole")
         }}</elemet-label>
         <div class="col-8">
-          <!-- <v-select
+          <v-select
             :options="roleOptions"
             @change="roleChange($event)"
-            v-model="myObj.role"
-          /> -->
-          <select
+           :value="myObj.role"
+          />
+          <!-- <select
             class="form-control"
             @change="roleChange($event)"
           >
-            <!-- <option :value="null" disabled selected>Select Make</option> -->
+
             <option
               v-for="(option, i) in roleOptions"
               :key="i"
                 :value="option.id"
+            :selected="option == myObj.role"
             >
               {{ option }}
             </option>
-          </select>
+          </select> -->
         </div>
       </div>
       <div class="form-group row mt-2">
@@ -157,7 +158,9 @@ export default {
     },
     userInformation() {
       Object.assign(this.myObj, this.userInformation);
+
     },
+
   },
   async created() {
     let res = await axios.get(route("user.getRoles"));
