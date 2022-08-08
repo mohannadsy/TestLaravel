@@ -53,6 +53,9 @@ class UserController extends Controller
         $this->callActivityMethod('store', $parameters);
 //        $message = __('messageCommonController.store');
         return inertia('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
+
+//        return redirect()->route('branch.index')->with('message',__('common.store'));
+
     }
 
 
