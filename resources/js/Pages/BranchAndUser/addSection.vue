@@ -31,7 +31,9 @@ export default {
     ElementButton,
     ElementInput
     },
-    props:{},
+    props:{ 
+      form,
+    },
     methods:{
         newBranch(){
         this.form = useForm({
@@ -57,6 +59,19 @@ export default {
 <style scoped>
 .fa{
   font-size: 25px;
+
+}
+.fa:focus{
+  color:black;
+  border:none;
+}
+.fa:hover{
+  color:black;
+  border:none;
+}
+.building:focus{
+border:none;
+background: fixed;
 }
 .users{
   font-size: 25px;
