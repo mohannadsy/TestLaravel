@@ -3,7 +3,9 @@
     <div class="row mt-2">
       <div class="col-md-6">
         <div class="form-group row mt-3">
-          <elemet-label class="col-form-label col-3">{{$t('firstName')}} </elemet-label>
+          <elemet-label class="col-form-label col-3"
+            >{{ $t("firstName") }}
+          </elemet-label>
           <div class="col-8">
             <element-input
               type="text"
@@ -14,7 +16,9 @@
           </div>
         </div>
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-3">{{$t('fatherName')}} </elemet-label>
+          <elemet-label class="col-form-label col-3"
+            >{{ $t("fatherName") }}
+          </elemet-label>
           <div class="col-md-8">
             <element-input
               type="text"
@@ -25,8 +29,8 @@
           </div>
         </div>
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-3"
-            > {{$t('lastName')}}</elemet-label
+          <elemet-label class="col-form-label col-md-3">
+            {{ $t("lastName") }}</elemet-label
           >
           <div class="col-md-8">
             <element-input
@@ -45,7 +49,9 @@
         </div>
       </div> -->
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-3"> {{$t('userPhone')}}</elemet-label>
+          <elemet-label class="col-form-label col-md-3">
+            {{ $t("userPhone") }}</elemet-label
+          >
           <div class="col-md-8">
             <element-input
               type="text"
@@ -56,7 +62,9 @@
           </div>
         </div>
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-3"> {{$t('userMobile')}}</elemet-label>
+          <elemet-label class="col-form-label col-md-3">
+            {{ $t("userMobile") }}</elemet-label
+          >
           <div class="col-md-8">
             <element-input
               type="text"
@@ -67,9 +75,9 @@
           </div>
         </div>
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-3"
-            > {{$t('idNumber')}} </elemet-label
-          >
+          <elemet-label class="col-form-label col-md-3">
+            {{ $t("idNumber") }}
+          </elemet-label>
           <div class="col-md-8">
             <element-input
               type="text"
@@ -82,7 +90,9 @@
       </div>
       <div class="col-md-5">
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-2"> {{$t('userNotes')}}</elemet-label>
+          <elemet-label class="col-form-label col-md-2">
+            {{ $t("userNotes") }}</elemet-label
+          >
           <div class="col-md-9">
             <text-area
               class="form-control"
@@ -121,8 +131,8 @@ export default {
     ElementInput,
     TextArea,
   },
-    watch: {
-        form() {
+  watch: {
+    form() {
       this.myObj = this.form;
     },
     userInformation() {

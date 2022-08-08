@@ -71,23 +71,12 @@ export default {
       } else {
         this.userId = nodeId;
         console.log(this.userId);
-        // this.userInfromation = this.$inertia.get(route("user.show", this.userId));
-        // this.userInfromation = this.user
-       
         let result1 = await axios.get(route("user.showUser", this.userId));
         this.userInformation = JSON.parse(JSON.stringify(result1.data));
          let result = await axios.get(route("user.show", this.userId));
         this.userPermissions = JSON.parse(JSON.stringify(result.data));
-        //    this.userInformaion = JSON.parse(JSON.stringify(userInfo.data));
-        //  this.userInformation = JSON.parse(JSON.stringify(result.data));
-
         console.log(this.userInformation);
-        // console.log(JSON.parse(JSON.stringify(result.data)))
-        // console.log(typeof(this.userInformaion));
       }
-
-      //   console.log(JSON.parse(JSON.stringify(result.data)));
-      //   console.lpg(this.user);
     },
   },
 };

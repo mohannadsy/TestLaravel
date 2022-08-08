@@ -6,7 +6,7 @@
           <page-title> {{$t('userCard')}}</page-title>
         </div>
         <form>
-          <main-information :userInformation="userInformation" @save-main="saveMain"></main-information>
+          <main-information :userInformation="userInformation" :form="form" @save-main="saveMain"></main-information>
         </form>
         <!-- <hr class="new1"> -->
         <div class="row a mt-2">
@@ -23,18 +23,18 @@
           </div>
         </div>
         <basic-information
-        :userInformation="userInformation"
+        :userInformation="userInformation" :form="form"
           v-if="activeTab === 'BasicInformation'"
           @save-basic="saveBasic"
         ></basic-information>
-        <permissions v-if="activeTab === 'Permissions'" :groupPermissions="$page['props']['groupPermissions']" :userPermissions="userPermissions"/>
-        <extra-options :userInformation="userInformation" v-if="activeTab === 'ExtraOptions'" />
+        <permissions v-if="activeTab === 'Permissions'" :form="form" :groupPermissions="$page['props']['groupPermissions']" :userPermissions="userPermissions"/>
+        <extra-options :userInformation="userInformation" :form="form" v-if="activeTab === 'ExtraOptions'" />
         <div class="row justify-content-end mb-2">
           <div class="col-md-4">
             <element-button @click="submit">{{$t('userSave')}} </element-button>
-            <element-button>{{$t('UserNew')}} </element-button>
+            <element-button  :type="'button'" @click="newUser">{{$t('UserNew')}} </element-button>
             <element-button>{{$t('userUpdate')}} </element-button>
-            <element-button>{{$t('userDelete')}} </element-button>
+            <element-button :type="'button'" @click="deleteUser">{{$t('userDelete')}} </element-button>
           </div>
         </div>
       </div>
@@ -122,6 +122,28 @@ export default {
       this.form.notes = data.notes;
     },
     saveExtra(data) {},
+     newUser() {
+      this.form = useForm({
+        code: "",
+        name: "",
+        email: "",
+        password: "",
+        branch_id: "",
+        role: "",
+        first_name: "",
+        middle_name: "",
+        last_name: "",
+        phone: "",
+        mobile: "",
+        id_number: "",
+        notes: "",
+         is_active: true,
+        _token: this.$page.props.csrf_token,
+      });
+    },
+     deleteUser() {
+      Inertia.get(route("user.delete", this.userId), this.form);
+    },
     submit() {
       // Inertia.post(route('user.store'), this.postData);
       this.$store.dispatch("users/registerUser", this.postData);

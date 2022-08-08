@@ -73,7 +73,24 @@
           $t("userRole")
         }}</elemet-label>
         <div class="col-8">
-          <v-select :options="roleOptions" @change="roleChange($event)" @input="$event" v-model="myObj.role" />
+          <!-- <v-select
+            :options="roleOptions"
+            @change="roleChange($event)"
+            v-model="myObj.role"
+          /> -->
+          <select
+            class="form-control"
+            @change="roleChange($event)"
+          >
+            <!-- <option :value="null" disabled selected>Select Make</option> -->
+            <option
+              v-for="(option, i) in roleOptions"
+              :key="i"
+                :value="option.id"
+            >
+              {{ option }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="form-group row mt-2">
@@ -108,6 +125,7 @@ import VSelect from "../../Shared/VSelect.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ToggleButton from "../../Shared/ToggleButton.vue";
 import Label from "../../Jetstream/Label.vue";
+import axios from "axios";
 export default {
   props: ["userInformation", "form"],
   emits: ["save-main"],
@@ -121,7 +139,7 @@ export default {
   },
   data() {
     return {
-      roleOptions: ["Admin","Cacher","Accountant"],
+      roleOptions: [],
       myObj: {
         code: "",
         name: "",
@@ -141,9 +159,14 @@ export default {
       Object.assign(this.myObj, this.userInformation);
     },
   },
+  async created() {
+    let res = await axios.get(route("user.getRoles"));
+    var roleArray = JSON.parse(JSON.stringify(res.data));
+    var finalArray = roleArray.map((obj) => obj.name);
+    this.roleOptions = finalArray;
+  },
   methods: {
-    objChanged(e) {
-      this.myObj.role = e.target.value;
+    objChanged() {
       this.$emit("save-main", this.myObj);
     },
     roleChange(e) {
