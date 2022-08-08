@@ -2,39 +2,59 @@
   <div class="container-fluide rounded bg-light">
     <div class="row">
       <div class="col-md">
-        <div class="row px-3 mt-1 ">
-          <page-title> {{$t('userCard')}}</page-title>
+        <div class="row px-3 mt-1">
+          <page-title> {{ $t("userCard") }}</page-title>
         </div>
         <form>
-          <main-information :userInformation="userInformation" :form="form" @save-main="saveMain"></main-information>
+          <main-information
+            :userInformation="userInformation"
+            :form="form"
+            @save-main="saveMain"
+          ></main-information>
         </form>
         <!-- <hr class="new1"> -->
         <div class="row a mt-2">
           <div class="col-5">
-            <title-button @click="activeTab = 'BasicInformation'"
-              > {{$t('userBasicInfo')}}</title-button
+            <title-button @click="activeTab = 'BasicInformation'">
+              {{ $t("userBasicInfo") }}</title-button
             >
-            <title-button @click="activeTab = 'Permissions'"
-              >{{$t('userPermissions')}}</title-button
-            >
+            <title-button @click="activeTab = 'Permissions'">{{
+              $t("userPermissions")
+            }}</title-button>
             <title-button @click="activeTab = 'ExtraOptions'"
-              >{{$t('userAdditionalOptions')}} </title-button
-            >
+              >{{ $t("userAdditionalOptions") }}
+            </title-button>
           </div>
         </div>
         <basic-information
-        :userInformation="userInformation" :form="form"
+          :userInformation="userInformation"
+          :form="form"
           v-if="activeTab === 'BasicInformation'"
           @save-basic="saveBasic"
         ></basic-information>
-        <permissions v-if="activeTab === 'Permissions'" :form="form" :groupPermissions="$page['props']['groupPermissions']" :userPermissions="userPermissions"/>
-        <extra-options :userInformation="userInformation" :form="form" v-if="activeTab === 'ExtraOptions'" />
+        <permissions
+          v-if="activeTab === 'Permissions'"
+          :form="form"
+          :groupPermissions="$page['props']['groupPermissions']"
+          :userPermissions="userPermissions"
+        />
+        <extra-options
+          :userInformation="userInformation"
+          :form="form"
+          v-if="activeTab === 'ExtraOptions'"
+        />
         <div class="row justify-content-end mb-2">
           <div class="col-md-4">
-            <element-button  @click="storeUser">{{$t('userSave')}} </element-button>
-            <element-button  :type="'button'" @click="newUser">{{$t('UserNew')}} </element-button>
-            <element-button>{{$t('userUpdate')}} </element-button>
-            <element-button :type="'button'" @click="deleteUser">{{$t('userDelete')}} </element-button>
+            <element-button @click="storeUser"
+              >{{ $t("userSave") }}
+            </element-button>
+            <element-button :type="'button'" @click="newUser"
+              >{{ $t("UserNew") }}
+            </element-button>
+            <element-button>{{ $t("userUpdate") }} </element-button>
+            <element-button :type="'button'" @click="deleteUser"
+              >{{ $t("userDelete") }}
+            </element-button>
           </div>
         </div>
       </div>
@@ -73,18 +93,18 @@ export default {
     ElementButton,
     TitleButton,
   },
-   props: {
-    groupPermissions:Array,
+  props: {
+    groupPermissions: Array,
     userPermissions: Array,
-    userInformation:Object,
+    userInformation: Object,
     userId: String,
     errors: Object,
   },
   data() {
     return {
       activeTab: "BasicInformation",
-     form: useForm({
-     code: "",
+      form: useForm({
+        code: "",
         name: "",
         email: "",
         password: "",
@@ -97,7 +117,7 @@ export default {
         mobile: "",
         id_number: "",
         notes: "",
-         is_active: true,
+        is_active: true,
         _token: this.$page.props.csrf_token,
       }),
     };
@@ -109,7 +129,7 @@ export default {
         (this.form.email = data.email),
         (this.form.password = data.password),
         (this.form.branch_id = data.branch_id);
-      (this.form.role = data.role);
+      this.form.role = data.role;
       this.form.is_active = data.is_active;
     },
     saveBasic(data) {
@@ -123,11 +143,11 @@ export default {
     },
     saveExtra(data) {},
     storeUser() {
-    //   this.form.post(route("user.store"));
-    this.$inertia.post(route("user.store"),this.form)
+      //   this.form.post(route("user.store"));
+      this.$inertia.post(route("user.store"), this.form);
       console.log(this.form);
     },
-     newUser() {
+    async newUser() {
       this.form = useForm({
         code: "",
         name: "",
@@ -142,11 +162,14 @@ export default {
         mobile: "",
         id_number: "",
         notes: "",
-         is_active: true,
+        is_active: true,
         _token: this.$page.props.csrf_token,
       });
+      let rolePermission = await axios.get(route("user.rolePermission", 1));
+      // this.userPermissions = JSON.parse(JSON.stringify(rolePermission.data));
+      console.log(this.roleId);
     },
-     deleteUser() {
+    deleteUser() {
       Inertia.get(route("user.delete", this.userId), this.form);
     },
     submit() {
@@ -155,6 +178,7 @@ export default {
     },
   },
 };
+
 </script>
 <style scoped>
 /* .container-fluide{
