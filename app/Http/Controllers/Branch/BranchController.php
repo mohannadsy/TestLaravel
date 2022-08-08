@@ -186,7 +186,7 @@ class BranchController extends Controller
     public function store(StoreBranchRequest $request)
     {
         $id = Branch::orderBy('id', 'desc')->first()->id + 1;
-        Branch::create($request->validated());
+        Branch::create($request->all());
         $parameters = ['request' => $request, 'id' => $id];
         $this->callActivityMethod('store', $parameters);
 //          return redirect()->route('branch.index')->with('message','Branch created successfully');
