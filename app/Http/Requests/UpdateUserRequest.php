@@ -14,6 +14,8 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return $rules = [
+            'code' => 'required|string|unique:users,code',
+            'name' => 'required|max:50|string|unique:users,name',
 //            'code' => 'required|string|unique:users,code',
 //            'name' => 'required|max:50|string|unique:users,name',
 //            'email' => 'string|email|unique:users,email',
