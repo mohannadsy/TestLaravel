@@ -165,6 +165,7 @@ export default {
   async created() {
     let res = await axios.get(route("user.getRoles"));
     var roleArray = JSON.parse(JSON.stringify(res.data));
+    console.log(roleArray)
     var finalArray = roleArray.map((obj) => obj.name);
     this.roleOptions = finalArray;
   },
