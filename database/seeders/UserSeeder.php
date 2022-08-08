@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'superAdmin@gmail.com',
             'password' => bcrypt('12345superadmin'),
-            'role' => 'Super Admin',// مدير عام
+            'role' => 'Admin',// مدير عام
             'branch_id' => 3,
             'profile_photo_path' => 'qqq',
             'first_name' => 's',
