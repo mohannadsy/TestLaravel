@@ -32,7 +32,7 @@ export default {
     ElementInput
     },
     props:{ 
-      form,
+      // form,
     },
     methods:{
         newBranch(){
