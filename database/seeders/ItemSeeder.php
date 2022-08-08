@@ -27,7 +27,7 @@ class ItemSeeder extends Seeder
                 'caliber' => 'caliber',//العيار
                 'chemical_composition' => 'fullMetal Alchemist <3',//تركيب كيميائي
                 'weight' => 4.5,
-                'size' => 55,
+//                'size' => 55,
                 'photo' => 'url',
                 'notes' => 'notes',
                 'branch_id' => 5,
@@ -63,9 +63,9 @@ class ItemSeeder extends Seeder
             'code_starts_with'  =>'tt2',
             'name_starts_with'  =>'name',
             'color'             =>'blue',
-//            'size'              =>'50',
+            'size'              =>50,
             'height'            =>14,
-//            'width'             =>'44',
+            'width'             =>44,
             'length'            =>4,
             ]
 

@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->string('caliber');
             $table->string('chemical_composition');
             $table->float('weight');
-            $table->float('size');
+//            $table->float('size');
             $table->string('notes');
             $table->string('photo');
 
@@ -54,9 +54,9 @@ return new class extends Migration {
             $table->string('code_starts_with');
             $table->string('name_starts_with');
             $table->string('color');
-//            $table->float('size');
+            $table->float('size');
             $table->float('height');
-//            $table->float('width');
+            $table->float('width');
             $table->float('length');
 
 

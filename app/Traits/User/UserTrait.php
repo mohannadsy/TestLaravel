@@ -121,6 +121,6 @@ trait  UserTrait
 
 
     public function getRoles(){
-        return Role::select('name')->get();
+        return Role::select('id','name')->get();
     }
 }

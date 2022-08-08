@@ -84,15 +84,16 @@ class UserController extends Controller
     }
 
 
-    public function show($id)
+    public function showUserPermissions($id)
     {
         $parameters = ['id' => $id];
         $user = User::find($id);
         if ($user) {
             $this->callActivityMethod('show', $parameters);
 //            return User::with('permissions')->find($id);
-            $groupPermissionsclauda = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
-            foreach ($groupPermissionsclauda as $groups) {
+            $userGroupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+            foreach ($userGroupPermissions
+                     as $groups) {
                 foreach ($groups->permissions as $permission) {
                     if ($user->hasPermissionTo($permission->name)) {
                         $permission->is_active = true;
@@ -101,7 +102,7 @@ class UserController extends Controller
                     }
                 }
             }
-            return $groupPermissionsclauda;
+            return $userGroupPermissions;
 //            return $user;
 //            API
 //        return redirect()->route('branch.index')->with(compact('user','groupPermissions'));
@@ -142,5 +143,6 @@ class UserController extends Controller
             $this->callActivityMethod('show', $parameters);
         }
 
-    }}
+    }
+}
 

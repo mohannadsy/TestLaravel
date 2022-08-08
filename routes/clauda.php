@@ -22,10 +22,8 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 
     Route::get('index', [UserController::class, 'index'])->name('user.index');
     Route::post('store', [UserController::class, 'store'])->name('user.store');
-    Route::get('show/{id}', [UserController::class, 'show'])->name('user.show');
-
+    Route::get('show-user-permissions/{id}', [UserController::class, 'showUserPermissions'])->name('user.showUserPermissions');
     Route::get('show-user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
-
     Route::get('show-role/{id}', [UserController::class, 'showRole'])->name('role.show');
     Route::post('update', [UserController::class, 'update'])->name('user.update');
     Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
@@ -33,34 +31,12 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');
     Route::get('get-main-tree', [UserController::class, 'tree'])->name('user.tree');
     Route::get('get-user-permissions/{id}', [UserController::class, 'getUserPermissions'])->name('user.getUserPermissions');
-
     Route::get('get-Roles', [UserController::class, 'getRoles'])->name('user.getRoles');
+    Route::get('role-permission/{id}', [UserController::class, 'rolePermission'])->name('user.rolePermission');
+
 
 });
 //});
-
-
-//Route::get('/test23', function () {
-//    return Item::find(1)->additive_IDs[0];
-//});
-
-Route::get('/item', function () {
-//    return Item::find(1)->additive_IDs[1];
-//    return var_dump(Account::find(1)->aggregate_ids);
-//    return var_dump(Account::find(1)->distributive_ids);
-//    return Item::find(1)->additive_IDs;
-});
-
-
-
-Route::put('/laravel-language/{key}', function ($key) {
-    session()->put('locale', $key);
-    return redirect()->back();
-});
-
-
-Route::get('getLocal', [UserController::class, 'getLocal'])->name('user.getLocal');
-
 
 //------- Currency ------//
 
@@ -137,7 +113,30 @@ Route::get('backup', function () {
 
     \Illuminate\Support\Facades\Artisan::call("php artisan backup:run");
 });
-//------- Other Routes ------//
+
+
+////------- Tests ------////
+//Route::get('/test23', function () {
+//    return Item::find(1)->additive_IDs[0];
+//});
+
+Route::get('/item', function () {
+//    return Item::find(1)->additive_IDs[1];
+//    return var_dump(Account::find(1)->aggregate_ids);
+//    return var_dump(Account::find(1)->distributive_ids);
+//    return Item::find(1)->additive_IDs;
+});
+
+
+Route::put('/laravel-language/{key}', function ($key) {
+    session()->put('locale', $key);
+    return redirect()->back();
+});
+
+
+Route::get('getLocal', [UserController::class, 'getLocal'])->name('user.getLocal');
+
+
 Route::get('last-id', function () {
 //    return Account::latest()->first()->id; // flase
     return Account::orderBy('id', 'desc')->first()->id + 1; // true
