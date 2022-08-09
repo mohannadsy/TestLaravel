@@ -6,7 +6,8 @@
        <element-button class="building px-2"
         @click="newBranch"
        ><span ><fa class="fa" icon="building" /></span></element-button>
-       <element-button class="building px-2"><span><fa class="fa" icon="user-plus" /></span></element-button>
+       <element-button class="building px-2"
+       ><span><fa class="fa" icon="user-plus" /></span></element-button>
        <element-button class="building px-2"><span><fa class="fa"  icon="magnifying-glass"/></span></element-button>
       </div>
      
@@ -49,7 +50,11 @@ export default {
         mobile: "",
         _token: this.$page.props.csrf_token,
       });
+
         },
+        addUser(){
+
+        }
     },
     
 }
