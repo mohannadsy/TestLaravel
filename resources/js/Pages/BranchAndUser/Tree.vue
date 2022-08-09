@@ -13,8 +13,10 @@
         <fa v-else icon="circle-plus"/>
         </span
       >
+      <!-- class="[isActive  ? 'red' : 'blue']" -->
       <span
-        v-bind:class="[isActive  ? 'red' : 'blue']"
+        
+        :class="{bold : isFolder}"
         class="pointer"
         @click="sendNodeType(item, item.id)"
         >{{ item.name }} - {{item.code}}</span
