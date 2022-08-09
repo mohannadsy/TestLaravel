@@ -9,6 +9,9 @@
           <main-information
             :userInformation="userInformation"
             :form="form"
+            :roleOptions="roleOptions"
+            :roleArray="roleArray"
+            :userPermissions="userPermissions"
             @save-main="saveMain"
           ></main-information>
         </form>
@@ -35,8 +38,8 @@
         <permissions
           v-if="activeTab === 'Permissions'"
           :form="form"
-          :groupPermissions="$page['props']['groupPermissions']"
           :userPermissions="userPermissions"
+          :rolePermissions="rolePermissions"
           :roleId="roleId"
         />
         <extra-options
@@ -104,8 +107,10 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
+      roleArray: {},
+      roleOptions: [],
       roleId:2,
-    //   rolePermissions:{},
+      rolePermissions:[],
       form: useForm({
         code: "",
         name: "",
@@ -125,15 +130,21 @@ export default {
       }),
     };
   },
+    async created() {
+    let res = await axios.get(route("user.getRoles"));
+    this.roleArray = JSON.parse(JSON.stringify(res.data));
+    var finalArray = this.roleArray.map((obj) => obj.name);
+    this.roleOptions = finalArray;
+  },
   methods: {
-    saveMain({data,roleId}) {
+    saveMain({data,roleId,rolePermissions}) {
+        this.rolePermissions = rolePermissions;
         this.roleId = roleId;
       (this.form.code = data.code),
         (this.form.name = data.name),
         (this.form.email = data.email),
         (this.form.password = data.password),
         (this.form.branch_id = data.branch_id);
-      this.form.roleId = data.roleId
       this.form.is_active = data.is_active;
     },
     saveBasic(data) {
@@ -169,8 +180,8 @@ export default {
         is_active: true,
         _token: this.$page.props.csrf_token,
       });
-      let rolePermission = await axios.get(route("user.rolePermission", this.roleId));
-     this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
+    //   let rolePermission = await axios.get(route("user.rolePermission", this.roleId));
+    //  this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
     //   console.log( typeof( this.roleId));
     },
     deleteUser() {

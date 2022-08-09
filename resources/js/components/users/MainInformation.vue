@@ -78,7 +78,6 @@
             @change="roleChange($event)"
             :value="myObj.role"
           />
-          <h1>{{ this.roleId }}</h1>
         </div>
       </div>
       <div class="form-group row mt-2">
@@ -108,7 +107,7 @@ import ToggleButton from "../../Shared/ToggleButton.vue";
 import Label from "../../Jetstream/Label.vue";
 import axios from "axios";
 export default {
-  props: ["userInformation", "form"],
+  props: ["userInformation", "form", "roleOptions", "roleArray","userPermissions"],
   emits: ["save-main"],
   components: {
     ElemetLabel,
@@ -120,9 +119,8 @@ export default {
   },
   data() {
     return {
-      roleArray: {},
-      roleOptions: [],
       roleId: 2,
+      rolePermissions:[],
       myObj: {
         code: "",
         name: "",
@@ -134,11 +132,10 @@ export default {
       },
     };
   },
+//   async created(){
+
+//   },
   watch: {
-    // roleId() {
-    //     this.roleId = this.getRoleIdFromName(this.myObj.role);
-    //      console.log(this.roleId);
-    // },
     form() {
       this.myObj = this.form;
     },
@@ -146,12 +143,7 @@ export default {
       Object.assign(this.myObj, this.userInformation);
     },
   },
-  async created() {
-    let res = await axios.get(route("user.getRoles"));
-    this.roleArray = JSON.parse(JSON.stringify(res.data));
-    var finalArray = this.roleArray.map((obj) => obj.name);
-    this.roleOptions = finalArray;
-  },
+
   methods: {
     getRoleIdFromName(roleName) {
       this.roleArray.forEach((e) => {
@@ -161,11 +153,15 @@ export default {
     objChanged() {
       this.$emit("save-main", this.myObj);
     },
-    roleChange(e) {
+    async roleChange(e) {
       this.myObj.role = e.target.value;
-    //   this.getRoleIdFromName(this.myObj.role);
-    //   console.log(this.roleId);
-      this.$emit("save-main", {data:this.myObj,roleId:this.roleId});
+     this.getRoleIdFromName(this.myObj.role);
+           console.log(this.roleId);
+             let rolePermission = await axios.get(route("user.rolePermission", this.roleId));
+     this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
+    // Object.assign(this.userPermissions, this.rolePermissions);
+
+      this.$emit("save-main", {data:this.myObj,roleId:this.roleId,rolePermissions:this.rolePermissions});
     },
     switch_on() {
       this.myObj.active = !this.myObj.active;

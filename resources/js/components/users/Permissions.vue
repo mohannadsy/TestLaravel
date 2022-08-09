@@ -36,7 +36,6 @@
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementCheckbox from "../../Shared/ElementCheckbox.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
-// import CheckboxSwitchedLabel from "../../Shared/CheckboxSwitchedLabel.vue";
 
 export default {
   data() {
@@ -51,19 +50,16 @@ export default {
     ElemetLabel,
     ElementCheckbox,
     CheckboxSwitch,
-    // CheckboxSwitchedLabel,
   },
   props: {
-    // groupPermissions: Array,
     userPermissions: Array,
     rolePermissions: Array,
     roleId: Number,
   },
-  watch: {
-    roleId() {
-
-      this.userPermissions = this.rolePermissions;
-    },
+watch:{
+    roleId(){
+        this.userPermissions = this.rolePermissions
+    }
   },
   methods: {
     ToggleIsExpanded(index) {
