@@ -76,7 +76,7 @@
           <v-select
             :options="roleOptions"
             @change="roleChange($event)"
-           :value="myObj.role"
+            :value="myObj.role"
           />
           <!-- <select
             class="form-control"
@@ -158,17 +158,23 @@ export default {
     },
     userInformation() {
       Object.assign(this.myObj, this.userInformation);
-
     },
-
   },
   async created() {
     let res = await axios.get(route("user.getRoles"));
-    var roleArray = JSON.parse(JSON.stringify(res.data));
+    let roleArray = JSON.parse(JSON.stringify(res.data));
     var finalArray = roleArray.map((obj) => obj.name);
     this.roleOptions = finalArray;
+    // console.log(this.roleArray[this.myObj.role].id);
+
   },
   methods: {
+    getRoleIdFromName(roleName){
+        this.roleOptions.forEach(element => {
+            if(element.name == roleName )
+                return element.id
+        });
+    },
     objChanged() {
       this.$emit("save-main", this.myObj);
     },
