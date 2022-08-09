@@ -13,8 +13,10 @@
         <fa v-else icon="circle-plus"/>
         </span
       >
+      <!-- class="[isActive  ? 'red' : 'blue']" -->
       <span
-        :class="{ bold: isFolder }"
+        
+        :class="{bold : isFolder}"
         class="pointer"
         @click="sendNodeType(item, item.id)"
         >{{ item.name }} - {{item.code}}</span
@@ -53,6 +55,7 @@ export default {
       isOpen: false,
       nodeType: "",
       nodeId: "",
+      isActive:[],
     };
   },
   computed: {
@@ -83,6 +86,7 @@ export default {
         this.nodeId = id;
       }
       this.$emit("node-type", { nodeId: this.nodeId, nodeType: this.nodeType });
+      this.isActive = !this.isActive;
 
     },
   },
@@ -102,5 +106,12 @@ export default {
   list-style-type: none;
   margin:0;
   padding: 0;
+}
+.red{
+  background: red;
+}
+
+.blue{
+  background: blue;
 }
 </style>
