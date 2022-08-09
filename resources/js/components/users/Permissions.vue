@@ -1,41 +1,35 @@
 <template>
-    <div class="scroll pb-2">
-        <ul
-            class="main"
-            v-for="(userPermission, index) in userPermissions"
-            :key="index"
-        >
-             <checkbox-switch
-                v-model="select_all"
-                @click="select"
-            ></checkbox-switch>
-            <elemet-label>تحديد الكل</elemet-label>
-            <button @click="ToggleIsExpanded(index)">
-                <span class="rightAngle" :class="angle[index]"></span>
-            </button>
-            <elemet-label> {{ userPermission.caption }}</elemet-label>
-      
-            
-           
-            
-            <ul>
-                <div v-show="isExpanded[index]">
-                    <li
-                        class="col-3"
-                        v-for="(permission, i) in userPermission.permissions"
-                        :key="i"
-                    >
-                        <checkbox-switch
-                            :checked="permission.is_active ? true : false"
-                            v-model="selected[i]"
-                        >
-                        </checkbox-switch>
-                        {{ permission.caption }}
-                    </li>
-                </div>
-            </ul>
-        </ul>
-    </div>
+  <div class="scroll pb-2">
+    <ul
+      class="main"
+      v-for="(userPermission, index) in userPermissions"
+      :key="index"
+    >
+      <checkbox-switch v-model="select_all" @click="select"></checkbox-switch>
+      <elemet-label>تحديد الكل</elemet-label>
+      <button @click="ToggleIsExpanded(index)">
+        <span class="rightAngle" :class="angle[index]"></span>
+      </button>
+      <elemet-label> {{ userPermission.caption }}</elemet-label>
+
+      <ul>
+        <div v-show="isExpanded[index]">
+          <li
+            class="col-3"
+            v-for="(permission, i) in userPermission.permissions"
+            :key="i"
+          >
+            <checkbox-switch
+              :checked="permission.is_active ? true : false"
+              v-model="selected[i]"
+            >
+            </checkbox-switch>
+            {{ permission.caption }}
+          </li>
+        </div>
+      </ul>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -48,36 +42,45 @@ export default {
   data() {
     return {
       isExpanded: [],
-      angle:[],
-      select_all:false,
-      selected:[],
+      angle: [],
+      select_all: false,
+      selected: [],
     };
   },
   components: {
     ElemetLabel,
     ElementCheckbox,
-   CheckboxSwitch,
+    CheckboxSwitch,
     // CheckboxSwitchedLabel,
   },
   props: {
-    groupPermissions: Array,
-    userPermissions:Array
+    // groupPermissions: Array,
+    userPermissions: Array,
+    rolePermissions: Array,
+    roleId: Number,
+  },
+  watch: {
+    roleId() {
+
+      this.userPermissions = this.rolePermissions;
+    },
   },
   methods: {
     ToggleIsExpanded(index) {
-     this.isExpanded[index] = !this.isExpanded[index];
-     this.angle[index]=="angleDown" ? this.angle[index]="" : this.angle[index]="angleDown";
+      this.isExpanded[index] = !this.isExpanded[index];
+      this.angle[index] == "angleDown"
+        ? (this.angle[index] = "")
+        : (this.angle[index] = "angleDown");
     },
-    select(){
-        
+    select() {
       //this.selected = [];
-      console.log(this.selected)
-      if(!this.select_all){
-          for (let i in this.selected){
-            this.selected.push(this.selected[i]);
-          }
+      console.log(this.selected);
+      if (!this.select_all) {
+        for (let i in this.selected) {
+          this.selected.push(this.selected[i]);
+        }
       }
-    }
+    },
   },
   // computed:{
   //   async groupPermissions(){
@@ -90,46 +93,46 @@ export default {
 
 <style scoped>
 .main {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 .rightAngle::before {
-    content: "\25B6";
-    display: inline-block;
-    cursor: pointer;
-    padding: 1px;
-    transition: 0.2s ease-out;
-    transform: rotate(180deg);
+  content: "\25B6";
+  display: inline-block;
+  cursor: pointer;
+  padding: 1px;
+  transition: 0.2s ease-out;
+  transform: rotate(180deg);
 }
 .angleDown::before {
-    content: "\25B6";
-    display: inline-block;
-    cursor: pointer;
-    padding: 1px;
-    transform: rotate(90deg);
-    transition: 0.2s ease-out;
+  content: "\25B6";
+  display: inline-block;
+  cursor: pointer;
+  padding: 1px;
+  transform: rotate(90deg);
+  transition: 0.2s ease-out;
 }
 
 li {
-    float: right;
-    display: block;
-    padding: 20px 16px;
-    text-decoration: none;
+  float: right;
+  display: block;
+  padding: 20px 16px;
+  text-decoration: none;
 }
 
 li a:hover {
-    background-color: #111111;
+  background-color: #111111;
 }
 button {
-    border: none;
+  border: none;
 }
 .scroll {
-    /* max-height: 50%; */
-    width: 100%;
-    overflow: scroll;
-    max-height: 350px;
-    scroll-behavior: smooth;
+  /* max-height: 50%; */
+  width: 100%;
+  overflow: scroll;
+  max-height: 350px;
+  scroll-behavior: smooth;
 }
 </style>

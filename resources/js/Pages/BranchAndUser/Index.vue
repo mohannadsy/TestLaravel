@@ -2,7 +2,7 @@ Raghad, [8/6/2022 11:18 AM]
 <template>
   <div class="row">
     <div class="col-3">
-       <add-section></add-section>
+      <add-section></add-section>
       <tree
         v-for="branch in branchesWithUsers"
         :key="branch.name"
@@ -22,7 +22,6 @@ Raghad, [8/6/2022 11:18 AM]
         :userPermissions="userPermissions"
         :userInformation="userInformation"
         :userId="userId"
-        :groupPermissions="$page['props']['groupPermissions']"
       ></user-form>
     </div>
   </div>
@@ -42,12 +41,15 @@ export default {
       branchInformaion: {},
       userInformation: {},
       userPermissions: [],
+      roleArray: {},
+      roleOptions: [],
+      roleId: 2,
     };
   },
   props: {
     branches: Array,
     branchesWithUsers: Array,
-    groupPermissions: Array,
+    // groupPermissions: Array,
     user: Object,
   },
   components: {
@@ -56,11 +58,13 @@ export default {
     Tree,
     addSection,
   },
+  async created() {
+    let res = await axios.get(route("user.getRoles"));
+    this.roleArray = JSON.parse(JSON.stringify(res.data));
+    var finalArray = this.roleArray.map((obj) => obj.name);
+    this.roleOptions = finalArray;
+  },
   methods: {
-    // saveData() {
-    //   this.$store.dispatch("branches/loadBranches");
-    // },
-
     async getNodeType({ nodeId, nodeType }) {
       this.nodeType = nodeType;
       if (nodeType === "branches") {
@@ -70,13 +74,18 @@ export default {
         console.log(this.branchInformaion);
       } else {
         this.userId = nodeId;
-        console.log(this.userId);
         let result1 = await axios.get(route("user.showUser", this.userId));
         this.userInformation = JSON.parse(JSON.stringify(result1.data));
-         let result = await axios.get(route("user.showUserPermissions", this.userId));
+        let result = await axios.get(
+          route("user.showUserPermissions", this.userId)
+        );
         this.userPermissions = JSON.parse(JSON.stringify(result.data));
-        console.log(this.userInformation);
       }
+    },
+     getRoleIdFromName(roleName) {
+      this.roleArray.forEach((e) => {
+        if (e.name === roleName) this.roleId = e.id;
+      });
     },
   },
 };

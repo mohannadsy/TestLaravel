@@ -78,30 +78,10 @@
             @change="roleChange($event)"
             :value="myObj.role"
           />
-          <!-- <select
-            class="form-control"
-            @change="roleChange($event)"
-          >
-
-            <option
-              v-for="(option, i) in roleOptions"
-              :key="i"
-                :value="option.id"
-            :selected="option == myObj.role"
-            >
-              {{ option }}
-            </option>
-          </select> -->
+          <h1>{{ this.roleId }}</h1>
         </div>
       </div>
       <div class="form-group row mt-2">
-        <!-- <div class="col-md-2 justify-content-right">
-          <checkbox-switch
-            v-model="myObj.active"
-            @change="switch_on()"
-            checked
-          ></checkbox-switch>
-        </div> -->
         <div class="col-md-3">
           <div :class="{ active: myObj.is_active }" class="toggle_container">
             <ToggleButton
@@ -140,19 +120,25 @@ export default {
   },
   data() {
     return {
+      roleArray: {},
       roleOptions: [],
+      roleId: 2,
       myObj: {
         code: "",
         name: "",
         email: "",
         password: "",
         branch_id: "",
-        role: "",
+        role: "Accountant",
         is_active: true,
       },
     };
   },
   watch: {
+    roleId() {
+        this.roleId = this.getRoleIdFromName(this.myObj.role);
+         console.log(this.roleId);
+    },
     form() {
       this.myObj = this.form;
     },
@@ -162,25 +148,24 @@ export default {
   },
   async created() {
     let res = await axios.get(route("user.getRoles"));
-    let roleArray = JSON.parse(JSON.stringify(res.data));
-    var finalArray = roleArray.map((obj) => obj.name);
+    this.roleArray = JSON.parse(JSON.stringify(res.data));
+    var finalArray = this.roleArray.map((obj) => obj.name);
     this.roleOptions = finalArray;
-    // console.log(this.roleArray[this.myObj.role].id);
-
   },
   methods: {
-    getRoleIdFromName(roleName){
-        this.roleOptions.forEach(element => {
-            if(element.name == roleName )
-                return element.id
-        });
+    getRoleIdFromName(roleName) {
+      this.roleArray.forEach((e) => {
+        if (e.name === roleName) this.roleId = e.id;
+      });
     },
     objChanged() {
       this.$emit("save-main", this.myObj);
     },
     roleChange(e) {
       this.myObj.role = e.target.value;
-      this.$emit("save-main", this.myObj);
+    //   this.getRoleIdFromName(this.myObj.role);
+    //   console.log(this.roleId);
+      this.$emit("save-main", {data:this.myObj,roleId:this.roleId});
     },
     switch_on() {
       this.myObj.active = !this.myObj.active;
