@@ -82,11 +82,6 @@ export default {
         this.userPermissions = JSON.parse(JSON.stringify(result.data));
       }
     },
-     getRoleIdFromName(roleName) {
-      this.roleArray.forEach((e) => {
-        if (e.name === roleName) this.roleId = e.id;
-      });
-    },
   },
 };
 </script>

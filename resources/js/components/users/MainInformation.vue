@@ -135,10 +135,10 @@ export default {
     };
   },
   watch: {
-    roleId() {
-        this.roleId = this.getRoleIdFromName(this.myObj.role);
-         console.log(this.roleId);
-    },
+    // roleId() {
+    //     this.roleId = this.getRoleIdFromName(this.myObj.role);
+    //      console.log(this.roleId);
+    // },
     form() {
       this.myObj = this.form;
     },
