@@ -72,7 +72,7 @@ class Account extends Model
 
     public function client()
     {
-        return $this->hasOne(Client::class, 'account_id');
+        return $this->hasMany(Client::class, 'account_id');
     }
 
     public function branch()

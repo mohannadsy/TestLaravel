@@ -71,7 +71,7 @@ class CostCenterSeeder extends Seeder
             'out_balance' => '200',
             'notes' => '',
             'security_degree' => 1 // سرية
-            ,'branch_id'=>5,
+            ,'branch_id'=>3,
         ]);
         CostCenter::create([
             'code' => '6',
@@ -83,7 +83,7 @@ class CostCenterSeeder extends Seeder
             'out_balance' => '400',
             'notes' => '',
             'security_degree' => 1 // سرية,
-            ,'branch_id'=>6,
+            ,'branch_id'=>3,
 
         ]);
     }

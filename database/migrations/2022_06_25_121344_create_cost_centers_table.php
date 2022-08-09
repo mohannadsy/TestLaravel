@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
             // updates : add branch in all cards
             $table->unsignedBigInteger('branch_id')->nullable()->default(1);
-            $table->foreign('branch_id')->references('id')->on('branches');
+//            $table->foreign('branch_id')->references('id')->on('branches');
 
 
             $table->foreign('center_id')->references('id')->on('cost_centers');

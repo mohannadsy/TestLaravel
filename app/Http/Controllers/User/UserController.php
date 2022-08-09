@@ -53,7 +53,7 @@ class UserController extends Controller
         $this->callActivityMethod('store', $parameters);
 //        $message = __('messageCommonController.store');
 //        return inertia('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
-          return __('common.store');
+        return __('common.store');
 
 //        return redirect()->route('branch.index')->with('message',__('common.store'));
 
@@ -66,10 +66,19 @@ class UserController extends Controller
         $url = $this->getImageURL($request);
         $request->password = Hash::make($request['password']);
         $request->profile_photo_path = $url;
-        $user = User::find($id)->update($request->all());
+
+        if ($this->isNotSuperAdmin($id)) {
+            $user = User::find($id)->update($request->all());}
+        else {
+            $user = User::find($id)->update($request->except('code', 'branch_id'));
+            if ($user){ return __('common.update');}
+
+            return __('common.update error');
+        }
         $this->callActivityMethod('update', $parameters);
         return __('common.update');
-    }
+       }
+
 
     public function delete($id)
     {
@@ -80,7 +89,7 @@ class UserController extends Controller
             if (User::find($id)) {
                 $user->delete();
                 $this->callActivityMethod('delete  ', $parameters);
-                return __('common.delete ');
+                return __('common.delete');
 
             } else   return __('user.user delete error');
         }
@@ -96,8 +105,7 @@ class UserController extends Controller
             $this->callActivityMethod('show', $parameters);
 //            return User::with('permissions')->find($id);
             $userGroupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
-            foreach ($userGroupPermissions
-                     as $groups) {
+            foreach ($userGroupPermissions as $groups) {
                 foreach ($groups->permissions as $permission) {
                     if ($user->hasPermissionTo($permission->name)) {
                         $permission->is_active = true;

@@ -31,6 +31,9 @@ return new class extends Migration {
             $table->string('payment_method')->nullable()->default(null);
             $table->integer('account_id')->nullable()->default(null);
             $table->integer('security_degree')->default(1);
+
+            $table->unsignedBigInteger('branch_id')->nullable()->default(1);
+
             $table->timestamps();
 
 
