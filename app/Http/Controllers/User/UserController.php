@@ -71,7 +71,9 @@ class UserController extends Controller
             $user = User::find($id)->update($request->all());}
         else {
             $user = User::find($id)->update($request->except('code', 'branch_id'));
-            return __('common.update root');
+            if ($user){ return __('common.update');}
+
+            return __('common.update error');
         }
         $this->callActivityMethod('update', $parameters);
         return __('common.update');
