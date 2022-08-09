@@ -91,16 +91,12 @@ class BranchController extends Controller
         $branch = Branch::find($id);
         if ($this->isRootBranch($id))
         {
-            $Branch = $branch->update($request->except('code','branch_id'));
-            $this->callActivityMethod('update', $paramters);
-//            if( ['parameters']['code']!=$old_data->code)
-//                return __('common.update error');
-//            return __('common.update');
+            $Branch = $branch->update($request->except('branch_id'));
         }
         else
-             $branch->update($request->all());
-             $this->callActivityMethod('update', $paramters);
-            return __('common.update');
+            $Branch=$branch->update($request->all());
+        $this->callActivityMethod('update', $paramters);
+        return __('common.update');
     }
 
     public function delete($id) //  delete - can be restored
