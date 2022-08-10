@@ -152,7 +152,7 @@ export default {
         mobile: "",
         _token: this.$page.props.csrf_token,
       });
-      this.$emit('newform','form');
+      // this.$emit('newform',form);
     },
     updateBranch() {
       this.form.post(route("branch.update", this.branchId));

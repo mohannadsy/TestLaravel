@@ -9,6 +9,8 @@
           <main-information
             :userInformation="userInformation"
             :form="form"
+            :roleOptions="roleOptions"
+            :roleArray="roleArray"
             @save-main="saveMain"
           ></main-information>
         </form>
@@ -35,8 +37,9 @@
         <permissions
           v-if="activeTab === 'Permissions'"
           :form="form"
-          :groupPermissions="$page['props']['groupPermissions']"
           :userPermissions="userPermissions"
+          :rolePermissions="rolePermissions"
+          :roleId="roleId"
         />
         <extra-options
           :userInformation="userInformation"
@@ -94,15 +97,18 @@ export default {
     TitleButton,
   },
   props: {
-    groupPermissions: Array,
     userPermissions: Array,
     userInformation: Object,
     userId: String,
     errors: Object,
+    roleOptions:Array,
+    roleArray:Object
   },
   data() {
     return {
       activeTab: "BasicInformation",
+      roleId:2,
+      rolePermissions:[],
       form: useForm({
         code: "",
         name: "",
@@ -122,15 +128,24 @@ export default {
       }),
     };
   },
+    watch:{
+        roleId(){
+            console.log('hello from index');
+            console.log(this.roleId)
+            // this.$emit('send-roleId')
+        }
+    },
   methods: {
-    saveMain(data) {
+    saveMain({data,roleId,rolePermissions}) {
+        this.rolePermissions = rolePermissions;
+        this.roleId = roleId;
       (this.form.code = data.code),
         (this.form.name = data.name),
         (this.form.email = data.email),
         (this.form.password = data.password),
         (this.form.branch_id = data.branch_id);
-      this.form.role = data.role;
       this.form.is_active = data.is_active;
+      this.$emit('send-roleId',this.roleId);
     },
     saveBasic(data) {
       (this.form.first_name = data.first_name),
@@ -145,7 +160,7 @@ export default {
     storeUser() {
       //   this.form.post(route("user.store"));
       this.$inertia.post(route("user.store"), this.form);
-      console.log(this.form);
+    //   console.log(this.form);
     },
     async newUser() {
       this.form = useForm({
@@ -154,7 +169,7 @@ export default {
         email: "",
         password: "",
         branch_id: "",
-        role: "",
+        role: "Accountant",
         first_name: "",
         middle_name: "",
         last_name: "",
@@ -165,9 +180,9 @@ export default {
         is_active: true,
         _token: this.$page.props.csrf_token,
       });
-      let rolePermission = await axios.get(route("user.rolePermission", 1));
-      // this.userPermissions = JSON.parse(JSON.stringify(rolePermission.data));
-      console.log(this.roleId);
+    //   let rolePermission = await axios.get(route("user.rolePermission", this.roleId));
+    //  this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
+    //   console.log( typeof( this.roleId));
     },
     deleteUser() {
       Inertia.get(route("user.delete", this.userId), this.form);
