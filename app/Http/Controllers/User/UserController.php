@@ -47,15 +47,15 @@ class UserController extends Controller
         $parameters = ['request' => $request, 'id' => $id];
         $request->password = Hash::make($request->password);
         $request->profile_photo_path = $this->getImageURL($request);
-//        $request->role = $this->assignRole($request->role);
-//        $this->givePermissionTo($request->permissions);
-//        $user->givePermissionTo($request->get('permission'));
+        $request->role = $this->assignRole($request->get('roles'));
+        $user->givePermissionTo($request->get('permissions'));
         $user = User::create($request->all());
         $this->callActivityMethod('store', $parameters);
-//        $message = __('messageCommonController.store');
-//        return inertia('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
         return __('common.store');
 
+
+//        $message = __('messageCommonController.store');
+//        return inertia('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
 //        return redirect()->route('branch.index')->with('message',__('common.store'));
 
     }
