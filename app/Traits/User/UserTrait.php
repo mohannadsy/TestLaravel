@@ -165,4 +165,9 @@ trait  UserTrait
             }
         }
     }
+
+    public function grtRolePermissions($roleId){
+        $role =Role::find($roleId);
+        return $role->permissions;
+    }
 }
