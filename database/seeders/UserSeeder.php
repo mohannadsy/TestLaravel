@@ -145,5 +145,7 @@ class UserSeeder extends Seeder
             'security_degree' => 1,
             'security_level' => 1
         ]);
+
+
     }
 }

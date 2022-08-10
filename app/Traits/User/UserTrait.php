@@ -148,4 +148,20 @@ trait  UserTrait
 
 
     }
+
+    public function assignPermissionsRoleToUser($userId)
+    {
+        $user = User::find($userId);
+        $roles = $user->roles;
+        foreach ($roles as $role) {
+            $permissions = $role->permissions;
+            foreach ($roles as $role) {
+                foreach ($permissions as $permission) {
+                    if ($user->assignedRole($role->name) && $role->givePermissionTo(per)) {
+                        $user->givePermissionTo($permission->name);
+                    }
+                }
+            }
+        }
+    }
 }

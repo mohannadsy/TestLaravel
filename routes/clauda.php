@@ -33,6 +33,8 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('get-Roles', [UserController::class, 'getRoles'])->name('user.getRoles');
     Route::get('role-permission/{id}', [UserController::class, 'rolePermission'])->name('user.rolePermission');
 
+    Route::get('assignPermissionsRoleToUser/{id}', [UserController::class, 'assignPermissionsRoleToUser'])->name('user.assignPermissionsRoleToUser');
+
     Route::get('getUserPermissionsAccordingRole/{rid}', [UserController::class, 'getUserPermissionsAccordingRole'])->name('user.getUserPermissionsAccordingRole');
 
 });
