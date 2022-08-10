@@ -1,20 +1,31 @@
 <template>
-    <div class="col-3">
-        <WarehouseDirectory></WarehouseDirectory>
+    <div class="row">
+        <div class="col-3">
+            <warehouse-directory></warehouse-directory>
+        </div>
+        <div class="col-9">
+            <currency-index></currency-index>
+        </div>
+
     </div>
-    <div class="col-9">
-        <main-information></main-information>
-    </div>
+   
 
 </template>
 
 <script>
-import MainInformation from '../../components/currency/MainInformation.vue';
+import Index from '../../components/currency/Index.vue'
+import WarehouseDirectory from '../../components/currency/WarehouseDirectory.vue'
 export default {
-    MainInformation
-    
+    components: { 
+       currencyIndex: Index,
+        WarehouseDirectory,
+        
+        }
 }
 </script>
 <style scoped>
+.a{
+     border-left-style: solid;
+}
 
 </style>

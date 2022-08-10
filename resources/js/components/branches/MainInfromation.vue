@@ -48,8 +48,7 @@
             @change="objChanged"
             @change-name="triggerToggleEvent"
             :defaultState="myObj.is_active"
-            labelEnableText="مفعل"
-            labelDisableText="غير مفعل"
+           
           />
         </div>
       </div>
@@ -105,20 +104,17 @@ export default {
 </script>
 
 <style scoped>
-.box {
-  text-align: center;
-  margin-bottom: 30px;
-}
 .toggle_container {
   margin: 0px auto;
+  padding: 8px 0;
+  transition: all 0.15s;
   /* background: #efefef; */
   /* width: 120px; */
-  padding: 8px 0;
   /* border-radius: 30px; */
-  transition: all 0.15s;
+  
 }
-.toggle_container.active {
-  /* background: #e9ffef; */
-}
+/* .toggle_container.active {
+  background: #e9ffef;
+} */
 </style>
 

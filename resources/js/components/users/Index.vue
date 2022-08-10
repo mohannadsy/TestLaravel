@@ -16,7 +16,7 @@
         </form>
         <!-- <hr class="new1"> -->
         <div class="row a mt-2">
-          <div class="col-5">
+          <div class="col">
             <title-button @click="activeTab = 'BasicInformation'">
               {{ $t("userBasicInfo") }}</title-button
             >
