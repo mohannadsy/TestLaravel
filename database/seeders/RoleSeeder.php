@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use \App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
@@ -30,9 +29,6 @@ class RoleSeeder extends Seeder
         $roleAdmin->givePermissionTo('update-permission');
         $roleAdmin->givePermissionTo('delete-permission');
         $roleAdmin->givePermissionTo('show-permission');
-
-
-
         //-----give permissions to Manager Role-----//
         $roleAccoutanat->givePermissionTo('store-role');
         $roleAccoutanat->givePermissionTo('update-role');

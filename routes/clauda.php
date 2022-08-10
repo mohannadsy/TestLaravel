@@ -153,3 +153,14 @@ Route::get('/json-test', function () {
 Route::get('/local', function () {
     return Config::get('app.locale');
 });
+
+
+Route::get('/user-permission-via-role/', function () {
+ $user = \App\Models\User::find(2);
+// $role =\Spatie\Permission\Models\Role::find(1);
+// $user->assignRole($role->name);
+//    $user->getAllPermissions();
+
+  return  $user->roles->first()->permissions; //true
+    // return $user->getPermissionsViaRoles(); // true
+});
