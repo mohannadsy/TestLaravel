@@ -111,14 +111,14 @@ export default {
 }
 .toggle_container {
   margin: 0px auto;
-  background: #efefef;
-  width: 120px;
-  padding: 10px 0;
-  border-radius: 30px;
-  transition: all 0.25s;
+  /* background: #efefef; */
+  /* width: 120px; */
+  padding: 8px 0;
+  /* border-radius: 30px; */
+  transition: all 0.15s;
 }
 .toggle_container.active {
-  background: #e9ffef;
+  /* background: #e9ffef; */
 }
 </style>
 

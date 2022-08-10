@@ -111,6 +111,7 @@ export default {
   position: relative;
   margin-left: 10px;
   transition: all 0.25s;
+  margin-right: 10px;
 }
 
 .toggle__button .toggle__switch::after,
