@@ -11,7 +11,7 @@ class CategorySeeder extends Seeder
 
     public function run()
     {
-        $category1 = Category::create([
+        $fruitCategory = Category::create([
             'code' => 1,
             'name' => 'فاكهة',
             'latin_name' => 'fruit',
@@ -19,6 +19,18 @@ class CategorySeeder extends Seeder
             'type' => 'Aggregate',
             'branch_id' => 1,
             'is_active' => false,
+            'is_aggregate' => true,
+            'notes' => 'notes',
+
+        ]);
+        $vegetableCategory = Category::create([
+            'code' => 1,
+            'name' => 'خضار',
+            'latin_name' => 'vegetable',
+            'security_degree' => 1,
+            'type' => 'Aggregate',
+            'branch_id' => 1,
+            'is_active' => true,
             'is_aggregate' => true,
             'notes' => 'notes',
 

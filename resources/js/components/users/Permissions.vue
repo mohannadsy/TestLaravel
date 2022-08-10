@@ -2,7 +2,7 @@
   <div class="scroll pb-2">
     <ul
       class="main"
-      v-for="(userPermission, index) in currentPermissions"
+      v-for="(userPermission, index) in myObj.currentPermissions"
       :key="index"
     >
       <checkbox-switch v-model="select_all" @click="select"></checkbox-switch>
@@ -36,12 +36,16 @@
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementCheckbox from "../../Shared/ElementCheckbox.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
-
+import axios from "axios";
+import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   data() {
     return {
-    currentPermissions: this.userPermissions,
-    // currentPermissions:[],
+        myObj: useForm({
+             currentPermissions: this.userPermissions,
+        }),
+
+      // currentPermissions:[],
       isExpanded: [],
       angle: [],
       select_all: false,
@@ -55,17 +59,32 @@ export default {
   },
   props: {
     userPermissions: Array,
-    rolePermissions: Array,
-    roleId: Number,
+    form:Object,
+    // rolePermissions: Array,
+    // roleId: Number,
+    userId: Number,
   },
   watch: {
-    roleId() {
+    'form.roleId'() {
       console.log("hello from permission");
-      console.log(this.roleId);
-      this.currentPermissions = this.rolePermissions;
-      console.log(this.currentPermissions);
+    //   console.log(this.form.roleId);
+      this.myObj.currentPermissions = this.form.rolePermissions;
+      this.$emit('send-permissions' , this.myObj.currentPermissions)
     },
+    async userId(){
+      let result = await axios.get(route("user.showUserPermissions", this.userId));
+     this.myObj.currentPermissions = JSON.parse(JSON.stringify(result.data));
+    //   this.$emit('send-permissions' , this.myObj.currentPermissions)
+    // this.userId = newVal;
+    //   console.log(newVal);
+    //   let that = this;
+    //   this.currentPermissions = this.userPermissions;
+    },
+    //     roleId: function(newVal, oldVal){
+    //       console.log("New value: "+ newVal + ", Old value: " + oldVal);
+    //    },
   },
+
   methods: {
     ToggleIsExpanded(index) {
       this.isExpanded[index] = !this.isExpanded[index];

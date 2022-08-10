@@ -157,11 +157,17 @@ trait  UserTrait
             $permissions = $role->permissions;
             foreach ($roles as $role) {
                 foreach ($permissions as $permission) {
-                    if ($user->assignedRole($role->name) && $role->givePermissionTo(per)) {
+                    if ($user->assignRole($role->name) && $role->givePermissionTo($permission->name)) {
                         $user->givePermissionTo($permission->name);
+                        return 'Done';
                     }
                 }
             }
         }
+    }
+
+    public function getRolePermissions($roleId){
+        $role =Role::find($roleId);
+        return $role->permissions;
     }
 }
