@@ -107,7 +107,7 @@ import ToggleButton from "../../Shared/ToggleButton.vue";
 import Label from "../../Jetstream/Label.vue";
 import axios from "axios";
 export default {
-  props: ["userInformation", "form", "roleOptions", "roleArray","userPermissions"],
+  props: ["userInformation", "form", "roleOptions", "roleArray"],
   emits: ["save-main"],
   components: {
     ElemetLabel,
@@ -120,7 +120,7 @@ export default {
   data() {
     return {
       roleId: 2,
-      rolePermissions:[],
+      rolePermissions: [],
       myObj: {
         code: "",
         name: "",
@@ -132,10 +132,10 @@ export default {
       },
     };
   },
-//   async created(){
-
-//   },
   watch: {
+    roleId() {
+      console.log("helloooo");
+    },
     form() {
       this.myObj = this.form;
     },
@@ -143,7 +143,6 @@ export default {
       Object.assign(this.myObj, this.userInformation);
     },
   },
-
   methods: {
     getRoleIdFromName(roleName) {
       this.roleArray.forEach((e) => {
@@ -155,13 +154,18 @@ export default {
     },
     async roleChange(e) {
       this.myObj.role = e.target.value;
-     this.getRoleIdFromName(this.myObj.role);
-           console.log(this.roleId);
-             let rolePermission = await axios.get(route("user.rolePermission", this.roleId));
-     this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
-    // Object.assign(this.userPermissions, this.rolePermissions);
+      this.getRoleIdFromName(this.myObj.role);
+      console.log(this.roleId);
+      let rolePermission = await axios.get(
+        route("user.rolePermission", this.roleId)
+      );
+      this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
 
-      this.$emit("save-main", {data:this.myObj,roleId:this.roleId,rolePermissions:this.rolePermissions});
+      this.$emit("save-main", {
+        data: this.myObj,
+        roleId: this.roleId,
+        rolePermissions: this.rolePermissions,
+      });
     },
     switch_on() {
       this.myObj.active = !this.myObj.active;

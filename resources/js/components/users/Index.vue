@@ -11,7 +11,6 @@
             :form="form"
             :roleOptions="roleOptions"
             :roleArray="roleArray"
-            :userPermissions="userPermissions"
             @save-main="saveMain"
           ></main-information>
         </form>
@@ -98,17 +97,16 @@ export default {
     TitleButton,
   },
   props: {
-    // groupPermissions: Array,
     userPermissions: Array,
     userInformation: Object,
     userId: String,
     errors: Object,
+    roleOptions:Array,
+    roleArray:Object
   },
   data() {
     return {
       activeTab: "BasicInformation",
-      roleArray: {},
-      roleOptions: [],
       roleId:2,
       rolePermissions:[],
       form: useForm({
@@ -130,12 +128,13 @@ export default {
       }),
     };
   },
-    async created() {
-    let res = await axios.get(route("user.getRoles"));
-    this.roleArray = JSON.parse(JSON.stringify(res.data));
-    var finalArray = this.roleArray.map((obj) => obj.name);
-    this.roleOptions = finalArray;
-  },
+    watch:{
+        roleId(){
+            console.log('hello from index');
+            console.log(this.roleId)
+            // this.$emit('send-roleId')
+        }
+    },
   methods: {
     saveMain({data,roleId,rolePermissions}) {
         this.rolePermissions = rolePermissions;
@@ -146,6 +145,7 @@ export default {
         (this.form.password = data.password),
         (this.form.branch_id = data.branch_id);
       this.form.is_active = data.is_active;
+      this.$emit('send-roleId',this.roleId);
     },
     saveBasic(data) {
       (this.form.first_name = data.first_name),

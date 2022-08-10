@@ -22,6 +22,9 @@ Raghad, [8/6/2022 11:18 AM]
         :userPermissions="userPermissions"
         :userInformation="userInformation"
         :userId="userId"
+        :roleOptions="roleOptions"
+        :roleArray="roleArray"
+        @send-roleId="getRoleId($event)"
       ></user-form>
     </div>
   </div>
@@ -41,12 +44,14 @@ export default {
       branchInformaion: {},
       userInformation: {},
       userPermissions: [],
+      roleArray: {},
+      roleOptions: [],
+      roleId:2
     };
   },
   props: {
     branches: Array,
     branchesWithUsers: Array,
-    // groupPermissions: Array,
     user: Object,
   },
   components: {
@@ -55,7 +60,18 @@ export default {
     Tree,
     addSection,
   },
+  async created() {
+    let res = await axios.get(route("user.getRoles"));
+    this.roleArray = JSON.parse(JSON.stringify(res.data));
+    var finalArray = this.roleArray.map((obj) => obj.name);
+    this.roleOptions = finalArray;
+  },
   methods: {
+    getRoleId(data){
+        this.roleId = data
+        console.log('role from bababba')
+        console.log(this.roleId + "jhdjjhjh")
+    },
     async getNodeType({ nodeId, nodeType }) {
       this.nodeType = nodeType;
       if (nodeType === "branches") {

@@ -2,7 +2,7 @@
   <div class="scroll pb-2">
     <ul
       class="main"
-      v-for="(userPermission, index) in userPermissions"
+      v-for="(userPermission, index) in currentPermissions"
       :key="index"
     >
       <checkbox-switch v-model="select_all" @click="select"></checkbox-switch>
@@ -40,6 +40,8 @@ import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 export default {
   data() {
     return {
+    currentPermissions: this.userPermissions,
+    // currentPermissions:[],
       isExpanded: [],
       angle: [],
       select_all: false,
@@ -56,10 +58,13 @@ export default {
     rolePermissions: Array,
     roleId: Number,
   },
-watch:{
-    roleId(){
-        this.userPermissions = this.rolePermissions
-    }
+  watch: {
+    roleId() {
+      console.log("hello from permission");
+      console.log(this.roleId);
+      this.currentPermissions = this.rolePermissions;
+      console.log(this.currentPermissions);
+    },
   },
   methods: {
     ToggleIsExpanded(index) {
