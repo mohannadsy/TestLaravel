@@ -119,5 +119,8 @@ class Item extends Model
     {
         return $this->hasMany(Unit::class, 'unit_id');
     }
-
+    public function store()
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
 }

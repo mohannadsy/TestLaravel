@@ -26,7 +26,8 @@ class Store extends Model
 
 
         // updates : add branch in all cards
-        'branch_id'
+        'branch_id',
+        'store_id',
     ];
     public function stores()
     {
@@ -40,6 +41,11 @@ class Store extends Model
     public function branch()
     {
         return $this->belongsTo(Branch::class, 'branch_id');
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::Class, 'store_id');
     }
     use HasFactory;
 }

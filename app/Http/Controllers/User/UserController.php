@@ -70,10 +70,7 @@ class UserController extends Controller
         if ($this->isNotSuperAdmin($id)) {
             $user = User::find($id)->update($request->all());}
         else {
-            $user = User::find($id)->update($request->except('code', 'branch_id'));
-            if ($user){ return __('common.update');}
-
-            return __('common.update error');
+            $user = User::find($id)->update($request->except('branch_id'));
         }
         $this->callActivityMethod('update', $parameters);
         return __('common.update');

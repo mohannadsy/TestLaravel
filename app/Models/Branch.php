@@ -41,7 +41,11 @@ class Branch extends Model
     }
     public function onlyBranches()
     {
-        return $this->hasMany('App\Models\Branch', 'branch_id');
+        return $this->hasMany('App\Models\Branch', 'branch_id');}
+
+        public function clients()
+    {
+        return $this->hasMany(Client::class, 'branch_id');
     }
     public function onlyUsers()
     {

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Config;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use function Illuminate\Events\queueable;
+use function Illuminate\Session\userId;
 
 
 trait  UserTrait
@@ -111,6 +113,7 @@ trait  UserTrait
             }
         }
         return $groupPermissions;
+//        return inertia('')
 
     }
 
@@ -124,5 +127,25 @@ trait  UserTrait
     public function getRoles()
     {
         return Role::select('id', 'name')->get();
+    }
+
+
+    public function getUserPermissionsAccordingRole($roleId)
+    {
+
+//        return $role = Role::with(['users' => function ($q) {
+//            $q->select('id', 'name')->with(['permissions' => function ($query) {
+//                $query->select('name')->get();
+//            }]);
+//        }])->select('id', 'name')->find($roleId);
+
+
+        $role = Role::find($roleId);
+        $roleUsers = $role->users;
+        foreach ($roleUsers as $roleUser) {
+            return $roleUser->permissions;
+        }
+
+
     }
 }

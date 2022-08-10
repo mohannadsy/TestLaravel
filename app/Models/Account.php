@@ -70,7 +70,7 @@ class Account extends Model
     }
 
 
-    public function client()
+    public function clients()
     {
         return $this->hasMany(Client::class, 'account_id');
     }

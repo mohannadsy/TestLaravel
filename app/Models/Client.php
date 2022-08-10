@@ -42,4 +42,8 @@ class Client extends Model
     {
         return $this->belongsTo(Account::class, 'account_id');
     }
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
 }

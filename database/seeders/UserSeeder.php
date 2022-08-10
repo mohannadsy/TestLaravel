@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
             'security_level' => 1
         ]);
         $userMohannad->assignRole('Admin');
-        $userMohannad->assignRole('Accountant');
+//        $userMohannad->assignRole('Accountant');
         $userMohannad->givePermissionTo('update-permission');
         $userMohannad->givePermissionTo('store-user');
         $userMohannad->givePermissionTo('delete-user');

@@ -53,13 +53,12 @@ class User extends Authenticatable
     ];
 
     protected $hidden = [
-
+        'pivot',
         'password',
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
         'profile_photo_url',
-
 
 
     ];

@@ -45,7 +45,6 @@ return new class extends Migration {
             $table->boolean('is_origin');
 
 
-            $table->integer('store_id');
             $table->float('amount');
             $table->float('amount_sum');
             $table->boolean('is_additive');
@@ -60,7 +59,6 @@ return new class extends Migration {
             $table->float('length');
 
 
-
             $table->timestamps();
             // updates : add branch in all cards
             $table->unsignedBigInteger('branch_id')->nullable()->default(1);
@@ -72,6 +70,10 @@ return new class extends Migration {
 
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
+
+            $table->unsignedBigInteger('store_id');
+            $table->foreign('store_id')->references('id')->on('stores');
+
 
         });
     }
