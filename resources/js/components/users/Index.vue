@@ -40,6 +40,7 @@
           :userPermissions="userPermissions"
           :rolePermissions="rolePermissions"
           :roleId="roleId"
+          :userId="userId"
         />
         <extra-options
           :userInformation="userInformation"

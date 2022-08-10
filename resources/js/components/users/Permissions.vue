@@ -36,12 +36,12 @@
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementCheckbox from "../../Shared/ElementCheckbox.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
-
+import axios from "axios";
 export default {
   data() {
     return {
-    currentPermissions: this.userPermissions,
-    // currentPermissions:[],
+      currentPermissions: this.userPermissions,
+      // currentPermissions:[],
       isExpanded: [],
       angle: [],
       select_all: false,
@@ -57,6 +57,7 @@ export default {
     userPermissions: Array,
     rolePermissions: Array,
     roleId: Number,
+    userId: Number,
   },
   watch: {
     roleId() {
@@ -65,7 +66,18 @@ export default {
       this.currentPermissions = this.rolePermissions;
       console.log(this.currentPermissions);
     },
+    userId: function (newVal, oldVal) {
+      // let result = await axios.get(route("user.showUserPermissions", this.userId));
+      // this.currentPermissions = JSON.parse(JSON.stringify(result.data));
+      console.log(newVal);
+      let that = this;
+      this.currentPermissions = that.userPermissions;
+    },
+    //     roleId: function(newVal, oldVal){
+    //       console.log("New value: "+ newVal + ", Old value: " + oldVal);
+    //    },
   },
+
   methods: {
     ToggleIsExpanded(index) {
       this.isExpanded[index] = !this.isExpanded[index];
