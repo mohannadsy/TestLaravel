@@ -32,10 +32,10 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('get-user-permissions/{id}', [UserController::class, 'getUserPermissions'])->name('user.getUserPermissions');
     Route::get('get-Roles', [UserController::class, 'getRoles'])->name('user.getRoles');
     Route::get('role-permission/{id}', [UserController::class, 'rolePermission'])->name('user.rolePermission');
-
     Route::get('assignPermissionsRoleToUser/{id}', [UserController::class, 'assignPermissionsRoleToUser'])->name('user.assignPermissionsRoleToUser');
+    Route::get('getUserPermissionsAccordingRole/{roleId}', [UserController::class, 'getUserPermissionsAccordingRole'])->name('user.getUserPermissionsAccordingRole');
 
-    Route::get('getUserPermissionsAccordingRole/{rid}', [UserController::class, 'getUserPermissionsAccordingRole'])->name('user.getUserPermissionsAccordingRole');
+    Route::get('get-role-permissions/{roleId}', [UserController::class, 'getRolePermissions'])->name('user.getRolePermissions');
 
 });
 
@@ -152,4 +152,14 @@ Route::get('/json-test', function () {
 
 Route::get('/local', function () {
     return Config::get('app.locale');
+});
+
+
+Route::get('/user-permission-via-role/', function () {
+    $user = \App\Models\User::find(2);
+// $role =\Spatie\Permission\Models\Role::find(1);
+// $user->assignRole($role->name);
+//    $user->getAllPermissions();
+    return $user->roles->first()->permissions; //true
+    // return $user->getPermissionsViaRoles(); // true
 });

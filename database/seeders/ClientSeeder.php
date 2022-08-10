@@ -12,7 +12,7 @@ class ClientSeeder extends Seeder
     public function run()
     {
         $client1 = Client::create([
-            'name' => 'client',
+            'name' => 'client 1',
             'notes' => 'this is first client ',
             'photo' => '372856',
             'gender' => 'female',
@@ -34,6 +34,79 @@ class ClientSeeder extends Seeder
             'account_id' => 1,
             'branch_id'=>1,
             'security_degree' => 1 // سرية
+        ]);
+
+        $client2 = Client::create([
+            'name' => 'client 2',
+            'notes' => 'this is first client ',
+            'photo' => '372856',
+            'gender' => 'female',
+            'nationality' => 'syrian',
+            'work' => 'student',
+            'birth_place' => 'qq',
+            'birth_data' => ' 7/6/2022',
+            'record_number' => 32,
+            'address' => '',
+            'email_prefix' => 32,
+            'phone' => '',
+            'mobile' => '',
+            'fax' => '',
+            'email' => 'something@gmail.com',
+            'default_price' => 32,
+            'discount_rate' => '',
+            'discount_account' => 3443,
+            'payment_method' => '',
+            'account_id' => 1,
+            'branch_id'=>1,
+            'security_degree' => 1 // سرية
+        ]);
+        $client3 = Client::create([
+            'name' => 'client 3',
+            'notes' => 'this is first client ',
+            'photo' => '372856',
+            'gender' => 'female',
+            'nationality' => 'syrian',
+            'work' => 'student',
+            'birth_place' => 'qq',
+            'birth_data' => ' 7/6/2022',
+            'record_number' => 32,
+            'address' => '',
+            'email_prefix' => 32,
+            'phone' => '',
+            'mobile' => '',
+            'fax' => '',
+            'email' => 'something@gmail.com',
+            'default_price' => 32,
+            'discount_rate' => '',
+            'discount_account' => 3443,
+            'payment_method' => '',
+            'account_id' => 2,
+            'branch_id'=>2,
+            'security_degree' => 2 // سرية
+        ]);
+        $client4 = Client::create([
+            'name' => 'client 4',
+            'notes' => 'this is first client ',
+            'photo' => '372856',
+            'gender' => 'female',
+            'nationality' => 'syrian',
+            'work' => 'student',
+            'birth_place' => 'qq',
+            'birth_data' => ' 7/6/2022',
+            'record_number' => 32,
+            'address' => '',
+            'email_prefix' => 32,
+            'phone' => '',
+            'mobile' => '',
+            'fax' => '',
+            'email' => 'something@gmail.com',
+            'default_price' => 32,
+            'discount_rate' => '',
+            'discount_account' => 3443,
+            'payment_method' => '',
+            'account_id' => 2,
+            'branch_id'=>3,
+            'security_degree' => 3 // سرية
         ]);
     }
 }
