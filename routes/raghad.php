@@ -23,6 +23,7 @@ Route::get('nan', function(){
     return inertia('BranchAndUser/Index' , compact('branches'));
 
 });
+Route::inertia('currency','Currency/Index');
 
 Route::get('queen' , function(){
     $parameters = ['id' => null];
