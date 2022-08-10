@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'security_degree' => 2,
             'security_level' => 1
         ]);
-        $userMohannad->assignRole('Admin');
+        $userMohannad->assignRole('Accountant');
 //        $userMohannad->assignRole('Accountant');
         $userMohannad->givePermissionTo('update-permission');
         $userMohannad->givePermissionTo('store-user');
@@ -95,7 +95,7 @@ class UserSeeder extends Seeder
             'security_degree' => 3,
             'security_level' => 1
         ]);
-        $userClauda->assignRole('Cacher');
+        $userClauda->assignRole('Admin');
         $userClauda->givePermissionTo('store-user');
 
 
@@ -119,8 +119,10 @@ class UserSeeder extends Seeder
             'store_id' => 0,
             'is_active' => false,
             'security_degree' => 1,
-            'security_level' => 1
+            'security_level' => 1,
+
         ]);
+        $userSara->assignRole('Accountant');
 
 
         $userRaghad = User::create([
@@ -145,5 +147,7 @@ class UserSeeder extends Seeder
             'security_degree' => 1,
             'security_level' => 1
         ]);
+        $userRaghad->assignRole('Cacher');
+
     }
 }

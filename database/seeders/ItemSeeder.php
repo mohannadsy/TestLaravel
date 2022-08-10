@@ -25,7 +25,7 @@ class ItemSeeder extends Seeder
                 'origin_country' => 'syria',//بلط المنشأ
                 'source' => 'source',//المصدر
                 'caliber' => 'caliber',//العيار
-                'chemical_composition' => 'fullMetal Alchemist <3',//تركيب كيميائي
+                'chemical_composition' => ' chemical composition ',//تركيب كيميائي
                 'weight' => 4.5,
 //                'size' => 55,
                 'photo' => 'url',
@@ -67,6 +67,70 @@ class ItemSeeder extends Seeder
             'height'            =>14,
             'width'             =>44,
             'length'            =>4,
+            ]
+
+        );
+
+
+
+
+
+        $item2 = Item::create([
+                'code' => 2,
+                'name' => 'المادة الثانية',
+                'latin_name' => 'second item',
+                'is_active' => true,
+                'is_inherited' => false,
+                'security_degree' => 1,
+                'category_id' => 2,
+//            'branch_id'=>1,
+                'place' => 'place 1',
+                'manufacture_company' => 'update', // الشركة المصنعة
+                'origin_country' => 'syria',//بلط المنشأ
+                'source' => 'source',//المصدر
+                'caliber' => 'caliber',//العيار
+                'chemical_composition' => 'chemical composition',//تركيب كيميائي
+                'weight' => 4.5,
+//                'size' => 55,
+                'photo' => 'url',
+                'notes' => 'notes',
+                'branch_id' => 5,
+                'unit_id' => 5,
+
+
+                'type' => 'origin',
+                'product_date' => '6/3/2023',
+
+                'expiration_date_force_on_input' => true,
+                'expiration_date_force_on_output' => true,
+
+                'aggregate_item' => false,
+                'modified_item' => true,
+                'serial_number_force_on_input' => true,
+                'serial_number_force_on_output' => false,
+                'is_service' => false,
+                'is_stored' => false,
+                'is_origin' => true,
+
+                'store_id' => 1,
+                'amount' => 12,
+                'amount_sum' => 32,
+
+                'is_additive' => true,
+                'additive_IDs' => [
+                    '1' => ['2'],
+                    '2' => ['3'],
+                    '3' => ['7'],
+                ],
+
+
+                'code_starts_with'  =>'tt2',
+                'name_starts_with'  =>'name',
+                'color'             =>'blue',
+                'size'              =>50,
+                'height'            =>14,
+                'width'             =>44,
+                'length'            =>4,
             ]
 
         );

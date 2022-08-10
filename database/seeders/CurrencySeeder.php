@@ -28,6 +28,18 @@ class CurrencySeeder extends Seeder
             'name' => 'الدولار الأمريكي',
             'code' => 2,
             'latin_name' => 'Dollar',
+            'equality' => 3500,
+            'match' => 1 / 3500,
+            'part' => 'سنت',
+            'accuracy' => 100,
+            'lain_part_name' => 'sent',
+            'photo' => '',
+            'security_degree' => 3 // سرية
+        ]);
+        $secondExtraCurrency = Currency::create([
+            'name' => 'اليورو ',
+            'code' => 3,
+            'latin_name' => 'Euro',
             'equality' => 4000,
             'match' => 1 / 4000,
             'part' => 'سنت',
@@ -36,7 +48,6 @@ class CurrencySeeder extends Seeder
             'photo' => '',
             'security_degree' => 3 // سرية
         ]);
-
 
     }
 }

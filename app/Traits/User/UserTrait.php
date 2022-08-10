@@ -166,7 +166,7 @@ trait  UserTrait
         }
     }
 
-    public function grtRolePermissions($roleId){
+    public function getRolePermissions($roleId){
         $role =Role::find($roleId);
         return $role->permissions;
     }
