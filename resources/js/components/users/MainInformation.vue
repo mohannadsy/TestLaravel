@@ -106,6 +106,7 @@ import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ToggleButton from "../../Shared/ToggleButton.vue";
 import Label from "../../Jetstream/Label.vue";
 import axios from "axios";
+import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   props: ["userInformation", "form", "roleOptions", "roleArray"],
   emits: ["save-main"],
@@ -119,9 +120,8 @@ export default {
   },
   data() {
     return {
-      roleId: 2,
-      rolePermissions: [],
-      myObj: {
+        rolePermissions:[],
+      myObj: useForm({
         code: "",
         name: "",
         email: "",
@@ -129,11 +129,13 @@ export default {
         branch_id: "",
         role: "Accountant",
         is_active: true,
-      },
+        roleId: 2,
+    //   rolePermissions: [],
+      }),
     };
   },
   watch: {
-    roleId() {
+    'myObj.roleId'() {
       console.log("helloooo");
     },
     form() {
@@ -146,7 +148,7 @@ export default {
   methods: {
     getRoleIdFromName(roleName) {
       this.roleArray.forEach((e) => {
-        if (e.name === roleName) this.roleId = e.id;
+        if (e.name === roleName) this.myObj.roleId = e.id;
       });
     },
     objChanged() {
@@ -155,17 +157,10 @@ export default {
     async roleChange(e) {
       this.myObj.role = e.target.value;
       this.getRoleIdFromName(this.myObj.role);
-      console.log(this.roleId);
-      let rolePermission = await axios.get(
-        route("user.rolePermission", this.roleId)
-      );
+      console.log(this.myObj.roleId);
+      let rolePermission = await axios.get(route("user.rolePermission", this.myObj.roleId));
       this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
-
-      this.$emit("save-main", {
-        data: this.myObj,
-        roleId: this.roleId,
-        rolePermissions: this.rolePermissions,
-      });
+      this.$emit("save-main",{ data:this.myObj,rolePermissions:this.rolePermission});
     },
     switch_on() {
       this.myObj.active = !this.myObj.active;

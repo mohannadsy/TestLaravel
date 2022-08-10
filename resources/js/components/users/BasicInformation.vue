@@ -110,10 +110,11 @@
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import TextArea from "../../Shared/TextArea.vue";
+import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   data() {
     return {
-      myObj: {
+      myObj: useForm({
         first_name: "",
         middle_name: "",
         last_name: "",
@@ -121,7 +122,7 @@ export default {
         mobile: "",
         id_number: "",
         notes: "",
-      },
+      }),
     };
   },
   emits: ["save-basic"],
