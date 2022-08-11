@@ -13,8 +13,8 @@
     "branchEmail":"Email",
     "branchPhone":"Phone",
     "branchMobile":"Mobile",
-    "branchEnabled":"Enabled",
-    "branchDisabled":"Not Enabled",
+    "Enabled":"Enabled",
+    "Disabled":"Not Enabled",
 
     "branchSave":"Save",
     "branchNew":"New",
@@ -51,7 +51,23 @@
     "userSave":"Save",
     "UserNew":"New",
     "userUpdate":"Update",
-    "userDelete":"Delete"
+    "userDelete":"Delete",
+
+    "warehouseCard":"Warehouse Card",
+    "warehouseCode":"Warehouse Code",
+    "warehouseName":"Warehouse Name",
+    "latinName":"Latin Name",
+    "warehouseType":"Warehouse Type",
+    "warehousebBasicInformation":"Basic Information",
+    "attachments":"Attachments",
+    "mainWarehouse":"MainWarehouse",
+    "warehouseAcount":"Acount",
+    "warehouseAddress":"Address",
+    "warehouseMan":"Warehouse Man",
+    "storageCapacity":"Storage Capacity",
+    "warehouseNotes":"Warehouse Notes",
+    "warehouseDirectory":"Warehouse Directory"
+
 
 
 

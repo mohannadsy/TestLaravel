@@ -13,8 +13,8 @@
     "branchEmail": "البريد الالكتروني",
     "branchPhone": "هاتف",
     "branchMobile": "موبايل",
-    "branchEnabled": "مفعل",
-    "branchDisabled": "غير مفعل",
+    "Enabled": "مفعل",
+    "Disabled": "غير مفعل",
 
     "branchSave": "حفظ",
     "branchNew": "جديد",
@@ -51,7 +51,22 @@
     "userSave": "حفظ",
     "UserNew": "جديد",
     "userUpdate": "تعديل",
-    "userDelete": "حذف"
+    "userDelete": "حذف",
+
+    "warehouseCard":"بطاقة مستودع",
+    "warehouseCode":"رمز المستودع",
+    "warehouseName":"اسم المستودع",
+    "latinName":"الاسم اللاتيني",
+    "warehouseType":"نوع المستودع",
+    "warehousebBasicInformation":"معلومات أساسية",
+    "attachments":"المرفقات",
+    "mainWarehouse":"المستودع الرئيسي",
+    "warehouseAcount":"الحساب",
+    "warehouseAddress":"العنوان",
+    "warehouseMan":"أمين المستودع",
+    "storageCapacity":"السعة التخزينية",
+    "warehouseNotes":"ملاحظات",
+    "warehouseDirectory":"دليل المستودعات"
 
 
 

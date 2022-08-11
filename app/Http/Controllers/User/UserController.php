@@ -48,8 +48,9 @@ class UserController extends Controller
         $request->password = Hash::make($request->password);
         $request->profile_photo_path = $this->getImageURL($request);
         $request->role = $this->assignRole($request->get('roles'));
-        $user->givePermissionTo($request->get('permissions'));
+//        $user->givePermissionTo($request->get('permissions'));
         $user = User::create($request->all());
+        $user->givePermissionTo($request->get('permissions'));
         $this->callActivityMethod('store', $parameters);
         return __('common.store');
 
