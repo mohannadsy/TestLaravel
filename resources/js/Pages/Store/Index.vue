@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Index from "../../components/currency/Index.vue";
-import WarehouseDirectory from "../../components/currency/WarehouseDirectory.vue";
+import Index from "../../components/store/Index.vue";
+import WarehouseDirectory from "../../components/store/WarehouseDirectory.vue";
 export default {
   components: {
     currencyIndex: Index,
