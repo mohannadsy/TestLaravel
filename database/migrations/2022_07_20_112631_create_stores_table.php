@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('notes')->nullable()->default(null);
             $table->boolean('is_active')->default(true);
             $table->string('photo')->nullable()->default(null);
-            $table->integer('security_degree')->default(1);
+            $table->integer('security_degree')->nullable()->default(1);
             $table->timestamps();
 
             // updates : add branch in all cards
