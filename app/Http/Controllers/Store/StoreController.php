@@ -54,9 +54,17 @@ class StoreController extends Controller
 
     public function update(UpdateStoreRequest $request, $id)
     {
-        $parameters = ['request' => $request, 'id' => $id];
-        $store = Store::find($id)->update($request->all());
-        $this->callActivityMethod('update', $parameters);
+        $old_data=Store::find($id)->toJson();
+        $paramters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
+        $store = Store::find($id);
+        if ($this->isRootStore($id))
+        {
+            $Store = $store->update($request->except('store_id'));
+        }
+        else
+            $Store=$store->update($request->all());
+        $this->callActivityMethod('update', $paramters);
+        return __('common.update');
     }
 
     public function delete($id)

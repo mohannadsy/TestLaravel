@@ -16,7 +16,8 @@ class StoreStoreRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'code'                   =>'required|string|unique:stores,code',
+            'name'                   =>'required|max:50|string|unique:stores,name' ,
         ];
     }
 }
