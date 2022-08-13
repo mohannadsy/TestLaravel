@@ -15,6 +15,7 @@
               v-model.trim="storeObject.code"
             />
           </div>
+          <!-- <div v-if="form.errors.code">{{ form.errors.code }}</div> -->
         </div>
         <div class="form-group row mt-2">
           <elemet-label class="col-form-label col-md-4">{{
@@ -64,7 +65,9 @@
         </div>
 
         <div class="toggle_container">
-          <ToggleButton v-model="storeObject.is_active" @change="objChanged" />
+          <ToggleButton v-model="storeObject.is_active"
+           @change="objChanged"
+            @change-name="triggerToggleEvent" />
         </div>
       </div>
     </div>
@@ -86,6 +89,7 @@ export default {
     VSelect,
     ToggleButton,
   },
+  props:["errors"],
   data() {
     return {
       storeObject: useForm({
@@ -103,6 +107,12 @@ export default {
       this.$emit("save-main", this.storeObject);
     },
   },
+    methods: {
+    triggerToggleEvent(value) {
+      this.storeObject.is_active = value;
+    },
+  },
+
 };
 </script>
 
