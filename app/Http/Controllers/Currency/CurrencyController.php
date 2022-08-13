@@ -49,7 +49,7 @@ class CurrencyController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $currency;
         }
-        return __('currency.Currency not Found');
+        return __('currency.currency not found');
     }
 
 
@@ -63,6 +63,6 @@ class CurrencyController extends Controller
             return __('common.delete');
 
         }
-        return __("currency.Default Currency Can not be Deleted");
+        return __("currency.default currency can not be deleted");
     }
 }

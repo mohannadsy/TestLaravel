@@ -45,7 +45,7 @@ class ItemController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $item;
         }
-        return 'item not found';
+        return __('item not found');
     }
 
 

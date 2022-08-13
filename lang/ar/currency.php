@@ -1,10 +1,8 @@
 <?php
 return [
 
-    'currency store' => 'تم إنشاء العملةبنجاح',
-    'Default Currency Can not be Deleted' => 'لا يمكن جذف العملة الافتراضية',
-    'Currency not Found' => 'العملة غير موجود ',
-    'currency delete success'=>'تم حذف العملةبنجاح ',
+    "currency.default currency can not be deleted"=> 'لا يمكن جذف العملة الافتراضية',
+    'currency not found' => 'العملة غير موجود ',
     ''=>'',
     ''=>'',
     ''=>'',
