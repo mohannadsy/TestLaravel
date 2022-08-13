@@ -16,12 +16,11 @@ class CategoryController extends Controller
     use CategoryTrait, ActivityLog;
 
 
-
     public function index()
     {
         $parameters = ['id' => null];
         $this->callActivityMethod('get All Category ', $parameters);
-        $categoryWithItems = Category::with('items')->select('id','code', 'name')->get();
+        $categoryWithItems = Category::with('items')->select('id', 'code', 'name')->get();
 //        return $categoryWithItems;
         return inertia('', compact('categoryWithItems'));
     }
@@ -33,7 +32,7 @@ class CategoryController extends Controller
         $parameters = ['request' => $request, 'id' => $id];
         $category = Category::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return __('common.store') ;
+        return __('common.store');
 //        return Inertia::render('', compact('category'));;
     }
 
@@ -63,11 +62,11 @@ class CategoryController extends Controller
         $parameters = ['id' => $id];
         if ($this->isNotContainItems($id)) {
             $category = Category::find($id);
-             if ($category)
-                 $category->delete();
-                 $this->callActivityMethod('delete  ', $parameters);
-                 __('category.category delete error');
+            if ($category)
+                $category->delete();
+            $this->callActivityMethod('delete  ', $parameters);
+            return __('common.delete');
         }
-        return __('common.delete');
+        return __('category.category delete error');
     }
 }

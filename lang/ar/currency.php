@@ -2,8 +2,8 @@
 return [
 
     'currency store' => 'تم إنشاء العملةبنجاح',
-    'currency delete' => 'لا يمكن جذف العملة الافتراضية',
-    'currency delete error' => 'العملةغير موجود ',
+    'Default Currency Can not be Deleted' => 'لا يمكن جذف العملة الافتراضية',
+    'Currency not Found' => 'العملة غير موجود ',
     'currency delete success'=>'تم حذف العملةبنجاح ',
     ''=>'',
     ''=>'',
