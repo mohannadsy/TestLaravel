@@ -13,7 +13,7 @@ use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
- use CategoryTrait , ActivityLog;
+    use CategoryTrait, ActivityLog;
 
     public function callActivityMethod($method, $parameters)
     {
@@ -23,18 +23,21 @@ class CategoryController extends Controller
             'parameters' => $parameters
         ]);
     }
+
     public function index()
     {
         $parameters = ['id' => null];
-        $this->callActivityMethod('index', $parameters);
-        return Category::all();
+        $this->callActivityMethod('get All Category ', $parameters);
+        $categoryWithItems = Category::with('items')->select('id','code', 'name')->get();
+//        return $categoryWithItems;
+        return inertia('', compact('categoryWithItems'));
     }
 
     public function store(StoreCategoryRequest $request)
     {
         $id = Category::latest()->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $category =  Category::create($request->all());
+        $category = Category::create($request->all());
         $this->callActivityMethod('store', $parameters);
         return Inertia::render('', compact('category'));;
     }

@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('code')->unique();
             $table->string('name')->unique();
             $table->string('latin_name')->nullable()->default(null);
-            $table->string('type')->default('normal');
+            $table->string('type')->nullable()->default('normal');
             $table->unsignedBigInteger('store_id')->default(null)->nullable();
             $table->integer('account_id')->default(1)->nullable();
             $table->string('address')->nullable()->default(null);
