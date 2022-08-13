@@ -14,7 +14,8 @@ class StoreClientRequest extends FormRequest
     public function rules()
     {
         return $rules = [
-
+            'code'                   =>'required|string|unique:branches,code',
+            'name'                   =>'required|max:50|string|unique:branches,name' ,
 //            'name' => '',
 //            'notes' => '',
 //            'photo' => '',
