@@ -1,7 +1,7 @@
 <template>
   <form>
     <div class="row">
-      <main-information @save-main="saveMain"></main-information>
+      <main-information @save-main="saveMain"  :form="form"  :errors="errors"></main-information>
     </div>
     <div class="row a mt-2">
       <div class="col-5">
@@ -50,6 +50,9 @@ export default {
     TitleButton,
     ElementButton,
   },
+  props:{
+    errors: Object,
+  },
   data() {
     return {
       activeTab: "BasicInformation",
@@ -83,7 +86,6 @@ export default {
       this.form.branch_id = data.branch_id;
     },
     storeStore() {
-        //  this.$store.dispatch('coaches/registerCoach', data);
         this.$store.dispatch('stores/storeStore',this.form)
     },
   },
