@@ -5,7 +5,7 @@
         class="default-pointer"
         @click="toggle"
         @dblclick="makeFolder"
-        v-if="isFolder"> 
+        v-if="isFolder">
         <!-- <fa v-if="isOpen" icon="caret-down" />
         <fa v-else icon="caret-left" /> -->
 
@@ -15,7 +15,7 @@
       >
       <!-- class="[isActive  ? 'red' : 'blue']" -->
       <span
-        
+
         :class="{bold : isFolder}"
         class="pointer"
         @click="sendNodeType(item, item.id)"
