@@ -45,13 +45,13 @@ class ItemController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $item;
         }
-        return 'store.store show';
+        return 'item not found';
     }
 
 
     public function update(UpdateItemRequest $request, $id)
     {
-        $old_data=Store::find($id)->toJson();
+        $old_data=Item::find($id)->toJson();
         $parameters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
         $item = Item::find($id)->update($request->all());
         $this->callActivityMethod('update', $parameters);

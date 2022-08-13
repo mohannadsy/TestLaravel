@@ -7,7 +7,14 @@ use App\Models\Item;
 
 trait  CategoryTrait
 {
-
+    public function callActivityMethod($method, $parameters)
+    {
+        $this->makeActivity([
+            'table' => 'categories',
+            'operation' => $method,
+            'parameters' => $parameters
+        ]);
+    }
     public function isContainItems($id)
     {
 //        $category = Category::withCount('items')->get();

@@ -15,14 +15,7 @@ class CategoryController extends Controller
 {
     use CategoryTrait, ActivityLog;
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'categories',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
+
 
     public function index()
     {
@@ -35,11 +28,13 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
-        $id = Category::latest()->first()->id + 1;
+
+        $id = Category::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
         $category = Category::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('', compact('category'));;
+        return __('common.store') ;
+//        return Inertia::render('', compact('category'));;
     }
 
     public function update(UpdateCategoryRequest $request, $id)
@@ -47,6 +42,7 @@ class CategoryController extends Controller
         $parameters = ['request' => $request, 'id' => $id];
         $category = Category::find($id)->update($request->all());
         $this->callActivityMethod('update', $parameters);
+        return __('common.update');
     }
 
 
@@ -58,7 +54,7 @@ class CategoryController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $category;
         }
-        return __('category.category delete error');
+        return __('category.category not found');
     }
 
 
@@ -67,8 +63,11 @@ class CategoryController extends Controller
         $parameters = ['id' => $id];
         if ($this->isNotContainItems($id)) {
             $category = Category::find($id);
-            return $category ? $category->delete() && $this->callActivityMethod('delete  ', $parameters) : __('category.category delete error');
+             if ($category)
+                 $category->delete();
+                 $this->callActivityMethod('delete  ', $parameters);
+                 __('category.category delete error');
         }
-        return __('category.category delete error');
+        return __('common.delete');
     }
 }
