@@ -31,7 +31,7 @@ class Store extends Model
     ];
     public function stores()
     {
-        return $this->hasMany(Store::Class, 'store_id');
+        return $this->hasMany(Store::Class, 'store_id')->with('stores')->select('id','name','code', 'store_id');
     }
     public function store()
     {
