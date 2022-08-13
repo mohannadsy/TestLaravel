@@ -20,20 +20,23 @@ class StoreController extends Controller
     {
         $parameters = ['id' => null];
         $stores = Store::whereNull('store_id')->with('stores')->select('id', 'name', 'code', 'store_id')->get();// for tree
+        $storesData = Store::where('is_active', true)->select('id', 'name', 'code', 'store_id')->get(); // auto complete
+
         $this->callActivityMethod('getAllStores', $parameters);
 
-//        return $stores;
-        return inertia('Store/Index', compact('stores'));
+//        return $storesData;
+        return inertia('Store/Index', compact('stores','storesData'));
 
     }
 
 
     public function store(StoreStoreRequest $request)
     {
-        $id = Store::latest()->first()->id + 1;
+        $id = Store::orderBy('id', 'desc')->first()->id + 1;
+        Store::create($request->all());
         $parameters = ['request' => $request, 'id' => $id];
-        $store = Store::create($request->all());
         $this->callActivityMethod('store', $parameters);
+        return __('common.store') ;
     }
 
 
@@ -45,7 +48,7 @@ class StoreController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $store;
         }
-        return 'Item Not Found';
+        return __('store.store show');
     }
 
 
