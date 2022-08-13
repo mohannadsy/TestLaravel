@@ -8,19 +8,13 @@ use App\Models\Store;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStoreRequest;
 use App\Traits\ActivityLog\ActivityLog;
+use App\Traits\Store\StoreTrait;
 
 class StoreController extends Controller
 {
-    use ActivityLog;
+    use ActivityLog ,StoreTrait;
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'stores',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
+
 
     public function index()
     {
@@ -66,6 +60,14 @@ class StoreController extends Controller
     {
         $parameters = ['id' => $id];
         $store = Store::find($id);
-        return $store ? $store->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Store not Found';
+        if ($this->isRootStore($id))
+            return __('store.Root Store delete');
+        if (!$this->numOfSubStores($id) > 0) {
+            $store->delete();
+            $this->callActivityMethod('delete', $parameters);
+            return __('common.delete');
+        } else
+            return __('store.store delete');
     }
+
 }

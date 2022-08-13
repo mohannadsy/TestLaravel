@@ -51,7 +51,7 @@ class StoreSeeder extends Seeder
             'name' => 'second store',
             'latin_name' => null,
             'type' => 'BS ',
-            'store_id' => null,
+            'store_id' => 2,
             'account_id' => 2,
             'address' => 'damascus',
             'store_keeper' => 'sara',
