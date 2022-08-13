@@ -25,8 +25,12 @@ class StoreController extends Controller
     public function index()
     {
         $parameters = ['id' => null];
-        $this->callActivityMethod('index', $parameters);
-        return Store::all();
+        $stores = Store::whereNull('store_id')->with('stores')->select('id', 'name', 'code', 'store_id')->get();// for tree
+        $this->callActivityMethod('getAllStores', $parameters);
+
+//        return $stores;
+        return inertia('Store/Index', compact('stores'));
+
     }
 
 

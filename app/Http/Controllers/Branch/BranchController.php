@@ -26,10 +26,10 @@ class BranchController extends Controller
     public function index() //getAllBranches
     {
         $parameters = ['id' => null];
-        $this->callActivityMethod('getAllBranches', $parameters);
         $branches = Branch::where('is_active', true)->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
         $branchesWithUsers = Branch::whereNull('branch_id')->with('branches','users')->select('id', 'name', 'code', 'branch_id')->get();// for tree
         $groupPermissions = PermissionGroup::select('name', 'caption_' . Config::get('app.locale') . ' as caption', 'id')->with(['permissions'])->get();
+        $this->callActivityMethod('getAllBranches', $parameters);
 
 //        return $branchesWithUsers;
         return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
