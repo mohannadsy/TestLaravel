@@ -55,7 +55,7 @@ class StoreController extends Controller
     public function update(UpdateStoreRequest $request, $id)
     {
         $old_data=Store::find($id)->toJson();
-        $paramters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
+        $parameters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
         $store = Store::find($id);
         if ($this->isRootStore($id))
         {
@@ -63,7 +63,7 @@ class StoreController extends Controller
         }
         else
             $Store=$store->update($request->all());
-        $this->callActivityMethod('update', $paramters);
+        $this->callActivityMethod('update', $parameters);
         return __('common.update');
     }
 

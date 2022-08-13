@@ -87,7 +87,7 @@ class BranchController extends Controller
     public function update(UpdateBranchRequest $request, $id)
     {
         $old_data=Branch::find($id)->toJson();
-        $paramters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
+        $parameters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
         $branch = Branch::find($id);
         if ($this->isRootBranch($id))
         {
@@ -95,21 +95,21 @@ class BranchController extends Controller
         }
         else
             $Branch=$branch->update($request->all());
-        $this->callActivityMethod('update', $paramters);
+        $this->callActivityMethod('update', $parameters);
         return __('common.update');
     }
 
     public function delete($id) //  delete - can be restored
     {
 
-        $paramters = ['id' => $id];
+        $parameters = ['id' => $id];
         $branch = Branch::find($id);
         if ($this->isRootBranch($id))
 //            return "Root Branch isn't deleted";
             return __('branch.Root Branch delete');
         if (!$this->numOfSubBranches($id) > 0) {
             $branch->delete();
-            $this->callActivityMethod('delete', $paramters);
+            $this->callActivityMethod('delete', $parameters);
 //            return "Branch is deleted successfully";
             return __('common.delete');
         } else
