@@ -65,7 +65,10 @@ class ItemController extends Controller
     {
         $parameters = ['id' => $id];
         $item = Item::find($id);
-        return $item ? $item->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Item not Found';
+//        if ($item)
+        $item->delete();
+        $this->callActivityMethod('delete  ', $parameters) ;
+        return __('common.delete');
     }
 
 }
