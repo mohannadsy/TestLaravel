@@ -15,7 +15,7 @@
               v-model.trim="storeObject.code"
             />
           </div>
-          <!-- <div v-if="form.errors.code">{{ form.errors.code }}</div> -->
+          <div v-if="form.errors.code">{{ form.errors.code }}</div>
           <!-- <jet-validation-errors class="mb-3" /> -->
         </div>
         <div class="form-group row mt-2">
@@ -81,18 +81,16 @@ import ElementInput from "../../Shared/ElementInput.vue";
 import PageTitle from "../../Shared/PageTitle.vue";
 import VSelect from "../../Shared/VSelect.vue";
 import ToggleButton from "../../Shared/ToggleButton.vue";
-import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
 import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   components: {
-     JetValidationErrors,
     ElemetLabel,
     ElementInput,
     PageTitle,
     VSelect,
     ToggleButton,
   },
-  props:["errors","form"],
+  props:["form"],
   data() {
     return {
       storeObject: useForm({

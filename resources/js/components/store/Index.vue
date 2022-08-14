@@ -4,7 +4,6 @@
       <main-information
         @save-main="saveMain"
         :form="form"
-        :errors="errors"
       ></main-information>
     </div>
     <div class="row a mt-2">
@@ -53,9 +52,6 @@ export default {
     Attachments,
     TitleButton,
     ElementButton,
-  },
-  props: {
-    errors: Object,
   },
   data() {
     return {
