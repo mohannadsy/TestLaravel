@@ -21,7 +21,7 @@ class CostCenterController extends Controller
         $costcentersData = CostCenter::where('is_active', true)->select('id', 'name', 'code', 'center_id')->get(); // auto complete
         $this->callActivityMethod('getAllCostcenters', $parameters);
 //        return $costcentersData;
-        return inertia('...', compact('costcenters','costcentersData'));
+        return inertia('...', compact('costcenters', 'costcentersData'));
     }
 
     public function store(StoreCostCentersRequest $request)
@@ -31,7 +31,7 @@ class CostCenterController extends Controller
         //insert to Database
         $costCenter = CostCenter::create($request->all());
         $this->callActivityMethod('costCenter', $parameters);
-        return __('common.store') ;
+        return __('common.store');
     }
 
 
@@ -49,15 +49,13 @@ class CostCenterController extends Controller
 
     public function update(UpdateCostCentersRequest $request, $id)
     {
-        $old_data=CostCenter::find($id)->toJson();
-        $parameters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
+        $old_data = CostCenter::find($id)->toJson();
+        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data];
         $costCenter = CostCenter::find($id);
-        if ($this->isRootCostCenter($id))
-        {
+        if ($this->isRootCostCenter($id)) {
             $CostCenter = $costCenter->update($request->except('center_id'));
-        }
-        else
-            $CostCenter=$costCenter->update($request->all());
+        } else
+            $CostCenter = $costCenter->update($request->all());
         $this->callActivityMethod('update', $parameters);
         return __('common.update');
     }

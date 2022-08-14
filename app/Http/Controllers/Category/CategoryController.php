@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Requests\StoreCategoryRequest;
-
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Category\CategoryTrait;
 use Inertia\Inertia;

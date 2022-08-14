@@ -14,14 +14,7 @@ class AccountController extends Controller
 {
     use ActivityLog, AccountTrait;
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'accounts',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
+
 
     public function index()
     {
@@ -34,7 +27,7 @@ class AccountController extends Controller
     {
         $id = Account::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $account = Account::create($request->all());
+        Account::create($request->all());
         $this->callActivityMethod('store', $parameters);
 //        return Inertia::render('', compact('account'));;
         return __('common.store');

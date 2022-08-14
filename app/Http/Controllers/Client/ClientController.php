@@ -7,21 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateClientRequest;
 use App\Http\Requests\StoreClientRequest;
 use App\Traits\ActivityLog\ActivityLog;
+use App\Traits\Client\ClientTrait;
 use App\Traits\Image\ImageTrait;
 
 
 class ClientController extends Controller
 {
-    use ImageTrait, ActivityLog;
+    use ImageTrait, ActivityLog, ClientTrait;
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'accounts',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
 
     public function index()
     {

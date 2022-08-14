@@ -8,7 +8,14 @@ use App\Models\Account;
 trait  AccountTrait
 {
 
-
+    public function callActivityMethod($method, $parameters)
+    {
+        $this->makeActivity([
+            'table' => 'accounts',
+            'operation' => $method,
+            'parameters' => $parameters
+        ]);
+    }
     public function isFinal($id) // ختامي
     {
         $account = Account::find($id);

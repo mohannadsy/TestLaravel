@@ -9,10 +9,11 @@ use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Models\Store;
 use App\Traits\ActivityLog\ActivityLog;
+use App\Traits\Item\ItemTrait;
 
 class ItemController extends Controller
 {
-    use ActivityLog;
+    use ActivityLog ,ItemTrait;
 
 
 
