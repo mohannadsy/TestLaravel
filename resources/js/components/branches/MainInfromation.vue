@@ -48,7 +48,7 @@
             @change="objChanged"
             @change-name="triggerToggleEvent"
             :defaultState="myObj.is_active"
-           
+
           />
         </div>
       </div>
@@ -111,7 +111,7 @@ export default {
   /* background: #efefef; */
   /* width: 120px; */
   /* border-radius: 30px; */
-  
+
 }
 /* .toggle_container.active {
   background: #e9ffef;

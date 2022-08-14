@@ -48,7 +48,7 @@
             $t("warehouseType")
           }}</elemet-label>
           <div class="col-8">
-             <element-input
+            <element-input
               @change="objChanged"
               v-model.trim="storeObject.type"
             />
@@ -67,9 +67,12 @@
         </div>
 
         <div class="toggle_container">
-          <ToggleButton v-model="storeObject.is_active"
-           @change="objChanged"
-            @change-name="triggerToggleEvent" />
+          <ToggleButton
+            v-model="storeObject.is_active"
+            @change="objChanged"
+            @change-name="triggerToggleEvent"
+            :defaultState="storeObject.is_active"
+          />
         </div>
       </div>
     </div>
@@ -91,7 +94,7 @@ export default {
     VSelect,
     ToggleButton,
   },
-  props:["form"],
+  props: ["form"],
   data() {
     return {
       storeObject: useForm({
@@ -109,12 +112,11 @@ export default {
       this.$emit("save-main", this.storeObject);
     },
   },
-    methods: {
+  methods: {
     triggerToggleEvent(value) {
       this.storeObject.is_active = value;
     },
   },
-
 };
 </script>
 

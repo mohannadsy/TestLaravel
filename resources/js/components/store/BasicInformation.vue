@@ -9,7 +9,10 @@
             >{{ $t("mainWarehouse") }}</elemet-label
           >
           <div class="col-8">
-            <element-input />
+            <element-input
+              @change="objChanged"
+              v-model.trim="storeObject.store_id"
+            />
           </div>
         </div>
         <div class="form-group row mt-2">
@@ -17,7 +20,10 @@
             $t("warehouseAcount")
           }}</elemet-label>
           <div class="col-8">
-            <element-input />
+            <element-input
+              @change="objChanged"
+              v-model.trim="storeObject.account_id"
+            />
           </div>
         </div>
         <div class="form-group row mt-2">
@@ -25,7 +31,21 @@
             $t("warehouseAddress")
           }}</elemet-label>
           <div class="col-8">
-            <element-input />
+            <element-input
+              @change="objChanged"
+              v-model.trim="storeObject.address"
+            />
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <elemet-label class="col-form-label col-md-4"
+            >موقع الانترنت</elemet-label
+          >
+          <div class="col-8">
+            <element-input
+              @change="objChanged"
+              v-model.trim="storeObject.website"
+            />
           </div>
         </div>
         <div class="form-group row mt-2">
@@ -33,7 +53,10 @@
             $t("warehouseMan")
           }}</elemet-label>
           <div class="col-8">
-            <element-input />
+            <element-input
+              @change="objChanged"
+              v-model.trim="storeObject.store_keeper"
+            />
           </div>
         </div>
         <div class="form-group row mt-2">
@@ -41,7 +64,10 @@
             $t("storageCapacity")
           }}</elemet-label>
           <div class="col-8">
-            <element-input />
+            <element-input
+              @change="objChanged"
+              v-model.trim="storeObject.storage_amount"
+            />
           </div>
         </div>
       </div>
@@ -51,7 +77,11 @@
             $t("userNotes")
           }}</elemet-label>
           <div class="col-md-9">
-            <text-area class="form-control"></text-area>
+            <text-area
+              class="form-control"
+              @change="objChanged"
+              v-model.trim="storeObject.notes"
+            ></text-area>
           </div>
         </div>
       </div>
@@ -64,12 +94,31 @@
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import TextArea from "../../Shared/TextArea.vue";
-
+import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   components: {
     ElemetLabel,
     ElementInput,
     TextArea,
+  },
+  props: ["form"],
+  data() {
+    return {
+      storeObject: useForm({
+        store_id: "",
+        account_id: "",
+        address: "",
+        website: "",
+        store_keeper: "",
+        storage_amount: "",
+        notes: "",
+      }),
+    };
+  },
+  computed: {
+    objChanged() {
+      this.$emit("save-basic", this.storeObject);
+    },
   },
 };
 </script>
