@@ -28,6 +28,7 @@
               v-model.trim="storeObject.name"
             />
           </div>
+          <div v-if="form.errors.name">{{ form.errors.name }}</div>
         </div>
         <div class="form-group row mt-2">
           <elemet-label class="col-form-label col-md-4">{{
