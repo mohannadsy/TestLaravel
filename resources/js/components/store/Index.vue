@@ -90,7 +90,7 @@ export default {
       this.form.store_keeper = data.store_keeper;
       this.form.storage_amount = data.storage_amount;
       this.form.notes = data.notes;
-      console.log(data)
+      console.log(data);
     },
     storeStore() {
       //   this.$store.dispatch("stores/storeStore", this.form);
