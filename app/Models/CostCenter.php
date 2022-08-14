@@ -25,7 +25,7 @@ class CostCenter extends Model
          ];
         public function cost_centers()
         {
-            return $this->hasMany('App\Models\CostCenters', 'center_id');
+            return $this->hasMany('App\Models\CostCenters', 'center_id')->with('cost_centers')->select('id','name','code', 'center_id');
         }
         public function cost_center()
         {

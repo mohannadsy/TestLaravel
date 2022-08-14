@@ -15,15 +15,6 @@ class CurrencyController extends Controller
 {
     use CurrencyTrait, ActivityLog, ImageTrait;
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'currencies',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
-
     public function index()
     {
         $parameters = ['id' => null];
@@ -33,12 +24,12 @@ class CurrencyController extends Controller
 
     public function store(StoreCurrencyRequest $request)
     {
-        $id = Currency::latest()->first()->id + 1;
+        $id = Currency::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
         $request->photo = $this->getImageURL($request);
         $currency = $currency = Currency::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('', compact('currency'));;
+        return __('common.store') ;
     }
 
     public function update(UpdateCurrencyRequest $request, $id)
@@ -46,6 +37,7 @@ class CurrencyController extends Controller
         $parameters = ['request' => $request, 'id' => $id];
         $currency = Currency::find($id)->update($request->all());
         $this->callActivityMethod('update', $parameters);
+        return __('common.update');
     }
 
 
@@ -57,7 +49,7 @@ class CurrencyController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $currency;
         }
-        return 'Currency not Found';
+        return __('currency.currency not found');
     }
 
 
@@ -66,8 +58,11 @@ class CurrencyController extends Controller
         $parameters = ['id' => $id];
         if ($this->isNotDefaultCurrency($id)) {
             $currency = Currency::find($id);
-            return $currency ? $currency->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Currency not Found';
+            $currency->delete();
+            $this->callActivityMethod('delete  ', $parameters) ;
+            return __('common.delete');
+
         }
-        return "Default Currency Can not be Deleted";
+        return __("currency.default currency can not be deleted");
     }
 }

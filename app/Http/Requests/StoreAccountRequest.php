@@ -15,6 +15,8 @@ class StoreAccountRequest extends FormRequest
     public function rules()
     {
         return [
+            'code' => 'required|string|unique:branches,code',
+            'name' => 'required|max:50|string|unique:branches,name',
 //            'name' => 'required',
 //            'code' => 'required',
 //            'latin_name' => '',
@@ -32,8 +34,6 @@ class StoreAccountRequest extends FormRequest
 //            'notes' => '',
         ];
     }
-
-
 
 
 }

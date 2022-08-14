@@ -15,6 +15,8 @@ class StoreUnitRequest extends FormRequest
     public function rules()
     {
         return [
+            'code'                   =>'required|string|unique:branches,code',
+            'name'                   =>'required|max:50|string|unique:branches,name' ,
 
         ];
     }

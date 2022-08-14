@@ -14,14 +14,7 @@ class AccountController extends Controller
 {
     use ActivityLog, AccountTrait;
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'accounts',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
+
 
     public function index()
     {
@@ -34,9 +27,10 @@ class AccountController extends Controller
     {
         $id = Account::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id];
-        $account = Account::create($request->all());
+        Account::create($request->all());
         $this->callActivityMethod('store', $parameters);
-        return Inertia::render('', compact('account'));;
+//        return Inertia::render('', compact('account'));;
+        return __('common.store');
     }
 
     public function show($id)
@@ -47,7 +41,7 @@ class AccountController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $account;
         }
-        return __('account.account delete error');
+        return __('account.account not found');
     }
 
     public function update(UpdateAccountRequest $request, $id)
@@ -56,6 +50,7 @@ class AccountController extends Controller
         $account = Account::find($id)->get();
         $account->update($request->all());
         $this->callActivityMethod('update', $parameters);
+        return __('common.update');
     }
 
     public function delete($id)
@@ -63,6 +58,9 @@ class AccountController extends Controller
         $parameters = ['id' => $id];
         $account = Account::find($id);
 //        return $account ? $account->delete() && $this->callActivityMethod('delete  ', $parameters) : __('account.account delete error');
+        $account->delete();
+        $this->callActivityMethod('delete ', $parameters);
+        return __('common.delete');
     }
 
 

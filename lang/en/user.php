@@ -1,8 +1,8 @@
 <?php
 return [
 
-    'admin delete' => 'Root Branch is not deleted',
-    'user delete error' => 'User not Found',
+    'admin can not be deleted'=> 'Admin User not deleted',
+    'user not found' => 'User not Found',
     ''=>'',
     ''=>'',
     ''=>'',
