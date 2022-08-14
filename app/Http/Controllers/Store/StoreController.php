@@ -72,7 +72,7 @@ class StoreController extends Controller
         $parameters = ['id' => $id];
         $store = Store::find($id);
         if ($this->isRootStore($id))
-            return __('store.root store can not be deleted');
+            return __(  'root store can not be deleted');
         if (!$this->numOfSubStores($id) > 0) {
             $store->delete();
             $this->callActivityMethod('delete', $parameters);
