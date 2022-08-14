@@ -62,7 +62,7 @@ class CostCenterController extends Controller
         return __('common.update');
     }
 
-    public function delete($id) //  delete - can be restored
+    public function delete($id) //
     {
         $paramters = ['id' => $id];
         $CostCenter = CostCenter::find($id);
@@ -73,6 +73,6 @@ class CostCenterController extends Controller
             $this->callActivityMethod('delete', $paramters);
             return __('common.delete');
         } else
-            return __('costCenter.costCenter delete');
+            return __('costCenter.costCenter delete error');
     }
 }

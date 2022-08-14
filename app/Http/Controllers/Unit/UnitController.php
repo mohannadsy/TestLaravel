@@ -55,7 +55,7 @@ class UnitController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $unit;
         }
-        return 'Unit not Found';
+        return __('units.unit not found');
     }
 
 
@@ -66,6 +66,6 @@ class UnitController extends Controller
             $unit = Unit::find($id);
             return $unit ? $unit->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Unit not Found';
         }
-        return "Default Unit Can not be Deleted";
+        return __('units.default unit can not be deleted');
     }
 }

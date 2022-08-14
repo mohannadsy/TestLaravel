@@ -48,7 +48,7 @@ class StoreController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $store;
         }
-        return __('store.store show');
+        return __('store.store not found');
     }
 
 
@@ -72,13 +72,13 @@ class StoreController extends Controller
         $parameters = ['id' => $id];
         $store = Store::find($id);
         if ($this->isRootStore($id))
-            return __('store.Root Store delete');
+            return __('store.root store can not be deleted');
         if (!$this->numOfSubStores($id) > 0) {
             $store->delete();
             $this->callActivityMethod('delete', $parameters);
             return __('common.delete');
         } else
-            return __('store.store delete');
+            return __('store.store delete error');
     }
 
 }
