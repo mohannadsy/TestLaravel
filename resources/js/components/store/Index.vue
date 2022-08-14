@@ -1,7 +1,11 @@
 <template>
   <form>
     <div class="row">
-      <main-information @save-main="saveMain"  :form="form"  :errors="errors"></main-information>
+      <main-information
+        @save-main="saveMain"
+        :form="form"
+        :errors="errors"
+      ></main-information>
     </div>
     <div class="row a mt-2">
       <div class="col-5">
@@ -50,7 +54,7 @@ export default {
     TitleButton,
     ElementButton,
   },
-  props:{
+  props: {
     errors: Object,
   },
   data() {
@@ -81,12 +85,13 @@ export default {
       this.form.code = data.code;
       this.form.name = data.name;
       this.form.latin_name = data.latin_name;
-      this.form.type = data.type
+      this.form.type = data.type;
       this.form.is_active = data.is_active;
       this.form.branch_id = data.branch_id;
     },
     storeStore() {
-        this.$store.dispatch('stores/storeStore',this.form)
+    //   this.$store.dispatch("stores/storeStore", this.form);
+     this.form.post(route("store.store"));
     },
   },
 };
