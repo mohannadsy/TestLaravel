@@ -16,8 +16,8 @@ class UpdateBranchRequest extends FormRequest
     {
         return $rules = [
 
-            'code'                   =>'required|string',
-            'name'                   =>'required|max:50|string' ,
+            'code'                   =>'required|string:branches,code',
+            'name'                   =>'required|max:50|string:branches,name' ,
 
 //              'code'                   =>'required|string|unique:branches,code',
 //              'name'                   =>'required|max:50|string|unique:branches,name' ,

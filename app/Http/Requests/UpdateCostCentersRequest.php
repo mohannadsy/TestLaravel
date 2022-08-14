@@ -17,8 +17,8 @@ class UpdateCostCentersRequest extends FormRequest
     {
         return $rules=
             [
-                'code'                   =>'required|string',
-                'name'                   =>'required|max:50|string' ,
+                'code'                   =>'required|string:cost_centers,code',
+                'name'                   =>'required|max:50|string:cost_centers,name' ,
             ];
     }
 

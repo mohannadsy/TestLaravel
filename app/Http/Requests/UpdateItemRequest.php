@@ -16,8 +16,8 @@ class UpdateItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'code'                   =>'required|string',
-            'name'                   =>'required|max:50|string' ,
+            'code'                   =>'required|string:items,code',
+            'name'                   =>'required|max:50|string:items,name' ,
 
         ];
     }

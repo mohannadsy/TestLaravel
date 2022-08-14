@@ -17,8 +17,8 @@ class StoreCostCentersRequest extends FormRequest
     {
         return $rules=
             [
-                'code'                   =>'required|string|unique:costcenters,code',
-                'name'                   =>'required|max:50|string|unique:costcenters,name' ,
+                'code'                   =>'required|string|unique:cost_centers,code',
+                'name'                   =>'required|max:50|string|unique:cost_centers,name' ,
             ];
     }
 
