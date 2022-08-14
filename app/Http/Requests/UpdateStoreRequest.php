@@ -16,8 +16,8 @@ class UpdateStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'code'                   =>'required|string',
-            'name'                   =>'required|max:50|string' ,
+            'code'                   =>'required|string:stores,code',
+            'name'                   =>'required|max:50|string:stores,name' ,
 
         ];
     }
