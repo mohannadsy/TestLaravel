@@ -33,10 +33,10 @@ class StoreController extends Controller
     {
         $id = Store::orderBy('id', 'desc')->first()->id + 1;
         $store = Store::create($request->all());
-        dd($store);
-//        $parameters = ['request' => $request, 'id' => $id];
-//        $this->callActivityMethod('store', $parameters);
-//        return __('common.store') ;
+//         dd($store);
+        $parameters = ['request' => $request, 'id' => $id];
+        $this->callActivityMethod('store', $parameters);
+        return __('common.store') ;
     }
 
 
