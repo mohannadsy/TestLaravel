@@ -15,7 +15,6 @@
       </span>
       <!-- class="[isActive  ? 'red' : 'blue']" -->
       <span
-        :class="{'highlight': item.id === isActive}"
         class="pointer"
         @click="sendNodeType(item, item.id)"
         >{{ item.name }} - {{ item.code }}</span
@@ -54,7 +53,8 @@ export default {
       isOpen: false,
       nodeType: "",
       nodeId: "",
-      isActive: 0,
+    //   isActive: 0,
+    isNodeSelected : false
     };
   },
   computed: {
@@ -76,7 +76,9 @@ export default {
     },
 
     sendNodeType(item, id) {
-      this.isActive = id;
+ this.isNodeSelected = true;
+     this.isSelected = item.id;
+     console.log(this.isSelected)
       id = item.id;
       if (item.hasOwnProperty("branches")) {
         this.nodeType = "branches";
@@ -91,8 +93,16 @@ export default {
 };
 </script>
 <style scoped>
+
+.selectedNode{
+  background:#1a74b0;
+  color:white;
+}
 .highlight {
      background-color: red;
+}
+.notselected {
+  background-color:transparent;
 }
 .pointer {
   cursor: pointer;
