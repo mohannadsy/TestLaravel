@@ -101,7 +101,7 @@ export default {
     ElementInput,
     TextArea,
   },
-  props: ["form"],
+  props: ["form","storeInformation"],
   data() {
     return {
       storeObject: useForm({
@@ -120,6 +120,11 @@ export default {
       this.$emit("save-basic", this.storeObject);
     },
   },
+   watch:{
+     storeInformation() {
+      Object.assign(this.storeObject, this.storeInformation);
+    },
+   }
 };
 </script>
 

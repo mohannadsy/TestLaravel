@@ -94,7 +94,7 @@ export default {
     VSelect,
     ToggleButton,
   },
-  props: ["form"],
+  props: ["form","storeInformation"],
   data() {
     return {
       storeObject: useForm({
@@ -106,6 +106,11 @@ export default {
         branch_id: "",
       }),
     };
+  },
+  watch:{
+     storeInformation() {
+      Object.assign(this.storeObject, this.storeInformation);
+    },
   },
   computed: {
     objChanged() {
