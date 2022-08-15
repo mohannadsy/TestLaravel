@@ -12,8 +12,8 @@ class StoreSeeder extends Seeder
     {
         Store::create([
             'code' => '1',
-            'name' => 'Main store',
-            'latin_name' => null,
+            'name' => 'المستودع الرئيسي',
+            'latin_name' => 'Main store',
             'type' => 'AS ',
             'store_id' => null,
             'account_id' => 1,
@@ -30,8 +30,8 @@ class StoreSeeder extends Seeder
         ]);
         Store::create([
             'code' => '2',
-            'name' => 'first store',
-            'latin_name' => null,
+            'name' => 'المستودع الثاني',
+            'latin_name' => 'second store',
             'type' => 'As ',
             'store_id' => 1,
             'account_id' => 1,
@@ -48,8 +48,8 @@ class StoreSeeder extends Seeder
         ]);
         Store::create([
             'code' => '3',
-            'name' => 'second store',
-            'latin_name' => null,
+            'name' => 'المستودع الثالث',
+            'latin_name' => 'third store',
             'type' => 'BS ',
             'store_id' => 2,
             'account_id' => 2,
@@ -66,8 +66,8 @@ class StoreSeeder extends Seeder
         ]);
         Store::create([
             'code' => '4',
-            'name' => 'third store',
-            'latin_name' => null,
+            'name' => 'المستودع الرابع',
+            'latin_name' => 'fourth store',
             'type' => ' XX',
             'store_id' => 1,
             'account_id' => 1,
