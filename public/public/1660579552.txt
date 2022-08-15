@@ -1,0 +1,18 @@
+0. Tensorflow or Pytorch -> tensorflow
+
+1. Load Dataset. 
+
+2. Preprocessing dataset : 
+   a. Tokenization.
+   b. Normalization.
+   c. ____
+   
+3. Encoder 
+
+4. Decoder 
+
+5. Type of Neural Network (RNN - LSTM - GRU) -> LSTM 
+6. Loss Function ( ) -> 
+7. Optimization Function (ADAM)
+8. Evaluation Metrics -> BLUE
+  
