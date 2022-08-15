@@ -1,7 +1,11 @@
 <template>
   <form>
     <div class="row">
-      <main-information @save-main="saveMain" :form="form"></main-information>
+      <main-information
+        @save-main="saveMain"
+        :form="form"
+        :storeInformation="storeInformation"
+      ></main-information>
     </div>
     <div class="row a mt-2">
       <div class="col-5">
@@ -13,7 +17,11 @@
         </title-button>
       </div>
     </div>
-    <basic-information :form="form" @save-basic="saveBasic"></basic-information>
+    <basic-information
+      :form="form"
+      @save-basic="saveBasic"
+      :storeInformation="storeInformation"
+    ></basic-information>
     <attachments></attachments>
 
     <div class="row justify-content-end mb-2">
@@ -49,6 +57,9 @@ export default {
     Attachments,
     TitleButton,
     ElementButton,
+  },
+  props: {
+    storeInformation: Object,
   },
   data() {
     return {
@@ -90,7 +101,6 @@ export default {
       this.form.store_keeper = data.store_keeper;
       this.form.storage_amount = data.storage_amount;
       this.form.notes = data.notes;
-      console.log(data);
     },
     storeStore() {
       //   this.$store.dispatch("stores/storeStore", this.form);

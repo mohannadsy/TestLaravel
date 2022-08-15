@@ -14,9 +14,7 @@
         <fa v-else icon="circle-plus" />
       </span>
       <!-- class="[isActive  ? 'red' : 'blue']" -->
-      <span
-        class="pointer"
-        @click="sendNodeType(item, item.id)"
+      <span class="pointer" @click="sendNodeType(item, item.id)"
         >{{ item.name }} - {{ item.code }}</span
       >
     </div>
@@ -53,8 +51,8 @@ export default {
       isOpen: false,
       nodeType: "",
       nodeId: "",
-    //   isActive: 0,
-    isNodeSelected : false
+      //   isActive: 0,
+      isNodeSelected: false,
     };
   },
   computed: {
@@ -76,9 +74,8 @@ export default {
     },
 
     sendNodeType(item, id) {
- this.isNodeSelected = true;
-     this.isSelected = item.id;
-     console.log(this.isSelected)
+      this.isNodeSelected = true;
+      this.isSelected = item.id;
       id = item.id;
       if (item.hasOwnProperty("branches")) {
         this.nodeType = "branches";
@@ -93,16 +90,15 @@ export default {
 };
 </script>
 <style scoped>
-
-.selectedNode{
-  background:#1a74b0;
-  color:white;
+.selectedNode {
+  background: #1a74b0;
+  color: white;
 }
 .highlight {
-     background-color: red;
+  background-color: red;
 }
 .notselected {
-  background-color:transparent;
+  background-color: transparent;
 }
 .pointer {
   cursor: pointer;

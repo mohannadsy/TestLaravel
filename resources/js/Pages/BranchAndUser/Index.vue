@@ -69,8 +69,6 @@ export default {
   methods: {
     getRoleId(data){
         this.roleId = data
-        console.log('role from bababba')
-        console.log(this.roleId + "jhdjjhjh")
     },
     async getNodeType({ nodeId, nodeType }) {
       this.nodeType = nodeType;

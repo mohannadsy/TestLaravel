@@ -7,10 +7,11 @@
         :key="store.name"
         class="item"
         :item="store"
+        @node-id="getNodeId($event)"
       ></tree>
     </div>
     <div class="col-9">
-      <currency-index></currency-index>
+      <store-index :storeInformation="storeInformation"></store-index>
     </div>
   </div>
 </template>
@@ -19,15 +20,29 @@
 import Tree from "./Tree.vue";
 import Index from "../../components/store/Index.vue";
 import WarehouseDirectory from "../../components/store/WarehouseDirectory.vue";
+import axios from "axios";
 export default {
   components: {
-    currencyIndex: Index,
+    storeIndex: Index,
     WarehouseDirectory,
-    Tree
+    Tree,
   },
-  props:{
-    stores:Array
-  }
+  data() {
+    return {
+      nodeId: "",
+      storeInformation: {},
+    };
+  },
+  props: {
+    stores: Array,
+  },
+  methods: {
+    async getNodeId(nodeId) {
+      this.nodeId = nodeId;
+      let res = await axios.get(route("store.show", this.nodeId));
+      this.storeInformation = JSON.parse(JSON.stringify(res.data));
+    },
+  },
 };
 </script>
 <style scoped>

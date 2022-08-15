@@ -10,8 +10,7 @@
         <fa v-if="isOpen" icon="circle-minus" />
         <fa v-else icon="circle-plus" />
       </span>
-      <span
-        class="pointer"
+      <span class="pointer" @click="sendNodeId(item)"
         >{{ item.name }} - {{ item.code }}</span
       >
     </div>
@@ -21,6 +20,7 @@
         :key="index"
         :item="childStore"
         @make-folder="$emit('make-folder', $event)"
+        @node-id="this.$emit('node-id', $event)"
       ></tree-item>
     </ul>
   </div>
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       isOpen: false,
+      nodeId: "",
     };
   },
   computed: {
@@ -54,12 +55,16 @@ export default {
         this.isOpen = true;
       }
     },
+    sendNodeId(item) {
+      this.nodeId = item.id;
+      this.$emit("node-id", this.nodeId);
+    },
   },
 };
 </script>
 <style scoped>
 .highlight {
-     background-color: red;
+  background-color: red;
 }
 .pointer {
   cursor: pointer;
@@ -70,5 +75,4 @@ export default {
   margin: 0px 3px;
   padding-bottom: 20px;
 }
-
 </style>
