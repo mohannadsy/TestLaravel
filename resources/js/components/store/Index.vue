@@ -34,7 +34,7 @@
         <element-button :type="'button'" @click="updateStore"
           >{{ $t("userUpdate") }}
         </element-button>
-        <element-button :type="'button'"  @click="deleteStore"
+        <element-button :type="'button'" @click="deleteStore"
           >{{ $t("userDelete") }}
         </element-button>
       </div>
@@ -135,9 +135,9 @@ export default {
         _token: this.$page.props.csrf_token,
       });
     },
-    deleteStore(){
-        Inertia.get(route("store.delete", this.storeId), this.form);
-    }
+    deleteStore() {
+      Inertia.get(route("store.delete", this.storeId), this.form);
+    },
   },
 };
 </script>
