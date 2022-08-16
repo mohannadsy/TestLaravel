@@ -34,7 +34,7 @@
         <element-button :type="'button'" @click="updateStore"
           >{{ $t("userUpdate") }}
         </element-button>
-        <element-button :type="'button'"
+        <element-button :type="'button'"  @click="deleteStore"
           >{{ $t("userDelete") }}
         </element-button>
       </div>
@@ -52,6 +52,7 @@ import Attachments from "./Attachments.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import ElementButton from "../../Shared/ElementButton.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
 export default {
   components: {
     MainInformation,
@@ -134,6 +135,9 @@ export default {
         _token: this.$page.props.csrf_token,
       });
     },
+    deleteStore(){
+        Inertia.get(route("store.delete", this.storeId), this.form);
+    }
   },
 };
 </script>
