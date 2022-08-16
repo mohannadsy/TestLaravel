@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Attachment extends Model
 {
     use HasFactory;
-    protected $fillable=['file','name' , 'description'];
+    protected $fillable=['path','name','type' ];
 
+
+    public function branch(){
+        return $this->belongsTo(Branch::class,'attachment_id');
+    }
+    public function store(){
+        return $this->belongsTo(Store::class,'attachment_id');
+    }
 }

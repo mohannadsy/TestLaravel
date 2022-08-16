@@ -18,7 +18,6 @@
 
                 <tr>
                     <th>Name</th>
-                    <th>Description</th>
 
                     <th> View</th>
                     <th> Download</th>
@@ -30,10 +29,9 @@
 
                     <tr>
                         <td>{{$data->name}} </td>
-                        <td>{{$data->description }}</td>
 
                         <td><a href="">View</a></td>
-                        <td><a href="{{url('/download',$data->file)}}"> Download </a></td>
+                        <td><a href="{{url('/download',$data->path)}}"> Download </a></td>
 
 
                     </tr>

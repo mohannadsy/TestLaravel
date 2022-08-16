@@ -23,6 +23,7 @@ class Branch extends Model
         'mobile',
         'is_active',
         'security_degree',
+        'attachment_id'
 
 
 
@@ -72,5 +73,8 @@ class Branch extends Model
     {
         return $this->hasMany(Category::class, 'branch_id');
     }
-
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class, 'attachment_id');
+    }
 }

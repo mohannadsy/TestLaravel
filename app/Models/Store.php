@@ -47,5 +47,9 @@ class Store extends Model
     {
         return $this->hasMany(Item::Class, 'store_id');
     }
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class, 'attachment_id');
+    }
     use HasFactory;
 }

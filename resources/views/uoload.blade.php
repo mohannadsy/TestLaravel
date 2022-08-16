@@ -17,19 +17,11 @@
 
             <form action='/upload' method="post" enctype="multipart/form-data">
 
-{{--                {{csrf_field()}}--}}
+                {{csrf_field()}}
                 @csrf
-                <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="name">
-                </div>
-                <br>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="description" placeholder="description">
-                </div>
-                <br>
 
                 <div class="form-group">
-                    <input type="file" class="form-control" name="file">
+                    <input type="file" class="form-control" name="path">
                 </div>
                 <br>
 
