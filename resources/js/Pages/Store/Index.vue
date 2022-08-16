@@ -21,12 +21,14 @@ import Tree from "./Tree.vue";
 import Index from "../../components/store/Index.vue";
 import WarehouseDirectory from "../../components/store/WarehouseDirectory.vue";
 import axios from "axios";
+import MyLayout from "../../Layouts/MyLayout.vue";
 export default {
   components: {
     storeIndex: Index,
     WarehouseDirectory,
     Tree,
   },
+  layout: MyLayout,
   data() {
     return {
       storeId: "",
