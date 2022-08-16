@@ -13,6 +13,7 @@
     </template>
   </base-dialog>
   <locale-switcher/>
+    <themes-switcher/>
   <div class="row">
     <form>
       <div class="col border-right">
@@ -67,6 +68,7 @@
 
 <script>
 import localeSwitcher from './localeSwitcher.vue'
+import ThemesSwitcher from "./ThemesSwitcher";
 import MainInfromation from "./MainInfromation.vue";
 import BasicInformation from "./BasicInformation.vue";
 import PageTitle from "../../Shared/PageTitle.vue";
@@ -89,6 +91,7 @@ export default {
     errors: Object,
   },
   components: {
+      ThemesSwitcher,
     localeSwitcher,
     BasicInformation,
     PageTitle,
