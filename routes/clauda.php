@@ -107,7 +107,7 @@ Route::group(['namespace' => 'Store', 'prefix' => 'store'], function () {
     Route::get('index', [StoreController::class, 'index'])->name('store.index');
     Route::post('store', [StoreController::class, 'store'])->name('store.store');
     Route::get('show/{id}', [StoreController::class, 'show'])->name('store.show');
-    Route::post('update', [StoreController::class, 'update'])->name('store.update');
+    Route::post('update/{id}', [StoreController::class, 'update'])->name('store.update');
     Route::get('delete/{id}', [StoreController::class, 'delete'])->name('store.delete');
 });
 
