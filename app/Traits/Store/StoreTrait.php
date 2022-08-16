@@ -35,10 +35,6 @@ trait  StoreTrait
     }
 
 
-    public function storeType($id)
-    {
-        return !$this->isRootStore($id);
-    }
 
 
 
