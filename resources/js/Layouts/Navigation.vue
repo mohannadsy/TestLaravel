@@ -3,7 +3,7 @@
     <nav>
       <div class="branding">
         <!-- <img src="@/assets/logo.png" /> -->
-        <v-select :options="languageOptions" />
+        <v-select :options="languageOptions" :value="languageOptions[0]" />
       </div>
       <ul v-show="!mobile" class="navigation">
         <li>
@@ -118,7 +118,7 @@ header {
     position: relative;
     display: flex;
     flex-direction: row;
-    padding: 12px 0;
+  //  padding: 12px 0;
     transition: 0.5s ease all;
     width: 90%;
     margin: 0 auto;

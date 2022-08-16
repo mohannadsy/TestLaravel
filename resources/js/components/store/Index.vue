@@ -9,20 +9,21 @@
     </div>
     <div class="row a mt-2">
       <div class="col-5">
-        <title-button @click="activeTab = 'BasicInformation'"
+        <title-button @click="activeTab = 'BasicInformation'" :type="'button'"
           >{{ $t("warehousebBasicInformation") }}
         </title-button>
-        <title-button @click="activeTab = 'attachments'"
+        <title-button @click="activeTab = 'attachments'" :type="'button'"
           >{{ $t("attachments") }}
         </title-button>
       </div>
     </div>
     <basic-information
+    v-if="activeTab === 'BasicInformation'"
       :form="form"
       @save-basic="saveBasic"
       :storeInformation="storeInformation"
     ></basic-information>
-    <attachments></attachments>
+    <attachments v-if="activeTab === 'attachments'"></attachments>
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
         <element-button :type="'button'" @click="storeStore"
