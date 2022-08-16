@@ -21,6 +21,7 @@
           :branchInformaion="branchInformaion"
           :form="form"
           :errors="errors"
+          :branches="branches"
         >
           ></main-infromation
         >
@@ -83,6 +84,7 @@ import { Inertia } from "@inertiajs/inertia";
 export default {
   props: {
     branchInformaion: Object,
+    branches:Array,
     branchId: String,
     errors: Object,
   },

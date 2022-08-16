@@ -23,14 +23,13 @@
       :storeInformation="storeInformation"
     ></basic-information>
     <attachments></attachments>
-
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
         <element-button :type="'button'" @click="storeStore"
           >{{ $t("userSave") }}
         </element-button>
         <element-button :type="'button'">{{ $t("UserNew") }} </element-button>
-        <element-button>{{ $t("userUpdate") }} </element-button>
+        <element-button :type="'button'" @click="updateStore">{{ $t("userUpdate") }} </element-button>
         <element-button :type="'button'"
           >{{ $t("userDelete") }}
         </element-button>
@@ -60,6 +59,7 @@ export default {
   },
   props: {
     storeInformation: Object,
+    storeId:Number
   },
   data() {
     return {
@@ -106,6 +106,10 @@ export default {
       //   this.$store.dispatch("stores/storeStore", this.form);
       this.form.post(route("store.store"));
     },
+    updateStore(){
+        console.log(this.form)
+        this.form.post(route("store.update", this.storeId));
+    }
   },
 };
 </script>

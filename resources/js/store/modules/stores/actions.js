@@ -1,4 +1,5 @@
 import { Inertia } from "@inertiajs/inertia";
+import axios from "axios";
 export default {
     storeStore(context, data) {
         const storeData = {
@@ -22,4 +23,7 @@ export default {
             ...storeData
         });
     },
+    async showStore({ commit }, id) {
+        const response = await axios.get(route("store.show", id)).then(stores => commit('showStore'), stores);
+    }
 };

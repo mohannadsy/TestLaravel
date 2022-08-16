@@ -11,7 +11,7 @@
       ></tree>
     </div>
     <div class="col-9">
-      <store-index :storeInformation="storeInformation"></store-index>
+      <store-index :storeInformation="storeInformation" :storeId="storeId"></store-index>
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      nodeId: "",
+      storeId: "",
       storeInformation: {},
     };
   },
@@ -38,9 +38,10 @@ export default {
   },
   methods: {
     async getNodeId(nodeId) {
-      this.nodeId = nodeId;
-      let res = await axios.get(route("store.show", this.nodeId));
+      this.storeId = nodeId;
+      let res = await axios.get(route("store.show", this.storeId));
       this.storeInformation = JSON.parse(JSON.stringify(res.data));
+    // this.storeInformation=  this.$store.dispatch("stores/showStore", this.nodeId);
     },
   },
 };

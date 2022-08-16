@@ -17,13 +17,13 @@
         <!-- <hr class="new1"> -->
         <div class="row a mt-2">
           <div class="col">
-            <title-button @click="activeTab = 'BasicInformation'">
+            <title-button :type="'button'" @click="activeTab = 'BasicInformation'">
               {{ $t("userBasicInfo") }}</title-button
             >
-            <title-button @click="activeTab = 'Permissions'">{{
+            <title-button :type="'button'" @click="activeTab = 'Permissions'">{{
               $t("userPermissions")
             }}</title-button>
-            <title-button @click="activeTab = 'ExtraOptions'"
+            <title-button :type="'button'" @click="activeTab = 'ExtraOptions'"
               >{{ $t("userAdditionalOptions") }}
             </title-button>
           </div>
