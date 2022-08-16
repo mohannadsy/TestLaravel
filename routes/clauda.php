@@ -11,6 +11,7 @@ use App\Http\Controllers\Store\StoreController;
 use App\Http\Controllers\Unit\UnitController;
 use App\Http\Controllers\Item\ItemController;
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\AttachmentsController;
 
 use Barryvdh\Debugbar\Facades;
 
@@ -163,3 +164,8 @@ Route::get('/user-permission-via-role/', function () {
     return $user->roles->first()->permissions; //true
     // return $user->getPermissionsViaRoles(); // true
 });
+
+Route::get('home', [AttachmentsController::class, 'index'])->name('home');
+Route::post('upload', [AttachmentsController::class, 'Upload'])->name('upload');
+Route::get('show', [AttachmentsController::class, 'show'])->name('show');
+Route::get('download/{file}', [AttachmentsController::class, 'download'])->name('download');

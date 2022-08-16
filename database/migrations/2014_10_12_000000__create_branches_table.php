@@ -22,8 +22,13 @@ return new class extends Migration {
             $table->integer('security_degree')->default(1);
             $table->timestamps();
             $table->foreign('branch_id')->references('id')->on('branches');
+
+            $table->unsignedBigInteger('attachment_id')->nullable()->default(null);
+
+
         });
     }
+
     public function down()
     {
         Schema::dropIfExists('branches');

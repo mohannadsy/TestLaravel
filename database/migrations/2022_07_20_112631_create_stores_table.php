@@ -33,6 +33,10 @@ return new class extends Migration {
 
             $table->foreign('store_id')->references('id')->on('stores');
 
+            $table->unsignedBigInteger('attachment_id')->nullable()->default(null);
+
+
+
         });
     }
 
