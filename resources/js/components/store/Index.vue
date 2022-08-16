@@ -28,8 +28,12 @@
         <element-button :type="'button'" @click="storeStore"
           >{{ $t("userSave") }}
         </element-button>
-        <element-button :type="'button'">{{ $t("UserNew") }} </element-button>
-        <element-button :type="'button'" @click="updateStore">{{ $t("userUpdate") }} </element-button>
+        <element-button :type="'button'" @click="newStore"
+          >{{ $t("UserNew") }}
+        </element-button>
+        <element-button :type="'button'" @click="updateStore"
+          >{{ $t("userUpdate") }}
+        </element-button>
         <element-button :type="'button'"
           >{{ $t("userDelete") }}
         </element-button>
@@ -59,7 +63,7 @@ export default {
   },
   props: {
     storeInformation: Object,
-    storeId:Number
+    storeId: Number,
   },
   data() {
     return {
@@ -106,10 +110,30 @@ export default {
       //   this.$store.dispatch("stores/storeStore", this.form);
       this.form.post(route("store.store"));
     },
-    updateStore(){
-        console.log(this.form)
-        this.form.post(route("store.update", this.storeId));
-    }
+    updateStore() {
+      console.log(this.form);
+      this.form.post(route("store.update", this.storeId));
+    },
+    newStore() {
+      this.form = useForm({
+        code: "",
+        name: "",
+        latin_name: "",
+        type: "",
+        branch_id: "",
+        is_active: true,
+        store_id: "",
+        account_id: "",
+        address: "",
+        website: "",
+        store_keeper: "",
+        storage_amount: "",
+        notes: "",
+        photo: "",
+        security_degree: "",
+        _token: this.$page.props.csrf_token,
+      });
+    },
   },
 };
 </script>

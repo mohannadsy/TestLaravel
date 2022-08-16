@@ -108,6 +108,9 @@ export default {
     };
   },
   watch:{
+     form() {
+      this.storeObject = this.form;
+    },
      storeInformation() {
       Object.assign(this.storeObject, this.storeInformation);
     },
