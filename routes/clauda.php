@@ -11,7 +11,7 @@ use App\Http\Controllers\Store\StoreController;
 use App\Http\Controllers\Unit\UnitController;
 use App\Http\Controllers\Item\ItemController;
 use App\Http\Controllers\Category\CategoryController;
-use App\Http\Controllers\AttachmentsController;
+use App\Http\Controllers\Attachment\AttachmentsController;
 
 use Barryvdh\Debugbar\Facades;
 
@@ -112,6 +112,15 @@ Route::group(['namespace' => 'Store', 'prefix' => 'store'], function () {
 });
 
 
+//------- Attachments ------//
+
+//Route::group(['namespace' => 'Store', 'prefix' => 'attachment'], function () {
+    Route::get('home', [AttachmentsController::class, 'index'])->name('home');
+    Route::post('upload', [AttachmentsController::class, 'Upload'])->name('upload');
+    Route::get('show', [AttachmentsController::class, 'show'])->name('show');
+//Route::get('download/{file}', [AttachmentsController::class, 'download'])->name('download');
+//});
+
 Route::get('backup', function () {
 
     \Illuminate\Support\Facades\Artisan::call("php artisan backup:run");
@@ -165,7 +174,4 @@ Route::get('/user-permission-via-role/', function () {
     // return $user->getPermissionsViaRoles(); // true
 });
 
-Route::get('home', [AttachmentsController::class, 'index'])->name('home');
-Route::post('upload', [AttachmentsController::class, 'Upload'])->name('upload');
-Route::get('show', [AttachmentsController::class, 'show'])->name('show');
-Route::get('download/{file}', [AttachmentsController::class, 'download'])->name('download');
+
