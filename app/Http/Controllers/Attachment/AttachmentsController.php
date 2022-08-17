@@ -1,11 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Attachment;
+namespace App\Http\Controllers;
 
-
-use App\Http\Controllers\Controller;
-
-use App\Http\Requests\AttachmentRequest;
 use App\Models\Attachment;
 use App\Traits\ActivityLog\ActivityLog;
 use Illuminate\Http\Request;
@@ -14,8 +10,7 @@ use function Symfony\Component\String\length;
 
 class AttachmentsController extends Controller
 {
-    use ActivityLog;
-
+use ActivityLog;
     public function index()
     {
         return view('uoload');
@@ -31,25 +26,42 @@ class AttachmentsController extends Controller
         ]);
     }
 
-    public function Upload(AttachmentRequest $request)
+    public function Upload(Request $request)
     {
+
+
+//        $id = Attachment::orderBy('id', 'desc')->first()->id + 1;
+//        $parameters = ['request' => $request, 'id' => $id];
 
 
         $data = new Attachment();
 
         $path = $request->path;
 
+
+//        dd($request->path);
+//            .'.' . $path->getClientOriginalExtension();
+
+//        $uniqueFileName = uniqid() . $request->getClientOriginalName() ;
+//            . '.' . $request->getClientOriginalExtension();
+//        dd($uniqueFileName);
+
         $filename = $path->getClientOriginalName();
         $extension = $path->getClientOriginalExtension();
-        if ($extension){
-//            == 'png' | $extension == 'gif' | $extension == 'csv' | $extension == 'xlsx' | $extension == 'pdf' | $extension == 'docs' | $extension == 'doc') {
-            $limit = strlen($extension);
+        if ($extension == 'png' | $extension == 'gif' | $extension == 'csv' | $extension == 'xlsx' | $extension == 'pdf' | $extension == 'docs' | $extension == 'doc') {
+           $limit =  strlen($extension);
             $request->path->move('public', $filename);
             $data->path = $filename;
-            $data->name = substr($filename, 0, -($limit + 1));
-            $data->type = $extension;
+            $data->name =substr($filename,0,-($limit+1));
+            $data->type =$extension;
             $data->save();
-
+//            return $extension;
+//            $id = Attachment::orderBy('id', 'desc')->first()->id + 1;
+//
+//            $parameters = ['request' => $request, 'id' => $id , 'data'=>$data];
+//
+//            $this->callActivityMethod('store', $parameters);
+////            $this->callActivityMethod();
             return redirect()->back();
         } else {
             return "You Can not Upload This File";
