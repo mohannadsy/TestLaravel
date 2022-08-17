@@ -37,12 +37,13 @@
             {{ $t("mainBranch") }}
           </elemet-label>
           <div class="col-8">
-            <element-input
+            <!-- <element-input
               type="text"
               @change="objChanged"
               v-model.trim="myObj.branch_id"
               @input="filterBranches"
-            />
+            /> -->
+            <search-autocomplete :items="branches" @item-value="setBranchId"/>
           </div>
         </div>
       </div>
@@ -66,6 +67,7 @@ import PageTitle from "../../Shared/PageTitle.vue";
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import ToggleButton from "../../Shared/ToggleButton.vue";
+import SearchAutocomplete from "../../Shared/SearchAutocomplete.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   props: ["branchInformaion", "form", "errors","branches"],
@@ -75,6 +77,7 @@ export default {
     ElemetLabel,
     ElementInput,
     ToggleButton,
+    SearchAutocomplete
   },
   data() {
     return {
@@ -84,7 +87,6 @@ export default {
         branch_id: "",
         is_active: true,
       }),
-      filteredBranches:[]
     };
   },
   watch: {
@@ -103,10 +105,11 @@ export default {
   methods: {
     triggerToggleEvent(value) {
       this.myObj.is_active = value;
-      console.log(this.myObj.is_active);
+    //   console.log(this.myObj.is_active);
+      console.log(this.branches)
     },
-    filterBranches(){
-
+    setBranchId(data){
+        this.myObj.branch_id = data;
     }
   },
 };

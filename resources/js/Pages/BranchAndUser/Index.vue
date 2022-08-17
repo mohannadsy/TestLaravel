@@ -15,6 +15,7 @@ Raghad, [8/6/2022 11:18 AM]
       <branch-form
         :branchInformaion="branchInformaion"
         :branchId="branchId"
+        :branches="branches"
         v-if="nodeType === 'branches'"
       ></branch-form>
       <user-form
