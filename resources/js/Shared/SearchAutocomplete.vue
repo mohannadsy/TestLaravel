@@ -16,7 +16,7 @@
         :key="index"
         @click="setResult(result)"
         class="autocomplete-result"
-          :class="{ 'selected': (selected == index)}"
+        :class="{ selected: selected == index }"
       >
         {{ result.code }} - {{ result.name }}
       </li>
@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import ElementInput from './ElementInput.vue';
+import ElementInput from "./ElementInput.vue";
 export default {
-    components:{
-        ElementInput
-    },
+  components: {
+    ElementInput,
+  },
   props: {
     items: {
       type: Array,
@@ -49,7 +49,7 @@ export default {
       isOpen: false,
       selected: 0,
       arrowCounter: -1,
-      itemValue:1
+      itemValue: 1,
     };
   },
   watch: {
@@ -90,12 +90,12 @@ export default {
       this.isOpen = false;
     },
     setResult(result) {
-      this.search = result.code + " - " + result.name
-        this.itemValue = result.id;
-        this.$emit('item-value',this.itemValue)
+      this.search = result.code + " - " + result.name;
+      this.itemValue = result.id;
+      this.$emit("item-value", this.itemValue);
       this.isOpen = false;
     },
-       filterResults() {
+    filterResults() {
       this.results = this.items.filter(
         (item) =>
           item.name.toLowerCase().includes(this.search.toLowerCase()) ||
@@ -117,7 +117,6 @@ export default {
 </script>
 
 <style scoped>
-
 .autocomplete {
   position: relative;
 }
@@ -132,6 +131,7 @@ export default {
   min-height: 1em;
   max-height: 6em;
   overflow: auto;
+  position: absolute;
 }
 
 .autocomplete-result {
@@ -144,12 +144,12 @@ export default {
 }
 
 .autocomplete-result:not(.selected):hover {
- background: #8c8c8c;
-    color: #fff;
+  background: #8c8c8c;
+  color: #fff;
 }
 .autocomplete-result.selected {
-    background: #58bd4c;
-    color: #fff;
-    font-weight: 600;
+  background: #58bd4c;
+  color: #fff;
+  font-weight: 600;
 }
 </style>
