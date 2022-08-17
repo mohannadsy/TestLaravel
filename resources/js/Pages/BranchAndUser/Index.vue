@@ -35,6 +35,7 @@ import IndexVue from "../../components/branches/Index.vue";
 import Tree from "./Tree.vue";
 import addSection from "./addSection.vue";
 import axios from "axios";
+import MyLayout from "../../Layouts/MyLayout.vue";
 export default {
   data() {
     return {
@@ -60,6 +61,7 @@ export default {
     Tree,
     addSection,
   },
+  layout: MyLayout,
   async created() {
     let res = await axios.get(route("user.getRoles"));
     this.roleArray = JSON.parse(JSON.stringify(res.data));
