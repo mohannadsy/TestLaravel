@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attachment extends Model
 {
     use HasFactory;
-    protected $fillable=['path','name','type' ];
+    protected $fillable=['path','name','type','attachment_id' ];
 
 
     public function branch(){
@@ -17,4 +17,6 @@ class Attachment extends Model
     public function store(){
         return $this->belongsTo(Store::class,'attachment_id');
     }
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Attachment;
 use Illuminate\Database\Seeder;
 
 class
@@ -11,6 +12,7 @@ DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            AttachmentSeeder::class,
             BranchSeeder::class,
             PermissionSeeder::class,
             RoleSeeder::class,

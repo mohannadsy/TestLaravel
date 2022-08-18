@@ -26,6 +26,9 @@ return new class extends Migration
 
 
             $table->foreign('center_id')->references('id')->on('cost_centers');
+
+//            $table->json('attachment_id')->nullable()->default(null);
+
         });
     }
     public function down()

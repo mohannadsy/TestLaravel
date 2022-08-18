@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->string('lain_part_name')->default(null)->nullable();
             $table->string('photo')->nullable()->default(null);
             $table->integer('security_degree')->default(1);
+//            $table->json('attachment_id')->nullable()->default(null);
+
             $table->timestamps();
 
 

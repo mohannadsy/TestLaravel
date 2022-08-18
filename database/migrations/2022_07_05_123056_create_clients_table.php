@@ -34,6 +34,9 @@ return new class extends Migration {
 
             $table->unsignedBigInteger('branch_id')->nullable()->default(1);
 
+//            $table->json('attachment_id')->nullable()->default(null);
+
+
             $table->timestamps();
 
 

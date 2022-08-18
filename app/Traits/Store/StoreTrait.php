@@ -2,7 +2,9 @@
 
 namespace App\Traits\Store;
 
+use App\Models\Attachment;
 use App\Models\Store;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -35,7 +37,22 @@ trait  StoreTrait
     }
 
 
+    public function  StoreAttachments($id){
+                return Attachment::with('attachments')->find($id);
 
+//        return Attachment::with('branch')->get();
+//        =>function($q){
+//            $q->select('attachment_id')->get();
+//        }]
+
+
+
+//        return Attachment::with('store')->get();
+//                return Store::with(['attachments'=>function($q){
+//                    $q->select('name')->get();
+//                }])->select('name')->find($id);
+
+    }
 
 
 }

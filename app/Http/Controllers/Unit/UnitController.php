@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Unit;
 
 use App\Http\Requests\UpdateUnitRequest;
+use App\Models\Store;
 use App\Models\Unit;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUnitRequest;
@@ -62,5 +63,6 @@ class UnitController extends Controller
             return $unit ? $unit->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Unit not Found';
         }
         return __('units.default unit can not be deleted');
+
     }
 }

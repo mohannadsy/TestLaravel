@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('path')->nullable()->default('path');
             $table->string('name')->nullable()->default('name');
             $table->string('type')->nullable()->default('type');
+            $table->unsignedBigInteger('attachment_id')->nullable();
+
+
 
             $table->timestamps();
         });

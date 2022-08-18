@@ -40,5 +40,9 @@ trait  AccountTrait
         return $account->is_distributive == true;
     }
 
+    public function AccountAccount($id){
+        return Account::find($id)->with('accounts')->get();
+    }
+
 
 }

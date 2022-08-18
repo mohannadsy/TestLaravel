@@ -23,11 +23,18 @@ class Branch extends Model
         'mobile',
         'is_active',
         'security_degree',
-        'attachment_id'
+        'attachment_id',
 
 
 
     ];
+
+    protected $casts = [
+        'attachment_id' => 'array',
+
+    ];
+
+
     public function branches()
     {
         return $this->hasMany(Branch::class, 'branch_id')->with('branches', 'users')->select('id', 'name', 'code', 'branch_id');
@@ -77,4 +84,6 @@ class Branch extends Model
     {
         return $this->hasMany(Attachment::class, 'attachment_id');
     }
+
+
 }
