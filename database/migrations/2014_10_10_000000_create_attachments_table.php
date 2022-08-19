@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('attachments', function (Blueprint $table) {
@@ -18,19 +14,16 @@ return new class extends Migration
             $table->string('path')->nullable()->default('path');
             $table->string('name')->nullable()->default('name');
             $table->string('type')->nullable()->default('type');
+            $table->string('table')->nullable()->default(null);
+            $table->string('table_id')->nullable()->default(null);
             $table->unsignedBigInteger('attachment_id')->nullable();
 
-
-
+//            $table->foreign('attachment_id')->references('id')->on('stores');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('attachments');

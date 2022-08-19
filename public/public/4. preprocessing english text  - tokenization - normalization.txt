@@ -1,0 +1,54 @@
+# Decoder input : english texts
+# preprocessing english text  - tokenization - normalization
+
+
+english_lines = list()
+
+for line in lines.Arabic_Sentence:
+    english_lines.append(line)
+
+tokenizer = preprocessing.text.Tokenizer()
+tokenizer.fit_on_texts(english_lines)
+tokenized_english_lines = tokenizer.texts_to_sequences(english_lines)  # show numbers
+print(tokenized_english_lines)
+print(tokenizer.sequences_to_texts(tokenized_english_lines))  # show arabic words
+
+length_list = list()
+for token in tokenized_english_lines:
+    length_list.append(len(token))
+
+print(length_list)
+
+max_sentence_length = np.array(length_list).max() // *** max_sentence_length1
+
+print(max_sentence_length)
+
+padded_english_lines = preprocessing.sequence.pad_sequences(tokenized_english_lines, maxlen=max_sentence_length,
+                                                            padding='post')
+
+print(padded_english_lines)
+
+encoder_input_data = np.array(padded_arabic_lines) // ***
+
+print(' Encoder Input Shape : ', encoder_input_data.shape)
+
+english_word_dictionary = tokenizer.word_index
+
+number_of_english_words = len(english_word_dictionary) + 1
+print('Number of English tokens :  ', number_of_english_words)
+
+
+# decoder output 
+
+
+decoder_output_data = list()
+for token in tokenized_english_lines:
+    decoder_output_data .append(token[1:]) # truuue
+
+padded_english_lines = preprocessing.sequence.pad_sequences(decoder_output_data, maxlen=max_sentence_length,
+                                                            padding='post')
+onehot_english_lines = utils.to_categorical(padded_english_lines, number_of_english_words)
+
+decoder_output_data = np.array(onehot_english_lines)
+
+print(' Decoder output Data Shape : ', decoder_output_data.shape)

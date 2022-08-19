@@ -15,13 +15,17 @@ class AttachmentSeeder extends Seeder
 
             'name' => 'attachment 1 ',
             'path' => 'path 1',
-            'attachment_id'=> 1
+            'attachment_id'=> 1,
+            'table'=> '1',
+            'table_id'=> '1'
 
         ]);
         $normalAttachment = Attachment::create([
             'name' => 'attachment 2',
             'path' => 'path 2',
-            'attachment_id'=>2
+            'attachment_id'=>2,
+            'table'=> '1',
+            'table_id'=> '1'
 
         ]);
 

@@ -30,8 +30,8 @@ return new class extends Migration {
 //            $table->foreign('branch_id')->references('id')->on('branches');
 
 
-
             $table->foreign('store_id')->references('id')->on('stores');
+
 
             $table->unsignedBigInteger('attachment_id')->nullable()->default(null);
 

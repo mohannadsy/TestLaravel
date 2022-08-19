@@ -57,9 +57,9 @@ class Store extends Model
         return $this->hasMany(Item::Class, 'store_id');
     }
 
-    public function attachments()
+    public function attachment()
     {
-        return $this->hasMany(Attachment::class, 'attachment_id');
+        return $this->hasOne(Attachment::class, 'attachment_id');
     }
 
 
