@@ -199,9 +199,9 @@ class BranchController extends Controller
         $this->callActivityMethod('store', $parameters);
 //          return redirect()->route('branch.index')->with('message','Branch created successfully');
 
-//        return redirect()->route('branch.index')->with('message',__('common.store'));
+       return redirect()->route('branch.index')->with('message',__('common.store'));
 
-                return __('common.store');
+                // return __('common.store');
 
 
     }
