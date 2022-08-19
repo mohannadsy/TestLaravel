@@ -1,6 +1,6 @@
 <template>
-  <base-dialog
-    v-if="inputIsInvalid"
+  <!-- <base-dialog
+    v-if="$page.props.flash.message"
     title="Invalid Input"
     @close="confirmError"
   >
@@ -11,8 +11,11 @@
     <template #actions>
       <base-button @click="confirmError">Okay</base-button>
     </template>
-  </base-dialog>
+  </base-dialog> -->
   <locale-switcher/>
+  <div  v-if="$page.props.flash.message">
+    {{$page.props.flash.message}}
+  </div>
   <div class="row">
     <form>
       <div class="col border-right">
@@ -25,8 +28,6 @@
         >
           ></main-infromation
         >
-
-        <!-- <h1 v-for="message in messages" :key="message.id">{{ message }}</h1> -->
         <div class="row a mt-2">
           <div class="col-5">
             <title-button @click="activeTab = 'BasicInformation'"
@@ -138,7 +139,6 @@ export default {
     saveExtra(data) {},
     storeBranch() {
       this.form.post(route("branch.store"));
-      console.log(this.form);
     },
     newBranch() {
       this.form = useForm({
