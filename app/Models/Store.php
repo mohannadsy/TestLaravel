@@ -62,7 +62,10 @@ class Store extends Model
         return $this->hasOne(Attachment::class, 'attachment_id');
     }
 
-
+    public function image()
+    {
+        return $this->hasOne(Image::class, 'image_id');
+    }
 
     use HasFactory;
 }
