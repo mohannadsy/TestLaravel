@@ -14,6 +14,8 @@ class StoreCurrencyRequest extends FormRequest
     public function rules()
     {
         return $rules = [
+            'code'                   =>'required|string|unique:currencies,code',
+            'name'                   =>'required|max:50|string|unique:currencies,name' ,
 //            'code' => 'required|string|unique:currencies,code',
 //            'name' => 'required|max:50|string|unique:currencies,name',
 //            'latin_name' => 'max:50|string|unique:currencies,latin_name',

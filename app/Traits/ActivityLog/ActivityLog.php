@@ -4,6 +4,7 @@
 namespace App\Traits\ActivityLog;
 
 use App\Models\Activity;
+use App\Models\Attachment;
 use App\Models\Trash;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +38,11 @@ trait  ActivityLog
                 'operation' => $activity['operation'],
                 'user_id' => Auth::id(),
                 'table_id' => $activity['parameters']['id'],
-
+            ]);
+//        if ($activity['parameters']['attachment_id'])
+            Attachment::create([
+                'table' => $activity['table'],
+                'table_id' => $activity['parameters']['id'],
             ]);
     }
 

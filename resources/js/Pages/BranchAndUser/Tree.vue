@@ -5,26 +5,22 @@
         class="default-pointer"
         @click="toggle"
         @dblclick="makeFolder"
-        v-if="isFolder"> 
+        v-if="isFolder"
+      >
         <!-- <fa v-if="isOpen" icon="caret-down" />
         <fa v-else icon="caret-left" /> -->
 
-       <fa v-if="isOpen"  icon="circle-minus"  />
-        <fa v-else icon="circle-plus"/>
-        </span
-      >
+        <fa v-if="isOpen" icon="circle-minus" />
+        <fa v-else icon="circle-plus" />
+      </span>
       <!-- class="[isActive  ? 'red' : 'blue']" -->
-      <span
-        
-        :class="{bold : isFolder}"
-        class="pointer"
-        @click="sendNodeType(item, item.id)"
-        >{{ item.name }} - {{item.code}}</span
+      <span class="pointer" @click="sendNodeType(item, item.id)"
+        >{{ item.name }} - {{ item.code }}</span
       >
     </div>
     <ul v-show="isOpen" v-if="isFolder">
       <tree-item
-       class="branches"
+        class="branches"
         v-for="(childBranch, index) in item.branches"
         :key="index"
         :item="childBranch"
@@ -55,7 +51,8 @@ export default {
       isOpen: false,
       nodeType: "",
       nodeId: "",
-      isActive:[],
+      //   isActive: 0,
+      isNodeSelected: false,
     };
   },
   computed: {
@@ -77,6 +74,8 @@ export default {
     },
 
     sendNodeType(item, id) {
+      this.isNodeSelected = true;
+      this.isSelected = item.id;
       id = item.id;
       if (item.hasOwnProperty("branches")) {
         this.nodeType = "branches";
@@ -86,13 +85,21 @@ export default {
         this.nodeId = id;
       }
       this.$emit("node-type", { nodeId: this.nodeId, nodeType: this.nodeType });
-      this.isActive = !this.isActive;
-
     },
   },
 };
 </script>
 <style scoped>
+.selectedNode {
+  background: #1a74b0;
+  color: white;
+}
+.highlight {
+  background-color: red;
+}
+.notselected {
+  background-color: transparent;
+}
 .pointer {
   cursor: pointer;
 }
@@ -100,18 +107,18 @@ export default {
   cursor: pointer;
   font-size: 20px;
   margin: 0px 3px;
-  padding-bottom:20px;
+  padding-bottom: 20px;
 }
-.branches  {
+.branches {
   list-style-type: none;
-  margin:0;
+  margin: 0;
   padding: 0;
 }
-.red{
+.red {
   background: red;
 }
 
-.blue{
+.blue {
   background: blue;
 }
 </style>

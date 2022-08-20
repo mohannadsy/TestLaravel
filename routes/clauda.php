@@ -11,6 +11,7 @@ use App\Http\Controllers\Store\StoreController;
 use App\Http\Controllers\Unit\UnitController;
 use App\Http\Controllers\Item\ItemController;
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Attachment\AttachmentsController;
 
 use Barryvdh\Debugbar\Facades;
 
@@ -67,6 +68,9 @@ Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
     Route::get('show/{id}', [AccountController::class, 'show'])->name('account.show');
     Route::post('update', [AccountController::class, 'update'])->name('account.update');
     Route::get('delete/{id}', [AccountController::class, 'delete'])->name('account.delete');
+
+        Route::get('AccountAccount/{id}', [AccountController::class, 'AccountAccount'])->name('account.AccountAccount');
+
 });
 
 //------- Units ------//
@@ -106,10 +110,22 @@ Route::group(['namespace' => 'Store', 'prefix' => 'store'], function () {
     Route::get('index', [StoreController::class, 'index'])->name('store.index');
     Route::post('store', [StoreController::class, 'store'])->name('store.store');
     Route::get('show/{id}', [StoreController::class, 'show'])->name('store.show');
-    Route::post('update', [StoreController::class, 'update'])->name('store.update');
+    Route::post('update/{id}', [StoreController::class, 'update'])->name('store.update');
     Route::get('delete/{id}', [StoreController::class, 'delete'])->name('store.delete');
+
+    Route::get('StoreAttachments/{id}', [StoreController::class, 'StoreAttachments'])->name('store.StoreAttachments');
+
 });
 
+
+//------- Attachments ------//
+
+//Route::group(['namespace' => 'Store', 'prefix' => 'attachment'], function () {
+    Route::get('home', [AttachmentsController::class, 'index'])->name('home');
+    Route::post('upload', [AttachmentsController::class, 'Upload'])->name('upload');
+    Route::get('show', [AttachmentsController::class, 'show'])->name('show');
+Route::get('download/{file}', [AttachmentsController::class, 'download'])->name('download');
+//});
 
 Route::get('backup', function () {
 
@@ -163,3 +179,5 @@ Route::get('/user-permission-via-role/', function () {
     return $user->roles->first()->permissions; //true
     // return $user->getPermissionsViaRoles(); // true
 });
+
+

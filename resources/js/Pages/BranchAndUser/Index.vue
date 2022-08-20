@@ -15,6 +15,7 @@ Raghad, [8/6/2022 11:18 AM]
       <branch-form
         :branchInformaion="branchInformaion"
         :branchId="branchId"
+        :branches="branches"
         v-if="nodeType === 'branches'"
       ></branch-form>
       <user-form
@@ -35,6 +36,7 @@ import IndexVue from "../../components/branches/Index.vue";
 import Tree from "./Tree.vue";
 import addSection from "./addSection.vue";
 import axios from "axios";
+import MyLayout from "../../Layouts/MyLayout.vue";
 export default {
   data() {
     return {
@@ -60,6 +62,7 @@ export default {
     Tree,
     addSection,
   },
+  layout: MyLayout,
   async created() {
     let res = await axios.get(route("user.getRoles"));
     this.roleArray = JSON.parse(JSON.stringify(res.data));
@@ -69,8 +72,6 @@ export default {
   methods: {
     getRoleId(data){
         this.roleId = data
-        console.log('role from bababba')
-        console.log(this.roleId + "jhdjjhjh")
     },
     async getNodeType({ nodeId, nodeType }) {
       this.nodeType = nodeType;

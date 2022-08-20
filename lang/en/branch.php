@@ -1,11 +1,10 @@
 <?php
 return [
 
-     // Messages
-    'branch show' => ' Branch not Found',
-    'Root Branch delete' => 'Root Branch is not deleted',
-    'branch delete' => 'it is not possible to delete a branch that contains branches within it',
-
+    // Messages
+    'branch not found' => 'Branch Not Found ',
+    'root branch can be deleted' => 'Root Branch Can Not Be Deleted',
+    'branch delete error' => 'This Branch Can Not be Deleted , Because it contains Sub Branches in ',
 
 
 

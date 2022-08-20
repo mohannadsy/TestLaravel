@@ -8,7 +8,14 @@ use App\Models\Account;
 trait  AccountTrait
 {
 
-
+    public function callActivityMethod($method, $parameters)
+    {
+        $this->makeActivity([
+            'table' => 'accounts',
+            'operation' => $method,
+            'parameters' => $parameters
+        ]);
+    }
     public function isFinal($id) // ختامي
     {
         $account = Account::find($id);
@@ -31,6 +38,10 @@ trait  AccountTrait
     {
         $account = Account::find($id);
         return $account->is_distributive == true;
+    }
+
+    public function AccountAccount($id){
+        return Account::find($id)->with('accounts')->get();
     }
 
 

@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('code')->unique();
             $table->string('name')->unique();
             $table->string('latin_name')->nullable()->default(null);
-            $table->string('type')->default('normal');
+            $table->string('type')->nullable()->default('normal');
             $table->unsignedBigInteger('store_id')->default(null)->nullable();
             $table->integer('account_id')->default(1)->nullable();
             $table->string('address')->nullable()->default(null);
@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('notes')->nullable()->default(null);
             $table->boolean('is_active')->default(true);
             $table->string('photo')->nullable()->default(null);
-            $table->integer('security_degree')->default(1);
+            $table->integer('security_degree')->nullable()->default(1);
             $table->timestamps();
 
             // updates : add branch in all cards
@@ -30,8 +30,13 @@ return new class extends Migration {
 //            $table->foreign('branch_id')->references('id')->on('branches');
 
 
-
             $table->foreign('store_id')->references('id')->on('stores');
+
+
+            $table->unsignedBigInteger('attachment_id')->nullable()->default(null);
+
+            $table->foreign('attachment_id')->references('id')->on('attachments');
+
 
         });
     }

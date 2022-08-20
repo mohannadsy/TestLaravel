@@ -15,6 +15,10 @@ class StoreAccountRequest extends FormRequest
     public function rules()
     {
         return [
+            'code' => 'required|string|unique:accounts,code',
+            'name' => 'required|max:50|string|unique:accounts,name',
+//            'attachment_id' => 'mimes:jpg,jpeg,png,csv,txt,xlx,xls,pdf|max:2048'
+
 //            'name' => 'required',
 //            'code' => 'required',
 //            'latin_name' => '',
@@ -32,8 +36,6 @@ class StoreAccountRequest extends FormRequest
 //            'notes' => '',
         ];
     }
-
-
 
 
 }

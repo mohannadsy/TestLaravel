@@ -26,10 +26,10 @@ class BranchController extends Controller
     public function index() //getAllBranches
     {
         $parameters = ['id' => null];
-        $this->callActivityMethod('getAllBranches', $parameters);
         $branches = Branch::where('is_active', true)->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
         $branchesWithUsers = Branch::whereNull('branch_id')->with('branches','users')->select('id', 'name', 'code', 'branch_id')->get();// for tree
         $groupPermissions = PermissionGroup::select('name', 'caption_' . Config::get('app.locale') . ' as caption', 'id')->with(['permissions'])->get();
+        $this->callActivityMethod('getAllBranches', $parameters);
 
 //        return $branchesWithUsers;
         return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
@@ -87,7 +87,7 @@ class BranchController extends Controller
     public function update(UpdateBranchRequest $request, $id)
     {
         $old_data=Branch::find($id)->toJson();
-        $paramters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
+        $parameters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
         $branch = Branch::find($id);
         if ($this->isRootBranch($id))
         {
@@ -95,21 +95,21 @@ class BranchController extends Controller
         }
         else
             $Branch=$branch->update($request->all());
-        $this->callActivityMethod('update', $paramters);
+        $this->callActivityMethod('update', $parameters);
         return __('common.update');
     }
 
     public function delete($id) //  delete - can be restored
     {
 
-        $paramters = ['id' => $id];
+        $parameters = ['id' => $id];
         $branch = Branch::find($id);
         if ($this->isRootBranch($id))
 //            return "Root Branch isn't deleted";
             return __('branch.Root Branch delete');
         if (!$this->numOfSubBranches($id) > 0) {
             $branch->delete();
-            $this->callActivityMethod('delete', $paramters);
+            $this->callActivityMethod('delete', $parameters);
 //            return "Branch is deleted successfully";
             return __('common.delete');
         } else
@@ -199,7 +199,10 @@ class BranchController extends Controller
         $this->callActivityMethod('store', $parameters);
 //          return redirect()->route('branch.index')->with('message','Branch created successfully');
 
-        return redirect()->route('branch.index')->with('message',__('common.store'));
+       return redirect()->route('branch.index')->with('message',__('common.store'));
+
+                // return __('common.store');
+
 
     }
 

@@ -1,8 +1,8 @@
 <?php
 return [
 
-    'admin delete' => 'لا يمكن حذف المدير العام ',
-    'user delete error' => 'المستخدم غير موجود ',
+    'admin can not be deleted' => 'لا يمكن حذف المدير العام ',
+    'user not found' => 'المستخدم غير موجود ',
     ''=>'',
     ''=>'',
     ''=>'',

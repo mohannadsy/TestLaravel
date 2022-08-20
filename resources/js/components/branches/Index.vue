@@ -1,6 +1,6 @@
 <template>
-  <base-dialog
-    v-if="inputIsInvalid"
+  <!-- <base-dialog
+    v-if="$page.props.flash.message"
     title="Invalid Input"
     @close="confirmError"
   >
@@ -11,8 +11,16 @@
     <template #actions>
       <base-button @click="confirmError">Okay</base-button>
     </template>
-  </base-dialog>
+  </base-dialog> -->
+  <saved-modal
+      v-show="$page.props.flash.message"
+      :title="$page.props.flash.message"
+       @close="showModal = false"
+    ></saved-modal>
   <locale-switcher/>
+  <!-- <div  v-if="$page.props.flash.message">
+    {{$page.props.flash.message}}
+  </div> -->
   <div class="row">
     <form>
       <div class="col border-right">
@@ -21,11 +29,10 @@
           :branchInformaion="branchInformaion"
           :form="form"
           :errors="errors"
+          :branches="branches"
         >
           ></main-infromation
         >
-
-        <!-- <h1 v-for="message in messages" :key="message.id">{{ message }}</h1> -->
         <div class="row a mt-2">
           <div class="col-5">
             <title-button @click="activeTab = 'BasicInformation'"
@@ -75,7 +82,7 @@ import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInfromation1 from "./MainInfromation.vue";
-import BaseDialog from "../../Shared/BaseDialog.vue";
+import SavedModal from "../../Shared/SavedModal.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 import axios from "axios";
 import { reactive } from "vue";
@@ -83,6 +90,7 @@ import { Inertia } from "@inertiajs/inertia";
 export default {
   props: {
     branchInformaion: Object,
+    branches:Array,
     branchId: String,
     errors: Object,
   },
@@ -97,11 +105,12 @@ export default {
     TitleButton,
     MainInfromation,
     MainInfromation1,
-    BaseDialog,
+    SavedModal,
   },
 
   data() {
     return {
+        showModal: false,
       activeTab: "BasicInformation",
       form: useForm({
         code: "",
@@ -136,7 +145,6 @@ export default {
     saveExtra(data) {},
     storeBranch() {
       this.form.post(route("branch.store"));
-      console.log(this.form);
     },
     newBranch() {
       this.form = useForm({

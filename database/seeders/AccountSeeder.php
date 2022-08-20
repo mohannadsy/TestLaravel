@@ -39,14 +39,10 @@ class AccountSeeder extends Seeder
             'is_distributive' => false,
             'security_degree' => 1,// سرية
             'aggregate_ids' => [
-                '1' => ['2'],
-                '2' => ['3'],
-                '3' => ['7'],
+               1,2,3
             ],
             'distributive_ids' => [
-                '1' => ['2'],
-                '2' => ['3'],
-                '3' => ['7'],
+                1,2,3
             ],
             'branch_id' => 1
         ]);
@@ -81,14 +77,10 @@ class AccountSeeder extends Seeder
             'is_distributive' => false,
             'security_degree' => 2, // سرية
             'aggregate_ids' => [
-                '1' => ['2'],
-                '2' => ['3'],
-                '3' => ['7'],
+                1,2,3
             ],
             'distributive_ids' => [
-                '1' => ['2'],
-                '2' => ['3'],
-                '3' => ['7'],
+                1,2,3
             ],
             'branch_id' => 2,
         ]);
@@ -122,14 +114,10 @@ class AccountSeeder extends Seeder
             'security_degree' => 3, // سرية
 
             'aggregate_ids' => [
-                '1' => ['2'],
-                '2' => ['3'],
-                '3' => ['7'],
+                1,2,7
             ],
             'distributive_ids' => [
-                '1' => ['2'],
-                '2' => ['3'],
-                '3' => ['7'],
+                1,2,7
             ],
             'branch_id' => 3,
         ]);
@@ -164,14 +152,10 @@ class AccountSeeder extends Seeder
             'security_degree' => 4, // سرية
 
             'aggregate_ids' => [
-                '1' => ['2'],
-                '2' => ['3'],
-                '3' => ['7'],
+                2,3,7
             ],
             'distributive_ids' => [
-                '1' => ['2'],
-                '2' => ['3'],
-                '3' => ['7'],
+                2,3,7
             ],
             'branch_id' => 4,
         ]);

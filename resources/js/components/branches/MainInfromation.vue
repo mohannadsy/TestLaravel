@@ -1,12 +1,14 @@
 <template>
   <div class="row px-3 mt-1 pb-2">
-    <page-title>{{$t('branchCard')}}</page-title>
+    <page-title>{{ $t("branchCard") }}</page-title>
   </div>
   <form>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-4">{{$t('branchCode')}} </elemet-label>
+          <elemet-label class="col-form-label col-md-4"
+            >{{ $t("branchCode") }}
+          </elemet-label>
           <div class="col-8">
             <element-input
               type="text"
@@ -18,7 +20,9 @@
           <div v-if="form.errors.code">{{ form.errors.code }}</div>
         </div>
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-4">{{$t('branchName')}} </elemet-label>
+          <elemet-label class="col-form-label col-md-4"
+            >{{ $t("branchName") }}
+          </elemet-label>
           <div class="col-8">
             <element-input
               type="text"
@@ -30,13 +34,16 @@
         </div>
         <div class="form-group row mt-2">
           <elemet-label class="col-form-label col-md-4">
-            {{$t('mainBranch')}} </elemet-label>
+            {{ $t("mainBranch") }}
+          </elemet-label>
           <div class="col-8">
-            <element-input
+            <!-- <element-input
               type="text"
               @change="objChanged"
               v-model.trim="myObj.branch_id"
-            />
+              @input="filterBranches"
+            /> -->
+            <search-autocomplete :items="branches" @item-value="setBranchId"/>
           </div>
         </div>
       </div>
@@ -48,7 +55,6 @@
             @change="objChanged"
             @change-name="triggerToggleEvent"
             :defaultState="myObj.is_active"
-           
           />
         </div>
       </div>
@@ -61,15 +67,17 @@ import PageTitle from "../../Shared/PageTitle.vue";
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementInput from "../../Shared/ElementInput.vue";
 import ToggleButton from "../../Shared/ToggleButton.vue";
+import SearchAutocomplete from "../../Shared/SearchAutocomplete.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 export default {
-  props: ["branchInformaion", "form", "errors"],
+  props: ["branchInformaion", "form", "errors","branches"],
   emits: ["save-main"],
   components: {
     PageTitle,
     ElemetLabel,
     ElementInput,
     ToggleButton,
+    SearchAutocomplete
   },
   data() {
     return {
@@ -97,8 +105,12 @@ export default {
   methods: {
     triggerToggleEvent(value) {
       this.myObj.is_active = value;
-      console.log(this.myObj.is_active);
+    //   console.log(this.myObj.is_active);
+      console.log(this.branches)
     },
+    setBranchId(data){
+        this.myObj.branch_id = data;
+    }
   },
 };
 </script>
@@ -111,7 +123,6 @@ export default {
   /* background: #efefef; */
   /* width: 120px; */
   /* border-radius: 30px; */
-  
 }
 /* .toggle_container.active {
   background: #e9ffef;

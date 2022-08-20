@@ -8,34 +8,35 @@ use App\Models\Store;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStoreRequest;
 use App\Traits\ActivityLog\ActivityLog;
+use App\Traits\Store\StoreTrait;
 
 class StoreController extends Controller
 {
-    use ActivityLog;
+    use ActivityLog, StoreTrait;
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'stores',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
 
     public function index()
     {
         $parameters = ['id' => null];
-        $this->callActivityMethod('index', $parameters);
-        return Store::all();
+        $stores = Store::whereNull('store_id')->with('stores')->select('id', 'name', 'code', 'store_id')->get();// for tree
+        $storesData = Store::where('is_active', true)->select('id', 'name', 'code', 'store_id')->get(); // auto complete
+
+        $this->callActivityMethod('getAllStores', $parameters);
+
+//        return $storesData;
+        return inertia('Store/Index', compact('stores', 'storesData'));
+
     }
 
 
     public function store(StoreStoreRequest $request)
     {
-        $id = Store::latest()->first()->id + 1;
-        $parameters = ['request' => $request, 'id' => $id];
+        $id = Store::orderBy('id', 'desc')->first()->id + 1;
         $store = Store::create($request->all());
+//         dd($store);
+        $parameters= ['request' => $request, 'id' => $id,  'attachment_id'=>$request->attachment_id];
         $this->callActivityMethod('store', $parameters);
+        return __('common.store') ;
     }
 
 
@@ -47,21 +48,35 @@ class StoreController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $store;
         }
-        return 'Item Not Found';
+        return __('store.store not found');
     }
 
 
     public function update(UpdateStoreRequest $request, $id)
     {
-        $parameters = ['request' => $request, 'id' => $id];
-        $store = Store::find($id)->update($request->all());
+        $old_data = Store::find($id)->toJson();
+        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data , 'attachment_id'=>$request->attachment_id];
+        $store = Store::find($id);
+        if ($this->isRootStore($id)) {
+            $Store = $store->update($request->except('store_id'));
+        } else
+            $Store = $store->update($request->all());
         $this->callActivityMethod('update', $parameters);
+        return __('common.update');
     }
 
     public function delete($id)
     {
         $parameters = ['id' => $id];
         $store = Store::find($id);
-        return $store ? $store->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Store not Found';
+        if ($this->isRootStore($id))
+            return __('root store can not be deleted');
+        if (!$this->numOfSubStores($id) > 0) {
+            $store->delete();
+            $this->callActivityMethod('delete', $parameters);
+            return __('common.delete');
+        } else
+            return __('store.store delete error');
     }
+
 }

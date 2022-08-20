@@ -55,7 +55,6 @@ class UserController extends Controller
         return __('common.store');
 
 
-//        $message = __('messageCommonController.store');
 //        return inertia('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
 //        return redirect()->route('branch.index')->with('message',__('common.store'));
 
@@ -84,15 +83,14 @@ class UserController extends Controller
         $parameters = ['id' => $id];
         if ($this->isNotSuperAdmin($id)) {
             $user = User::find($id);
-//            return $user ?  __('user.user delete success')  && $user->delete() && $this->callActivityMethod('delete  ', $parameters) : __('user.user delete error');
             if (User::find($id)) {
                 $user->delete();
                 $this->callActivityMethod('delete  ', $parameters);
                 return __('common.delete');
 
-            } else   return __('user.user delete error');
+            } else   return __('user.user not found');
         }
-        return __('user.admin delete');
+        return __('user.admin can not be deleted');
     }
 
 
@@ -123,7 +121,6 @@ class UserController extends Controller
         }
 //        return inertia('BranchAndUser/Index', compact('groupPermissions', 'user'));
 
-//        return __('user.user delete error');
     }
 
 

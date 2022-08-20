@@ -1,10 +1,8 @@
 <?php
 return [
 
-    'unit store' => 'تم إنشاء الوحدة بنجاح',
-    'unit delete' => 'لا يمكن حذف الوحدة الافتراضية',
-    'unit delete error' => 'الوحدة غير موجود ',
-    'unit delete success'=>'تم حذف الوحدة بنجاح ',
+    'default unit can not be deleted' => 'لا يمكن حذف الوحدة الافتراضية',
+    'unit not found' => 'الوحدة غير موجود ',
     ''=>'',
     ''=>'',
     ''=>'',

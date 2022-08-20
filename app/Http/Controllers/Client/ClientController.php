@@ -7,21 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateClientRequest;
 use App\Http\Requests\StoreClientRequest;
 use App\Traits\ActivityLog\ActivityLog;
+use App\Traits\Client\ClientTrait;
 use App\Traits\Image\ImageTrait;
 
 
 class ClientController extends Controller
 {
-    use ImageTrait, ActivityLog;
+    use ImageTrait, ActivityLog, ClientTrait;
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'accounts',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
 
     public function index()
     {
@@ -38,7 +31,8 @@ class ClientController extends Controller
         $request->photo = $this->getImageURL($request);
         $client = Client::create($request->all());
         $this->callActivityMethod('store', $parameters);
-//        return Inertia::render('', compact('client'));;
+//        return Inertia::render('', compact('client'));
+        return __('common.store');
     }
 
 
@@ -50,7 +44,7 @@ class ClientController extends Controller
             $this->callActivityMethod('show', $parameters);
             return $client;
         }
-        return 'Client Not Found';
+        return __('client.client not found');
     }
 
     public function update(UpdateClientRequest $request, $id)
@@ -61,6 +55,7 @@ class ClientController extends Controller
         $client = Client::find($id)->update($request->all());
 //        $client->update($request->all());
         $this->callActivityMethod('update', $parameters);
+        return __('common.update');
     }
 
 
@@ -68,7 +63,9 @@ class ClientController extends Controller
     {
         $parameters = ['id' => $id];
         $client = Client::find($id);
-        return $client ? $client->delete() && $this->callActivityMethod('delete  ', $parameters) : 'Client not Found';
+        $client->delete();
+        $this->callActivityMethod('delete  ', $parameters);
+        __('common.delete');
 
     }
 }

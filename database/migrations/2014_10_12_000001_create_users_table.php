@@ -35,6 +35,9 @@ return new class extends Migration {
             $table->timestamps();
             $table->foreign('branch_id')->references('id')->on('branches');
 
+//            $table->json('attachment_id')->nullable()->default(null);
+
+
         });
     }
 

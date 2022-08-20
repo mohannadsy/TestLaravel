@@ -14,6 +14,8 @@ class UpdateClientRequest extends FormRequest
     public function rules()
     {
         return $rules = [
+            'code'                   =>'required|string:clients,code',
+            'name'                   =>'required|max:50|string:clients,name' ,
 
 //            'name' => '',
 //            'notes' => '',

@@ -15,6 +15,8 @@ class UpdateUnitRequest extends FormRequest
     public function rules()
     {
         return [
+            'code'                   =>'required|string:units,code',
+            'name'                   =>'required|max:50|string:units,name' ,
 
         ];
     }
