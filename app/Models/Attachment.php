@@ -9,7 +9,7 @@ class Attachment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['path', 'name', 'type', 'table','table_id'];
+    protected $fillable = ['path', 'name', 'type', 'table', 'table_id'];
 
 
     public function branch()
@@ -51,6 +51,7 @@ class Attachment extends Model
     {
         return $this->belongsTo(Currency::class, 'attachment_id');
     }
+
     public function item()
     {
         return $this->belongsTo(Item::class, 'attachment_id');
