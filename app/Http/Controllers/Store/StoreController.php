@@ -34,9 +34,9 @@ class StoreController extends Controller
         $id = Store::orderBy('id', 'desc')->first()->id + 1;
         $store = Store::create($request->all());
 //         dd($store);
-        $parameters= ['request' => $request, 'id' => $id,  'attachment_id'=>$request->attachment_id];
+        $parameters = ['request' => $request, 'id' => $id];
         $this->callActivityMethod('store', $parameters);
-        return __('common.store') ;
+        return __('common.store');
     }
 
 
@@ -55,7 +55,7 @@ class StoreController extends Controller
     public function update(UpdateStoreRequest $request, $id)
     {
         $old_data = Store::find($id)->toJson();
-        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data , 'attachment_id'=>$request->attachment_id];
+        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data, 'attachment_id' => $request->attachment_id];
         $store = Store::find($id);
         if ($this->isRootStore($id)) {
             $Store = $store->update($request->except('store_id'));

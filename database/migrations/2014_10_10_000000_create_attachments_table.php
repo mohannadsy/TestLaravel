@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('type')->nullable()->default('type');
             $table->string('table')->nullable()->default(null);
             $table->string('table_id')->nullable()->default(null);
-            $table->unsignedBigInteger('attachment_id')->nullable();
+//            $table->unsignedBigInteger('attachment_id')->nullable();
 
 //            $table->foreign('attachment_id')->references('id')->on('stores');
             $table->timestamps();
