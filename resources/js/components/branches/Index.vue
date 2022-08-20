@@ -12,11 +12,11 @@
       <base-button @click="confirmError">Okay</base-button>
     </template>
   </base-dialog> -->
-  <!-- <saved-modal
+  <saved-modal
       v-show="$page.props.flash.message"
-      title="$page.props.flash.message"
+      :title="$page.props.flash.message"
        @close="showModal = false"
-    ></saved-modal> -->
+    ></saved-modal>
   <locale-switcher/>
   <!-- <div  v-if="$page.props.flash.message">
     {{$page.props.flash.message}}

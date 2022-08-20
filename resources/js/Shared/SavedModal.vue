@@ -1,6 +1,6 @@
 <template>
-  <div class="modal-overlay">
-    <div class="modal">
+  <div class="modall-overlay">
+    <div class="modall">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
@@ -66,7 +66,7 @@
       </svg>
       <h6>{{ title }}</h6>
       <!-- <p>Your Details have been saved Successfully</p> -->
-      <button class="close" @click="$emit('close')">OK</button>
+      <button class="closee" @click="$emit('close')">OK</button>
     </div>
     <!-- <div class="close">
       <img class="close-img" src="" alt="" />
@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style scoped>
-.modal-overlay {
+.modall-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -98,7 +98,7 @@ export default {
   background-color: #424141da;
 }
 
-.modal {
+.modall {
   text-align: center;
   background-color: white;
   height: 300px;
@@ -107,7 +107,7 @@ export default {
   padding: 60px 0;
   border-radius: 20px;
 }
-.close {
+.closee {
   margin: 10% 0 0 16px;
   cursor: pointer;
 }

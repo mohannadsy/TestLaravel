@@ -9,7 +9,7 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import Vue from 'vue'
 import { i18n } from './i18n'
-library.add(fas, fab,far);
+library.add(fas, fab, far);
 
 const appName = window.document.getElementsByTagName('title')[0];
 
@@ -18,7 +18,7 @@ const appName = window.document.getElementsByTagName('title')[0];
 // import { App, plugin } from '@inertiajs/inertia-vue3';
 // import { InertiaProgress } from '@inertiajs/progress';
 import store from './store/index.js';
-import style from './../assets/style.css';
+// import style from './../assets/style.css';
 
 // const el = document.getElementById('app');
 
@@ -45,7 +45,6 @@ createInertiaApp({
             .use(plugin)
             .use(store)
             .use(i18n)
-            .use(style)
             .component('fa', FontAwesomeIcon)
             .mixin({ methods: { route } }, require('./base'))
             .mount(el);
