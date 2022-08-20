@@ -12,10 +12,15 @@
       <base-button @click="confirmError">Okay</base-button>
     </template>
   </base-dialog> -->
+  <!-- <saved-modal
+      v-show="$page.props.flash.message"
+      title="$page.props.flash.message"
+       @close="showModal = false"
+    ></saved-modal> -->
   <locale-switcher/>
-  <div  v-if="$page.props.flash.message">
+  <!-- <div  v-if="$page.props.flash.message">
     {{$page.props.flash.message}}
-  </div>
+  </div> -->
   <div class="row">
     <form>
       <div class="col border-right">
@@ -77,7 +82,7 @@ import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
 import ElementButton from "../../Shared/ElementButton.vue";
 import TitleButton from "../../Shared/TitleButton.vue";
 import MainInfromation1 from "./MainInfromation.vue";
-import BaseDialog from "../../Shared/BaseDialog.vue";
+import SavedModal from "../../Shared/SavedModal.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 import axios from "axios";
 import { reactive } from "vue";
@@ -100,11 +105,12 @@ export default {
     TitleButton,
     MainInfromation,
     MainInfromation1,
-    BaseDialog,
+    SavedModal,
   },
 
   data() {
     return {
+        showModal: false,
       activeTab: "BasicInformation",
       form: useForm({
         code: "",
