@@ -40,7 +40,7 @@ trait  ActivityLog
                 'table_id' => $activity['parameters']['id'],
             ]);
 //        if ($activity['parameters']['attachment_id'])
-            Attachment::create([
+//            Attachment::create([
 //                'table' => $activity['table'],
 //                'table_id' => $activity['parameters']['table_id'],
             ]);
