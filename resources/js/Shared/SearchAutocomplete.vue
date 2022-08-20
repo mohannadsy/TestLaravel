@@ -118,7 +118,7 @@ export default {
 
 <style scoped>
 .autocomplete {
-  position: relative;
+  position: inherit;
 }
 
 .autocomplete-results {
