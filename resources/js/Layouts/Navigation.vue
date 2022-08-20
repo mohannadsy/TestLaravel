@@ -18,7 +18,7 @@
         <li>
           <router-link class="link" :to="{ name: '' }">Contact</router-link>
         </li>
-        <li><fa :icon="['fas', 'bars']" /></li>
+        <!-- <li><fa :icon="['fas', 'bars']" /></li> -->
         <!-- <li>
           <v-select/>
         </li> -->

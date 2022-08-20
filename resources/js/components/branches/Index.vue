@@ -13,11 +13,11 @@
     </template>
   </base-dialog> -->
   <saved-modal
-      v-show="$page.props.flash.message"
-      :title="$page.props.flash.message"
-       @close="showModal = false"
-    ></saved-modal>
-  <locale-switcher/>
+    v-show="$page.props.flash.message"
+    :title="$page.props.flash.message"
+    @close="$page.props.flash.message=null"
+  ></saved-modal>
+  <locale-switcher />
   <!-- <div  v-if="$page.props.flash.message">
     {{$page.props.flash.message}}
   </div> -->
@@ -36,8 +36,8 @@
         <div class="row a mt-2">
           <div class="col-5">
             <title-button @click="activeTab = 'BasicInformation'"
-              >{{$t('basicInformation')}} </title-button
-            >
+              >{{ $t("basicInformation") }}
+            </title-button>
           </div>
         </div>
         <basic-information
@@ -54,17 +54,17 @@
             :type="'button'"
             :disabled="form.processing"
             @click="storeBranch"
-            >{{$t('branchSave')}}</element-button
+            >{{ $t("branchSave") }}</element-button
           >
-          <element-button :type="'button'" @click="newBranch"
-            >{{$t('branchNew')}}</element-button
-          >
-          <element-button :type="'button'" @click="updateBranch"
-            >{{$t('branchUpdate')}}</element-button
-          >
-          <element-button :type="'button'" @click="deleteBranch"
-            >{{$t('branchDelete')}}</element-button
-          >
+          <element-button :type="'button'" @click="newBranch">{{
+            $t("branchNew")
+          }}</element-button>
+          <element-button :type="'button'" @click="updateBranch">{{
+            $t("branchUpdate")
+          }}</element-button>
+          <element-button :type="'button'" @click="deleteBranch">{{
+            $t("branchDelete")
+          }}</element-button>
         </div>
       </div>
     </form>
@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import localeSwitcher from './localeSwitcher.vue'
+import localeSwitcher from "./localeSwitcher.vue";
 import MainInfromation from "./MainInfromation.vue";
 import BasicInformation from "./BasicInformation.vue";
 import PageTitle from "../../Shared/PageTitle.vue";
@@ -90,7 +90,7 @@ import { Inertia } from "@inertiajs/inertia";
 export default {
   props: {
     branchInformaion: Object,
-    branches:Array,
+    branches: Array,
     branchId: String,
     errors: Object,
   },
@@ -110,7 +110,6 @@ export default {
 
   data() {
     return {
-        showModal: false,
       activeTab: "BasicInformation",
       form: useForm({
         code: "",
