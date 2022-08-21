@@ -5,12 +5,14 @@ namespace App\Traits\Store;
 use App\Models\Attachment;
 use App\Models\Store;
 use App\Models\User;
+use App\Traits\Attachments\AttachmentsTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 
 trait  StoreTrait
 {
+    use  AttachmentsTrait;
     public function callActivityMethod($method, $parameters)
     {
         $this->makeActivity([
@@ -19,7 +21,13 @@ trait  StoreTrait
             'parameters' => $parameters
         ]);
     }
-
+    public function callAttachmentsMethod($parameters)
+    {
+        $this->makeAttachment([
+            'table' => 'stores',
+            'parameters' => $parameters
+        ]);
+    }
     public function numOfSubStores($id)
     {
         $SubStores = Store::where('store_id', $id)->get();

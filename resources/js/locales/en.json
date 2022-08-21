@@ -58,6 +58,7 @@
     "warehouseName":"Warehouse Name",
     "latinName":"Latin Name",
     "warehouseType":"Warehouse Type",
+    "theBranch":"Branch",
     "warehousebBasicInformation":"Basic Information",
     "attachments":"Attachments",
     "mainWarehouse":"MainWarehouse",

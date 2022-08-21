@@ -44,19 +44,23 @@
       </div>
       <div class="col-md-4">
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-4">{{
-            $t("warehouseType")
+          <elemet-label class="col-form-label col-md-4">{{$t("warehouseType")
           }}</elemet-label>
           <div class="col-8">
-            <element-input
+            <!-- <element-input
               @change="objChanged"
               v-model.trim="storeObject.type"
-            />
+            /> -->
+             <v-select
+            :options="storeObject.typeOptions"
+            @change="objChanged"
+            :value="storeObject.type"
+          />
           </div>
         </div>
         <div class="form-group row mt-2">
           <elemet-label class="col-form-label col-md-4"
-            >الفرع الرئيسي</elemet-label
+             > {{$t("theBranch")}}</elemet-label
           >
           <div class="col-8">
             <element-input
@@ -104,6 +108,7 @@ export default {
         type: "",
         is_active: true,
         branch_id: "",
+        typeOptions:["تجميعي" , "عادي"],
       }),
     };
   },
