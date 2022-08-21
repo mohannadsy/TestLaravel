@@ -3,6 +3,7 @@
     <page-title>{{ $t("branchCard") }}</page-title>
   </div>
   <form>
+  <h1>{{branchNameWithCode}}</h1>
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row mt-2">
@@ -43,7 +44,7 @@
               v-model.trim="myObj.branch_id"
               @input="filterBranches"
             /> -->
-            <search-autocomplete :items="branches" @item-value="setBranchId"/>
+            <search-autocomplete :items="branches" @selected="customerSelected"  @change="onChange" />
           </div>
         </div>
       </div>
@@ -87,6 +88,7 @@ export default {
         branch_id: "",
         is_active: true,
       }),
+      branchNameWithCode:"",
     };
   },
   watch: {
@@ -95,6 +97,7 @@ export default {
     },
     branchInformaion() {
       Object.assign(this.myObj, this.branchInformaion);
+
     },
   },
   computed: {
@@ -105,11 +108,13 @@ export default {
   methods: {
     triggerToggleEvent(value) {
       this.myObj.is_active = value;
-    //   console.log(this.myObj.is_active);
-      console.log(this.branches)
     },
-    setBranchId(data){
-        this.myObj.branch_id = data;
+    customerSelected(data) {
+        this.myObj.branch_id = data.id;
+        this.branchNameWithCode = data.code + ' - ' + data.name;
+    },
+    onChange(){
+
     }
   },
 };

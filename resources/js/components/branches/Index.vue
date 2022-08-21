@@ -1,26 +1,10 @@
 <template>
-  <!-- <base-dialog
-    v-if="$page.props.flash.message"
-    title="Invalid Input"
-    @close="confirmError"
-  >
-    <template #default>
-      <p>Unfortunately, at least one input value is Invalid</p>
-      <p>Please.. Check all inputs</p>
-    </template>
-    <template #actions>
-      <base-button @click="confirmError">Okay</base-button>
-    </template>
-  </base-dialog> -->
   <saved-modal
     v-show="$page.props.flash.message"
     :title="$page.props.flash.message"
     @close="$page.props.flash.message=null"
   ></saved-modal>
   <locale-switcher />
-  <!-- <div  v-if="$page.props.flash.message">
-    {{$page.props.flash.message}}
-  </div> -->
   <div class="row">
     <form>
       <div class="col border-right">
@@ -132,7 +116,6 @@ export default {
         (this.form.name = data.name),
         (this.form.branch_id = data.branch_id);
       this.form.is_active = data.is_active;
-      console.log('updated')
     },
     saveBasic(data) {
       (this.form.responsibility = data.responsibility),
