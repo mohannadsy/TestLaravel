@@ -11,7 +11,7 @@
         <fa v-else icon="circle-plus" />
       </span>
       <span class="pointer" @click="sendNodeId(item)"
-        >{{ item.name }} - {{ item.code }}</span
+        >{{ item.code }} - {{ item.name }} </span
       >
     </div>
     <ul v-show="isOpen" v-if="isFolder">
