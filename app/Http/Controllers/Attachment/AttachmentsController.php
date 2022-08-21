@@ -33,24 +33,24 @@ class AttachmentsController extends Controller
     {
 
 
-//        $data = new Attachment();
-////
-//        $path = $request->path;
-//
-//        if ($data->type = 'file') {
-//
-//            $filename = $path->getClientOriginalName();
-//            $extension = $path->getClientOriginalExtension();
-//            if ($extension == 'png' | $extension == 'gif' | $extension == 'csv' | $extension == 'xlsx' | $extension == 'pdf' | $extension == 'docs' | $extension == 'doc') {
-//
-//                $limit = strlen($extension);
-//                $request->path->move('public', $filename);
-//                $data->path = $filename;
-//                $data->name = substr($filename, 0, -($limit + 1));
-////                $data->attachmentable_type = 'App\Models\User';
-////                $data->attachmentable_id =1;
-//                $data->extension = $extension;
-//                $data->save();
+        $data = new Attachment();
+
+        $path = $request->path;
+
+        if ($data->type = 'file') {
+
+            $filename = $path->getClientOriginalName();
+            $extension = $path->getClientOriginalExtension();
+            if ($extension == 'png' | $extension == 'gif' | $extension == 'csv' | $extension == 'xlsx' | $extension == 'pdf' | $extension == 'docs' | $extension == 'doc') {
+
+                $limit = strlen($extension);
+                $request->path->move('public', $filename);
+                $data->path = $filename;
+                $data->name = substr($filename, 0, -($limit + 1));
+                $data->attachmentable_type = 'App\Models\User';
+                $data->attachmentable_id =1;
+                $data->extension = $extension;
+                $data->save();}}
 //
 //                return redirect()->back();
 //            } else {
@@ -93,7 +93,7 @@ class AttachmentsController extends Controller
 //
 
 
-    }}
+    }
 
     public function show()
     {
