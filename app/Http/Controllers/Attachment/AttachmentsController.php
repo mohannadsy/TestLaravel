@@ -32,6 +32,7 @@ class AttachmentsController extends Controller
     public function Upload(AttachmentRequest $request)
     {
 
+
 //        $data = new Attachment();
 ////
 //        $path = $request->path;
@@ -68,7 +69,31 @@ class AttachmentsController extends Controller
 //
 //        ]);
 
-    }
+//        $data = new Attachment();
+
+//        $path = $request->path;
+
+
+//        $filename = $path->getClientOriginalName();
+//        $extension = $path->getClientOriginalExtension();
+//        if ($extension){
+//            == 'png' | $extension == 'gif' | $extension == 'csv' | $extension == 'xlsx' | $extension == 'pdf' | $extension == 'docs' | $extension == 'doc') {
+
+//           $limit =  strlen($extension);
+//            $request->path->move('public', $filename);
+//            $data->path = $filename;
+//            $data->name =substr($filename,0,-($limit+1));
+//            $data->type =$extension;
+//
+//            $data->save();
+//
+//            return redirect()->back();
+//        } else {
+//            return "You Can not Upload This File";
+//
+
+
+    }}
 
     public function show()
     {

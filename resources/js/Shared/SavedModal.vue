@@ -96,20 +96,18 @@ export default {
   display: flex;
   justify-content: center;
   background-color: #424141da;
+  z-index: 1000;
 }
 
 .modall {
+  position: absolute;
   text-align: center;
   background-color: white;
   height: 300px;
   width: 500px;
   margin-top: 10%;
-  padding: 60px 0;
+  padding: 40px 0;
   border-radius: 20px;
-}
-.closee {
-  margin: 10% 0 0 16px;
-  cursor: pointer;
 }
 
 h6 {
@@ -130,6 +128,5 @@ button {
   color: white;
   font-size: 14px;
   border-radius: 10px;
-  margin-top: 50px;
 }
 </style>

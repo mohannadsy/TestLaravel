@@ -33,10 +33,8 @@ class StoreController extends Controller
     {
         $id = Store::orderBy('id', 'desc')->first()->id + 1;
         $parameters = ['request' => $request, 'id' => $id ];
-
         $store = Store::create($request->all());
         $this->callAttachmentsMethod($parameters);
-
         $this->callActivityMethod('store', $parameters);
         return __('common.store');
     }

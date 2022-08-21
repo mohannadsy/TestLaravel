@@ -15,11 +15,6 @@ return new class extends Migration {
             $table->string('type')->nullable()->default('type');
             $table->string('extension')->nullable()->default('extension');
             $table->morphs('attachmentable');
-
-//            $table->string('');
-//            $table->string('table')->nullable()->default(null);
-//            $table->string('table_id')->nullable()->default(null);
-
             $table->timestamps();
         });
     }
