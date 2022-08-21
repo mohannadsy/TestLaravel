@@ -7,11 +7,11 @@
                     <!-- <div class="card-body"> -->
                         <!-- <div v-if="success != ''" class="alert alert-success">
                             {{success}}
-<<<<<<< HEAD
                         </div> -->
-                        <form class="form-group row" @submit="formSubmit" enctype="multipart/form-data">
+                        <form class="form-group row" @submit="formSubmit" enctype="multipart/form-data" method="post">
                             <div class="custom_file col-8">
                                 <span> <fa icon="file-arrow-up" class="file-arrow-up" /> اختيار ملف   </span>
+                                <span>{{filename}}</span>
                                 <input type="file" class="form-control file" v-on:change="onChange"/>
                             </div>
                             <div class="col-4">
@@ -20,14 +20,8 @@
                             </div>
                              
                             
-=======
-                        </div>
-                        <form @submit="formSubmit" enctype="multipart/form-data" method="post">
-
-                            <input type="file" class="form-control" v-on:change="onChange">
-                            <button class="btn btn-primary btn-block">Upload</button>
->>>>>>> be93ed18ef807b7bd921a4a85c2d24e8a5faaf4e
                         </form>
+                        
                     <!-- </div> -->
                 <!-- </div> -->
 
@@ -42,6 +36,7 @@ import ElemetLabel from '../../Shared/ElemetLabel.vue';
         components:{
            ElemetLabel, 
         },
+        props:["filename"],
         data() {
             return {
                 name: '',
