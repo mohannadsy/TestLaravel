@@ -37,6 +37,8 @@ return new class extends Migration {
 
             $table->foreign('attachment_id')->references('id')->on('attachments');
 
+            $table->unsignedBigInteger('image_id')->nullable()->default(null);
+            $table->foreign('image_id')->references('id')->on('images');
 
         });
     }

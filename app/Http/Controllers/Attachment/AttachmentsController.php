@@ -12,7 +12,8 @@ use function Symfony\Component\String\length;
 
 class AttachmentsController extends Controller
 {
-use ActivityLog;
+    use ActivityLog;
+
     public function index()
     {
         return view('uoload');
@@ -31,27 +32,65 @@ use ActivityLog;
     public function Upload(AttachmentRequest $request)
     {
 
-        $data = new Attachment();
 
-        $path = $request->path;
+//        $data = new Attachment();
+////
+//        $path = $request->path;
+//
+//        if ($data->type = 'file') {
+//
+//            $filename = $path->getClientOriginalName();
+//            $extension = $path->getClientOriginalExtension();
+//            if ($extension == 'png' | $extension == 'gif' | $extension == 'csv' | $extension == 'xlsx' | $extension == 'pdf' | $extension == 'docs' | $extension == 'doc') {
+//
+//                $limit = strlen($extension);
+//                $request->path->move('public', $filename);
+//                $data->path = $filename;
+//                $data->name = substr($filename, 0, -($limit + 1));
+////                $data->attachmentable_type = 'App\Models\User';
+////                $data->attachmentable_id =1;
+//                $data->extension = $extension;
+//                $data->save();
+//
+//                return redirect()->back();
+//            } else {
+//                return "You Can not Upload This File";
+//            }
+//        }
+//        $normalAttachment = Attachment::create([
+//            'name' => 'attachment 2',
+//            'path' => 'path 2',
+//            'type' => 'file',
+//            'extension' => 'extension',
+////            'table' => '1',
+////            'table_id' => '1'
+//            'attachmentable_type' => 'App\Models\Store',
+//            'attachmentable_id' => 1
+//
+//        ]);
+
+//        $data = new Attachment();
+
+//        $path = $request->path;
 
 
-        $filename = $path->getClientOriginalName();
-        $extension = $path->getClientOriginalExtension();
-        if ($extension){
+//        $filename = $path->getClientOriginalName();
+//        $extension = $path->getClientOriginalExtension();
+//        if ($extension){
 //            == 'png' | $extension == 'gif' | $extension == 'csv' | $extension == 'xlsx' | $extension == 'pdf' | $extension == 'docs' | $extension == 'doc') {
 
-           $limit =  strlen($extension);
-            $request->path->move('public', $filename);
-            $data->path = $filename;
-            $data->name =substr($filename,0,-($limit+1));
-            $data->type =$extension;
-
-            $data->save();
-
-            return redirect()->back();
-        } else {
-            return "You Can not Upload This File";
+//           $limit =  strlen($extension);
+//            $request->path->move('public', $filename);
+//            $data->path = $filename;
+//            $data->name =substr($filename,0,-($limit+1));
+//            $data->type =$extension;
+//
+//            $data->save();
+//
+//            return redirect()->back();
+//        } else {
+//            return "You Can not Upload This File";
+//
 
 
     }}
@@ -67,7 +106,8 @@ use ActivityLog;
         return response()->download(public_path('public/' . $path));
     }
 
-    public function delete(){
+    public function delete()
+    {
 
     }
 
@@ -77,7 +117,19 @@ use ActivityLog;
 //          }
 //
 //       }
+//    public function delete($id ,Request $request)
+//    {
+//        $img = Image::find($id);
+//        if(File::exists(public_path($request->$img))){
+//            File::delete(public_path($request->$img));
+//        }else{
+//            dd('File does not exists.');
+//        }
 
+//        $image_path = $request->image;  // the value is : localhost/project/image/filename.format
+//        if(File::exists($image_path)) {
+//            File::delete($image_path);
+//        }
 
 //        $request->file->store('public');
 //        dd($request->file);
