@@ -1,26 +1,47 @@
 <template>
     <div class="container">
-        <div class="row ">
-            <div class="col">
-                <div class="card">
+       <div class="row py-2">
+            <!-- <div class="col">  -->
+                <!-- <div class="card"> -->
                     <!-- <div class="card-header">Laravel Vue JS File Upload Demo</div> -->
-                    <div class="card-body">
-                        <div v-if="success != ''" class="alert alert-success">
+                    <!-- <div class="card-body"> -->
+                        <!-- <div v-if="success != ''" class="alert alert-success">
                             {{success}}
+<<<<<<< HEAD
+                        </div> -->
+                        <form class="form-group row" @submit="formSubmit" enctype="multipart/form-data">
+                            <div class="custom_file col-8">
+                                <span> <fa icon="file-arrow-up" class="file-arrow-up" /> اختيار ملف   </span>
+                                <input type="file" class="form-control file" v-on:change="onChange"/>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-primary">حذف</button>
+                                <button class="btn btn-primary ">ارفاق</button>
+                            </div>
+                             
+                            
+=======
                         </div>
                         <form @submit="formSubmit" enctype="multipart/form-data" method="post">
 
                             <input type="file" class="form-control" v-on:change="onChange">
                             <button class="btn btn-primary btn-block">Upload</button>
+>>>>>>> be93ed18ef807b7bd921a4a85c2d24e8a5faaf4e
                         </form>
-                    </div>
-                </div>
-            </div>
+                    <!-- </div> -->
+                <!-- </div> -->
+
+            <!-- </div> -->
         </div>
     </div>
 </template>
+
 <script>
+import ElemetLabel from '../../Shared/ElemetLabel.vue';
     export default {
+        components:{
+           ElemetLabel, 
+        },
         data() {
             return {
                 name: '',
@@ -53,3 +74,36 @@
         }
     }
 </script>
+<style scoped>
+.custom_file{
+    background-color: #eee;
+    width:400px;
+    height: 40px;
+    border: 1px solid #ccc;
+    position:relative;
+    z-index: 1;
+}
+
+.custom_file input[type="file"] {
+    width: 100%;
+    height: 100%;
+    opacity:0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:3;
+
+}
+.custom_file  span{
+    padding:5px 10px;
+    display: block;
+    font-size: 18px;
+}
+
+button{
+    margin-inline: 8px;
+}
+.file-arrow-up{
+    font-size: 25px;
+}
+</style>

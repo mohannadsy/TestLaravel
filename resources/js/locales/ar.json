@@ -58,6 +58,7 @@
     "warehouseName":"اسم المستودع",
     "latinName":"الاسم اللاتيني",
     "warehouseType":"نوع المستودع",
+    "theBranch":"الفرع",
     "warehousebBasicInformation":"معلومات أساسية",
     "attachments":"المرفقات",
     "mainWarehouse":"المستودع الرئيسي",
