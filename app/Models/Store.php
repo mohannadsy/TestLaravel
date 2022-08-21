@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Store extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'code',
         'name',
@@ -29,7 +30,8 @@ class Store extends Model
         // updates : add branch in all cards
         'branch_id',
         'store_id',
-        'attachment_id'
+        'attachment_id',
+
     ];
 
     protected $casts = [
@@ -57,12 +59,17 @@ class Store extends Model
         return $this->hasMany(Item::Class, 'store_id');
     }
 
-    public function attachment()
+
+    // Relation with Attachments
+    public function attachments()
     {
-        return $this->hasOne(Attachment::class, 'attachment_id');
+        return $this->morphMany(Attachment::class, 'attachmentable');
     }
 
+//    public function image()
+//    {
+//        return $this->hasOne(Image::class, 'image_id');
+//    }
 
 
-    use HasFactory;
 }

@@ -7,6 +7,7 @@
                     <!-- <div class="card-body"> -->
                         <!-- <div v-if="success != ''" class="alert alert-success">
                             {{success}}
+<<<<<<< HEAD
                         </div> -->
                         <form class="form-group row" @submit="formSubmit" enctype="multipart/form-data">
                             <div class="custom_file col-8">
@@ -19,6 +20,13 @@
                             </div>
                              
                             
+=======
+                        </div>
+                        <form @submit="formSubmit" enctype="multipart/form-data" method="post">
+
+                            <input type="file" class="form-control" v-on:change="onChange">
+                            <button class="btn btn-primary btn-block">Upload</button>
+>>>>>>> be93ed18ef807b7bd921a4a85c2d24e8a5faaf4e
                         </form>
                     <!-- </div> -->
                 <!-- </div> -->

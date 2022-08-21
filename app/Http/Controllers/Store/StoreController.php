@@ -12,7 +12,7 @@ use App\Traits\Store\StoreTrait;
 
 class StoreController extends Controller
 {
-    use ActivityLog, StoreTrait;
+    use ActivityLog, StoreTrait ;
 
 
     public function index()
@@ -32,9 +32,9 @@ class StoreController extends Controller
     public function store(StoreStoreRequest $request)
     {
         $id = Store::orderBy('id', 'desc')->first()->id + 1;
+        $parameters = ['request' => $request, 'id' => $id ];
         $store = Store::create($request->all());
-//         dd($store);
-        $parameters = ['request' => $request, 'id' => $id];
+        $this->callAttachmentsMethod($parameters);
         $this->callActivityMethod('store', $parameters);
         return __('common.store');
     }

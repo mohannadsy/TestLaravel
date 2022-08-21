@@ -10,8 +10,8 @@ use Illuminate\Support\Str;
 trait  ImageTrait
 {
 
-    public $public_path = "/public/Images/users";
-    public $storage_path = "/storage/Images/users";
+    public $public_path = "/public/Image/users";
+    public $storage_path = "/storage/Image/users";
 
     public function getImageURL(Request $request)
     {

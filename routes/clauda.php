@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Account;
-use App\Models\Item;
+use App\Models\Store;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Currency\CurrencyController;
@@ -69,7 +69,7 @@ Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
     Route::post('update', [AccountController::class, 'update'])->name('account.update');
     Route::get('delete/{id}', [AccountController::class, 'delete'])->name('account.delete');
 
-        Route::get('AccountAccount/{id}', [AccountController::class, 'AccountAccount'])->name('account.AccountAccount');
+    Route::get('AccountAccount/{id}', [AccountController::class, 'AccountAccount'])->name('account.AccountAccount');
 
 });
 
@@ -116,14 +116,18 @@ Route::group(['namespace' => 'Store', 'prefix' => 'store'], function () {
     Route::get('StoreAttachments/{id}', [StoreController::class, 'StoreAttachments'])->name('store.StoreAttachments');
 
 });
+Route::get('store-attachments', function () {
+     $store = Store::find(1);
+    return $store->attachments;
+});
 
 
 //------- Attachments ------//
 
 //Route::group(['namespace' => 'Store', 'prefix' => 'attachment'], function () {
-    Route::get('home', [AttachmentsController::class, 'index'])->name('home');
-    Route::post('upload', [AttachmentsController::class, 'Upload'])->name('upload');
-    Route::get('show', [AttachmentsController::class, 'show'])->name('show');
+Route::get('home', [AttachmentsController::class, 'index'])->name('home');
+Route::post('upload', [AttachmentsController::class, 'Upload'])->name('upload');
+Route::get('show', [AttachmentsController::class, 'show'])->name('show');
 Route::get('download/{file}', [AttachmentsController::class, 'download'])->name('download');
 //});
 
