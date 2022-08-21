@@ -92,7 +92,19 @@ class AttachmentsController extends Controller
 //          }
 //
 //       }
+//    public function delete($id ,Request $request)
+//    {
+//        $img = Image::find($id);
+//        if(File::exists(public_path($request->$img))){
+//            File::delete(public_path($request->$img));
+//        }else{
+//            dd('File does not exists.');
+//        }
 
+//        $image_path = $request->image;  // the value is : localhost/project/image/filename.format
+//        if(File::exists($image_path)) {
+//            File::delete($image_path);
+//        }
 
 //        $request->file->store('public');
 //        dd($request->file);
