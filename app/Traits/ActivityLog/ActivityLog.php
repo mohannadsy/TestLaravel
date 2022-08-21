@@ -43,7 +43,7 @@ trait  ActivityLog
 //            Attachment::create([
 //                'table' => $activity['table'],
 //                'table_id' => $activity['parameters']['table_id'],
-            ]);
+//            ]);
     }
 
 

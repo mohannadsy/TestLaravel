@@ -12,7 +12,7 @@ use App\Traits\Store\StoreTrait;
 
 class StoreController extends Controller
 {
-    use ActivityLog, StoreTrait;
+    use ActivityLog, StoreTrait ;
 
 
     public function index()
@@ -32,11 +32,13 @@ class StoreController extends Controller
     public function store(StoreStoreRequest $request)
     {
         $id = Store::orderBy('id', 'desc')->first()->id + 1;
+        $parameters = ['request' => $request, 'id' => $id ];
+
         $store = Store::create($request->all());
-//         dd($store);
-        $parameters= ['request' => $request, 'id' => $id,  'attachment_id'=>$request->attachment_id];
+        $this->callAttachmentsMethod($parameters);
+
         $this->callActivityMethod('store', $parameters);
-        return __('common.store') ;
+        return __('common.store');
     }
 
 
@@ -55,7 +57,7 @@ class StoreController extends Controller
     public function update(UpdateStoreRequest $request, $id)
     {
         $old_data = Store::find($id)->toJson();
-        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data , 'attachment_id'=>$request->attachment_id];
+        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data, 'attachment_id' => $request->attachment_id];
         $store = Store::find($id);
         if ($this->isRootStore($id)) {
             $Store = $store->update($request->except('store_id'));

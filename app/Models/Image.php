@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
-    protected $fillable = ['path', 'name', 'type', 'table', 'table_id'];
+    protected $fillable = ['path', 'name', 'type'];
 
     public function branch()
     {

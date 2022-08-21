@@ -16,7 +16,7 @@ class AttachmentRequest extends FormRequest
     {
         return [
 
-            'path' => 'mimes:txt,xlx,xls,pdf,doc,docs|max:2048,attachments,path'
+            'path' => 'mimes:txt,xlx,csv,xls,pdf,doc,docs|max:2048,attachments,path'
 
 
         ];

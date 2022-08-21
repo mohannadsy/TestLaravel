@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
 
     public function up()
     {
@@ -14,11 +13,13 @@ return new class extends Migration
             $table->string('path')->nullable()->default('path');
             $table->string('name')->nullable()->default('name');
             $table->string('type')->nullable()->default('type');
-            $table->string('table')->nullable()->default(null);
-            $table->string('table_id')->nullable()->default(null);
-            $table->unsignedBigInteger('attachment_id')->nullable();
+            $table->string('extension')->nullable()->default('extension');
+            $table->morphs('attachmentable');
 
-//            $table->foreign('attachment_id')->references('id')->on('stores');
+//            $table->string('');
+//            $table->string('table')->nullable()->default(null);
+//            $table->string('table_id')->nullable()->default(null);
+
             $table->timestamps();
         });
     }
