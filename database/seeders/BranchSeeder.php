@@ -10,7 +10,7 @@ class BranchSeeder extends Seeder
     public function run()
     {
         Branch::create([
-            'code' => '1',
+            'code' => '001',
             'name' => 'Main Branch',
             'branch_id' => null,
             'responsibility' => '',
@@ -21,10 +21,9 @@ class BranchSeeder extends Seeder
             'mobile' => '0994848736',
             'is_active' => true,
             'security_degree' => 1 // سرية
-            , 'attachment_id' =>1
         ]);
         Branch::create([
-            'code' => '2',
+            'code' => '002',
             'name' => 'Branch1',
             'branch_id' => 1,
             'responsibility' => '',
@@ -35,7 +34,6 @@ class BranchSeeder extends Seeder
             'mobile' => '0948943236',
             'is_active' => false,
             'security_degree' => 1 // سرية
-            , 'attachment_id' => 1
         ]);
 
         Branch::create([
@@ -50,7 +48,6 @@ class BranchSeeder extends Seeder
             'mobile' => '0093648736',
             'is_active' => true,
             'security_degree' => 3 // سرية
-            , 'attachment_id' => 1
         ]);
         Branch::create([
             'code' => '4',
@@ -64,7 +61,6 @@ class BranchSeeder extends Seeder
             'mobile' => '09940935736',
             'is_active' => true,
             'security_degree' => 1 // سرية
-//            , 'attachment_id' => 1
         ]);
         Branch::create([
             'code' => '5',
@@ -78,7 +74,6 @@ class BranchSeeder extends Seeder
             'mobile' => '09944935736',
             'is_active' => true,
             'security_degree' => 1 // سرية
-            , 'attachment_id' => 2
         ]);
         Branch::create([
             'code' => '6',
@@ -93,7 +88,6 @@ class BranchSeeder extends Seeder
             'is_active' => false,
             'security_degree' => 3,
 
-//            'attachment_id' => 2
         ]);
     }
 }

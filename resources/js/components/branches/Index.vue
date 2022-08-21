@@ -132,6 +132,7 @@ export default {
         (this.form.name = data.name),
         (this.form.branch_id = data.branch_id);
       this.form.is_active = data.is_active;
+      console.log('updated')
     },
     saveBasic(data) {
       (this.form.responsibility = data.responsibility),

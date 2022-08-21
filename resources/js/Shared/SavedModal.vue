@@ -82,7 +82,7 @@ export default {
       required: false,
     },
   },
-   emits:['close']
+  emits: ["close"],
 };
 </script>
 
@@ -104,7 +104,7 @@ export default {
   text-align: center;
   background-color: white;
   height: 300px;
-  width: 500px;
+  width: 450px;
   margin-top: 10%;
   padding: 40px 0;
   border-radius: 20px;
@@ -113,11 +113,6 @@ export default {
 h6 {
   font-weight: 500;
   font-size: 28px;
-  margin: 20px 0;
-}
-
-p {
-  font-size: 16px;
   margin: 20px 0;
 }
 
