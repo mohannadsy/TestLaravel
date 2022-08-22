@@ -18,7 +18,7 @@ const appName = window.document.getElementsByTagName('title')[0];
 // import { App, plugin } from '@inertiajs/inertia-vue3';
 // import { InertiaProgress } from '@inertiajs/progress';
 import store from './store/index.js';
-import style from './../assets/style.css';
+import style from './../assets/css/style.css';
 
 // const el = document.getElementById('app');
 
