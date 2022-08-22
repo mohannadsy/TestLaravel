@@ -38,6 +38,8 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 
     Route::get('get-role-permissions/{roleId}', [UserController::class, 'getRolePermissions'])->name('user.getRolePermissions');
 
+        Route::get('branch-parent/{id}', [UserController::class, 'branchParent'])->name('user.branchParent');
+
 });
 
 

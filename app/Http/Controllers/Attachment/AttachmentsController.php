@@ -22,7 +22,7 @@ class AttachmentsController extends Controller
     }
 
 
-    public function Upload(AttachmentRequest $request)
+    public function Upload(Request $request)
     {
 
 
@@ -33,20 +33,24 @@ class AttachmentsController extends Controller
 
         $filename = $path->getClientOriginalName();
         $extension = $path->getClientOriginalExtension();
-        if ($extension == 'png' | $extension == 'gif' | $extension == 'csv' | $extension == 'xlsx' | $extension == 'pdf' | $extension == 'docs' | $extension == 'doc') {
 
-            $limit = strlen($extension);
-            $request->path->move('public', $filename);
-            $data->path = $filename;
-            $data->name = substr($filename, 0, -($limit + 1));
+        if ($extension == 'txt' | $extension == 'xlx' | $extension == 'csv' | $extension == 'xls' | $extension == 'pdf' | $extension == 'docx' | $extension == 'docs' | $extension == 'doc') {
+            $data->type = 'file';
+        } elseif ($extension == 'png' | $extension == 'jpeg' | $extension == 'jpg') {
+            $data->type = 'Image';
+        }
+        $limit = strlen($extension);
+        $request->path->move('public', $filename);
+        $data->path = $filename;
+        $data->name = substr($filename, 0, -($limit + 1));
 
-            $data->attachmentable_type = 'App\Models\User';
-            $data->attachmentable_id = 1;
-            $data->extension = $extension;
-            $data->save();
+        $data->attachmentable_type = 'App\Models\User';
+        $data->attachmentable_id = 1;
+        $data->extension = $extension;
+        $data->save();
 
-            return redirect()->back();
-        } else {
+
+        if (!$data->type == 'Images' || !$data->type == 'file') {
             return "You Can not Upload This File";
         }
     }
