@@ -18,10 +18,10 @@
                                 <button class="btn btn-primary">حذف</button>
                                 <button class="btn btn-primary ">ارفاق</button>
                             </div>
-                             
-                            
+
+
                         </form>
-                        
+
                     <!-- </div> -->
                 <!-- </div> -->
 
@@ -34,7 +34,7 @@
 import ElemetLabel from '../../Shared/ElemetLabel.vue';
     export default {
         components:{
-           ElemetLabel, 
+           ElemetLabel,
         },
         props:["filename"],
         data() {
