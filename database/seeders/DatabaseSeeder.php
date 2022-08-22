@@ -13,7 +13,6 @@ DatabaseSeeder extends Seeder
     {
         $this->call([
             AttachmentSeeder::class,
-            ImagesSeeder::class,
             BranchSeeder::class,
             PermissionSeeder::class,
             RoleSeeder::class,

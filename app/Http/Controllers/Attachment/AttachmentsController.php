@@ -6,13 +6,14 @@ use App\Http\Requests\AttachmentRequest;
 use App\Models\Attachment;
 use App\Http\Controllers\Controller;
 use App\Traits\ActivityLog\ActivityLog;
+use App\Traits\Attachments\AttachmentsTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use function Symfony\Component\String\length;
 
 class AttachmentsController extends Controller
 {
-    use ActivityLog;
+    use ActivityLog, AttachmentsTrait;
 
     public function index()
     {
@@ -20,16 +21,8 @@ class AttachmentsController extends Controller
 //
     }
 
-    public function callActivityMethod($method, $parameters)
-    {
-        $this->makeActivity([
-            'table' => 'attachments',
-            'operation' => $method,
-            'parameters' => $parameters
-        ]);
-    }
 
-    public function Upload(AttachmentRequest $request)
+    public function Upload(Request $request)
     {
 
 
@@ -37,61 +30,30 @@ class AttachmentsController extends Controller
 
         $path = $request->path;
 
-//        if ($data->type = 'file') {
 
-            $filename = $path->getClientOriginalName();
-            $extension = $path->getClientOriginalExtension();
-            if ($extension == 'png' | $extension == 'gif' | $extension == 'csv' | $extension == 'xlsx' | $extension == 'pdf' | $extension == 'docs' | $extension == 'doc') {
+        $filename = $path->getClientOriginalName();
+        $extension = $path->getClientOriginalExtension();
 
-                $limit = strlen($extension);
-                $request->path->move('public', $filename);
-                $data->path = $filename;
-                $data->name = substr($filename, 0, -($limit + 1));+
-                $data->attachmentable_type = 'App\Models\User';
-                $data->attachmentable_id =1;
-                $data->extension = $extension;
-                $data->save();}}
-//
-//                return redirect()->back();
-//            } else {
-//                return "You Can not Upload This File";
-//            }
-//        }
-//        $normalAttachment = Attachment::create([
-//            'name' => 'attachment 2',
-//            'path' => 'path 2',
-//            'type' => 'file',
-//            'extension' => 'extension',
-////            'table' => '1',
-////            'table_id' => '1'
-//            'attachmentable_type' => 'App\Models\Store',
-//            'attachmentable_id' => 1
-//
-//        ]);
+        if ($extension == 'txt' | $extension == 'xlx' | $extension == 'csv' | $extension == 'xls' | $extension == 'pdf' | $extension == 'docx' | $extension == 'docs' | $extension == 'doc') {
+            $data->type = 'file';
+        } elseif ($extension == 'png' | $extension == 'jpeg' | $extension == 'jpg') {
+            $data->type = 'Image';
+        }
+        $limit = strlen($extension);
+        $request->path->move('public', $filename);
+        $data->path = $filename;
+        $data->name = substr($filename, 0, -($limit + 1));
 
-//        $data = new Attachment();
-
-//        $path = $request->path;
+        $data->attachmentable_type = 'App\Models\User';
+        $data->attachmentable_id = 1;
+        $data->extension = $extension;
+        $data->save();
 
 
-//        $filename = $path->getClientOriginalName();
-//        $extension = $path->getClientOriginalExtension();
-//        if ($extension){
-//            == 'png' | $extension == 'gif' | $extension == 'csv' | $extension == 'xlsx' | $extension == 'pdf' | $extension == 'docs' | $extension == 'doc') {
-
-//           $limit =  strlen($extension);
-//            $request->path->move('public', $filename);
-//            $data->path = $filename;
-//            $data->name =substr($filename,0,-($limit+1));
-//            $data->type =$extension;
-//
-//            $data->save();
-//
-//            return redirect()->back();
-//        } else {
-//            return "You Can not Upload This File";
-//
-
+        if (!$data->type == 'Images' || !$data->type == 'file') {
+            return "You Can not Upload This File";
+        }
+    }
 
 
     public function show()
