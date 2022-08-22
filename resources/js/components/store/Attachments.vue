@@ -19,10 +19,10 @@
                                 <button class="btn btn-primary ">ارفاق</button>
                                 <span>{{path.filename}}</span>
                             </div>
-                             
-                            
+
+
                         </form>
-                        
+
                     <!-- </div> -->
                 <!-- </div> -->
 
@@ -35,7 +35,7 @@
 import ElemetLabel from '../../Shared/ElemetLabel.vue';
     export default {
         components:{
-           ElemetLabel, 
+           ElemetLabel,
         },
         props:["path"],
         data() {
