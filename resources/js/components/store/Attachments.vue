@@ -11,12 +11,13 @@
                         <form class="form-group row" @submit="formSubmit" enctype="multipart/form-data" method="post">
                             <div class="custom_file col-8">
                                 <span> <fa icon="file-arrow-up" class="file-arrow-up" /> اختيار ملف   </span>
-                                <span>{{filename}}</span>
+                                <span>{{path.filename}}</span>
                                 <input type="file" class="form-control file" v-on:change="onChange"/>
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-primary">حذف</button>
                                 <button class="btn btn-primary ">ارفاق</button>
+                                <span>{{path.filename}}</span>
                             </div>
                              
                             
@@ -36,7 +37,7 @@ import ElemetLabel from '../../Shared/ElemetLabel.vue';
         components:{
            ElemetLabel, 
         },
-        props:["filename"],
+        props:["path"],
         data() {
             return {
                 name: '',
