@@ -9,15 +9,17 @@
                             {{success}}
                         </div> -->
                         <form class="form-group row" @submit="formSubmit" enctype="multipart/form-data" method="post">
-                            <div class="custom_file col-8">
-                                <span> <fa icon="file-arrow-up" class="file-arrow-up" /> اختيار ملف   </span>
-                                <span>{{path.filename}}</span>
+                            <div class="custom_file col-2 px-2">
+                                <span> <fa icon="file-arrow-up" class="file-arrow-up" /> اختيار ملف   </span>                               
                                 <input type="file" class="form-control file" v-on:change="onChange"/>
+                            </div>
+                            <div class="custom_filename col-4" >
+                                <span class="filename">{{this.path.name}}</span>
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-primary">حذف</button>
                                 <button class="btn btn-primary ">ارفاق</button>
-                                <span>{{path.filename}}</span>
+                                
                             </div>
 
 
@@ -37,7 +39,7 @@ import ElemetLabel from '../../Shared/ElemetLabel.vue';
         components:{
            ElemetLabel,
         },
-        props:["path"],
+        props:["filename"],
         data() {
             return {
                 name: '',
@@ -48,6 +50,7 @@ import ElemetLabel from '../../Shared/ElemetLabel.vue';
         methods: {
             onChange(e) {
                 this.path = e.target.files[0];
+                console.log(this.path);
             },
             formSubmit(e) {
                 e.preventDefault();
@@ -73,7 +76,16 @@ import ElemetLabel from '../../Shared/ElemetLabel.vue';
 <style scoped>
 .custom_file{
     background-color: #eee;
-    width:400px;
+    width:200px;
+    height: 40px;
+    border: 1px solid #ccc;
+    position:relative;
+    z-index: 1;
+    margin-left: 10px;
+}
+.custom_filename{
+    background-color: #eee;
+    width:350px;
     height: 40px;
     border: 1px solid #ccc;
     position:relative;
@@ -90,7 +102,22 @@ import ElemetLabel from '../../Shared/ElemetLabel.vue';
     z-index:3;
 
 }
+.custom_filename input[type="file"] {
+    width: 100%;
+    height: 100%;
+    opacity:0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:3;
+
+}
 .custom_file  span{
+    padding:7px 10px;
+    display: block;
+    font-size: 18px;
+}
+.custom_filename > span{
     padding:5px 10px;
     display: block;
     font-size: 18px;
