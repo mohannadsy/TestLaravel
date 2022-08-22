@@ -37,7 +37,7 @@ class AttachmentsController extends Controller
 
         $path = $request->path;
 
-        if ($data->type = 'file') {
+//        if ($data->type = 'file') {
 
             $filename = $path->getClientOriginalName();
             $extension = $path->getClientOriginalExtension();
@@ -93,7 +93,6 @@ class AttachmentsController extends Controller
 //
 
 
-    }
 
     public function show()
     {
