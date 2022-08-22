@@ -46,7 +46,7 @@ class AttachmentsController extends Controller
                 $limit = strlen($extension);
                 $request->path->move('public', $filename);
                 $data->path = $filename;
-                $data->name = substr($filename, 0, -($limit + 1));
+                $data->name = substr($filename, 0, -($limit + 1));+
                 $data->attachmentable_type = 'App\Models\User';
                 $data->attachmentable_id =1;
                 $data->extension = $extension;
