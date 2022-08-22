@@ -166,8 +166,23 @@ trait  UserTrait
         }
     }
 
-    public function getRolePermissions($roleId){
-        $role =Role::find($roleId);
+    public function getRolePermissions($roleId)
+    {
+        $role = Role::find($roleId);
         return $role->permissions;
+    }
+
+
+    public function branchParent($id)
+    {
+        $branch = Branch::with('branch')->find($id);
+        return $branch->branch['code'] . ' - ' . $branch->branch['name'];
+//        foreach ($branch as $item) {
+//            return $item->name;
+
+
+//        =>function($query){
+//            $query->select('code','name')->get();
+//        }])->
     }
 }

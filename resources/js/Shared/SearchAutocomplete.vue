@@ -49,7 +49,7 @@ import ElementInput from './ElementInput.vue';
     data() {
       return {
         itemHeight: 39,
-        selectedItem: null,
+        selectedItem: '',
         selected: 0,
         query: '',
         visible: false
@@ -81,7 +81,7 @@ import ElementInput from './ElementInput.vue';
           this.selected = 0;
         }
 
-        this.$emit('selected', JSON.parse(JSON.stringify(this.selectedItem)));
+        this.$emit('selected', JSON.parse(JSON.stringify(this.selectedItem.name)));
       },
       up() {
         if (this.selected == 0) {
