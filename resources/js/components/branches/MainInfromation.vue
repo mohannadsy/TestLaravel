@@ -44,7 +44,7 @@
               v-model.trim="myObj.branch_id"
               @input="filterBranches"
             /> -->
-            <search-autocomplete :items="branches" @selected="customerSelected"  @change="onChange" v-model="myObj.branch_id"/>
+            <search-autocomplete :items="branches" @selected="customerSelected"  @change="onChange" />
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default {
         branch_id: "",
         is_active: true,
       }),
-      branchNameWithCode:"",
+    //   branchNameWithCode:"",
     };
   },
   watch: {
@@ -112,7 +112,7 @@ export default {
     },
     customerSelected(data) {
         this.myObj.branch_id = data.id;
-        this.branchNameWithCode = data.code + ' - ' + data.name;
+        // this.branchNameWithCode = data.code + ' - ' + data.name;
     },
     onChange(data){
         // console.log('this is my data' + data)

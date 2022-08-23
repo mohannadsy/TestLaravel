@@ -48,7 +48,8 @@ export default {
       userPermissions: [],
       roleArray: {},
       roleOptions: [],
-      roleId:2
+      roleId:2,
+      branchNameWithCode:''
     };
   },
   props: {
@@ -77,9 +78,11 @@ export default {
       this.nodeType = nodeType;
       if (nodeType === "branches") {
         this.branchId = nodeId;
-        let res = await axios.get(route("branch.show", this.branchId));
-        this.branchInformaion = JSON.parse(JSON.stringify(res.data));
-        console.log(this.branchInformaion);
+        let branchInformaion = await axios.get(route("branch.show", this.branchId));
+        this.branchInformaion = JSON.parse(JSON.stringify(branchInformaion.data));
+        let branchNameWithCode = await axios.get(route("user.branchParent",this.branchId))
+        this.branchNameWithCode = JSON.parse(JSON.stringify(branchNameWithCode.data))
+        this.branchInformaion.branch_id= this.branchNameWithCode
       } else {
         this.userId = nodeId;
         let result1 = await axios.get(route("user.showUser", this.userId));

@@ -1,25 +1,31 @@
 <template>
   <div class="autocomplete">
-    <element-input @click="toggleVisible" :value="selectedItem ? selectedItem.code +' - '+ selectedItem.name : ''"></element-input>
+    <element-input
+      @click="toggleVisible"
+      :value="selectedItem ? branchNameWithCode : ''"
+    ></element-input>
     <!-- <div class="placeholder" v-if="selectedItem == null" v-text="title"></div> -->
     <!-- <button class="close" @click="selectedItem = null" v-if="selectedItem">x</button> -->
     <div class="popoverr" v-show="visible">
-      <element-input type="text"
+      <element-input
+        type="text"
         ref="input"
         v-model="query"
         @keydown.up="up"
         @keydown.down="down"
         @keydown.enter="selectItem"
-        placeholder="اكتب هنا.."/>
+        placeholder="اكتب هنا.."
+      />
       <div class="options" ref="optionsList">
         <ul>
-          <li v-for="(match, index) in matches"
+          <li
+            v-for="(match, index) in matches"
             :key="index"
-            :class="{ 'selected': (selected == index)}"
+            :class="{ selected: selected == index }"
             @click="itemClicked(index)"
-            >
-             {{ match.code }} - {{ match.name }}
-            </li>
+          >
+            {{ match.code }} - {{ match.name }}
+          </li>
         </ul>
       </div>
     </div>
@@ -27,164 +33,166 @@
 </template>
 
 <script>
-import ElementInput from './ElementInput.vue';
-  export default {
-    components:{
-        ElementInput
+import ElementInput from "./ElementInput.vue";
+export default {
+  components: {
+    ElementInput,
+  },
+  props: {
+    items: {
+      default: [],
+      type: Array,
     },
-    props: {
-      items: {
-        default: [],
-        type: Array
-      },
-      title: {
-        default: 'Select One...',
-        type: String
-      },
-      shouldReset: {
-        type: Boolean,
-        default: true
+    title: {
+      default: "Select One...",
+      type: String,
+    },
+    shouldReset: {
+      type: Boolean,
+      default: true,
+    }
+  },
+  data() {
+    return {
+      itemHeight: 39,
+      selectedItem: "",
+      selected: 0,
+      query: "",
+      visible: false,
+      branchNameWithCode: ''
+    };
+  },
+  methods: {
+    toggleVisible() {
+      this.visible = !this.visible;
+
+      setTimeout(() => {
+        this.$refs.input.focus();
+      }, 50);
+    },
+    itemClicked(index) {
+      this.selected = index;
+      this.selectItem();
+    },
+    selectItem() {
+      if (!this.matches.length) {
+        return;
       }
-    },
-    data() {
-      return {
-        itemHeight: 39,
-        selectedItem: '',
-        selected: 0,
-        query: '',
-        visible: false
-      };
-    },
-    methods: {
-      toggleVisible() {
-        this.visible = !this.visible;
 
-        setTimeout(() => {
-          this.$refs.input.focus();
-        }, 50);
-      },
-      itemClicked(index) {
-        this.selected = index;
-        this.selectItem();
-      },
-      selectItem() {
-        if (!this.matches.length) {
-          return;
-        }
+      this.selectedItem = this.matches[this.selected];
+      this.branchNameWithCode =this.selectedItem.code + ' - ' + this.selectedItem.name
+      console.log(this.selectedItem);
+      this.visible = false;
 
-        this.selectedItem = this.matches[this.selected];
-        console.log(this.selectedItem)
-        this.visible = false;
-
-        if (this.shouldReset) {
-          this.query = '';
-          this.selected = 0;
-        }
-
-        this.$emit('selected', JSON.parse(JSON.stringify(this.selectedItem.name)));
-      },
-      up() {
-        if (this.selected == 0) {
-          return;
-        }
-
-        this.selected -= 1;
-        this.scrollToItem();
-      },
-      down() {
-        if (this.selected >= this.matches.length - 1) {
-          return;
-        }
-
-        this.selected += 1;
-        this.scrollToItem();
-      },
-      scrollToItem() {
-        this.$refs.optionsList.scrollTop = this.selected * this.itemHeight;
+      if (this.shouldReset) {
+        this.query = "";
+        this.selected = 0;
       }
+
+      this.$emit("selected", JSON.parse(JSON.stringify(this.selectedItem)));
     },
-    computed: {
-      matches() {
-        this.$emit('change', this.query);
+    up() {
+      if (this.selected == 0) {
+        return;
+      }
 
-        if (this.query == '') {
-          return [];
-        }
+      this.selected -= 1;
+      this.scrollToItem();
+    },
+    down() {
+      if (this.selected >= this.matches.length - 1) {
+        return;
+      }
 
-        return this.items.filter(
+      this.selected += 1;
+      this.scrollToItem();
+    },
+    scrollToItem() {
+      this.$refs.optionsList.scrollTop = this.selected * this.itemHeight;
+    },
+  },
+  computed: {
+    matches() {
+      this.$emit("change", this.query);
+
+      if (this.query == "") {
+        return [];
+      }
+
+      return this.items.filter(
         (item) =>
           item.name.toLowerCase().includes(this.query.toLowerCase()) ||
           item.code.toLowerCase().includes(this.query.toLowerCase())
       );
-      }
-    }
-  }
+    },
+  },
+};
 </script>
 
 <style scoped>
 .autocomplete {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 }
 .input {
-    height: 30px;
-    border-radius: 3px;
-    border: 2px solid lightgray;
-    box-shadow: 0 0 10px #eceaea;
+  height: 30px;
+  border-radius: 3px;
+  border: 2px solid lightgray;
+  box-shadow: 0 0 10px #eceaea;
 
-    padding-left: 10px;
-    padding-top: 10px;
-    cursor: text;
+  padding-left: 10px;
+  padding-top: 10px;
+  cursor: text;
 }
 .close {
-    position: absolute;
-    right: 2px;
-    top: 4px;
-    background: none;
-    border: none;
-    font-size: 30px;
-    color: lightgrey;
-    cursor: pointer;
+  position: absolute;
+  right: 2px;
+  top: 4px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: lightgrey;
+  cursor: pointer;
 }
 
 .popoverr {
-    min-height: 50px;
-    border: 2px solid lightgray;
-    position: absolute;
-    left: 0;
-    right: 0;
-    background: #fff;
-    border-radius: 3px;
-    text-align: center;
+  min-height: 50px;
+  border: 2px solid lightgray;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 3px;
+  text-align: center;
 }
 .options {
-    max-height: 150px;
-    overflow-y: scroll;
-    margin-top: 5px;
+  max-height: 150px;
+  overflow-y: scroll;
+  margin-top: 5px;
 }
 .options ul {
-    list-style-type: none;
-    text-align: center;
-    padding-left: 0;
+  list-style-type: none;
+  text-align: center;
+  padding-left: 0;
 }
 .options ul li {
-    border-bottom: 1px solid lightgray;
-    padding: 3px;
-    cursor: pointer;
-    background: #f1f1f1;
+  border-bottom: 1px solid lightgray;
+  padding: 3px;
+  cursor: pointer;
+  background: #f1f1f1;
 }
 .options ul li:first-child {
-    border-top: 2px solid #d6d6d6;
+  border-top: 2px solid #d6d6d6;
 }
 
 .options ul li:not(.selected):hover {
-    background: #8c8c8c;
-    color: #fff;
+  background: #8c8c8c;
+  color: #fff;
 }
 .options ul li.selected {
-    background: #58bd4c;
-    color: #fff;
-    font-weight: 600;
+  background: #58bd4c;
+  color: #fff;
+  font-weight: 600;
 }
 </style>
 
