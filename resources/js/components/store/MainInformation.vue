@@ -130,6 +130,10 @@ export default {
     triggerToggleEvent(value) {
       this.storeObject.is_active = value;
     },
+    translatedLanguage(option)
+  {
+    return option ? this.$t(option.text) : null;
+  }
   },
 };
 </script>

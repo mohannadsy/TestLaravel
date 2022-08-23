@@ -58,6 +58,8 @@
     "warehouseName":"اسم المستودع",
     "latinName":"الاسم اللاتيني",
     "warehouseType":"نوع المستودع",
+    "normalType":"عادي",
+    "aggregativeType":"تجميعي",
     "theBranch":"الفرع",
     "CumulativeAcountType":"تجميعي",
     "warehousebBasicInformation":"معلومات أساسية",
