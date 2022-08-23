@@ -9,21 +9,31 @@
     </div>
     <div class="row a mt-2">
       <div class="col-5">
-        <title-button @click="activeTab = 'BasicInformation'" :type="'button'"
+         <title-button v-if="form.type === 'تجميعي'" @click="activeTab = 'CumulativeAcountType'" :type="'button'"
+          >{{ $t("CumulativeAcountType") }}
+        </title-button>
+        <div v-else>
+           <title-button  @click="activeTab = 'BasicInformation'" :type="'button'"
           >{{ $t("warehousebBasicInformation") }}
         </title-button>
-        <title-button @click="activeTab = 'attachments'" :type="'button'"
+        <title-button  @click="activeTab = 'attachments'" :type="'button'"
           >{{ $t("attachments") }}
         </title-button>
+
+        </div>
+       
       </div>
     </div>
+    <cumulative-acount-type v-if="form.type === 'تجميعي'" >
+
+    </cumulative-acount-type>
     <basic-information
-    v-if="activeTab === 'BasicInformation'"
+    v-if="activeTab === 'BasicInformation' & form.type === 'عادي' "
       :form="form"
       @save-basic="saveBasic"
       :storeInformation="storeInformation"
     ></basic-information>
-    <attachments v-if="activeTab === 'attachments'"></attachments>
+    <attachments v-if="activeTab === 'attachments' & form.type === 'عادي'"></attachments>
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
         <element-button :type="'button'" @click="storeStore"

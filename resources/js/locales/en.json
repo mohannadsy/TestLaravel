@@ -59,6 +59,7 @@
     "latinName":"Latin Name",
     "warehouseType":"Warehouse Type",
     "theBranch":"Branch",
+    "CumulativeAcountType":"Cumulative",
     "warehousebBasicInformation":"Basic Information",
     "attachments":"Attachments",
     "mainWarehouse":"MainWarehouse",

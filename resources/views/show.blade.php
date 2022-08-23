@@ -32,7 +32,7 @@
 
                         <td><a href="">View</a></td>
                         <td><a href="{{url('/download',$data->path)}}"> Download </a></td>
-
+                        <td><a href="{{url('/delete',$data->path)}}"> Delete </a></td>
 
                     </tr>
                 @endforeach

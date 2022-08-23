@@ -55,6 +55,7 @@
             :options="storeObject.typeOptions"
             @change="objChanged"
             :value="storeObject.type"
+             v-model.trim="storeObject.type"
           />
           </div>
         </div>
@@ -105,7 +106,7 @@ export default {
         code: "",
         name: "",
         latin_name: "",
-        type: "",
+        type: "عادي",
         is_active: true,
         branch_id: "",
         typeOptions:["تجميعي" , "عادي"],

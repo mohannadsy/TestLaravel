@@ -7,6 +7,7 @@ use App\Models\Attachment;
 use App\Http\Controllers\Controller;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Attachments\AttachmentsTrait;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use function Symfony\Component\String\length;
@@ -67,19 +68,24 @@ class AttachmentsController extends Controller
         return response()->download(public_path('public/' . $path));
     }
 
-    public function delete()
-    {
+    public function delete(Request $request)
+    {   $file = $request->filename;
+        if(File::exists(public_path($request->$file))){
+            File::delete(public_path($request->$file));
+        }else{
+            dd('File does not exists.');
+        }
 
-    }
-
-//       if ( $file  = $request->file('file')){
-//           $name = $file->getClientOriginalName();
-//          if ( $file->move('images',$name)){
-//          }
+        }
 //
 //       }
 //    public function delete($id ,Request $request)
 //    {
+//if ($file = $request->file('file')) {
+//$name = $file->getClientOriginalName();
+//if ($file->move('images', $name)) {
+//}
+
 //        $img = Image::find($id);
 //        if(File::exists(public_path($request->$img))){
 //            File::delete(public_path($request->$img));
@@ -97,4 +103,4 @@ class AttachmentsController extends Controller
 //        return 'Done';
 //        $request->
 //    }
-}
+    }
