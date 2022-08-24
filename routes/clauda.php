@@ -40,6 +40,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 
     Route::get('branch-parent/{id}', [UserController::class, 'branchParent'])->name('user.branchParent');
 
+
 });
 
 
