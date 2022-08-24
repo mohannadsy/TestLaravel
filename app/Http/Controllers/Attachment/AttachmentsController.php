@@ -7,7 +7,7 @@ use App\Models\Attachment;
 use App\Http\Controllers\Controller;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Attachments\AttachmentsTrait;
-use File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use function Symfony\Component\String\length;
@@ -50,10 +50,11 @@ class AttachmentsController extends Controller
         $data->extension = $extension;
         $data->save();
 
-
+        print($filename);
         if (!$data->type == 'Images' || !$data->type == 'file') {
             return "You Can not Upload This File";
         }
+//        redirect('show');
     }
 
 
@@ -66,41 +67,15 @@ class AttachmentsController extends Controller
     public function download(Request $request, $path)
     {
         return response()->download(public_path('public/' . $path));
+
     }
 
-    public function delete(Request $request)
-    {   $file = $request->filename;
-        if(File::exists(public_path($request->$file))){
-            File::delete(public_path($request->$file));
-        }else{
-            dd('File does not exists.');
-        }
-
-        }
-//
-//       }
-//    public function delete($id ,Request $request)
-//    {
-//if ($file = $request->file('file')) {
-//$name = $file->getClientOriginalName();
-//if ($file->move('images', $name)) {
-//}
-
-//        $img = Image::find($id);
-//        if(File::exists(public_path($request->$img))){
-//            File::delete(public_path($request->$img));
-//        }else{
-//            dd('File does not exists.');
-//        }
-
-//        $image_path = $request->image;  // the value is : localhost/project/image/filename.format
-//        if(File::exists($image_path)) {
-//            File::delete($image_path);
-//        }
-
-//        $request->file->store('public');
-//        dd($request->file);
-//        return 'Done';
-//        $request->
-//    }
+    public function delete($id)
+    {
+        $file = Attachment::find($id);
+        $file_name = $file->filname;
+        $public_path = public_path('public/' . $file->path);
+        unlink($public_path);
+        $file->delete();
     }
+}
