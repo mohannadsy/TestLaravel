@@ -106,13 +106,21 @@ export default {
         code: "",
         name: "",
         latin_name: "",
-        type: "عادي",
+        type: null,
         is_active: true,
         branch_id: "",
-        typeOptions:["تجميعي" , "عادي"],
+        // typeOptions:["تجميعي" , "عادي",$t("normalType")],
       }),
     };
   },
+  computed: {
+      typeOptions() {
+        return [
+          { label: this.$t('normalType'), value: 1 },
+          { label: this.$t('aggregativeType'), value: 2 },
+        ];
+      },
+    },
   watch:{
      form() {
       this.storeObject = this.form;
