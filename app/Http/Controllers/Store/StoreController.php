@@ -55,7 +55,7 @@ class StoreController extends Controller
     public function update(UpdateStoreRequest $request, $id)
     {
         $old_data = Store::find($id)->toJson();
-        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data, 'attachment_id' => $request->attachment_id];
+        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data];
         $store = Store::find($id);
         if ($this->isRootStore($id)) {
             $Store = $store->update($request->except('store_id'));
@@ -70,7 +70,7 @@ class StoreController extends Controller
         $parameters = ['id' => $id];
         $store = Store::find($id);
         if ($this->isRootStore($id))
-            return __('root store can not be deleted');
+            return __('store.root store can not be deleted');
         if (!$this->numOfSubStores($id) > 0) {
             $store->delete();
             $this->callActivityMethod('delete', $parameters);
