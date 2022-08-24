@@ -33,8 +33,8 @@ return new class extends Migration {
             $table->integer('security_degree')->default(1);
 
             $table->unsignedBigInteger('branch_id')->nullable()->default(1);
+            $table->foreign('branch_id')->references('id')->on('branches');
 
-//            $table->json('attachment_id')->nullable()->default(null);
 
 
             $table->timestamps();

@@ -13,6 +13,7 @@ use App\Traits\Branch\BranchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
+
 //use Illuminate\Validation\Validator;
 use Spatie\Permission\Models\Permission;
 
@@ -27,7 +28,7 @@ class BranchController extends Controller
     {
         $parameters = ['id' => null];
         $branches = Branch::where('is_active', true)->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
-        $branchesWithUsers = Branch::whereNull('branch_id')->with('branches','users')->select('id', 'name', 'code', 'branch_id')->get();// for tree
+        $branchesWithUsers = Branch::whereNull('branch_id')->with('branches', 'users')->select('id', 'name', 'code', 'branch_id')->get();// for tree
         $groupPermissions = PermissionGroup::select('name', 'caption_' . Config::get('app.locale') . ' as caption', 'id')->with(['permissions'])->get();
         $this->callActivityMethod('getAllBranches', $parameters);
 
@@ -86,17 +87,15 @@ class BranchController extends Controller
 
     public function update(UpdateBranchRequest $request, $id)
     {
-        $old_data=Branch::find($id)->toJson();
-        $parameters = ['request' => $request, 'id' => $id,'old_data'=>$old_data];
+        $old_data = Branch::find($id)->toJson();
+        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data];
         $branch = Branch::find($id);
-        if ($this->isRootBranch($id))
-        {
+        if ($this->isRootBranch($id)) {
             $Branch = $branch->update($request->except('branch_id'));
-        }
-        else
-            $Branch=$branch->update($request->all());
+        } else
+            $Branch = $branch->update($request->all());
         $this->callActivityMethod('update', $parameters);
-        return redirect()->route('branch.index')->with('message',__('common.update'));
+        return redirect()->route('branch.index')->with('message', __('common.update'));
         // return __('common.update');
     }
 
@@ -107,17 +106,17 @@ class BranchController extends Controller
         $branch = Branch::find($id);
         if ($this->isRootBranch($id))
 //            return "Root Branch isn't deleted";
-            return __('branch.Root Branch delete');
+            return __('branch.root branch can be deleted');
         if (!$this->numOfSubBranches($id) > 0) {
             $branch->delete();
             $this->callActivityMethod('delete', $parameters);
 //            return "Branch is deleted successfully";
             // return __('common.delete');
-            return redirect()->route('branch.index')->with('message',__('common.delete'));
+            return redirect()->route('branch.index')->with('message', __('common.delete'));
         } else
 //            return "it is not possible to delete a branch that contains branches within it";
 
-             return __('branch.branch delete');
+            return __('branch.branch delete error');
     }
 //    public function store(Request $request)
 //    {
@@ -202,9 +201,9 @@ class BranchController extends Controller
         $this->callActivityMethod('store', $parameters);
 //          return redirect()->route('branch.index')->with('message','Branch created successfully');
 
-       return redirect()->route('branch.index')->with('message',__('common.store'));
+        return redirect()->route('branch.index')->with('message', __('common.store'));
 
-                // return __('common.store');
+        // return __('common.store');
 
 
     }

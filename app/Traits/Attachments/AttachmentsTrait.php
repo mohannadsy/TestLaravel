@@ -41,15 +41,9 @@ trait AttachmentsTrait
             $data->attachmentable_id = $parameters['parameters']['id'];
             $data->extension = $extension;
             $data->save();
-
             return redirect()->back();
         } else {
             return "This [ Type - Extension ] is not Allowed";
         }
-
-
-
     }
-
-
 }

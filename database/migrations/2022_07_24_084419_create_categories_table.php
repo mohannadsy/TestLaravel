@@ -17,15 +17,14 @@ return new class extends Migration {
             $table->string('type');
             $table->boolean('is_active');
             $table->boolean('is_aggregate');
-            $table->string( 'notes');
-
+            $table->string('notes');
 
 
             $table->timestamps();
 
             // updates : add branch in all cards
             $table->unsignedBigInteger('branch_id')->nullable()->default(1);
-//            $table->foreign('branch_id')->references('id')->on('branches');
+            $table->foreign('branch_id')->references('id')->on('branches');
 
 
         });

@@ -38,13 +38,11 @@ return new class extends Migration {
             $table->integer('security_degree')->default(1);
             $table->json('aggregate_ids');
             $table->json('distributive_ids');
-//            $table->json('attachment_id')->nullable()->default(null);
 
             $table->timestamps();
 
-            // updates : add branch in all cards
-            $table->unsignedBigInteger('branch_id')->nullable()->default(1);
-//            $table->foreign('branch_id')->references('id')->on('branches');
+             $table->unsignedBigInteger('branch_id')->nullable()->default(1);
+            $table->foreign('branch_id')->references('id')->on('branches');
 
 
         });

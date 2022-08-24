@@ -120,7 +120,7 @@ Route::group(['namespace' => 'Store', 'prefix' => 'store'], function () {
 
 });
 Route::get('store-attachments', function () {
-     $store = Store::find(1);
+    $store = Store::find(1);
     return $store->attachments;
 });
 
