@@ -40,6 +40,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 
     Route::get('branch-parent/{id}', [UserController::class, 'branchParent'])->name('user.branchParent');
 
+
 });
 
 
@@ -131,7 +132,7 @@ Route::get('home', [AttachmentsController::class, 'index'])->name('home');
 Route::post('upload', [AttachmentsController::class, 'Upload'])->name('upload');
 Route::get('show', [AttachmentsController::class, 'show'])->name('show');
 Route::get('download/{file}', [AttachmentsController::class, 'download'])->name('download');
-Route::get('delete/{file}', [AttachmentsController::class, 'delete'])->name('delete');
+Route::get('delete/{id}', [AttachmentsController::class, 'delete'])->name('delete');
 
 //});
 

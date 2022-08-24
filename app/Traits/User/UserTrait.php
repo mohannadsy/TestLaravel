@@ -177,12 +177,7 @@ trait  UserTrait
     {
         $branch = Branch::with('branch')->find($id);
         return $branch->branch['code'] . ' - ' . $branch->branch['name'];
-//        foreach ($branch as $item) {
-//            return $item->name;
 
-
-//        =>function($query){
-//            $query->select('code','name')->get();
-//        }])->
     }
+
 }
