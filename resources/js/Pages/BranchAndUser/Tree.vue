@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div>
+    <div  tabindex="1"
+        class="folderTitleSpan">
       <span
         class="default-pointer"
         @click="toggle"
@@ -13,8 +14,8 @@
         <fa v-if="isOpen" icon="circle-minus" />
         <fa v-else icon="circle-plus" />
       </span>
-      <!-- class="[isActive  ? 'red' : 'blue']" -->
-      <span class="pointer" @click="sendNodeType(item, item.id)"
+      <span
+        @click="sendNodeType(item, item.id)"
         >{{ item.name }} - {{ item.code }}</span
       >
     </div>
@@ -51,31 +52,67 @@ export default {
       isOpen: false,
       nodeType: "",
       nodeId: "",
-      //   isActive: 0,
-      isNodeSelected: false,
+      selectedNode: [],
     };
   },
   computed: {
     isFolder: function () {
       return this.item.branches && this.item.branches.length;
     },
+    // setChevronClass: function () {
+    //   return {
+    //     opened: this.isFolder && this.open,
+    //     closed: this.isFolder && !this.open,
+    //     folderChevronSpan: this.isFolder,
+    //   };
+    // },
+    // setSelected: function () {
+    //   if (
+    //     this.selectedNode.length > 0 &&
+    //     this.selectedNode[0].title == this.item.name
+    //   )
+    //     return true;
+    //   else return false;
+    // },
   },
   methods: {
     toggle: function () {
       if (this.isFolder) {
         this.isOpen = !this.isOpen;
+        this.$refs.toggler.focus();
       }
     },
+    // changeType: function () {
+    //   if (!this.isFolder) {
+    //     Vue.set(this.item, "children", []);
+    //     this.addChild();
+    //     this.open = true;
+    //   }
+    // },
+    // addChild: function () {
+    //   this.item.children.push({
+    //     name: "new stuff",
+    //   });
+    // },
     makeFolder: function () {
       if (!this.isFolder) {
         this.$emit("make-folder", this.item);
         this.isOpen = true;
       }
     },
-
+    // selectNode: function () {
+    //   this.selectedNode = [];
+    //   this.selectedNode.push({
+    //     title: this.item.name,
+    //     isSelected: true,
+    //   });
+    // },
     sendNodeType(item, id) {
-      this.isNodeSelected = true;
-      this.isSelected = item.id;
+      //   this.selectedNode = [];
+      //   this.selectedNode.push({
+      //     title: this.item.name,
+      //     isSelected: true,
+      //   });
       id = item.id;
       if (item.hasOwnProperty("branches")) {
         this.nodeType = "branches";
@@ -90,19 +127,6 @@ export default {
 };
 </script>
 <style scoped>
-.selectedNode {
-  background: #1a74b0;
-  color: white;
-}
-.highlight {
-  background-color: red;
-}
-.notselected {
-  background-color: transparent;
-}
-.pointer {
-  cursor: pointer;
-}
 .default-pointer {
   cursor: pointer;
   font-size: 20px;
@@ -114,11 +138,19 @@ export default {
   margin: 0;
   padding: 0;
 }
-.red {
-  background: red;
+
+.folderTitleSpan:hover {
+  font-weight: bold;
+    width:100%;
+  border: 1px solid black;
+  cursor: pointer;
 }
 
-.blue {
-  background: blue;
+.folderTitleSpan:focus,
+ span:nth-child(1):focus + .folderTitleSpan {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+   width:100%;
 }
 </style>
