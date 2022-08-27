@@ -9,33 +9,47 @@
                 <td class="num">الرقم</td>
                 <td class="store">المستودع</td>
             </tr>
-            <tr v-for="row in rows">
-                <td></td>
-                <td></td>
+            <tr v-for="(store,i) in numOfRows" :key="i">
+                <td>{{ i++ }}</td>
+                <td><element-input v-model="store.storename"></element-input> </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td></td>
                 <td><button type="button" @click="removeRow(row)">delete</button></td>
-            </tr>
+            </tr> -->
         </table>
+        <button @click="addRow">add row</button>
     </div>
 </template>
 
 <script>
+import ElementInput from '../../Shared/ElementInput.vue';
 export default {
+    components:{
+       ElementInput 
+    },
     data() {
         return {
-            rows:[],
+            store:[{storename:''}],
+            numOfRows:3,
+           newNumOfRows:'',
         };
     },
     methods:{
     addRow: function(){
-      this.rows.push({});
+    //   this.rows.push({});
+      newNumOfRows= this.numOfRows++,
+      numOfRows = newNumOfRows
+        // newNumOfRows = this.numOfRows++;
+
+
     },
-    removeRow: function(row){
-      //console.log(row);
-      this.rows.$remove(row);
-    }
+     addRow: function() {      
+       this.users.push({storename:'',})}
+    // removeRow: function(row){
+    //   //console.log(row);
+    //   this.rows.$remove(row);
+    // }
   }
 };
 </script>

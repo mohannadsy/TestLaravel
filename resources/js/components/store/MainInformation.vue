@@ -106,7 +106,7 @@ export default {
         code: "",
         name: "",
         latin_name: "",
-        type:this.$t('normalType'),
+        type:this.$t('aggregativeType'),
         is_active: true,
         branch_id: "",
         typeOptions:[this.$t('normalType'),this.$t('aggregativeType')]
