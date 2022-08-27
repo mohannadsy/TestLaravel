@@ -10,6 +10,14 @@
             <td class="store">المستودع</td>
 
         </tr>
+        <tr>
+            <td>uuu</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
     </table>
         
     </div>
@@ -24,6 +32,7 @@
 <style scoped>
 table{
     width: 90%;
+     empty-cells: show;
 }
 tr .num{
     width:25%;
