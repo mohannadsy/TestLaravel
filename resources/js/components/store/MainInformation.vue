@@ -106,21 +106,21 @@ export default {
         code: "",
         name: "",
         latin_name: "",
-        type: null,
+        type: "عادي",
         is_active: true,
         branch_id: "",
-        // typeOptions:["تجميعي" , "عادي",$t("normalType")],
+        typeOptions:["تجميعي" , "عادي"],
       }),
     };
   },
-  computed: {
-      typeOptions() {
-        return [
-          { label: this.$t('normalType'), value: 1 },
-          { label: this.$t('aggregativeType'), value: 2 },
-        ];
-      },
-    },
+  // computed: {
+  //     typeOptions() {
+  //       return [
+  //         { label: this.$t('normalType'), value: 1 },
+  //         { label: this.$t('aggregativeType'), value: 2 },
+  //       ];
+  //     },
+  //   },
   watch:{
      form() {
       this.storeObject = this.form;
