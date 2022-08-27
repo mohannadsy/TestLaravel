@@ -1,7 +1,7 @@
 <template>
   <div>
     <div  tabindex="1"
-        class="folderTitleSpan">
+        class="folderTitleSpan" >
       <span
         class="default-pointer"
         @click="toggle"
@@ -15,7 +15,7 @@
         <fa v-else icon="circle-plus" />
       </span>
       <span
-        @click="sendNodeType(item, item.id)"
+
         >{{ item.name }} - {{ item.code }}</span
       >
     </div>

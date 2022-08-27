@@ -44,7 +44,7 @@
               v-model.trim="myObj.branch_id"
               @input="filterBranches"
             /> -->
-            <search-autocomplete :items="branches" @selected="customerSelected"  @change="onChange" />
+            <search-autocomplete :items="branches" @selected="customerSelected" v-model="myModel"  @change="onChange" />
           </div>
         </div>
       </div>
@@ -88,6 +88,7 @@ export default {
         branch_id: "",
         is_active: true,
       }),
+      myModel:'sara'
     //   branchNameWithCode:"",
     };
   },
