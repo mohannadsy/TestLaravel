@@ -44,6 +44,8 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 
     Route::get('generateCodesInSpecificBranch/{id}', [UserController::class, 'generateCodesInSpecificBranch'])->name('user.generateCodesInSpecificBranch');
 
+    Route::get('generateCodeOtherWay/{id}', [UserController::class, 'generateCodeOtherWay'])->name('user.generateCodeOtherWay');
+
 
 });
 

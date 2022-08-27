@@ -187,15 +187,27 @@ trait  UserTrait
 //        $parentNextCode = $this->getMainBranch()->last()->code + 1;
         $parentCode = Branch::with('branch')->find($id)->branch->code;
         $currentBranchCode = Branch::find($id)->code;
-        return $parentCode . '' . $currentBranchCode + 1;
+        return $fullCode = $parentCode . '' . $currentBranchCode + 1;
 
     }
 
-    public function getMainBranch()
+    public function generateCodeOtherWay($id)
     {
-        return $mainBranch = DB::table('branches')
-            ->whereNull('branch_id')
-            ->get();
+
+        $parentCode = Branch::with('branch')->find($id)->branch->code;
+
+        $mainBranch = Branch::with('users', 'branches')->find($id);
+
+        $users = $mainBranch->users;
+        $branches = $mainBranch->branches;
+        foreach ($users as $user) {
+            foreach ($branches as $branch) {
+                $maxUserCode = $mainBranch->users->max('code');
+                $maxBranchCode = $mainBranch->branches->max('code');
+            }
+            $full = $parentCode . '' . max($maxBranchCode, $maxUserCode);
+            return $full + 1;
+        }
     }
 
 
@@ -211,75 +223,29 @@ trait  UserTrait
             if (is_numeric($max[$i])) {
                 $numbers = $max[$i];
                 $numbers = explode(',', $numbers);
-
                 $newNumber = max($numbers) + 1;
             }
         }
-
         for ($i = 0; $i <= strlen($max) - 1; $i++) {
             if (!is_numeric($max[$i])) {
                 $strings = $max[$i];
-
-
                 $new = $strings . '' . $newNumber;
             }
-
-            return $fullCode = $parentCode . '' . $new;
+            return 'Code of New Item  =  ' . $parentCode . '' . $new;
 
         }
-//                if ($this->isLastCharacterInStringIsNumeric($this->getLastCharacterInString($fullCode))) {
-//                    return $fullCode + 1;
     }
 
-//        for ($i = 0; $i <= strlen($fullCode)-1; $i++) {
-//            if(is_numeric($fullCode[$i]))  {
-//                 $fullCode[]=
-//            }
-//        }
 
-
-//        $max = max($users, $branches);
-//
-//        if ($this->isLastCharacterInStringIsNumeric($this->getLastCharacterInString($max))) {
-//            $new = $max +1;
-//
-//            return $parentCode . '' . $new;
-//        }
-
-
-    public function getLastCharacterInString($string)
+    public
+    function getLastCharacterInString($string)
     {
         return $string[strlen($string) - 1];
     }
 
-    public function isLastCharacterInStringIsNumeric($string)
+    public
+    function isLastCharacterInStringIsNumeric($string)
     {
         return is_numeric($this->getLastCharacterInString($string));
     }
-//        foreach ($users as $user) {
-//            foreach ($branches as $branch) {
-//                $maxBranchCode = $branch->max('code');
-//                $maxUserCode = $user->max('code');
-//                $maxCode = max($maxBranchCode, $maxUserCode);
-//                if ($this->isLastCharacterInStringIsNumeric($this->getLastCharacterInString($maxCode))) {
-//                $maxCode = $this->increaseNumberByOne($maxCode);
-//                return "New Code : " . $mainBranch->code . $maxCode;
-//                }
-//            }
-//        }
-//    }
-//    public function mainGenerateCode($id)
-//    {
-//        $mainbrach = Branch::find(1)->get();
-//        $mainbrach->code = 0;
-//        if ($this->isMainBranch($mainbrach)) {
-//            return 'Main Branch Code : ' . $this->$mainbrach->code++;
-//        }
-//        return "Code : " . $mainbrach->code = $this->generateCodesInSpecificBranch(id);
-//    }
-//
-//    public function isMainBranch($id)
-//    {
-//        return $id == 1;
-//    }
 }
