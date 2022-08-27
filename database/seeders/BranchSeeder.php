@@ -10,7 +10,7 @@ class BranchSeeder extends Seeder
     public function run()
     {
         Branch::create([
-            'code' => '001',
+            'code' => 'A1',
             'name' => 'Main Branch',
             'branch_id' => null,
             'responsibility' => '',
@@ -23,7 +23,7 @@ class BranchSeeder extends Seeder
             'security_degree' => 1 // سرية
         ]);
         Branch::create([
-            'code' => '002',
+            'code' => 'B1',
             'name' => 'Branch1',
             'branch_id' => 1,
             'responsibility' => '',
@@ -37,7 +37,7 @@ class BranchSeeder extends Seeder
         ]);
 
         Branch::create([
-            'code' => '3',
+            'code' => 'C1',
             'name' => 'Branch2',
             'branch_id' => 2,
             'responsibility' => '',
@@ -50,7 +50,7 @@ class BranchSeeder extends Seeder
             'security_degree' => 3 // سرية
         ]);
         Branch::create([
-            'code' => '4',
+            'code' => 'D1',
             'name' => 'Branch3',
             'branch_id' => 3,
             'responsibility' => '',
@@ -63,7 +63,7 @@ class BranchSeeder extends Seeder
             'security_degree' => 1 // سرية
         ]);
         Branch::create([
-            'code' => '5',
+            'code' => 'E1',
             'name' => 'Branch4',
             'branch_id' => 3,
             'responsibility' => '',
@@ -76,7 +76,7 @@ class BranchSeeder extends Seeder
             'security_degree' => 1 // سرية
         ]);
         Branch::create([
-            'code' => '6',
+            'code' => 'E3',
             'name' => 'Branch5',
             'branch_id' => 3,
             'responsibility' => '',
