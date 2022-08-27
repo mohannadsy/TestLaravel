@@ -1,5 +1,5 @@
 <template>
-    <select class="form-select" v-model="selectedOption"  @input="event => { $emit('input', event.target.value) }" >
+    <select class="form-select"  v-model="selectedOption"  @input="event => { $emit('input', event.target.value) }" >
         <option  v-for="(option, i) in options" :key="i" :value="option">
             {{option}}
         </option>
