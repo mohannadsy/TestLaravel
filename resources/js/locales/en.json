@@ -70,7 +70,9 @@
     "warehouseMan":"Warehouse Man",
     "storageCapacity":"Storage Capacity",
     "warehouseNotes":"Warehouse Notes",
-    "warehouseDirectory":"Warehouse Directory"
+    "warehouseDirectory":"Warehouse Directory",
+
+    "CardTypes" : ["assemply","normal"]
 
 
 

@@ -9,7 +9,7 @@
     </div>
     <div class="row a mt-2">
       <div class="col-5">
-         <title-button v-if="form.type === 'تجميعي'" @click="activeTab = 'CumulativeAcountType'" :type="'button'"
+         <title-button v-if="form.type ==  this.$t('aggregativeType')" @click="activeTab = 'CumulativeAcountType'" :type="'button'"
           >{{ $t("CumulativeAcountType") }}
         </title-button>
         <div v-else>
@@ -19,21 +19,19 @@
         <title-button  @click="activeTab = 'attachments'" :type="'button'"
           >{{ $t("attachments") }}
         </title-button>
-
         </div>
-       
       </div>
     </div>
-    <cumulative-acount-type v-if="form.type === 'تجميعي'" >
+    <cumulative-acount-type v-if="form.type ==  this.$t('aggregativeType')" >
 
     </cumulative-acount-type>
     <basic-information
-    v-if="activeTab === 'BasicInformation' & form.type === 'عادي' "
+    v-if="activeTab === 'BasicInformation' & form.type ==  this.$t('normalType')" 
       :form="form"
       @save-basic="saveBasic"
       :storeInformation="storeInformation"
     ></basic-information>
-    <attachments v-if="activeTab === 'attachments' & form.type === 'عادي'"></attachments>
+    <attachments v-if="activeTab === 'attachments' & form.type ==  this.$t('normalType')"></attachments>
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
         <element-button :type="'button'" @click="storeStore"
