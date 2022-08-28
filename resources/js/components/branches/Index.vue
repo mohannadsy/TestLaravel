@@ -14,6 +14,7 @@
           :form="form"
           :errors="errors"
           :branches="branches"
+          :branchNameWithCode="branchNameWithCode"
         >
           ></main-infromation
         >
@@ -77,6 +78,7 @@ export default {
     branches: Array,
     branchId: String,
     errors: Object,
+    branchNameWithCode:String
   },
   components: {
     localeSwitcher,
@@ -143,7 +145,6 @@ export default {
         mobile: "",
         _token: this.$page.props.csrf_token,
       });
-      // this.$emit('newform',form);
     },
     updateBranch() {
       this.form.post(route("branch.update", this.branchId));

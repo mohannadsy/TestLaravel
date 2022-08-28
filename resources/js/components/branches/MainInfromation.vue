@@ -3,7 +3,7 @@
     <page-title>{{ $t("branchCard") }}</page-title>
   </div>
   <form>
-  <h1>{{branchNameWithCode}}</h1>
+
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row mt-2">
@@ -44,7 +44,7 @@
               v-model.trim="myObj.branch_id"
               @input="filterBranches"
             /> -->
-            <search-autocomplete :items="branches" @selected="customerSelected"  @change="onChange" />
+            <search-autocomplete :items="branches" @selected="customerSelected" :value="nameAndCode" />
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ import ToggleButton from "../../Shared/ToggleButton.vue";
 import SearchAutocomplete from "../../Shared/SearchAutocomplete.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 export default {
-  props: ["branchInformaion", "form", "errors","branches"],
+  props: ["branchInformaion", "form", "errors","branches","branchNameWithCode"],
   emits: ["save-main"],
   components: {
     PageTitle,
@@ -88,7 +88,7 @@ export default {
         branch_id: "",
         is_active: true,
       }),
-    //   branchNameWithCode:"",
+       nameAndCode:"",
     };
   },
   watch: {
@@ -97,9 +97,10 @@ export default {
     },
     branchInformaion() {
       Object.assign(this.myObj, this.branchInformaion);
-      this.myObj.branch_id = "sara"
-
     },
+    branchNameWithCode(){
+        this.nameAndCode = this.branchNameWithCode
+    }
   },
   computed: {
     objChanged() {
@@ -111,12 +112,12 @@ export default {
       this.myObj.is_active = value;
     },
     customerSelected(data) {
-        this.myObj.branch_id = data.id;
+        this.myObj.branch_id = data;
         // this.branchNameWithCode = data.code + ' - ' + data.name;
     },
-    onChange(data){
-        // console.log('this is my data' + data)
-    }
+    // onChange(data){
+    //      this.branchNameWithCode = data
+    // }
   },
 };
 </script>
