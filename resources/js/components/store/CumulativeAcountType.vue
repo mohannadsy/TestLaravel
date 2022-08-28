@@ -1,76 +1,82 @@
 <template>
-    <div class="py-2">
-        <table>
-            <tr>
-                <th colspan="2">المستودعات</th>
-            </tr>
-            <tr>
-                <td class="num">الرقم</td>
-                <td class="store">المستودع</td>
-            </tr>
-            <tr v-for="(numOfRow,i) in numOfRows" :key="i">
-                <td>{{ ++i }}</td>
-                <td><element-input v-model="numOfRow.storename"></element-input> </td>
-            </tr>
-        </table>
-            <button type='button' class="btn btn-info" @click="addRow">
-                <fa icon="plus-circle" />
-                    Add
-            </button>
-              <button type='button' class="btn btn-info" @click="deleteRow(i, numOfRow)">
+    <div class="row py-2">
+        <div class="col-7 table-div ">
+            <table>
+                <tr>
+                    <th colspan="2">المستودعات</th>
+                </tr>
+                <tr>
+                    <td class="num">الرقم</td>
+                    <td class="store">المستودع</td>
+                </tr>
+                <tr  v-for="(row, index) in rows" :key="index" :row="row">
+                    <td>{{ ++index }}</td>
+                    <td><element-input v-model="row.row"></element-input> </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-2">
+            <element-button type='button' class="btn btn-info" @click="addRow">
+            
+            <fa icon="plus-circle" />
+            </element-button>
+            <element-button type='button' class="btn btn-info" @click="removeRow(i)">
                 
-                    delete
-            </button>
+                <fa icon="trash-can" />
+            </element-button>
+
+        </div>
+        
     </div>
+    
+    
 </template>
 
 <script>
 import ElementInput from '../../Shared/ElementInput.vue';
+import ElementButton from '../../Shared/ElementButton.vue';
 export default {
     components:{
-       ElementInput 
+       ElementInput,
+       ElementButton
     },
     data() {
         return {
             numOfRows:[{storename:''}],
-            numOfRows:3,
-           newNumOfRows:'',
+            // numOfRows:3,
+            rows: [{row: ""}],
+            // index:"4"
         };
     },
     methods:{
-    addRow: function(){
-    //   newNumOfRows= this.numOfRows++;
-    //   numOfRows = newNumOfRows;
-     this.numOfRows++;
-
-    },
-    deleteRow (index , store){
-          var idx = this.numOfRows.indexOf(numOfRow);
-            console.log(idx, index);
-            if (idx > -1) {
-                this.store.splice(idx, 1);
-            }
-    },
-     add: function() {      
-       this.store.push({storename:'',})}
-    // removeRow: function(row){
-    //   //console.log(row);
-    //   this.rows.$remove(row);
-    // }
+    // addRow: function(){
+    //  this.numOfRows++;
+    // },
+    //  add: function() {      
+    //    this.store.push({storename:'',})},
+    addRow() {
+    this.rows.push({
+      row: []
+    });
+  },
+  removeRow: function(index) {
+    // console.log("Removing", index);
+    this.rows.splice(index, 1);
+  }
   }
 };
 </script>
 
 <style scoped>
 table {
-    width: 90%;
+    width: 100%;
     empty-cells: show;
 }
 tr .num {
-    width: 25%;
+    width: 20%;
 }
 tr .store {
-    width: 75%;
+    width: 80%;
 }
 th {
     text-align: center;
@@ -80,5 +86,14 @@ table,
 td {
     border: 1px solid black;
     padding: 5px;
+}
+.btn {
+    padding: 5px 10px ;
+    margin: 5px;
+}
+.row{
+    overflow-y: scroll;
+    /* overflow-x: scroll; */
+    scroll-behavior: auto;
 }
 </style>
