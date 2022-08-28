@@ -195,7 +195,6 @@ trait  UserTrait
 
     public function generateCodes($id)
     {
-
         $parentCode = Branch::with('branch')->find($id)->branch->code;
 
         $mainBranch = Branch::with('users', 'branches')->find($id);
@@ -207,10 +206,6 @@ trait  UserTrait
             $num = $matches['0']['0'];
             $max = substr($max, 0, -strlen($num));
             $num = $num + 1;
-//            return $matches ;
-//            $num = array_values($matches);
-//            return $num;
-//            $num = (int) implode($matches);
             $maxNumber = $max . $num;
             print('New Item Code =  ' . $parentCode . '' . $maxNumber);
         }
