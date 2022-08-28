@@ -14,6 +14,7 @@
           :form="form"
           :errors="errors"
           :branches="branches"
+          :branchNameWithCode="branchNameWithCode"
         >
           ></main-infromation
         >
@@ -77,6 +78,7 @@ export default {
     branches: Array,
     branchId: String,
     errors: Object,
+    branchNameWithCode:String
   },
   components: {
     localeSwitcher,

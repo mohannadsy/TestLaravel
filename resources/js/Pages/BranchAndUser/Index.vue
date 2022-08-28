@@ -14,6 +14,7 @@ Raghad, [8/6/2022 11:18 AM]
     <div class="col-9">
       <branch-form
         :branchInformaion="branchInformaion"
+        :branchNameWithCode="branchNameWithCode"
         :branchId="branchId"
         :branches="branches"
         v-if="nodeType === 'branches'"
@@ -82,7 +83,7 @@ export default {
         this.branchInformaion = JSON.parse(JSON.stringify(branchInformaion.data));
         let branchNameWithCode = await axios.get(route("user.branchParent",this.branchId))
         this.branchNameWithCode = JSON.parse(JSON.stringify(branchNameWithCode.data))
-        this.branchInformaion.branch_id= this.branchNameWithCode
+        // this.branchInformaion.branch_id= this.branchNameWithCode
       } else {
         this.userId = nodeId;
         let result1 = await axios.get(route("user.showUser", this.userId));
