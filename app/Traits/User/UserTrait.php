@@ -13,6 +13,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use function Illuminate\Events\queueable;
 use function Illuminate\Session\userId;
+use function Symfony\Component\String\length;
 
 
 trait  UserTrait
@@ -191,28 +192,10 @@ trait  UserTrait
 
     }
 
-    public function generateCodeOtherWay($id)
+
+    public function generateCodes($id)
     {
 
-        $parentCode = Branch::with('branch')->find($id)->branch->code;
-
-        $mainBranch = Branch::with('users', 'branches')->find($id);
-
-        $users = $mainBranch->users;
-        $branches = $mainBranch->branches;
-        foreach ($users as $user) {
-            foreach ($branches as $branch) {
-                $maxUserCode = $mainBranch->users->max('code');
-                $maxBranchCode = $mainBranch->branches->max('code');
-            }
-            $full = $parentCode . '' . max($maxBranchCode, $maxUserCode);
-            return $full + 1;
-        }
-    }
-
-
-    public function generateCodesInSpecificBranch($id)
-    {
         $parentCode = Branch::with('branch')->find($id)->branch->code;
 
         $mainBranch = Branch::with('users', 'branches')->find($id);
@@ -220,25 +203,20 @@ trait  UserTrait
         $branches = $mainBranch->branches->max('code');
         $max = max($users, $branches);
         for ($i = 0; $i <= strlen($max) - 1; $i++) {
-            if (is_numeric($max[$i])) {
-                $numbers = $max[$i];
-                $numbers = explode(',', $numbers);
-                $newNumber = max($numbers) + 1;
-            }
-        }
-        for ($i = 0; $i <= strlen($max) - 1; $i++) {
-            if (!is_numeric($max[$i])) {
-                $strings = $max[$i];
-                $new = $strings . '' . $newNumber;
-            }
-            return 'Code of New Item  =  ' . $parentCode . '' . $new;
-
+            preg_match_all('!\d+!', $max, $matches);
+            $num = $matches['0']['0'];
+            $max = substr($max, 0, -strlen($num));
+            $num = $num + 1;
+//            return $matches ;
+//            $num = array_values($matches);
+//            return $num;
+//            $num = (int) implode($matches);
+            $maxNumber = $max . $num;
+            print('New Item Code =  ' . $parentCode . '' . $maxNumber);
         }
     }
 
-
-    public
-    function getLastCharacterInString($string)
+    public function getLastCharacterInString($string)
     {
         return $string[strlen($string) - 1];
     }
