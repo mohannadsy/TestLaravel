@@ -1,7 +1,7 @@
 <template>
   <div>
     <div  tabindex="1"
-        class="folderTitleSpan">
+        class="folderTitleSpan" >
       <span
         class="default-pointer"
         @click="toggle"
@@ -15,7 +15,7 @@
         <fa v-else icon="circle-plus" />
       </span>
       <span
-        @click="sendNodeType(item, item.id)"
+        @click="sendNodeType(item)"
         >{{ item.name }} - {{ item.code }}</span
       >
     </div>
@@ -79,7 +79,7 @@ export default {
     toggle: function () {
       if (this.isFolder) {
         this.isOpen = !this.isOpen;
-        this.$refs.toggler.focus();
+        // this.$refs.toggler.focus();
       }
     },
     // changeType: function () {
