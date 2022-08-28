@@ -3,6 +3,7 @@
     <page-title>{{ $t("branchCard") }}</page-title>
   </div>
   <form>
+
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row mt-2">
@@ -43,7 +44,7 @@
               v-model.trim="myObj.branch_id"
               @input="filterBranches"
             /> -->
-            <search-autocomplete :items="branches" @selected="customerSelected" :value="branchNameWithCode"/>
+            <search-autocomplete :items="branches" @selected="customerSelected" :value="nameAndCode" />
           </div>
         </div>
       </div>
@@ -87,7 +88,7 @@ export default {
         branch_id: "",
         is_active: true,
       }),
-    //   branchNameWithCode:"",
+       nameAndCode:"",
     };
   },
   watch: {
@@ -96,8 +97,10 @@ export default {
     },
     branchInformaion() {
       Object.assign(this.myObj, this.branchInformaion);
-
     },
+    branchNameWithCode(){
+        this.nameAndCode = this.branchNameWithCode
+    }
   },
   computed: {
     objChanged() {
@@ -112,9 +115,9 @@ export default {
         this.myObj.branch_id = data;
         // this.branchNameWithCode = data.code + ' - ' + data.name;
     },
-    onChange(data){
-        // console.log('this is my data' + data)
-    }
+    // onChange(data){
+    //      this.branchNameWithCode = data
+    // }
   },
 };
 </script>

@@ -38,10 +38,10 @@ export default {
       default: "Select One...",
       type: String,
     },
-    shouldReset: {
-      type: Boolean,
-      default: true,
-    },
+    // shouldReset: {
+    //   type: Boolean,
+    //   default: true,
+    // },
     value: {
       type: String,
       default: "",
@@ -53,7 +53,7 @@ export default {
       selectedItem: null,
       selected: 0,
       visible: false,
-      query: this.value,
+      query: '',
     };
   },
   methods: {
@@ -98,6 +98,7 @@ export default {
   },
   computed: {
     matches() {
+      this.$emit("change", this.query);
       if (this.query == "") {
         return [];
       }

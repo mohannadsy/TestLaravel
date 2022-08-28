@@ -83,7 +83,6 @@ export default {
         this.branchInformaion = JSON.parse(JSON.stringify(branchInformaion.data));
         let branchNameWithCode = await axios.get(route("user.branchParent",this.branchId))
         this.branchNameWithCode = JSON.parse(JSON.stringify(branchNameWithCode.data))
-        // this.branchInformaion.branch_id= this.branchNameWithCode
       } else {
         this.userId = nodeId;
         let result1 = await axios.get(route("user.showUser", this.userId));
