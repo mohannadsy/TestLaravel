@@ -7,6 +7,7 @@ use App\Models\PermissionGroup;
 use App\Models\Trash;
 use App\Models\User;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -180,4 +181,71 @@ trait  UserTrait
 
     }
 
+    public function generateCode($id)
+    {
+        $fullCode = '';
+//        $parentNextCode = $this->getMainBranch()->last()->code + 1;
+        $parentCode = Branch::with('branch')->find($id)->branch->code;
+        $currentBranchCode = Branch::find($id)->code;
+        return $fullCode = $parentCode . '' . $currentBranchCode + 1;
+
+    }
+
+    public function generateCodeOtherWay($id)
+    {
+
+        $parentCode = Branch::with('branch')->find($id)->branch->code;
+
+        $mainBranch = Branch::with('users', 'branches')->find($id);
+
+        $users = $mainBranch->users;
+        $branches = $mainBranch->branches;
+        foreach ($users as $user) {
+            foreach ($branches as $branch) {
+                $maxUserCode = $mainBranch->users->max('code');
+                $maxBranchCode = $mainBranch->branches->max('code');
+            }
+            $full = $parentCode . '' . max($maxBranchCode, $maxUserCode);
+            return $full + 1;
+        }
+    }
+
+
+    public function generateCodesInSpecificBranch($id)
+    {
+        $parentCode = Branch::with('branch')->find($id)->branch->code;
+
+        $mainBranch = Branch::with('users', 'branches')->find($id);
+        $users = $mainBranch->users->max('code');
+        $branches = $mainBranch->branches->max('code');
+        $max = max($users, $branches);
+        for ($i = 0; $i <= strlen($max) - 1; $i++) {
+            if (is_numeric($max[$i])) {
+                $numbers = $max[$i];
+                $numbers = explode(',', $numbers);
+                $newNumber = max($numbers) + 1;
+            }
+        }
+        for ($i = 0; $i <= strlen($max) - 1; $i++) {
+            if (!is_numeric($max[$i])) {
+                $strings = $max[$i];
+                $new = $strings . '' . $newNumber;
+            }
+            return 'Code of New Item  =  ' . $parentCode . '' . $new;
+
+        }
+    }
+
+
+    public
+    function getLastCharacterInString($string)
+    {
+        return $string[strlen($string) - 1];
+    }
+
+    public
+    function isLastCharacterInStringIsNumeric($string)
+    {
+        return is_numeric($this->getLastCharacterInString($string));
+    }
 }

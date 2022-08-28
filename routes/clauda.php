@@ -40,6 +40,12 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 
     Route::get('branch-parent/{id}', [UserController::class, 'branchParent'])->name('user.branchParent');
 
+    Route::get('generate-code/{id}', [UserController::class, 'generateCode'])->name('user.generateCode');
+
+    Route::get('generateCodesInSpecificBranch/{id}', [UserController::class, 'generateCodesInSpecificBranch'])->name('user.generateCodesInSpecificBranch');
+
+    Route::get('generateCodeOtherWay/{id}', [UserController::class, 'generateCodeOtherWay'])->name('user.generateCodeOtherWay');
+
 
 });
 

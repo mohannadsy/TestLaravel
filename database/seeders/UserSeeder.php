@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     {
         // user 1
         $userMohannad = User::create([
-            'code' => 1,
+            'code' => 'A11',
             'name' => 'Super Admin',
             'email' => 'superAdmin@gmail.com',
 //            'password' => bcrypt('12345superadmin'),
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
         $userMohannad->givePermissionTo('show-user');
         // user 2
         $userNoor = User::create([
-            'code' => 2,
+            'code' => 'U2',
             'name' => 'Noor Al-kinj',
             'email' => 'noor@gmail.com',
 //            'password' => bcrypt('12345noor'),
@@ -74,7 +74,7 @@ class UserSeeder extends Seeder
         // user 3 -> 10
 //        for ($i = 3; $i <= 6; $i++)
         $userClauda = User::create([
-            'code' => 3,
+            'code' => 'U3',
             'name' => 'Clauda Al-Rakkad',
             'email' => "clauda@gmail.com",
 //                'password' => bcrypt('12345clauda'),
@@ -100,7 +100,7 @@ class UserSeeder extends Seeder
 
 
         $userSara = User::create([
-            'code' => 4,
+            'code' => 'U4',
             'name' => 'Sara Abdo',
             'email' => 'sara@gmail.com',
 //            'password' => bcrypt('12345sara'),
@@ -126,7 +126,7 @@ class UserSeeder extends Seeder
 
 
         $userRaghad = User::create([
-            'code' => 5,
+            'code' => 'U5',
             'name' => 'Raghad Nanou',
             'email' => 'raghad@gmail.com',
 //            'password' => bcrypt('12345raghad'),
