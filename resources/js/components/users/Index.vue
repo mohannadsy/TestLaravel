@@ -2,7 +2,7 @@
   <div class="container-fluide rounded ">
     <div class="row">
       <div class="col-md">
-        <div class="row px-3 mt-1">
+        <div class="row px-3">
           <page-title> {{ $t("userCard") }}</page-title>
         </div>
         <form>

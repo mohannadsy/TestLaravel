@@ -1,5 +1,5 @@
 <template>
-  <div class="row px-3 mt-1 pb-2">
+  <div class="row px-3 pb-2">
     <page-title>{{ $t("branchCard") }}</page-title>
   </div>
   <form>
