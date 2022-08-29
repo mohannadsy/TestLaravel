@@ -135,7 +135,7 @@ header {
 
     li {
       text-transform: uppercase;
-      padding: 16px;
+      padding: 12px;
       margin-left: 16px;
     }
     .link {

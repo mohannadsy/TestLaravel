@@ -9,18 +9,18 @@
                     <td class="num">الرقم</td>
                     <td class="store">المستودع</td>
                 </tr>
-                <tr  v-for="(row, index) in rows" :key="index" :row="row">
+                <tr  v-for="(row, index) in rows" :key="index" :row="row" @click="selectRow(index-1)">
                     <td>{{ ++index }}</td>
                     <td><element-input v-model="row.row" @keydown.enter.prevent="addRow" ></element-input> </td>
                 </tr>
             </table>
         </div>
         <div class="col-2">
-            <element-button type='button' class="btn btn-info" @click="addRow">
+            <!-- <element-button type='button' class="btn btn-info" @click="addRow">
             
             <fa icon="plus-circle" />
-            </element-button>
-            <element-button type='button' class="btn btn-info" @click="removeRow(index)">
+            </element-button> -->
+            <element-button type='button' class="btn btn-info" @click="removeRow(selectedRow)">
                 
                 <fa icon="trash-can" />
             </element-button>
@@ -40,32 +40,24 @@ export default {
     },
     data() {
         return {
-            numOfRows:[{storename:''}],
-            // numOfRows:3,
             rows: [{id:"",row: ""}],
-            // index:"4"
+            selectedRow : 0
         };
     },
     methods:{
-    // addRow: function(){
-    //  this.numOfRows++;
-    // },
-    //  add: function() {      
-    //    this.store.push({storename:'',})},
     addRow() {
+       // if(this.rows[this.rows.length-1].row != "")
     this.rows.push({
       row: []
     });
   },
+  selectRow(index){
+    this.selectedRow = index
+  },
   removeRow: function(index) {
-    // console.log("Removing", index);
-    // if(this.rows != null){
         this.rows.splice(index, 1);
-    // }
-    this.rows = this.rows.filter(row => {
-    return this.selected.indexOf(item) < 0;
-  });
-    
+        if(this.rows.length == 0)
+            this.addRow();
   }
   }
 };
