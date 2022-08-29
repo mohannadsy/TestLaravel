@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6">
       <div class="form-group row mt-2">
         <elemet-label class="col-form-label col-md-3"
           >{{ $t("usercode") }}
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3" style="padding-left: 6px">
+        <elemet-label class="col-form-label col-md-3" >
           {{ $t("userName") }}</elemet-label
         >
         <div class="col-8">
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3" style="padding-left: 6px"
+        <elemet-label class="col-form-label col-md-3"
           >{{ $t("userEmail") }}
         </elemet-label>
         <div class="col-8">
