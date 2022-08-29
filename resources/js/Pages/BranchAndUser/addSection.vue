@@ -43,14 +43,9 @@ export default {
   props: {
     branches: Array,
   },
-//   mounted() {
-//     this.filterBranches = this.branches.map(
-//       (e) => {
-//         return {toString(e.code + " - " + e.name)};
-//       }
-//     );
-//     console.log(this.filterBranches);
-//   },
+  mounted() {
+    this.filterBranches = this.branches.map((e) => e.code + " - " + e.name);
+  },
   methods: {
     newBranch() {
       this.form = useForm({
