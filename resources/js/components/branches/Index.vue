@@ -5,7 +5,7 @@
     @close="$page.props.flash.message=null"
   ></saved-modal>
   <locale-switcher />
-  <div class="row bg-light">
+  <div class="row">
     <form>
       <div class="col border-right">
         <main-infromation
