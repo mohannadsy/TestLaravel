@@ -4,7 +4,7 @@
     :title="$page.props.flash.message"
     @close="$page.props.flash.message=null"
   ></saved-modal>
-  <locale-switcher />
+  <locale-switchegitr />
   <div class="row">
     <form>
       <div class="col border-right">
