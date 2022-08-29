@@ -152,31 +152,38 @@ export default {
 }
 .options {
   position: absolute;
-  max-height: 150px;
+  max-height: 115px;
   overflow-y: scroll;
-  margin-top: 5px;
-}
-.options {
+  /* margin-top: 5px; */
   list-style-type: none;
   text-align: left;
   padding-left: 0;
+  left: 2px;
+  right: 2px;
+  padding-right: 0px;
+  border-radius: 3px;
 }
 .options li {
   border-bottom: 1px solid lightgray;
-  padding: 10px;
+  padding: 7px;
   cursor: pointer;
   background: #f1f1f1;
 }
 .options li:first-child {
   border-top: 2px solid #d6d6d6;
 }
-.options li:not(.selected):hover {
-  background: #8c8c8c;
+.options li:hover {
+  /* background: #8c8c8c; */
+  background: #5c5b5b;
+  /* color: #fff; */
+  /* background: #58bd4c; */
   color: #fff;
+  font-weight: 600;
+
 }
-.options li.selected {
+/* .options li.selected {
   background: #58bd4c;
   color: #fff;
   font-weight: 600;
-}
+} */
 </style>

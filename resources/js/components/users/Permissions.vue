@@ -5,8 +5,8 @@
       v-for="(userPermission, index) in myObj.currentPermissions"
       :key="index"
     >
-      <checkbox-switch v-model="select_all" @click="select"></checkbox-switch>
-      <elemet-label>تحديد الكل</elemet-label>
+      <!-- <checkbox-switch v-model="select_all" @click="select"></checkbox-switch> -->
+      <!-- <elemet-label>تحديد الكل</elemet-label> -->
       <button @click="ToggleIsExpanded(index)">
         <span class="rightAngle" :class="angle[index]"></span>
       </button>
@@ -48,7 +48,7 @@ export default {
       // currentPermissions:[],
       isExpanded: [],
       angle: [],
-      select_all: false,
+      // select_all: false,
       selected: [],
     };
   },
@@ -92,15 +92,15 @@ export default {
         ? (this.angle[index] = "")
         : (this.angle[index] = "angleDown");
     },
-    select() {
-      //this.selected = [];
-      console.log(this.selected);
-      if (!this.select_all) {
-        for (let i in this.selected) {
-          this.selected.push(this.selected[i]);
-        }
-      }
-    },
+    // select() {
+    //   //this.selected = [];
+    //   console.log(this.selected);
+    //   if (!this.select_all) {
+    //     for (let i in this.selected) {
+    //       this.selected.push(this.selected[i]);
+    //     }
+    //   }
+    // },
   },
   // computed:{
   //   async groupPermissions(){
@@ -147,11 +147,12 @@ li a:hover {
 }
 button {
   border: none;
+  background: none;
 }
 .scroll {
   /* max-height: 50%; */
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   max-height: 350px;
   scroll-behavior: smooth;
 }

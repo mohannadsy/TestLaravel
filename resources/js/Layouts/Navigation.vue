@@ -131,6 +131,7 @@ header {
       color: #fff;
       list-style: none;
       text-decoration: none;
+      // margin-bottom: 0;
     }
 
     li {
@@ -163,6 +164,7 @@ header {
       align-items: center;
       flex: 1;
       justify-content: flex-end;
+      
     }
     .icon {
       display: flex;
