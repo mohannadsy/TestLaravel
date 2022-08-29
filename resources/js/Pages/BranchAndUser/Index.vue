@@ -2,7 +2,7 @@ Raghad, [8/6/2022 11:18 AM]
 <template>
   <div class="row">
     <div class="col-3">
-      <add-section></add-section>
+      <add-section :branches="branches"></add-section>
       <tree
         v-for="branch in branchesWithUsers"
         :key="branch.name"

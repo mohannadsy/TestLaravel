@@ -122,14 +122,7 @@ export default {
     },
     customerSelected(data) {
       this.myObj.branch_id = data;
-      // this.branchNameWithCode = data.code + ' - ' + data.name;
     },
-    // onChange(data){
-    //      this.branchNameWithCode = data
-    // }
-    // handleInput(e){
-    //     this.nameAndCode = e
-    // }
   },
 };
 </script>
