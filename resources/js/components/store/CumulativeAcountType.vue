@@ -1,7 +1,7 @@
 <template>
     <div class="row py-2">
         <div class="col-7 table-div ">
-            <table>
+            <table class="table table-striped">
                 <tr>
                     <th colspan="2">المستودعات</th>
                 </tr>
@@ -11,7 +11,7 @@
                 </tr>
                 <tr  v-for="(row, index) in rows" :key="index" :row="row">
                     <td>{{ ++index }}</td>
-                    <td><element-input v-model="row.row"></element-input> </td>
+                    <td><element-input v-model="row.row" @keydown.enter.prevent="addRow" ></element-input> </td>
                 </tr>
             </table>
         </div>
@@ -20,13 +20,11 @@
             
             <fa icon="plus-circle" />
             </element-button>
-            <element-button type='button' class="btn btn-info" @click="removeRow(i)">
+            <element-button type='button' class="btn btn-info" @click="removeRow(index)">
                 
                 <fa icon="trash-can" />
             </element-button>
-
-        </div>
-        
+        </div>   
     </div>
     
     
@@ -44,7 +42,7 @@ export default {
         return {
             numOfRows:[{storename:''}],
             // numOfRows:3,
-            rows: [{row: ""}],
+            rows: [{id:"",row: ""}],
             // index:"4"
         };
     },
@@ -61,7 +59,13 @@ export default {
   },
   removeRow: function(index) {
     // console.log("Removing", index);
-    this.rows.splice(index, 1);
+    // if(this.rows != null){
+        this.rows.splice(index, 1);
+    // }
+    this.rows = this.rows.filter(row => {
+    return this.selected.indexOf(item) < 0;
+  });
+    
   }
   }
 };
