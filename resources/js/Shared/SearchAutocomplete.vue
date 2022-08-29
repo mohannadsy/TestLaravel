@@ -53,8 +53,13 @@ export default {
       selectedItem: null,
       selected: 0,
       visible: false,
-      query: '',
+      query: "",
     };
+  },
+  watch:{
+    value(){
+        this.query = this.value;
+    }
   },
   methods: {
     toggleVisible() {
@@ -70,7 +75,7 @@ export default {
 
       this.selected = index;
 
-      this.selectItem();
+    //   this.selectItem();
     },
     selectItem() {
       this.selectedItem = this.matches[this.selected];
@@ -94,6 +99,12 @@ export default {
     },
     scrollToItem() {
       this.$refs.optionsList.scrollTop = this.selected * this.itemHeight;
+    },
+    onChange(value) {
+      this.$emit("input", value);
+      console.log(value+"kkkk")
+    //   this.matches();
+    //   this.visible = true;
     },
   },
   computed: {

@@ -32,8 +32,8 @@ class BranchController extends Controller
         $groupPermissions = PermissionGroup::select('name', 'caption_' . Config::get('app.locale') . ' as caption', 'id')->with(['permissions'])->get();
         $this->callActivityMethod('getAllBranches', $parameters);
 
-        return $branches;
-//        return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
+        // return $branches;
+       return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
     }
 
 //    public function store(BranchRequest $request)
