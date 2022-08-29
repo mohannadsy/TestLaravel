@@ -37,16 +37,10 @@
             {{ $t("mainBranch") }}
           </elemet-label>
           <div class="col-8">
-            <!-- <element-input
-              type="text"
-              @change="objChanged"
-              v-model.trim="myObj.branch_id"
-              @input="filterBranches"
-            /> -->
             <search-autocomplete
               :items="branches"
               @selected="customerSelected"
-              :value="nameAndCode"
+              :value="branchNameWithCode"
             />
           </div>
         </div>
@@ -97,7 +91,6 @@ export default {
         branch_id: "",
         is_active: true,
       }),
-      nameAndCode: "",
     };
   },
   watch: {
@@ -106,9 +99,6 @@ export default {
     },
     branchInformaion() {
       Object.assign(this.myObj, this.branchInformaion);
-    },
-    branchNameWithCode() {
-      this.nameAndCode = this.branchNameWithCode;
     },
   },
   computed: {
