@@ -4,8 +4,13 @@
     :title="$page.props.flash.message"
     @close="$page.props.flash.message=null"
   ></saved-modal>
+<<<<<<< HEAD
   <!-- <locale-switcher /> -->
   <div class="row">
+=======
+  <locale-switcher />
+  <div class="row bg-light">
+>>>>>>> 8ea6c3174f200cb3e419e75e8fe18aea91e940c1
     <form>
       <div class="col border-right">
         <main-infromation
