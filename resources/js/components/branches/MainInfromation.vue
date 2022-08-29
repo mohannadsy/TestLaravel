@@ -3,7 +3,6 @@
     <page-title>{{ $t("branchCard") }}</page-title>
   </div>
   <form>
-
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row mt-2">
@@ -44,7 +43,11 @@
               v-model.trim="myObj.branch_id"
               @input="filterBranches"
             /> -->
-            <search-autocomplete :items="branches" @selected="customerSelected" :value="nameAndCode" />
+            <search-autocomplete
+              :items="branches"
+              @selected="customerSelected"
+              :value="nameAndCode"
+            />
           </div>
         </div>
       </div>
@@ -71,14 +74,20 @@ import ToggleButton from "../../Shared/ToggleButton.vue";
 import SearchAutocomplete from "../../Shared/SearchAutocomplete.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 export default {
-  props: ["branchInformaion", "form", "errors","branches","branchNameWithCode"],
+  props: [
+    "branchInformaion",
+    "form",
+    "errors",
+    "branches",
+    "branchNameWithCode",
+  ],
   emits: ["save-main"],
   components: {
     PageTitle,
     ElemetLabel,
     ElementInput,
     ToggleButton,
-    SearchAutocomplete
+    SearchAutocomplete,
   },
   data() {
     return {
@@ -88,7 +97,7 @@ export default {
         branch_id: "",
         is_active: true,
       }),
-       nameAndCode:"",
+      nameAndCode: "",
     };
   },
   watch: {
@@ -98,9 +107,9 @@ export default {
     branchInformaion() {
       Object.assign(this.myObj, this.branchInformaion);
     },
-    branchNameWithCode(){
-        this.nameAndCode = this.branchNameWithCode
-    }
+    branchNameWithCode() {
+      this.nameAndCode = this.branchNameWithCode;
+    },
   },
   computed: {
     objChanged() {
@@ -112,11 +121,14 @@ export default {
       this.myObj.is_active = value;
     },
     customerSelected(data) {
-        this.myObj.branch_id = data;
-        // this.branchNameWithCode = data.code + ' - ' + data.name;
+      this.myObj.branch_id = data;
+      // this.branchNameWithCode = data.code + ' - ' + data.name;
     },
     // onChange(data){
     //      this.branchNameWithCode = data
+    // }
+    // handleInput(e){
+    //     this.nameAndCode = e
     // }
   },
 };
