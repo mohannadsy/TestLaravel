@@ -172,8 +172,8 @@ export default {
 <style scoped>
 .toggle_container {
   margin: 0px auto;
-  background: #efefef;
-  width: 120px;
+  /* background: #efefef; */
+  width: 130px;
   padding: 10px 0;
   border-radius: 30px;
   transition: all 0.25s;
