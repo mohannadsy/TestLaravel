@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluide rounded bg-light">
+  <div class="container-fluide rounded ">
     <div class="row">
       <div class="col-md">
         <div class="row px-3 mt-1">
