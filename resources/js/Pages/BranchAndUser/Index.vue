@@ -66,8 +66,8 @@ export default {
   },
   layout: MyLayout,
   async created() {
-    let res = await axios.get(route("user.getRoles"));
-    this.roleArray = JSON.parse(JSON.stringify(res.data));
+    let roleArray = await axios.get(route("user.getRoles"));
+    this.roleArray = JSON.parse(JSON.stringify(roleArray.data));
     var finalArray = this.roleArray.map((obj) => obj.name);
     this.roleOptions = finalArray;
   },

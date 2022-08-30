@@ -58,7 +58,7 @@ export default {
   props: {
     userPermissions: Array,
     form:Object,
-    // rolePermissions: Array,
+    rolePermissions: Array,
     // roleId: Number,
     userId: Number,
   },
@@ -67,8 +67,11 @@ export default {
       this.myObj = this.form;
     },
     userPermissions() {
-      this.myObj.currentPermissions = this.userPermissions
-      console.log("hello from permission");
+      this.myObj.currentPermissions = this.userPermissions;
+    },
+    rolePermissions(){
+     this.myObj.currentPermissions = this.rolePermissions;
+     console.log(this.rolePermissions)
     },
     // 'form.roleId'() {
     //   console.log("hello from permission");

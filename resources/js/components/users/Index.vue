@@ -43,6 +43,7 @@
           v-show="activeTab === 'Permissions'"
           :form="form"
           :userPermissions="userPermissions"
+          :rolePermissions="rolePermissions"
           :userId="userId"
           @send-permissions="savePermissions"
         />
@@ -59,7 +60,7 @@
             <element-button :type="'button'" @click="newUser"
               >{{ $t("UserNew") }}
             </element-button>
-            <element-button>{{ $t("userUpdate") }} </element-button>
+            <element-button  :type="'button'" @click="updateUser">{{ $t("userUpdate") }} </element-button>
             <element-button :type="'button'" @click="deleteUser"
               >{{ $t("userDelete") }}
             </element-button>
@@ -194,6 +195,9 @@ export default {
       //   let rolePermission = await axios.get(route("user.rolePermission", this.roleId));
       //  this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
       //   console.log( typeof( this.roleId));
+    },
+    updateUser(){
+        this.form.post(route("user.update", this.userId));
     },
     deleteUser() {
       Inertia.get(route("user.delete", this.userId), this.form);

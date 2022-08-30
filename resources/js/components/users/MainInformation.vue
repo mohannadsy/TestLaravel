@@ -146,22 +146,21 @@ export default {
     },
   },
   methods: {
-    // getRoleIdFromName(roleName) {
-    //   this.roleArray.forEach((e) => {
-    //     if (e.name === roleName) this.myObj.roleId = e.id;
-    //   });
-    // },
+    getRoleIdFromName(roleName) {
+      this.roleArray.forEach((e) => {
+        if (e.name === roleName) this.myObj.roleId = e.id;
+      });
+    },
     objChanged() {
       this.$emit("save-main", this.myObj);
     },
-    // async roleChange(e) {
-    //   this.myObj.role = e.target.value;
-    //   this.getRoleIdFromName(this.myObj.role);
-    //   console.log(this.myObj.roleId);
-    //   let rolePermission = await axios.get(route("user.rolePermission", this.myObj.roleId));
-    //   this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
-    //   this.$emit("save-main",{ data:this.myObj,rolePermissions:this.rolePermission});
-    // },
+    async roleChange(e) {
+      this.myObj.role = e.target.value;
+      this.getRoleIdFromName(this.myObj.role);
+      let rolePermissions = await axios.get(route("user.rolePermission", this.myObj.roleId));
+      this.rolePermissions = JSON.parse(JSON.stringify(rolePermissions.data));
+      this.$emit("save-main",{ data:this.myObj,rolePermissions:this.rolePermissions});
+    },
     switch_on() {
       this.myObj.active = !this.myObj.active;
     },
