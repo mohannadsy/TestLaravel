@@ -52,7 +52,8 @@ class UserController extends Controller
         $user = User::create($request->all());
         $user->givePermissionTo($request->get('permissions'));
         $this->callActivityMethod('store', $parameters);
-        return __('common.store');
+//        return __('common.store');
+        return redirect()->route('branch.index')->with('message', __('common.update'));
 
 
 //        return inertia('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
@@ -69,13 +70,15 @@ class UserController extends Controller
         $request->profile_photo_path = $url;
 
         if ($this->isNotSuperAdmin($id)) {
-            $user = User::find($id)->update($request->all());}
-        else {
+            $user = User::find($id)->update($request->all());
+        } else {
             $user = User::find($id)->update($request->except('branch_id'));
         }
         $this->callActivityMethod('update', $parameters);
-        return __('common.update');
-       }
+//        return __('common.update');
+        return redirect()->route('branch.index')->with('message', __('common.update'));
+
+    }
 
 
     public function delete($id)
@@ -86,71 +89,80 @@ class UserController extends Controller
             if (User::find($id)) {
                 $user->delete();
                 $this->callActivityMethod('delete  ', $parameters);
-                return __('common.delete');
+//                return __('common.delete');
 
-            } else   return __('user.user not found');
+                return redirect()->route('branch.index')->with('message', __('common.delete'));
+
+//            } else   return __('user.user not found');
+                return redirect()->route('branch.index')->with('message', __('user.user not found'));
+
+            }
+//        return __('user.admin can not be deleted');
+            return redirect()->route('branch.index')->with('message', __('user.admin can not be deleted'));
+
         }
-        return __('user.admin can not be deleted');
-    }
 
 
-    public function showUserPermissions($id)
-    {
-        $parameters = ['id' => $id];
-        $user = User::find($id);
-        if ($user) {
-            $this->callActivityMethod('show', $parameters);
+        public
+        function showUserPermissions($id)
+        {
+            $parameters = ['id' => $id];
+            $user = User::find($id);
+            if ($user) {
+                $this->callActivityMethod('show', $parameters);
 //            return User::with('permissions')->find($id);
-            $userGroupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
-            foreach ($userGroupPermissions as $groups) {
-                foreach ($groups->permissions as $permission) {
-                    if ($user->hasPermissionTo($permission->name)) {
-                        $permission->is_active = true;
-                    } else {
-                        $permission->is_active = false;
+                $userGroupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+                foreach ($userGroupPermissions as $groups) {
+                    foreach ($groups->permissions as $permission) {
+                        if ($user->hasPermissionTo($permission->name)) {
+                            $permission->is_active = true;
+                        } else {
+                            $permission->is_active = false;
+                        }
                     }
                 }
-            }
-            return $userGroupPermissions;
+                return $userGroupPermissions;
 //            return $user;
 //            API
 //        return redirect()->route('branch.index')->with(compact('user','groupPermissions'));
 
 
 //         Inertia
-        }
+            }
 //        return inertia('BranchAndUser/Index', compact('groupPermissions', 'user'));
 
-    }
+        }
 
 
-    public function showRole($id)
-    {
-        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
-        $role = Role::find($id);
+        public
+        function showRole($id)
+        {
+            $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+            $role = Role::find($id);
 
-        foreach ($groupPermissions as $groups) {
-            foreach ($groups->permissions as $permission) {
-                if ($role->hasPermissionTo($permission->name)) {
-                    $permission->is_active = true;
-                } else {
-                    $permission->is_active = false;
+            foreach ($groupPermissions as $groups) {
+                foreach ($groups->permissions as $permission) {
+                    if ($role->hasPermissionTo($permission->name)) {
+                        $permission->is_active = true;
+                    } else {
+                        $permission->is_active = false;
+                    }
                 }
             }
-        }
-        return $groupPermissions;
+            return $groupPermissions;
 
-    }
-
-    public function showUser($id)
-    {
-        $parameters = ['id' => $id];
-        $user = User::find($id);
-        if ($user) {
-            return User::find($id);
-            $this->callActivityMethod('show', $parameters);
         }
 
+        public
+        function showUser($id)
+        {
+            $parameters = ['id' => $id];
+            $user = User::find($id);
+            if ($user) {
+                return User::find($id);
+                $this->callActivityMethod('show', $parameters);
+            }
+
+        }
     }
-}
 

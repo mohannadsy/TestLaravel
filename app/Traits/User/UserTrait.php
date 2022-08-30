@@ -241,10 +241,12 @@ trait  UserTrait
     public function recursiveBranches($parent_id, $child_id)
     {
         $parentBranch = Branch::find($parent_id);
-        $parentBranch->branch_id;
         $child_branch = Branch::find($child_id);
-
-//        if (parent)
+        if ($parentBranch->id == $child_branch->branch_id) {
+            if ($child_branch->id == $parentBranch->branch_id) {
+                return "You Can not Do it ";
+            }
+        }
     }
 
 }
