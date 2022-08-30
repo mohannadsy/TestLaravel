@@ -76,7 +76,9 @@ class BranchController extends Controller
     public function show($id)
     {
         $parameters = ['id' => $id];
+
         $branch = Branch::find($id);
+        $barnchNameWithCode = $branch->branch['code'] . ' - ' . $branch->branch['name'];
         if ($branch) {
             $this->callActivityMethod('show', $parameters);
             return $branch;
