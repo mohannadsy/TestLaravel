@@ -76,15 +76,10 @@ class BranchController extends Controller
     public function show($id)
     {
         $parameters = ['id' => $id];
-
         $branch = Branch::find($id);
-
-        $branchNameWithCode = $branch->branch['code'] . ' - ' . $branch->branch['name'];
         if ($branch) {
             $this->callActivityMethod('show', $parameters);
-//            return $branch;
-            return inertia('BranchAndUser/Index', compact('branch', 'branchNameWithCode'));
-
+            return $branch;
         }
 //        return 'Branch not Found';
         return __('branch.branch show');
@@ -111,9 +106,7 @@ class BranchController extends Controller
         $branch = Branch::find($id);
         if ($this->isRootBranch($id))
 //            return "Root Branch isn't deleted";
-//            return __('branch.root branch can be deleted');
-            return redirect()->route('branch.index')->with('message', __('branch.root branch can be deleted'));
-
+            return __('branch.root branch can be deleted');
         if (!$this->numOfSubBranches($id) > 0) {
             $branch->delete();
             $this->callActivityMethod('delete', $parameters);
@@ -123,9 +116,7 @@ class BranchController extends Controller
         } else
 //            return "it is not possible to delete a branch that contains branches within it";
 
-//            return __('branch.branch delete error');
-            return redirect()->route('branch.index')->with('message', __('branch.branch delete error'));
-
+            return __('branch.branch delete error');
     }
 //    public function store(Request $request)
 //    {
