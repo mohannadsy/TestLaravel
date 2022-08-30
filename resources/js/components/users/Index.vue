@@ -1,4 +1,9 @@
 <template>
+    <saved-modal
+    v-show="$page.props.flash.message"
+    :title="$page.props.flash.message"
+    @close="$page.props.flash.message=null"
+  ></saved-modal>
   <div class="container-fluide rounded ">
     <div class="row">
       <div class="col-md">
@@ -17,13 +22,13 @@
         <!-- <hr class="new1"> -->
         <div class="row a mt-2">
           <div class="col">
-            <title-button :type="'button'" @click="activeTab = 'BasicInformation'">
+            <title-button :type="'button'" @click.prevent="activeTab = 'BasicInformation'">
               {{ $t("userBasicInfo") }}</title-button
             >
-            <title-button :type="'button'" @click="activeTab = 'Permissions'">{{
+            <title-button :type="'button'" @click.prevent="activeTab = 'Permissions'">{{
               $t("userPermissions")
             }}</title-button>
-            <title-button :type="'button'" @click="activeTab = 'ExtraOptions'"
+            <title-button :type="'button'" @click.prevent="activeTab = 'ExtraOptions'"
               >{{ $t("userAdditionalOptions") }}
             </title-button>
           </div>
@@ -31,11 +36,11 @@
         <basic-information
           :userInformation="userInformation"
           :form="form"
-          v-if="activeTab === 'BasicInformation'"
+         v-show="activeTab === 'BasicInformation'"
           @save-basic="saveBasic"
         ></basic-information>
         <permissions
-          v-if="activeTab === 'Permissions'"
+          v-show="activeTab === 'Permissions'"
           :form="form"
           :userPermissions="userPermissions"
           :userId="userId"
@@ -44,7 +49,7 @@
         <extra-options
           :userInformation="userInformation"
           :form="form"
-          v-if="activeTab === 'ExtraOptions'"
+         v-show="activeTab === 'ExtraOptions'"
         />
         <div class="row justify-content-end mb-2">
           <div class="col-md-4">
@@ -81,6 +86,7 @@ import TitleButton from "../../Shared/TitleButton.vue";
 import MainInformation from "./MainInformation.vue";
 import { reactive } from "vue";
 import { useForm } from "@inertiajs/inertia-vue3";
+import SavedModal from "../../Shared/SavedModal.vue";
 export default {
   components: {
     MainInformation,
@@ -95,6 +101,7 @@ export default {
     CheckboxSwitch,
     ElementButton,
     TitleButton,
+    SavedModal
   },
   props: {
     userPermissions: Array,
@@ -131,9 +138,7 @@ export default {
     };
   },
   watch: {
-    'form.roleId'(newVal) {
-      console.log("hello from index" + newVal);
-    },
+
   },
 //   computed: {
 //     rrr() {
@@ -165,30 +170,27 @@ export default {
     savePermissions(data){
         (this.form.currentPermissions = data.currentPermissions)
     },
-    saveExtra(data) {},
     storeUser() {
-      //   this.form.post(route("user.store"));
       this.$inertia.post(route("user.store"), this.form);
-      //   console.log(this.form);
     },
-    async newUser() {
-      //   this.form = useForm({
-      //     code: "",
-      //     name: "",
-      //     email: "",
-      //     password: "",
-      //     branch_id: "",
-      //     role: "Accountant",
-      //     first_name: "",
-      //     middle_name: "",
-      //     last_name: "",
-      //     phone: "",
-      //     mobile: "",
-      //     id_number: "",
-      //     notes: "",
-      //     is_active: true,
-      //     _token: this.$page.props.csrf_token,
-      //   });
+     newUser() {
+        this.form = useForm({
+          code: "",
+          name: "",
+          email: "",
+          password: "",
+          branch_id: "",
+          role: "Accountant",
+          first_name: "",
+          middle_name: "",
+          last_name: "",
+          phone: "",
+          mobile: "",
+          id_number: "",
+          notes: "",
+          is_active: true,
+          _token: this.$page.props.csrf_token,
+        });
       //   let rolePermission = await axios.get(route("user.rolePermission", this.roleId));
       //  this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
       //   console.log( typeof( this.roleId));
@@ -196,10 +198,9 @@ export default {
     deleteUser() {
       Inertia.get(route("user.delete", this.userId), this.form);
     },
-    submit() {
-      // Inertia.post(route('user.store'), this.postData);
-      this.$store.dispatch("users/registerUser", this.postData);
-    },
+    // submit() {
+    //   this.$store.dispatch("users/registerUser", this.postData);
+    // },
   },
 };
 </script>
