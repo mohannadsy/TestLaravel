@@ -182,25 +182,40 @@ trait  UserTrait
 
     }
 
-    public function generateCode($id)
-    {
-        $fullCode = '';
-//        $parentNextCode = $this->getMainBranch()->last()->code + 1;
-        $parentCode = Branch::with('branch')->find($id)->branch->code;
-        $currentBranchCode = Branch::find($id)->code;
-        return $fullCode = $parentCode . '' . $currentBranchCode + 1;
+//    public function generateCode($id)
+//    {
+//        $fullCode = '';
+////        $parentNextCode = $this->getMainBranch()->last()->code + 1;
+//        $parentCode = Branch::with('branch')->find($id)->branch->code;
+//        $currentBranchCode = Branch::find($id)->code;
+//        return $fullCode = $parentCode . '' . $currentBranchCode + 1;
+//
+//    }
 
+
+    public function generateBranchesCodes($id)
+    {
+        $parentCode = Branch::with('branch')->find($id)->branch->code;
+        $mainBranch = Branch::with('branches')->find($id);
+        $branchesCodes = $mainBranch->branches->max('code');
+        $max = $branchesCodes;
+        for ($i = 0; $i <= strlen($max) - 1; $i++) {
+            preg_match_all('!\d+!', $max, $matches);
+            $num = $matches['0']['0'];
+            $max = substr($max, 0, -strlen($num));
+            $num = $num + 1;
+            $maxNumber = $max . $num;
+            print('New Item Code =  ' . $parentCode . '' . $maxNumber);
+        }
     }
 
-
-    public function generateCodes($id)
+    public function generateUserCodes($id)
     {
         $parentCode = Branch::with('branch')->find($id)->branch->code;
 
-        $mainBranch = Branch::with('users', 'branches')->find($id);
-        $users = $mainBranch->users->max('code');
-        $branches = $mainBranch->branches->max('code');
-        $max = max($users, $branches);
+        $mainBranch = Branch::with('users')->find($id);
+        $usersCodes = $mainBranch->users->max('code');
+        $max = $usersCodes;
         for ($i = 0; $i <= strlen($max) - 1; $i++) {
             preg_match_all('!\d+!', $max, $matches);
             $num = $matches['0']['0'];
@@ -221,4 +236,17 @@ trait  UserTrait
     {
         return is_numeric($this->getLastCharacterInString($string));
     }
+
+
+    public function recursiveBranches($parent_id, $child_id)
+    {
+        $parentBranch = Branch::find($parent_id);
+        $child_branch = Branch::find($child_id);
+        if ($parentBranch->id == $child_branch->branch_id) {
+            if ($child_branch->id == $parentBranch->branch_id) {
+                return "You Can not Do it ";
+            }
+        }
+    }
+
 }

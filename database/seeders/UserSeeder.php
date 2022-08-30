@@ -100,7 +100,7 @@ class UserSeeder extends Seeder
 
 
         $userSara = User::create([
-            'code' => 'U4',
+            'code' => 'z100',
             'name' => 'Sara Abdo',
             'email' => 'sara@gmail.com',
 //            'password' => bcrypt('12345sara'),
