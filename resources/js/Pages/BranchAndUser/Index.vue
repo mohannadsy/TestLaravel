@@ -84,9 +84,6 @@ export default {
         let  res= JSON.parse(JSON.stringify(branchInformaion.data));
         this.branchInformaion = res[0]
         this.branchNameWithCode = res[1]
-     //  let res =  Inertia.get(route("branch.show", this.branchId));
-        // let branchNameWithCode = await axios.get(route("user.branchParent", this.branchId));
-        // this.branchNameWithCode = JSON.parse(JSON.stringify(branchNameWithCode.data));
       } else {
         this.userId = nodeId;
         let userInformation = await axios.get(route("user.showUser", this.userId));
