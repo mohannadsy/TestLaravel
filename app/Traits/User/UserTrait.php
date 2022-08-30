@@ -199,7 +199,7 @@ trait  UserTrait
         $mainBranch = Branch::with('branches')->find($id);
         $branchesCodes = $mainBranch->branches->max('code');
         $max = $branchesCodes;
-         for ($i = 0; $i <= strlen($max) - 1; $i++) {
+        for ($i = 0; $i <= strlen($max) - 1; $i++) {
             preg_match_all('!\d+!', $max, $matches);
             $num = $matches['0']['0'];
             $max = substr($max, 0, -strlen($num));
@@ -238,12 +238,13 @@ trait  UserTrait
     }
 
 
-    public  function recursiveBranches($parent_id,$child_id){
+    public function recursiveBranches($parent_id, $child_id)
+    {
         $parentBranch = Branch::find($parent_id);
-        $parentBranch->branch_id ;
+        $parentBranch->branch_id;
         $child_branch = Branch::find($child_id);
 
-
+//        if (parent)
     }
 
 }

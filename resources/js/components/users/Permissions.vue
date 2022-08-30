@@ -42,10 +42,8 @@ export default {
   data() {
     return {
         myObj: useForm({
-             currentPermissions: this.userPermissions,
+             currentPermissions: [],
         }),
-
-      // currentPermissions:[],
       isExpanded: [],
       angle: [],
       // select_all: false,
@@ -65,15 +63,22 @@ export default {
     userId: Number,
   },
   watch: {
-    'form.roleId'() {
-      console.log("hello from permission");
-    //   console.log(this.form.roleId);
-      this.myObj.currentPermissions = this.form.rolePermissions;
-      this.$emit('send-permissions' , this.myObj.currentPermissions)
+    form() {
+      this.myObj = this.form;
     },
+    userPermissions() {
+      this.myObj.currentPermissions = this.userPermissions
+      console.log("hello from permission");
+    },
+    // 'form.roleId'() {
+    //   console.log("hello from permission");
+    // //   console.log(this.form.roleId);
+    //   this.myObj.currentPermissions = this.form.rolePermissions;
+    //   this.$emit('send-permissions' , this.myObj.currentPermissions)
+    // },
     async userId(){
-      let result = await axios.get(route("user.showUserPermissions", this.userId));
-     this.myObj.currentPermissions = JSON.parse(JSON.stringify(result.data));
+    //   let result = await axios.get(route("user.showUserPermissions", this.userId));
+    //  this.myObj.currentPermissions = JSON.parse(JSON.stringify(result.data));
     //   this.$emit('send-permissions' , this.myObj.currentPermissions)
     // this.userId = newVal;
     //   console.log(newVal);
