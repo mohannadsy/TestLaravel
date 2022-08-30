@@ -180,7 +180,7 @@ export default {
           email: "",
           password: "",
           branch_id: "",
-          role: "Accountant",
+          role: "",
           first_name: "",
           middle_name: "",
           last_name: "",
