@@ -231,8 +231,7 @@ trait  UserTrait
         return $string[strlen($string) - 1];
     }
 
-    public
-    function isLastCharacterInStringIsNumeric($string)
+    public  function isLastCharacterInStringIsNumeric($string)
     {
         return is_numeric($this->getLastCharacterInString($string));
     }

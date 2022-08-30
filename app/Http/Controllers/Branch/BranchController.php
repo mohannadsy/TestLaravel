@@ -27,13 +27,13 @@ class BranchController extends Controller
     public function index() //getAllBranches
     {
         $parameters = ['id' => null];
-        $branches = Branch::where('is_active', true)->whereNot('id', 'branch_id')->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
+        $branches = Branch::where('is_active', true)->whereNot('id','branch_id')->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
         $branchesWithUsers = Branch::whereNull('branch_id')->with('branches', 'users')->select('id', 'name', 'code', 'branch_id')->get();// for tree
         $groupPermissions = PermissionGroup::select('name', 'caption_' . Config::get('app.locale') . ' as caption', 'id')->with(['permissions'])->get();
         $this->callActivityMethod('getAllBranches', $parameters);
 
         // return $branches;
-        return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
+       return inertia('BranchAndUser/Index', compact('branches', 'branchesWithUsers', 'groupPermissions'));
     }
 
 //    public function store(BranchRequest $request)
@@ -78,10 +78,13 @@ class BranchController extends Controller
         $parameters = ['id' => $id];
 
         $branch = Branch::find($id);
-        $barnchNameWithCode = $branch->branch['code'] . ' - ' . $branch->branch['name'];
+
+        $branchNameWithCode = $branch->branch['code'] . ' - ' . $branch->branch['name'];
         if ($branch) {
             $this->callActivityMethod('show', $parameters);
-            return $branch;
+//            return $branch;
+            return inertia('BranchAndUser/Index', compact('branch', 'branchNameWithCode'));
+
         }
 //        return 'Branch not Found';
         return __('branch.branch show');
