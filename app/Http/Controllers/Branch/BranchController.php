@@ -77,9 +77,12 @@ class BranchController extends Controller
     {
         $parameters = ['id' => $id];
         $branch = Branch::find($id);
+        $branchNameCode = $branch->branch['code'] . ' - ' . $branch->branch['name'];
         if ($branch) {
             $this->callActivityMethod('show', $parameters);
-            return $branch;
+//            return $branch;
+            return inertia('BranchAndUser/Index', compact('branch', 'branchNameCode'));
+
         }
 //        return 'Branch not Found';
         return __('branch.branch show');
