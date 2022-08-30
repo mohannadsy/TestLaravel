@@ -3,6 +3,7 @@
       <div class="modall">
         <svg
           xmlns="http://www.w3.org/2000/svg"
+          
           x="0px"
           y="0px"
           width="100"
@@ -66,23 +67,52 @@
         </svg>
         <h6>{{ title }}</h6>
         <!-- <p>Your Details have been saved Successfully</p> -->
-        <button class="closee" @click="$emit('close')">OK</button>
+        <button class="btn btn-danger" @click="$emit('delete')" >حذف</button>
+        <button class="closee btn btn-secondary" @click="$emit('close')">إلغاء</button>
       </div>
       <!-- <div class="close">
         <img class="close-img" src="" alt="" />
       </div> -->
     </div>
+
+    <!-- Button trigger modal -->
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+     demo 
+  </button> -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{msg}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
   </template>
   
   <script>
+import ElementButton from './ElementButton.vue';
   export default {
+  components: { ElementButton },
     props: {
       title: {
         type: String,
         required: false,
       },
     },
-    emits: ["close"],
+    emits: ["close","delete"],
   };
   </script>
   
@@ -103,26 +133,28 @@
     position: absolute;
     text-align: center;
     background-color: white;
-    height: 300px;
-    width: 450px;
-    margin-top: 10%;
+    height: 270px;
+    width: 400px;
+    margin-top: 15%;
     padding: 40px 0;
-    border-radius: 20px;
+    border-radius: 15px;
   }
   
   h6 {
-    font-weight: 500;
-    font-size: 28px;
+    font-weight: 400;
+    font-size: 20px;
     margin: 20px 0;
   }
   
   button {
-    background-color: #88ae45;
+    /* background-color: #88ae45;
     width: 100px;
     height: 40px;
-    color: white;
+    
     font-size: 14px;
-    border-radius: 10px;
+    border-radius: 10px; */
+    margin: 10px;
+    color: white;
   }
   </style>
   
