@@ -101,68 +101,69 @@ class UserController extends Controller
             return redirect()->route('branch.index')->with('message', __('user.admin can not be deleted'));
 
         }
+    }
 
 
-        public
-        function showUserPermissions($id)
-        {
-            $parameters = ['id' => $id];
-            $user = User::find($id);
-            if ($user) {
-                $this->callActivityMethod('show', $parameters);
+    public
+    function showUserPermissions($id)
+    {
+        $parameters = ['id' => $id];
+        $user = User::find($id);
+        if ($user) {
+            $this->callActivityMethod('show', $parameters);
 //            return User::with('permissions')->find($id);
-                $userGroupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
-                foreach ($userGroupPermissions as $groups) {
-                    foreach ($groups->permissions as $permission) {
-                        if ($user->hasPermissionTo($permission->name)) {
-                            $permission->is_active = true;
-                        } else {
-                            $permission->is_active = false;
-                        }
-                    }
-                }
-                return $userGroupPermissions;
-//            return $user;
-//            API
-//        return redirect()->route('branch.index')->with(compact('user','groupPermissions'));
-
-
-//         Inertia
-            }
-//        return inertia('BranchAndUser/Index', compact('groupPermissions', 'user'));
-
-        }
-
-
-        public
-        function showRole($id)
-        {
-            $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
-            $role = Role::find($id);
-
-            foreach ($groupPermissions as $groups) {
+            $userGroupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+            foreach ($userGroupPermissions as $groups) {
                 foreach ($groups->permissions as $permission) {
-                    if ($role->hasPermissionTo($permission->name)) {
+                    if ($user->hasPermissionTo($permission->name)) {
                         $permission->is_active = true;
                     } else {
                         $permission->is_active = false;
                     }
                 }
             }
-            return $groupPermissions;
+            return $userGroupPermissions;
+//            return $user;
+//            API
+//        return redirect()->route('branch.index')->with(compact('user','groupPermissions'));
 
+
+//         Inertia
         }
+//        return inertia('BranchAndUser/Index', compact('groupPermissions', 'user'));
 
-        public
-        function showUser($id)
-        {
-            $parameters = ['id' => $id];
-            $user = User::find($id);
-            if ($user) {
-                return User::find($id);
-                $this->callActivityMethod('show', $parameters);
-            }
-
-        }
     }
+
+
+    public
+    function showRole($id)
+    {
+        $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
+        $role = Role::find($id);
+
+        foreach ($groupPermissions as $groups) {
+            foreach ($groups->permissions as $permission) {
+                if ($role->hasPermissionTo($permission->name)) {
+                    $permission->is_active = true;
+                } else {
+                    $permission->is_active = false;
+                }
+            }
+        }
+        return $groupPermissions;
+
+    }
+
+    public
+    function showUser($id)
+    {
+        $parameters = ['id' => $id];
+        $user = User::find($id);
+        if ($user) {
+            return User::find($id);
+            $this->callActivityMethod('show', $parameters);
+        }
+
+    }
+}
 
