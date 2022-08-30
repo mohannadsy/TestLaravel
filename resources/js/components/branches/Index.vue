@@ -70,7 +70,7 @@ import MainInfromation1 from "./MainInfromation.vue";
 import SavedModal from "../../Shared/SavedModal.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 import axios from "axios";
-import { reactive } from "vue";
+// import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 export default {
   props: {
@@ -127,7 +127,6 @@ export default {
         (this.form.phone = data.phone),
         (this.form.mobile = data.mobile);
     },
-    saveExtra(data) {},
     storeBranch() {
       this.form.post(route("branch.store"));
     },
@@ -152,7 +151,6 @@ export default {
     deleteBranch() {
       Inertia.get(route("branch.delete", this.branchId), this.form);
     },
-    confirmError() {},
   },
 };
 </script>

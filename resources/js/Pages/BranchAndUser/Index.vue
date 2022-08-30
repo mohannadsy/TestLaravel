@@ -38,6 +38,7 @@ import Tree from "./Tree.vue";
 import addSection from "./addSection.vue";
 import axios from "axios";
 import MyLayout from "../../Layouts/MyLayout.vue";
+import { Inertia } from "@inertiajs/inertia";
 export default {
   data() {
     return {
@@ -49,8 +50,8 @@ export default {
       userPermissions: [],
       roleArray: {},
       roleOptions: [],
-      roleId:2,
-      branchNameWithCode:''
+      roleId: 2,
+      branchNameWithCode: "",
     };
   },
   props: {
@@ -66,31 +67,31 @@ export default {
   },
   layout: MyLayout,
   async created() {
-    let res = await axios.get(route("user.getRoles"));
-    this.roleArray = JSON.parse(JSON.stringify(res.data));
+    let roleArray = await axios.get(route("user.getRoles"));
+    this.roleArray = JSON.parse(JSON.stringify(roleArray.data));
     var finalArray = this.roleArray.map((obj) => obj.name);
     this.roleOptions = finalArray;
   },
   methods: {
-    getRoleId(data){
-        this.roleId = data
+    getRoleId(data) {
+      this.roleId = data;
     },
     async getNodeType({ nodeId, nodeType }) {
       this.nodeType = nodeType;
       if (nodeType === "branches") {
         this.branchId = nodeId;
-        let branchInformaion = await axios.get(route("branch.show", this.branchId));
-        this.branchInformaion = JSON.parse(JSON.stringify(branchInformaion.data));
-        let branchNameWithCode = await axios.get(route("user.branchParent",this.branchId))
-        this.branchNameWithCode = JSON.parse(JSON.stringify(branchNameWithCode.data))
+         let branchInformaion = await axios.get(route("branch.show", this.branchId));
+        let  res= JSON.parse(JSON.stringify(branchInformaion.data));
+        this.branchInformaion = res[0]
+        this.branchNameWithCode = res[1]
       } else {
         this.userId = nodeId;
-        let result1 = await axios.get(route("user.showUser", this.userId));
-        this.userInformation = JSON.parse(JSON.stringify(result1.data));
-        let result = await axios.get(
+        let userInformation = await axios.get(route("user.showUser", this.userId));
+        this.userInformation = JSON.parse(JSON.stringify(userInformation.data));
+        let userPermissions = await axios.get(
           route("user.showUserPermissions", this.userId)
         );
-        this.userPermissions = JSON.parse(JSON.stringify(result.data));
+        this.userPermissions = JSON.parse(JSON.stringify(userPermissions.data));
       }
     },
   },

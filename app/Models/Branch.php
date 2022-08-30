@@ -49,6 +49,21 @@ class Branch extends Model
     {
         return $this->belongsTo('App\Models\Branch', 'branch_id');
     }
+//
+//    public function autoComplet()
+//    {
+//        return $this->branches()
+//            ->where('id', '=', 'branch_id');
+//
+//    }
+//
+//    public function autoComplete()
+//    {
+//        return $this->autoComplet()
+//            ->whereNot('id', '!=', 'branch_id');
+
+//    }
+
 
     public function onlyBranches()
     {

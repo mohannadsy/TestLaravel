@@ -135,9 +135,9 @@ export default {
     };
   },
   watch: {
-    'myObj.roleId'() {
-      console.log("helloooo");
-    },
+    // 'myObj.roleId'() {
+    //   console.log("helloooo");
+    // },
     form() {
       this.myObj = this.form;
     },
@@ -157,10 +157,9 @@ export default {
     async roleChange(e) {
       this.myObj.role = e.target.value;
       this.getRoleIdFromName(this.myObj.role);
-      console.log(this.myObj.roleId);
-      let rolePermission = await axios.get(route("user.rolePermission", this.myObj.roleId));
-      this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
-      this.$emit("save-main",{ data:this.myObj,rolePermissions:this.rolePermission});
+      let rolePermissions = await axios.get(route("user.rolePermission", this.myObj.roleId));
+      this.rolePermissions = JSON.parse(JSON.stringify(rolePermissions.data));
+      this.$emit("save-main",{ data:this.myObj,rolePermissions:this.rolePermissions});
     },
     switch_on() {
       this.myObj.active = !this.myObj.active;
@@ -178,7 +177,7 @@ export default {
   border-radius: 30px;
   transition: all 0.25s;
 }
-.toggle_container.active {
+/*.toggle_container.active {
   background: #e9ffef;
-}
+}*/
 </style>

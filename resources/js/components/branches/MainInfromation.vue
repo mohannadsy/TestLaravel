@@ -40,9 +40,10 @@
             <search-autocomplete
               :items="branches"
               @selected="customerSelected"
-              :value="branchNameWithCode"
+              :value="nameAndCode"
             />
           </div>
+          <h2>{{value}}</h2>
         </div>
       </div>
 
@@ -91,6 +92,7 @@ export default {
         branch_id: "",
         is_active: true,
       }),
+      nameAndCode:''
     };
   },
   watch: {
@@ -100,6 +102,9 @@ export default {
     branchInformaion() {
       Object.assign(this.myObj, this.branchInformaion);
     },
+    branchNameWithCode(){
+       this.nameAndCode =  this.branchNameWithCode
+    }
   },
   computed: {
     objChanged() {
