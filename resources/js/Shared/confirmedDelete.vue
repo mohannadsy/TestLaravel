@@ -69,6 +69,7 @@
         <!-- <p>Your Details have been saved Successfully</p> -->
         <button type="button" class="btn btn-danger" @click="$emit('delete')" >حذف</button>
         <button type="button" class="closee btn btn-secondary" @click="$emit('close')">إلغاء</button>
+        <img :src="mySVG" />
       </div>
       <!-- <div class="close">
         <img class="close-img" src="" alt="" />
@@ -77,11 +78,17 @@
   </template>
   
   <script>
-  import delete from "../../assets/delete-svgrepo-com.svg";
+// import delete from '@assets/delete.svg';
 import ElementButton from './ElementButton.vue';
 
   export default {
-  components: { ElementButton },
+  components: { ElementButton,
+  },
+  data(){
+    return {
+      mySVG: require('../../assets/delete.png')
+    }
+  },
     props: {
       title: {
         type: String,
