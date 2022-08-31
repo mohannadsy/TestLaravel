@@ -10,6 +10,7 @@ use App\Http\Requests\BranchRequest;
 use App\Models\PermissionGroup;
 use App\Traits\ActivityLog\ActivityLog;
 use App\Traits\Branch\BranchTrait;
+use App\Traits\User\UserTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
@@ -27,7 +28,11 @@ class BranchController extends Controller
     public function index() //getAllBranches
     {
         $parameters = ['id' => null];
+
+
         $branches = Branch::where('is_active', true)->whereNot('id', 'branch_id')->select('id', 'name', 'code', 'branch_id')->get(); // auto complete
+
+
         $branchesWithUsers = Branch::whereNull('branch_id')->with('branches', 'users')->select('id', 'name', 'code', 'branch_id')->get();// for tree
         $groupPermissions = PermissionGroup::select('name', 'caption_' . Config::get('app.locale') . ' as caption', 'id')->with(['permissions'])->get();
         $this->callActivityMethod('getAllBranches', $parameters);

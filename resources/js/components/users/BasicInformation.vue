@@ -42,12 +42,6 @@
           </div>
         </div>
 
-        <!-- <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3">اسم الأم</elemet-label>
-        <div class="col-md-8">
-          <element-input type="text" class="form-control" />
-        </div>
-      </div> -->
         <div class="form-group row mt-2">
           <elemet-label class="col-form-label col-md-3">
             {{ $t("userPhone") }}</elemet-label

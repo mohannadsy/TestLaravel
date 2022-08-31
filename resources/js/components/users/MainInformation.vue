@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="form-group row mt-2">
-        <elemet-label class="col-form-label col-md-3" >
+        <elemet-label class="col-form-label col-md-3">
           {{ $t("userName") }}</elemet-label
         >
         <div class="col-8">
@@ -120,24 +120,21 @@ export default {
   },
   data() {
     return {
-        rolePermissions:[],
+    //   rolePermissions: [],
       myObj: useForm({
         code: "",
         name: "",
         email: "",
         password: "",
         branch_id: "",
-        role: "Accountant",
+        role: "",
         is_active: true,
         roleId: 2,
-    //   rolePermissions: [],
+          rolePermissions: [],
       }),
     };
   },
   watch: {
-    // 'myObj.roleId'() {
-    //   console.log("helloooo");
-    // },
     form() {
       this.myObj = this.form;
     },
@@ -157,9 +154,11 @@ export default {
     async roleChange(e) {
       this.myObj.role = e.target.value;
       this.getRoleIdFromName(this.myObj.role);
-      let rolePermissions = await axios.get(route("user.rolePermission", this.myObj.roleId));
-      this.rolePermissions = JSON.parse(JSON.stringify(rolePermissions.data));
-      this.$emit("save-main",{ data:this.myObj,rolePermissions:this.rolePermissions});
+      let rolePermissions = await axios.get(
+        route("user.rolePermission", this.myObj.roleId)
+      );
+      this.myObj.rolePermissions = JSON.parse(JSON.stringify(rolePermissions.data));
+      this.$emit("save-main",this.myObj);
     },
     switch_on() {
       this.myObj.active = !this.myObj.active;

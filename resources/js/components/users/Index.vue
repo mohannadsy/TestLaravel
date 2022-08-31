@@ -34,9 +34,9 @@
           </div>
         </div>
         <basic-information
+        v-show="activeTab === 'BasicInformation'"
           :userInformation="userInformation"
           :form="form"
-         v-show="activeTab === 'BasicInformation'"
           @save-basic="saveBasic"
         ></basic-information>
         <permissions
@@ -48,13 +48,13 @@
           @send-permissions="savePermissions"
         />
         <extra-options
+        v-show="activeTab === 'ExtraOptions'"
           :userInformation="userInformation"
           :form="form"
-         v-show="activeTab === 'ExtraOptions'"
         />
         <div class="row justify-content-end mb-2">
           <div class="col-md-4">
-            <element-button @click="storeUser"
+            <element-button  :type="'button'" @click="storeUser"
               >{{ $t("userSave") }}
             </element-button>
             <element-button :type="'button'" @click="newUser"
@@ -132,24 +132,14 @@ export default {
         notes: "",
         is_active: true,
         roleId: 2,
-        // rolePermissions: [],
         currentPermissions:[],
         _token: this.$page.props.csrf_token,
       }),
     };
   },
-  watch: {
-
-  },
-//   computed: {
-//     rrr() {
-//       return this.from.roleId;
-//     }
-//   },
   methods: {
-    saveMain({data,rolePermissions}) {
-      //(this.form.rolePermissions = data.rolePermissions),
-    this.rolePermissions = rolePermissions;
+    saveMain(data) {
+    this.rolePermissions = data.rolePermissions;
       (this.form.roleId = data.roleId),
       (this.form.code = data.code),
         (this.form.name = data.name),
@@ -157,7 +147,6 @@ export default {
         (this.form.password = data.password),
         (this.form.branch_id = data.branch_id);
       this.form.is_active = data.is_active;
-      this.$emit("send-roleId", this.form.roleId);
     },
     saveBasic(data) {
       (this.form.first_name = data.first_name),
@@ -174,27 +163,27 @@ export default {
     storeUser() {
       this.$inertia.post(route("user.store"), this.form);
     },
-     newUser() {
+    async newUser() {
+       let newUser = await axios.get(route("user.rolePermission", 2));
+       let newResult = JSON.parse(JSON.stringify(newUser.data));
         this.form = useForm({
           code: "",
           name: "",
           email: "",
           password: "",
           branch_id: "",
-          role: "",
+          role: "Accountant",
           first_name: "",
           middle_name: "",
           last_name: "",
           phone: "",
           mobile: "",
           id_number: "",
+          currentPermissions:newResult,
           notes: "",
           is_active: true,
           _token: this.$page.props.csrf_token,
         });
-      //   let rolePermission = await axios.get(route("user.rolePermission", this.roleId));
-      //  this.rolePermissions = JSON.parse(JSON.stringify(rolePermission.data));
-      //   console.log( typeof( this.roleId));
     },
     updateUser(){
         this.form.post(route("user.update", this.userId));
@@ -202,9 +191,6 @@ export default {
     deleteUser() {
       Inertia.get(route("user.delete", this.userId), this.form);
     },
-    // submit() {
-    //   this.$store.dispatch("users/registerUser", this.postData);
-    // },
   },
 };
 </script>
