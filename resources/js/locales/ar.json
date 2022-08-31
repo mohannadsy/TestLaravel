@@ -70,7 +70,12 @@
     "warehouseMan":"أمين المستودع",
     "storageCapacity":"السعة التخزينية",
     "warehouseNotes":"ملاحظات",
-    "warehouseDirectory":"دليل المستودعات"
+    "warehouseDirectory":"دليل المستودعات",
+    "theStores":"المستودعات",
+    "numOfStore":"الرقم",
+    "storeName":"المستودع"
+
+    
 
 
 

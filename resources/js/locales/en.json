@@ -72,7 +72,11 @@
     "warehouseNotes":"Warehouse Notes",
     "warehouseDirectory":"Warehouse Directory",
 
-    "CardTypes" : ["assemply","normal"]
+    "CardTypes" : ["assemply","normal"],
+
+    "theStores":"The Stores",
+    "numOfStore":"Number",
+    "storeName":"Store Name"
 
 
 

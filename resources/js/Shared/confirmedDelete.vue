@@ -67,8 +67,8 @@
         </svg>
         <h6>{{ title }}</h6>
         <!-- <p>Your Details have been saved Successfully</p> -->
-        <button class="btn btn-danger" @click="$emit('delete')" >حذف</button>
-        <button class="closee btn btn-secondary" @click="$emit('close')">إلغاء</button>
+        <button type="button" class="btn btn-danger" @click="$emit('delete')" >حذف</button>
+        <button type="button" class="closee btn btn-secondary" @click="$emit('close')">إلغاء</button>
       </div>
       <!-- <div class="close">
         <img class="close-img" src="" alt="" />
@@ -104,6 +104,7 @@
   
   <script>
 import ElementButton from './ElementButton.vue';
+// import delete from "../../../public/assets/delete.svg";
   export default {
   components: { ElementButton },
     props: {

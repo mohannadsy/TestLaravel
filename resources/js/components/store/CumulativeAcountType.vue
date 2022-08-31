@@ -3,11 +3,11 @@
         <div class="col-7 table-div ">
             <table class="table table-striped">
                 <tr>
-                    <th colspan="2">المستودعات</th>
+                    <th colspan="2">{{$t("theStores")}}</th>
                 </tr>
                 <tr>
-                    <td class="num">الرقم</td>
-                    <td class="store">المستودع</td>
+                    <td class="num">{{$t("numOfStore")}}</td>
+                    <td class="store">{{$t("storeName")}}</td>
                 </tr>
                 <tr  v-for="(row, index) in rows" :key="index" :row="row" @click="selectRow(index-1)">
                     <td>{{ ++index }}</td>
@@ -19,12 +19,12 @@
             <!-- <element-button type='button' class="btn btn-info" @click="addRow">
             <fa icon="plus-circle" />
             </element-button> -->
-            <element-button type='button' class="btn btn-info" @click="removeRow(selectedRow)">
+            <element-button type='button' class="btn btn-info" @click="openModal">
                 
                 <fa icon="trash-can" />
             </element-button>
         </div>   
-        <confirmed-delete v-show="show" :title="msg"></confirmed-delete>
+        <confirmed-delete v-show="show" :title="msg" @delete="removeRow(selectedRow)" @close="closeModal"></confirmed-delete>
     </div>
     
     
@@ -52,17 +52,24 @@ export default {
     },
     methods:{
     addRow() {
-       // if(this.rows[this.rows.length-1].row != "")
+       if(this.rows[this.rows.length-1].row != "")
     this.rows.push({
       row: []
     });
+  },
+  openModal(){
+    this.show = true;
+  },
+  closeModal(){
+    this.show = false;
   },
   selectRow(index){
     this.selectedRow = index
   },
   removeRow: function(index) {
-    this.show = true;
+    
         this.rows.splice(index, 1);
+        this.show = false;
         if(this.rows.length == 0)
             this.addRow();
         
