@@ -13,6 +13,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use function Illuminate\Events\queueable;
 use function Illuminate\Session\userId;
+use function Symfony\Component\Mime\Header\all;
 use function Symfony\Component\String\length;
 
 
@@ -182,6 +183,35 @@ trait  UserTrait
 
     }
 
+
+    public function autoComplete($id)
+    {
+        $branch = Branch::find($id);
+
+        $branch_id = $branch->id;
+
+        $all_branch_ids = Branch::select('id')->get(); // auto complete
+        return $all_branch_ids = $branch_id;
+
+//        for ($i = 0; $i < strlen($all_branch_ids); $i++) {
+//            return $branch_branch_id[] = $all_branch_ids[$i][1];
+    }
+//        if ($branch_id == $branch_branch_id) {
+//            $branch_branch_id->$this->delete();
+//        }
+////        return $all_branch_ids;
+//}
+//    }
+
+
+//
+//    public function autoComplete()
+//    {
+//        return $this->autoComplet()
+//            ->whereNot('id', '!=', 'branch_id');
+//    }
+
+
 //    public function generateCode($id)
 //    {
 //        $fullCode = '';
@@ -193,7 +223,8 @@ trait  UserTrait
 //    }
 
 
-    public function generateBranchesCodes($id)
+    public
+    function generateBranchesCodes($id)
     {
         $parentCode = Branch::with('branch')->find($id)->branch->code;
         $mainBranch = Branch::with('branches')->find($id);
@@ -209,7 +240,8 @@ trait  UserTrait
         }
     }
 
-    public function generateUserCodes($id)
+    public
+    function generateUserCodes($id)
     {
         $parentCode = Branch::with('branch')->find($id)->branch->code;
 
@@ -226,18 +258,21 @@ trait  UserTrait
         }
     }
 
-    public function getLastCharacterInString($string)
+    public
+    function getLastCharacterInString($string)
     {
         return $string[strlen($string) - 1];
     }
 
-    public  function isLastCharacterInStringIsNumeric($string)
+    public
+    function isLastCharacterInStringIsNumeric($string)
     {
         return is_numeric($this->getLastCharacterInString($string));
     }
 
 
-    public function recursiveBranches($parent_id, $child_id)
+    public
+    function recursiveBranches($parent_id, $child_id)
     {
         $parentBranch = Branch::find($parent_id);
         $child_branch = Branch::find($child_id);
