@@ -41,9 +41,9 @@ import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   data() {
     return {
-        myObj: useForm({
-             currentPermissions: [],
-        }),
+      myObj: useForm({
+        currentPermissions: [],
+      }),
       isExpanded: [],
       angle: [],
       // select_all: false,
@@ -57,9 +57,8 @@ export default {
   },
   props: {
     userPermissions: Array,
-    form:Object,
+    form: Object,
     rolePermissions: Array,
-    // roleId: Number,
     userId: Number,
   },
   watch: {
@@ -69,28 +68,9 @@ export default {
     userPermissions() {
       this.myObj.currentPermissions = this.userPermissions;
     },
-    rolePermissions(){
-     this.myObj.currentPermissions = this.rolePermissions;
-     console.log(this.rolePermissions)
+    rolePermissions() {
+      this.myObj.currentPermissions = this.rolePermissions;
     },
-    // 'form.roleId'() {
-    //   console.log("hello from permission");
-    // //   console.log(this.form.roleId);
-    //   this.myObj.currentPermissions = this.form.rolePermissions;
-    //   this.$emit('send-permissions' , this.myObj.currentPermissions)
-    // },
-    async userId(){
-    //   let result = await axios.get(route("user.showUserPermissions", this.userId));
-    //  this.myObj.currentPermissions = JSON.parse(JSON.stringify(result.data));
-    //   this.$emit('send-permissions' , this.myObj.currentPermissions)
-    // this.userId = newVal;
-    //   console.log(newVal);
-    //   let that = this;
-    //   this.currentPermissions = this.userPermissions;
-    },
-    //     roleId: function(newVal, oldVal){
-    //       console.log("New value: "+ newVal + ", Old value: " + oldVal);
-    //    },
   },
 
   methods: {
@@ -110,12 +90,6 @@ export default {
     //   }
     // },
   },
-  // computed:{
-  //   async groupPermissions(){
-  //     let role = await axios.get(route("role.show", 1));
-  //     return  JSON.parse(JSON.stringify(role.data));
-  //   }
-  // }
 };
 </script>
 

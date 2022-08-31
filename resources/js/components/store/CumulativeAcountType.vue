@@ -17,7 +17,6 @@
         </div>
         <div class="col-2">
             <!-- <element-button type='button' class="btn btn-info" @click="addRow">
-            
             <fa icon="plus-circle" />
             </element-button> -->
             <element-button type='button' class="btn btn-info" @click="removeRow(selectedRow)">
@@ -25,6 +24,7 @@
                 <fa icon="trash-can" />
             </element-button>
         </div>   
+        <confirmed-delete v-show="show" :title="msg"></confirmed-delete>
     </div>
     
     
@@ -33,15 +33,21 @@
 <script>
 import ElementInput from '../../Shared/ElementInput.vue';
 import ElementButton from '../../Shared/ElementButton.vue';
+import confirmedDelete from '../../Shared/confirmedDelete.vue';
+import ConfirmedDelete from '../../Shared/confirmedDelete.vue';
 export default {
     components:{
-       ElementInput,
-       ElementButton
-    },
+    ElementInput,
+    ElementButton,
+    confirmedDelete,
+    ConfirmedDelete
+},
     data() {
         return {
             rows: [{id:"",row: ""}],
-            selectedRow : 0
+            selectedRow : 0,
+            show:false,
+            msg:"سيتم الحذف،هل أنت متأكد؟"
         };
     },
     methods:{
@@ -55,9 +61,13 @@ export default {
     this.selectedRow = index
   },
   removeRow: function(index) {
+    this.show = true;
         this.rows.splice(index, 1);
         if(this.rows.length == 0)
             this.addRow();
+        
+            
+        
   }
   }
 };
