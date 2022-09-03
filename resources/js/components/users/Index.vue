@@ -153,15 +153,16 @@ export default {
         (this.form.middle_name = data.middle_name),
         (this.form.last_name = data.last_name),
         (this.form.phone = data.phone),
-        (this.form.mobile = data.mobile);
-      (this.form.id_number = data.id_number)
+        (this.form.mobile = data.mobile),
+      (this.form.id_number = data.id_number),
       (this.form.notes = data.notes)
     },
     savePermissions(data){
-        (this.form.currentPermissions = data.currentPermissions)
+        this.form.currentPermissions = data.currentPermissions;
     },
     storeUser() {
       this.$inertia.post(route("user.store"), this.form);
+      console.log(this.form)
     },
     async newUser() {
        let newUser = await axios.get(route("user.rolePermission", 2));

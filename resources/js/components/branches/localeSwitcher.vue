@@ -32,8 +32,35 @@ export default {
     </select>
   </div>
 </template> -->
-
 <template>
+  <div>
+    <select v-model="$i18n.locale" @change="switchLanguage()">
+        <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
+          {{ lang }}
+        </option>
+      </select>
+  </div>
+</template>
+<script>
+import { loadLocaleMessages, setI18nLanguage, i18n } from "../../i18n";
+export default {
+    data() {
+        return {
+            langs: ['ar', 'en'],
+            locale: "en"
+        }
+    },
+  methods: {
+    switchLanguage(key) {
+      loadLocaleMessages(i18n, key);
+      setI18nLanguage(i18n, key);
+      this.$i18n.locale = key;
+      this.$inertia.put("/laravel-language/" + key);
+    },
+  },
+};
+</script>
+<!-- <template>
   <div v-if="$i18n.locale == 'en'">
     <a @click.prevent="switchLanguage('ar')" href="#"> English </a>
   </div>
@@ -54,4 +81,4 @@ export default {
     },
   },
 };
-</script>
+</script> -->
