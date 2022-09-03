@@ -52,12 +52,10 @@ export default {
     },
     methods:{
     addRow() {
-       if(this.rows[this.rows.length-1].row != ""){
-        this.rows.push({
-            row: []
-        });
-       }
-    
+       if(this.rows[this.rows.length-1].row != "")
+    this.rows.push({
+      row: []
+    });
   },
   openModal(){
     this.show = true;
