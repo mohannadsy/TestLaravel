@@ -45,8 +45,9 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('generateCodesInSpecificBranch/{id}', [UserController::class, 'generateCodesInSpecificBranch'])->name('user.generateCodesInSpecificBranch');
     Route::get('generate-codes/{id}', [UserController::class, 'generateCodes'])->name('user.generateCodes');
 
-        Route::get('generate-user-codes/{id}', [UserController::class, 'generateUserCodes'])->name('user.generateUserCodes');
+    Route::get('generate-user-codes/{id}', [UserController::class, 'generateUserCodes'])->name('user.generateUserCodes');
 
+    Route::get('auto-complete/{id}', [UserController::class, 'autoComplete'])->name('user.autoComplete');
 
 
 });
