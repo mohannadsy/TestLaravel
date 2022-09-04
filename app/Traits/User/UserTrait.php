@@ -178,6 +178,7 @@ trait  UserTrait
 
     public function branchParent($id)
     {
+
         $branch = Branch::with('branch')->find($id);
         return $branch->branch['code'] . ' - ' . $branch->branch['name'];
 
@@ -188,14 +189,67 @@ trait  UserTrait
     {
         $branch = Branch::find($id);
 
-        $branch_id = $branch->id;
+//        $branch_id = $branch->id;
 
-        $all_branch_ids = Branch::select('id')->get(); // auto complete
-        return $all_branch_ids = $branch_id;
+//
+        $all_child_branch = Branch::with('branches')->get();
+        $all_child_branch_IDs = [];
+        foreach ($all_child_branch as $all_child) {
+            $all_child_branch_IDs[] = $all_child->id;
+        }
+
+        $branch_branch_id = $branch->branch_id;
+        $childIDS = [];
+//        return $branch_branch_id;
+        for ($i = 0; $i < 6; $i++) {
+
+
+//            print($all_child_branch_IDs[$i]);
+//            print($branch_branch_id);
+
+            if ($all_child_branch_IDs[$i] != $branch_branch_id) {
+                $childIDS[] = $all_child_branch_IDs[$i];
+            }
+
+//        }
+        }
+        echo print_r($childIDS);
+    }
+
+
+
+//        $t=[];
+//        foreach ($all_branch_ids as $all){
+//             $t[] =    $all->id;
+//
+//
+//        }
+//        return $t;
+
+//        if ($branch_id == $t[$i])
+
+//        return $all_branch_ids[$i] ;
+//        for ($i = 0; $i < 100; $i++){
+//            return $all_branch_ids[$i];
+//        }
+//        return $all_branch_ids;
+
+//        if ($all_branch_ids->id == $branch_id) {
+//            return $all_branch_ids;
+//        }
+//        for ($i = 0; $i < 100; $i++){
+//            return $all_branch_ids[$i];
+//        }
+//            return $all_branch_ids[3];
+
+//        foreach ($all_branch_ids as $all)
+//        return $all_branch_ids[$i] ;
+//            = $branch_id ? $all_branch_ids[$i] : $branch_id;
+
 
 //        for ($i = 0; $i < strlen($all_branch_ids); $i++) {
 //            return $branch_branch_id[] = $all_branch_ids[$i][1];
-    }
+//    }
 //        if ($branch_id == $branch_branch_id) {
 //            $branch_branch_id->$this->delete();
 //        }
