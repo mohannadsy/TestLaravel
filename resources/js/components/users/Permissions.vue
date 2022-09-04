@@ -27,7 +27,6 @@
             >
 
             </checkbox-switch>
-            <h2>{{selectedItem}}</h2>
             {{ permission.caption }}
           </li>
         </div>
