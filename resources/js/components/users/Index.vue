@@ -151,7 +151,7 @@ export default {
         (this.form.branch_id = data.branch_id);
       this.form.is_active = data.is_active;
     },
-    saveRole(){
+    saveRole(data){
         this.rolePermissions = data
     },
     saveBasic(data) {
@@ -165,6 +165,7 @@ export default {
     },
     savePermissions(data){
         this.form.currentPermissions = data.currentPermissions;
+        console.log(this.form.currentPermissions);
     },
     storeUser() {
       this.$inertia.post(route("user.store"), this.form);

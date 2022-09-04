@@ -36,7 +36,6 @@
 import ElemetLabel from "../../Shared/ElemetLabel.vue";
 import ElementCheckbox from "../../Shared/ElementCheckbox.vue";
 import CheckboxSwitch from "../../Shared/CheckboxSwitch.vue";
-import axios from "axios";
 import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   data() {
