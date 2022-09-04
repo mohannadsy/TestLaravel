@@ -96,6 +96,8 @@ class UserSeeder extends Seeder
             'security_level' => 1
         ]);
         $userClauda->assignRole('Admin');
+
+
         $userClauda->givePermissionTo('store-user');
 
 
