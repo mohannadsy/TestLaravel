@@ -4,7 +4,7 @@
             type="checkbox"
             role="switch"
             :value="value"
-            v-model="proxyChecked"
+            v-model="checkedValue"
             class="form-check-input"
         />
     </div>
@@ -13,7 +13,7 @@
 <script>
 import { defineComponent } from "vue";
 export default defineComponent({
-    emits: ["update:checked"],
+    emits: ["change-value"],
     props: {
         checked: {
             type: [Array, Boolean],
@@ -24,12 +24,12 @@ export default defineComponent({
         },
     },
     computed: {
-        proxyChecked: {
+        checkedValue: {
             get() {
                 return this.checked;
             },
             set(val) {
-                this.$emit("update:checked", val);
+                this.$emit("change-value", val);
             },
         },
     },
@@ -40,10 +40,11 @@ export default defineComponent({
     /* display: inline-block; */
     float: right;
     margin-left: 8px;
-    
+
 }
 input {
     cursor: pointer;
     margin-top: 0.3em;
 }
 </style>
+

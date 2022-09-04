@@ -47,13 +47,13 @@ class UserController extends Controller
         $parameters = ['request' => $request, 'id' => $id];
         $request->password = Hash::make($request->password);
         $request->profile_photo_path = $this->getImageURL($request);
-        $request->role = $this->assignRole($request->get('roles'));
+        // $request->role = $this->assignRole($request->get('roles'));
 //        $user->givePermissionTo($request->get('permissions'));
         $user = User::create($request->all());
         $user->givePermissionTo($request->get('permissions'));
         $this->callActivityMethod('store', $parameters);
 //        return __('common.store');
-        return redirect()->route('branch.index')->with('message', __('common.update'));
+        return redirect()->route('branch.index')->with('message', __('common.store'));
 
 
 //        return inertia('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
@@ -65,15 +65,17 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, $id)
     {
         $parameters = ['request' => $request, 'id' => $id];
-        $url = $this->getImageURL($request);
-        $request->password = Hash::make($request['password']);
-        $request->profile_photo_path = $url;
+        // $url = $this->getImageURL($request);
+        // $request->password = Hash::make($request['password']);
+        // $request->profile_photo_path = $url;
+            $user = User::find($id);
+            $user->update($request->all());
 
-        if ($this->isNotSuperAdmin($id)) {
-            $user = User::find($id)->update($request->all());
-        } else {
-            $user = User::find($id)->update($request->except('branch_id'));
-        }
+        // if ($this->isNotSuperAdmin($id)) {
+        //     $user = User::find($id)->update($request->all());
+        // } else {
+        //     $user = User::find($id)->update($request->except('branch_id'));
+        // }
         $this->callActivityMethod('update', $parameters);
 //        return __('common.update');
         return redirect()->route('branch.index')->with('message', __('common.update'));

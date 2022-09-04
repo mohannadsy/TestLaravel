@@ -25,7 +25,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('show-user-permissions/{id}', [UserController::class, 'showUserPermissions'])->name('user.showUserPermissions');
     Route::get('show-user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
     Route::get('show-role/{id}', [UserController::class, 'showRole'])->name('role.show');
-    Route::post('update', [UserController::class, 'update'])->name('user.update');
+    Route::post('update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::get('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
     Route::get('userPermission/{id}', [UserController::class, 'userPermission'])->name('user.userPermission');
     Route::get('get-all-permissions', [UserController::class, 'getAllPermissions'])->name('user.getAllPermissions');

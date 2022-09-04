@@ -17,6 +17,7 @@
             :roleOptions="roleOptions"
             :roleArray="roleArray"
             @save-main="saveMain"
+            @send-role="saveRole"
           ></main-information>
         </form>
         <!-- <hr class="new1"> -->
@@ -44,6 +45,7 @@
           :form="form"
           :userPermissions="userPermissions"
           :rolePermissions="rolePermissions"
+          :userInformation="userInformation"
           :userId="userId"
           @send-permissions="savePermissions"
         />
@@ -139,8 +141,9 @@ export default {
   },
   methods: {
     saveMain(data) {
-    this.rolePermissions = data.rolePermissions;
+    // this.rolePermissions =rolePermissions;
       (this.form.roleId = data.roleId),
+      (this.form.role = data.role),
       (this.form.code = data.code),
         (this.form.name = data.name),
         (this.form.email = data.email),
@@ -148,20 +151,24 @@ export default {
         (this.form.branch_id = data.branch_id);
       this.form.is_active = data.is_active;
     },
+    saveRole(data){
+        this.rolePermissions = data
+    },
     saveBasic(data) {
       (this.form.first_name = data.first_name),
         (this.form.middle_name = data.middle_name),
         (this.form.last_name = data.last_name),
         (this.form.phone = data.phone),
-        (this.form.mobile = data.mobile);
-      (this.form.id_number = data.id_number)
+        (this.form.mobile = data.mobile),
+      (this.form.id_number = data.id_number),
       (this.form.notes = data.notes)
     },
     savePermissions(data){
-        (this.form.currentPermissions = data.currentPermissions)
+        this.form.currentPermissions = data.currentPermissions;
     },
     storeUser() {
       this.$inertia.post(route("user.store"), this.form);
+      console.log(this.form)
     },
     async newUser() {
        let newUser = await axios.get(route("user.rolePermission", 2));

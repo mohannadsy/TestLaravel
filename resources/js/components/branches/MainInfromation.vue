@@ -69,13 +69,7 @@ import ToggleButton from "../../Shared/ToggleButton.vue";
 import SearchAutocomplete from "../../Shared/SearchAutocomplete.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 export default {
-  props: [
-    "branchInformaion",
-    "form",
-    "errors",
-    "branches",
-    "branchNameWithCode",
-  ],
+  props: ["branchInformaion","form","errors","branches","branchNameWithCode"],
   emits: ["save-main"],
   components: {
     PageTitle,
