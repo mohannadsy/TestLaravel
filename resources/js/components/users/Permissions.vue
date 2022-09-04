@@ -67,9 +67,11 @@ export default {
     },
     userPermissions() {
       this.myObj.currentPermissions = this.userPermissions;
+      this.$emit("send-permissions", this.myObj);
     },
     rolePermissions() {
       this.myObj.currentPermissions = this.rolePermissions;
+      this.$emit("send-permissions", this.myObj);
     },
   },
 

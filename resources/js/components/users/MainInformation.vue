@@ -120,7 +120,7 @@ export default {
   },
   data() {
     return {
-      //   rolePermissions: [],
+        rolePermissions: [],
       myObj: useForm({
         code: "",
         name: "",
@@ -129,7 +129,7 @@ export default {
         branch_id: "",
         role: "Accountant",
         is_active: true,
-        // roleId: 2,
+        roleId: 2,
         // rolePermissions: [],
       }),
     };
@@ -157,10 +157,10 @@ export default {
       let rolePermissions = await axios.get(
         route("user.rolePermission", this.myObj.roleId)
       );
-      this.myObj.rolePermissions = JSON.parse(
+      this.rolePermissions = JSON.parse(
         JSON.stringify(rolePermissions.data)
       );
-      this.$emit("save-main", this.myObj);
+      this.$emit("send-role",this.rolePermissions);
     },
     switch_on() {
       this.myObj.active = !this.myObj.active;

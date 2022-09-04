@@ -17,6 +17,7 @@
             :roleOptions="roleOptions"
             :roleArray="roleArray"
             @save-main="saveMain"
+            @send-role="saveRole"
           ></main-information>
         </form>
         <!-- <hr class="new1"> -->
@@ -44,6 +45,7 @@
           :form="form"
           :userPermissions="userPermissions"
           :rolePermissions="rolePermissions"
+          :userInformation="userInformation"
           :userId="userId"
           @send-permissions="savePermissions"
         />
@@ -139,14 +141,18 @@ export default {
   },
   methods: {
     saveMain(data) {
-    this.rolePermissions = data.rolePermissions;
+    // this.rolePermissions =rolePermissions;
       (this.form.roleId = data.roleId),
+      (this.form.role = data.role),
       (this.form.code = data.code),
         (this.form.name = data.name),
         (this.form.email = data.email),
         (this.form.password = data.password),
         (this.form.branch_id = data.branch_id);
       this.form.is_active = data.is_active;
+    },
+    saveRole(){
+        this.rolePermissions = data
     },
     saveBasic(data) {
       (this.form.first_name = data.first_name),
