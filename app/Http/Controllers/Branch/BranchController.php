@@ -78,20 +78,22 @@ class BranchController extends Controller
 //    }
 
 
+    public function BranchCodeName($id)
+    {
+        $branch = Branch::find($id);
+      return  $branchNameCode = $branch->branch['code'] . ' - ' . $branch->branch['name'];
+    }
+
     public function show($id)
     {
         $parameters = ['id' => $id];
         $branch = Branch::find($id);
-        $branchNameCode = $branch->branch['code'] . ' - ' . $branch->branch['name'];
         if ($branch) {
             $this->callActivityMethod('show', $parameters);
-            $result = [$branch, $branchNameCode];
-            return $result;
+            return $branch;
 //            return inertia('BranchAndUser/Index', compact('branch', 'branchNameCode'));
-
         }
-//        return 'Branch not Found';
-//        return __('branch.branch show');
+
         redirect()->route('branch.index')->with('message', __('branch.branch show'));
     }
 

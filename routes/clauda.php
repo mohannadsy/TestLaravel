@@ -53,6 +53,12 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 });
 
 
+Route::get('show-b',function (){
+        $branch = \App\Models\Branch::find(2);
+     return   $branchNameCode = $branch->branch['code'] . ' - ' . $branch->branch['name'];
+});
+
+
 //------- Currency ------//
 
 Route::group(['namespace' => 'Currency', 'prefix' => 'currency'], function () {

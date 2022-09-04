@@ -13,12 +13,12 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('isActive/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'isActive'])->name('branch.isActive');
 
 
+    Route::get('Branch-code-name/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'BranchCodeName'])->name('branch.BranchCodeName');
 
     Route::get('permissionsAccordingLang', [\App\Http\Controllers\Branch\BranchController::class, 'permissionsAccordingLang'])->name('branch.permissionsAccordingLang');
 
 
 });
-
 
 
 //-------CostCenter------//
@@ -31,4 +31,4 @@ Route::group(['namespace' => 'CostCenter', 'prefix' => 'costCenter'], function (
     Route::get('delete/{id}', [\App\Http\Controllers\CostCenter\CostCenterController::class, 'delete'])->name('costCenter.delete');
 });
 
-Route::get('get-main-tree', [\App\Http\Controllers\Branch\BranchController::class,  'tree']);
+Route::get('get-main-tree', [\App\Http\Controllers\Branch\BranchController::class, 'tree']);
