@@ -340,6 +340,7 @@ trait  UserTrait
 
     public function reAutoComplete($id)
     {
+        //----all branches----//
         $all_branches = Branch::all();
         $all_branches_IDs = [];
         foreach ($all_branches as $all) {
