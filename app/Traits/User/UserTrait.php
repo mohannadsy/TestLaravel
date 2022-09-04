@@ -337,4 +337,36 @@ trait  UserTrait
         }
     }
 
+
+    public function reAutoComplete($id)
+    {
+        $all_branches = Branch::all();
+        $all_branches_IDs = [];
+        foreach ($all_branches as $all) {
+            $all_branches_IDs[] = $all->id;
+        }
+
+        $branch = Branch::find($id);
+        $all_child_branch = Branch::with('branchesWithInternalBranches')->get();
+        $all_child_branch_IDs = [];
+        foreach ($all_child_branch as $all_child) {
+            $all_child_branch_IDs[] = $all_child->id;
+        }
+        $branch_branch_id = $branch->branch_id;
+        $childIDS = [];
+        for ($i = 0; $i < 6; $i++) {
+            if ($all_child_branch_IDs[$i] != $branch_branch_id) {
+                $childIDS[] = $all_child_branch_IDs[$i];
+            }
+
+        }
+        $result = array_diff($all_branches_IDs, $childIDS);
+        print_r($result);
+        print('-----------');
+        print_r($childIDS);
+        print('-----------');
+        print_r($all_branches_IDs);
+    }
+
+
 }

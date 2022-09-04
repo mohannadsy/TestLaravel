@@ -56,6 +56,12 @@ class Branch extends Model
         return $this->hasMany('App\Models\Branch', 'branch_id');
     }
 
+
+    public function branchesWithInternalBranches()
+    {
+        return $this->hasMany('App\Models\Branch', 'branch_id')->with('branches');
+    }
+
     public function clients()
     {
         return $this->hasMany(Client::class, 'branch_id');
