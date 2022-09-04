@@ -78,10 +78,10 @@ class BranchController extends Controller
 //    }
 
 
-    public function codeName($id)
+    public function BranchCodeName($id)
     {
         $branch = Branch::find($id);
-        $branchNameCode = $branch->branch['code'] . ' - ' . $branch->branch['name'];
+      return  $branchNameCode = $branch->branch['code'] . ' - ' . $branch->branch['name'];
     }
 
     public function show($id)
