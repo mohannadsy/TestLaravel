@@ -7,7 +7,7 @@
     >
       <!-- <checkbox-switch v-model="select_all" @click="select"></checkbox-switch> -->
       <!-- <elemet-label>تحديد الكل</elemet-label> -->
-      <button @click="ToggleIsExpanded(index)">
+      <button @click="toggleIsExpanded(index)">
         <span class="rightAngle" :class="angle[index]"></span>
       </button>
       <elemet-label> {{ userPermission.caption }}</elemet-label>
@@ -20,10 +20,14 @@
             :key="i"
           >
             <checkbox-switch
-              :checked="permission.is_active ? true : false"
-              v-model="selected[i]"
+            :checked="permission.is_active ? true : false"
+            v-model="selectedItem"
+              @change-value="triggerToggleEvent"
+              @change="objChanged"
             >
+
             </checkbox-switch>
+            <h2>{{selectedItem}}</h2>
             {{ permission.caption }}
           </li>
         </div>
@@ -40,6 +44,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   data() {
     return {
+        selectedItem:false,
       myObj: useForm({
         currentPermissions: [],
       }),
@@ -71,15 +76,27 @@ export default {
     rolePermissions() {
       this.myObj.currentPermissions = this.rolePermissions;
       this.$emit("send-permissions", this.myObj);
+      console.log(this.myObj.currentPermissions);
     },
   },
 
   methods: {
-    ToggleIsExpanded(index) {
+    toggleIsExpanded(index) {
       this.isExpanded[index] = !this.isExpanded[index];
       this.angle[index] == "angleDown"
         ? (this.angle[index] = "")
         : (this.angle[index] = "angleDown");
+    },
+    triggerToggleEvent(value) {
+        this.selectedItem = value
+      for(let i = 0; i< this.myObj.currentPermissions.length; i++){
+          for(let j=0; j<this.myObj.currentPermissions[i].permissions.length; j++){
+              this.myObj.currentPermissions[i].permissions[j].name = this.selectedItem;
+          }
+      }
+    //   this.is_active = value;
+    //   console.log(this.selectedItem);
+      // console.log(value)
     },
     // select() {
     //   //this.selected = [];

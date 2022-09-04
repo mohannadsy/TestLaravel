@@ -80,13 +80,23 @@ export default {
       this.nodeType = nodeType;
       if (nodeType === "branches") {
         this.branchId = nodeId;
-         let branchInformaion = await axios.get(route("branch.show", this.branchId));
-        let  res= JSON.parse(JSON.stringify(branchInformaion.data));
-        this.branchInformaion = res[0]
-        this.branchNameWithCode = res[1]
+        let branchInformaion = await axios.get(
+          route("branch.show", this.branchId)
+        );
+        this.branchInformaion = JSON.parse(
+          JSON.stringify(branchInformaion.data)
+        );
+        let branchNameWithCode = await axios.get(
+          route("branch.BranchCodeName", this.branchId)
+        );
+        this.branchNameWithCode = JSON.parse(
+          JSON.stringify(branchNameWithCode.data)
+        );
       } else {
         this.userId = nodeId;
-        let userInformation = await axios.get(route("user.showUser", this.userId));
+        let userInformation = await axios.get(
+          route("user.showUser", this.userId)
+        );
         this.userInformation = JSON.parse(JSON.stringify(userInformation.data));
         let userPermissions = await axios.get(
           route("user.showUserPermissions", this.userId)

@@ -143,6 +143,9 @@ export default {
     },
   },
   methods: {
+    triggerToggleEvent(value) {
+      this.myObj.is_active = value;
+    },
     getRoleIdFromName(roleName) {
       this.roleArray.forEach((e) => {
         if (e.name === roleName) this.myObj.roleId = e.id;

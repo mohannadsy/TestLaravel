@@ -165,7 +165,6 @@ export default {
     },
     savePermissions(data){
         this.form.currentPermissions = data.currentPermissions;
-        console.log(this.form.currentPermissions);
     },
     storeUser() {
       this.$inertia.post(route("user.store"), this.form);
