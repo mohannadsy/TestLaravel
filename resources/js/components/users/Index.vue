@@ -1,72 +1,79 @@
 <template>
-    <saved-modal
+  <saved-modal
     v-show="$page.props.flash.message"
     :title="$page.props.flash.message"
-    @close="$page.props.flash.message=null"
+    @close="$page.props.flash.message = null"
   ></saved-modal>
-  <div class="container-fluide rounded ">
-    <div class="row">
-      <div class="col-md">
-        <div class="row px-3">
-          <page-title> {{ $t("userCard") }}</page-title>
+
+  <div class="row">
+    <div class="col border-right">
+      <div class="row px-3">
+        <page-title> {{ $t("userCard") }}</page-title>
+      </div>
+
+      <main-information
+        @save-main="saveMain"
+        @send-role="saveRole"
+        :userInformation="userInformation"
+        :form="form"
+        :roleOptions="roleOptions"
+        :roleArray="roleArray"
+      ></main-information>
+
+      <!-- <hr class="new1"> -->
+      <div class="row a mt-2">
+        <div class="col">
+          <title-button
+            :type="'button'"
+            @click.prevent="activeTab = 'BasicInformation'"
+          >
+            {{ $t("userBasicInfo") }}</title-button
+          >
+          <title-button
+            :type="'button'"
+            @click.prevent="activeTab = 'Permissions'"
+            >{{ $t("userPermissions") }}</title-button
+          >
+          <title-button
+            :type="'button'"
+            @click.prevent="activeTab = 'ExtraOptions'"
+            >{{ $t("userAdditionalOptions") }}
+          </title-button>
         </div>
-        <form>
-          <main-information
-            :userInformation="userInformation"
-            :form="form"
-            :roleOptions="roleOptions"
-            :roleArray="roleArray"
-            @save-main="saveMain"
-            @send-role="saveRole"
-          ></main-information>
-        </form>
-        <!-- <hr class="new1"> -->
-        <div class="row a mt-2">
-          <div class="col">
-            <title-button :type="'button'" @click.prevent="activeTab = 'BasicInformation'">
-              {{ $t("userBasicInfo") }}</title-button
-            >
-            <title-button :type="'button'" @click.prevent="activeTab = 'Permissions'">{{
-              $t("userPermissions")
-            }}</title-button>
-            <title-button :type="'button'" @click.prevent="activeTab = 'ExtraOptions'"
-              >{{ $t("userAdditionalOptions") }}
-            </title-button>
-          </div>
-        </div>
-        <basic-information
+      </div>
+      <basic-information
         v-show="activeTab === 'BasicInformation'"
-          :userInformation="userInformation"
-          :form="form"
-          @save-basic="saveBasic"
-        ></basic-information>
-        <permissions
-          v-show="activeTab === 'Permissions'"
-          :form="form"
-          :userPermissions="userPermissions"
-          :rolePermissions="rolePermissions"
-          :userInformation="userInformation"
-          :userId="userId"
-          @send-permissions="savePermissions"
-        />
-        <extra-options
+        :userInformation="userInformation"
+        :form="form"
+        @save-basic="saveBasic"
+      ></basic-information>
+      <permissions
+        v-show="activeTab === 'Permissions'"
+        :form="form"
+        :userPermissions="userPermissions"
+        :rolePermissions="rolePermissions"
+        :userId="userId"
+        @send-permissions="savePermissions"
+      />
+      <extra-options
         v-show="activeTab === 'ExtraOptions'"
-          :userInformation="userInformation"
-          :form="form"
-        />
-        <div class="row justify-content-end mb-2">
-          <div class="col-md-4">
-            <element-button  :type="'button'" @click="storeUser"
-              >{{ $t("userSave") }}
-            </element-button>
-            <element-button :type="'button'" @click="newUser"
-              >{{ $t("UserNew") }}
-            </element-button>
-            <element-button  :type="'button'" @click="updateUser">{{ $t("userUpdate") }} </element-button>
-            <element-button :type="'button'" @click="deleteUser"
-              >{{ $t("userDelete") }}
-            </element-button>
-          </div>
+        :userInformation="userInformation"
+        :form="form"
+      />
+      <div class="row justify-content-end mb-2">
+        <div class="col-md-4">
+          <element-button :type="'button'" @click="storeUser"
+            >{{ $t("userSave") }}
+          </element-button>
+          <element-button :type="'button'" @click="newUser"
+            >{{ $t("UserNew") }}
+          </element-button>
+          <element-button :type="'button'" @click="updateUser"
+            >{{ $t("userUpdate") }}
+          </element-button>
+          <element-button :type="'button'" @click="deleteUser"
+            >{{ $t("userDelete") }}
+          </element-button>
         </div>
       </div>
     </div>
@@ -104,7 +111,7 @@ export default {
     CheckboxSwitch,
     ElementButton,
     TitleButton,
-    SavedModal
+    SavedModal,
   },
   props: {
     userPermissions: Array,
@@ -117,7 +124,7 @@ export default {
   data() {
     return {
       activeTab: "BasicInformation",
-      rolePermissions:[],
+      rolePermissions: [],
       form: useForm({
         code: "",
         name: "",
@@ -125,6 +132,8 @@ export default {
         password: "",
         branch_id: "",
         role: "",
+        is_active: true,
+        roleId: 2,
         first_name: "",
         middle_name: "",
         last_name: "",
@@ -132,27 +141,25 @@ export default {
         mobile: "",
         id_number: "",
         notes: "",
-        is_active: true,
-        roleId: 2,
-        currentPermissions:[],
+        currentPermissions: [],
         _token: this.$page.props.csrf_token,
       }),
     };
   },
   methods: {
     saveMain(data) {
-    // this.rolePermissions =rolePermissions;
-      (this.form.roleId = data.roleId),
-      (this.form.role = data.role),
+      // this.rolePermissions =rolePermissions;
       (this.form.code = data.code),
-        (this.form.name = data.name),
+      (this.form.name = data.name),
         (this.form.email = data.email),
         (this.form.password = data.password),
         (this.form.branch_id = data.branch_id);
-      this.form.is_active = data.is_active;
+        (this.form.role = data.role),
+       ( this.form.is_active = data.is_active),
+      (this.form.roleId = data.roleId);
     },
-    saveRole(data){
-        this.rolePermissions = data
+    saveRole(data) {
+      this.rolePermissions = data;
     },
     saveBasic(data) {
       (this.form.first_name = data.first_name),
@@ -160,40 +167,39 @@ export default {
         (this.form.last_name = data.last_name),
         (this.form.phone = data.phone),
         (this.form.mobile = data.mobile),
-      (this.form.id_number = data.id_number),
-      (this.form.notes = data.notes)
+        (this.form.id_number = data.id_number),
+        (this.form.notes = data.notes);
     },
-    savePermissions(data){
-        this.form.currentPermissions = data.currentPermissions;
+    savePermissions(data) {
+      this.form.currentPermissions = data.currentPermissions;
     },
     storeUser() {
       this.$inertia.post(route("user.store"), this.form);
-      console.log(this.form)
     },
     async newUser() {
-       let newUser = await axios.get(route("user.rolePermission", 2));
-       let newResult = JSON.parse(JSON.stringify(newUser.data));
-        this.form = useForm({
-          code: "",
-          name: "",
-          email: "",
-          password: "",
-          branch_id: "",
-          role: "Accountant",
-          first_name: "",
-          middle_name: "",
-          last_name: "",
-          phone: "",
-          mobile: "",
-          id_number: "",
-          currentPermissions:newResult,
-          notes: "",
-          is_active: true,
-          _token: this.$page.props.csrf_token,
-        });
+      let newUser = await axios.get(route("user.rolePermission", 2));
+      let newResult = JSON.parse(JSON.stringify(newUser.data));
+      this.form = useForm({
+        code: "",
+        name: "",
+        email: "",
+        password: "",
+        branch_id: "",
+        role: "Accountant",
+        first_name: "",
+        middle_name: "",
+        last_name: "",
+        phone: "",
+        mobile: "",
+        id_number: "",
+        currentPermissions: newResult,
+        notes: "",
+        is_active: true,
+        _token: this.$page.props.csrf_token,
+      });
     },
-    updateUser(){
-        this.form.post(route("user.update", this.userId));
+    updateUser() {
+      this.form.post(route("user.update", this.userId));
     },
     deleteUser() {
       Inertia.get(route("user.delete", this.userId), this.form);

@@ -6,7 +6,7 @@
   ></saved-modal>
   <!-- <locale-switcher /> -->
   <div class="row">
-    <form>
+
       <div class="col border-right">
         <main-infromation
           @save-main="saveMain"
@@ -52,7 +52,7 @@
           }}</element-button>
         </div>
       </div>
-    </form>
+
   </div>
 </template>
 

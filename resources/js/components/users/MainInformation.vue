@@ -142,6 +142,11 @@ export default {
       Object.assign(this.myObj, this.userInformation);
     },
   },
+  computed:{
+    objChanged() {
+      this.$emit("save-main", this.myObj);
+    },
+  },
   methods: {
     triggerToggleEvent(value) {
       this.myObj.is_active = value;
@@ -151,9 +156,7 @@ export default {
         if (e.name === roleName) this.myObj.roleId = e.id;
       });
     },
-    objChanged() {
-      this.$emit("save-main", this.myObj);
-    },
+
     async roleChange(e) {
       this.myObj.role = e.target.value;
       this.getRoleIdFromName(this.myObj.role);

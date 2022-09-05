@@ -20,12 +20,9 @@
             :key="i"
           >
             <checkbox-switch
-            :checked="permission.is_active ? true : false"
-            v-model="selectedItem"
-              @change-value="triggerToggleEvent"
-              @change="objChanged"
+              :checked="permission.is_active ? true : false"
+              @change-value="triggerToggleEvent($event, index, i)"
             >
-
             </checkbox-switch>
             {{ permission.caption }}
           </li>
@@ -43,7 +40,9 @@ import { useForm } from "@inertiajs/inertia-vue3";
 export default {
   data() {
     return {
-        selectedItem:false,
+      selectedItem: {
+        index: [],
+      },
       myObj: useForm({
         currentPermissions: [],
       }),
@@ -86,16 +85,9 @@ export default {
         ? (this.angle[index] = "")
         : (this.angle[index] = "angleDown");
     },
-    triggerToggleEvent(value) {
-        this.selectedItem = value
-      for(let i = 0; i< this.myObj.currentPermissions.length; i++){
-          for(let j=0; j<this.myObj.currentPermissions[i].permissions.length; j++){
-              this.myObj.currentPermissions[i].permissions[j].name = this.selectedItem;
-          }
-      }
-    //   this.is_active = value;
-    //   console.log(this.selectedItem);
-      // console.log(value)
+
+    triggerToggleEvent(value, row, column) {
+      this.myObj.currentPermissions[row].permissions[column].is_active = value;
     },
     // select() {
     //   //this.selected = [];

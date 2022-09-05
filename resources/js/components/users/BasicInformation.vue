@@ -134,7 +134,7 @@ export default {
       Object.assign(this.myObj, this.userInformation);
     },
   },
-  methods: {
+  computed: {
     objChanged() {
       this.$emit("save-basic", this.myObj);
     },
