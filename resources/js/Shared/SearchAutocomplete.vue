@@ -1,6 +1,8 @@
 <template>
   <div class="autocomplete">
-    <element-input
+     <!-- <fa icon="circle-minus" /> -->
+
+    <element-input class="col"
       type="text"
       ref="input"
       v-model="query"
@@ -8,6 +10,8 @@
       @keydown.down="down"
       @keydown.enter="selectItem"
     />
+    <!-- <fa :icon="['fas', 'trash-can']" class="col-1" /> -->
+
     <ul class="options" ref="optionsList">
       <li
         v-for="(match, index) in matches"

@@ -16,22 +16,23 @@
            <title-button  @click="activeTab = 'BasicInformation'" :type="'button'"
           >{{ $t("warehousebBasicInformation") }}
         </title-button>
-        <title-button  @click="activeTab = 'attachments'" :type="'button'"
+        <!-- <title-button  @click="activeTab = 'attachments'" :type="'button'"
           >{{ $t("attachments") }}
-        </title-button>
+        </title-button> -->
         </div>
       </div>
     </div>
-    <cumulative-acount-type v-if="form.type ==  this.$t('aggregativeType')" >
-
+    <cumulative-acount-type
+     v-show="form.type ==  this.$t('aggregativeType')"
+     >
     </cumulative-acount-type>
     <basic-information
-    v-if="activeTab === 'BasicInformation' & form.type ==  this.$t('normalType')" 
+    v-show="activeTab === 'BasicInformation' & form.type ==  this.$t('normalType')"
       :form="form"
       @save-basic="saveBasic"
       :storeInformation="storeInformation"
     ></basic-information>
-    <attachments v-if="activeTab === 'attachments' & form.type ==  this.$t('normalType')"></attachments>
+    <!-- <attachments v-if="activeTab === 'attachments' & form.type ==  this.$t('normalType')"></attachments> -->
     <div class="row justify-content-end mb-2">
       <div class="col-md-4">
         <element-button :type="'button'" @click="storeStore"
@@ -117,11 +118,9 @@ export default {
       this.form.notes = data.notes;
     },
     storeStore() {
-      //   this.$store.dispatch("stores/storeStore", this.form);
       this.form.post(route("store.store"));
     },
     updateStore() {
-      console.log(this.form);
       this.form.post(route("store.update", this.storeId));
     },
     newStore() {

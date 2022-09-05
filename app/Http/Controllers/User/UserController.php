@@ -64,7 +64,9 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, $id)
     {
-        $parameters = ['request' => $request, 'id' => $id];
+        $old_data = User::find($id)->toJson();
+        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data];
+        // $parameters = ['request' => $request, 'id' => $id];
         // $url = $this->getImageURL($request);
         // $request->password = Hash::make($request['password']);
         // $request->profile_photo_path = $url;

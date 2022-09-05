@@ -44,24 +44,25 @@
       </div>
       <div class="col-md-4">
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-4">{{$t("warehouseType")
+          <elemet-label class="col-form-label col-md-4">{{
+            $t("warehouseType")
           }}</elemet-label>
           <div class="col-8">
             <!-- <element-input
               @change="objChanged"
               v-model.trim="storeObject.type"
             /> -->
-             <v-select
-            :options="storeObject.typeOptions"
-            @change="objChanged"
-            :value="storeObject.type"
-             v-model.trim="storeObject.type"
-          />
+            <v-select
+              :options="storeObject.typeOptions"
+              @change="objChanged"
+              :value="storeObject.type"
+              v-model.trim="storeObject.type"
+            />
           </div>
         </div>
         <div class="form-group row mt-2">
-          <elemet-label class="col-form-label col-md-4"
-             > {{$t("theBranch")}}</elemet-label
+          <elemet-label class="col-form-label col-md-4">
+            {{ $t("theBranch") }}</elemet-label
           >
           <div class="col-8">
             <element-input
@@ -99,26 +100,25 @@ export default {
     VSelect,
     ToggleButton,
   },
-  props: ["form","storeInformation"],
+  props: ["form", "storeInformation"],
   data() {
     return {
       storeObject: useForm({
         code: "",
         name: "",
         latin_name: "",
-        type:this.$t('aggregativeType'),
+        type: this.$t("aggregativeType"),
         is_active: true,
         branch_id: "",
-        typeOptions:[this.$t('normalType'),this.$t('aggregativeType')]
-
+        typeOptions: [this.$t("normalType"), this.$t("aggregativeType")],
       }),
     };
   },
-  watch:{
-     form() {
+  watch: {
+    form() {
       this.storeObject = this.form;
     },
-     storeInformation() {
+    storeInformation() {
       Object.assign(this.storeObject, this.storeInformation);
     },
   },
@@ -131,10 +131,9 @@ export default {
     triggerToggleEvent(value) {
       this.storeObject.is_active = value;
     },
-    translatedLanguage(option)
-  {
-    return option ? this.$t(option.text) : null;
-  }
+    translatedLanguage(option) {
+      return option ? this.$t(option.text) : null;
+    },
   },
 };
 </script>
