@@ -70,9 +70,47 @@ class UserController extends Controller
         // $url = $this->getImageURL($request);
         // $request->password = Hash::make($request['password']);
         // $request->profile_photo_path = $url;
-            $user = User::find($id);
-            $user->update($request->all());
+        $user = User::find($id);
+        $currentPermissions = $request->get('currentPermissions');
 
+        foreach ($currentPermissions as $groupPermission)
+            foreach ($groupPermission['permissions'] as $permission)
+                if ($permission['is_active'] == true)
+//                    echo $resultPermission = $permission['name'];
+
+                    $user->givePermissionTo($permission['name']);
+                else
+                    $user->revokePermissionTo($permission['name']);
+        $user->update($request->all());
+
+
+//...........................................................................................
+//        $data = $request->all();
+
+//        foreach($currentPermissions as $groupPermission)
+//            foreach($groupPermission as $Permission)
+//
+//
+//            if( $Permission->is_active ==true)
+//
+
+
+        $resultPermission = [];
+//        foreach ($currentPermissions as $groupPermission)
+//            foreach ($groupPermission['permissions'] as $permission)
+//                if ($permission['is_active'] == true)
+////                    echo $resultPermission = $permission['name'];
+//
+//                    $user->givePermissionTo($permission['name']);
+//                else
+//                    $user->revokePermissionTo($permission['name']);
+
+//                }
+//            }
+//        }
+//        return $groupPermissions;
+
+//...........................................................................................
         // if ($this->isNotSuperAdmin($id)) {
         //     $user = User::find($id)->update($request->all());
         // } else {
@@ -82,6 +120,7 @@ class UserController extends Controller
 //        return __('common.update');
         return redirect()->route('branch.index')->with('message', __('common.update'));
 
+//return $data;
     }
 
 
