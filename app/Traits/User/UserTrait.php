@@ -189,10 +189,15 @@ trait  UserTrait
     {
         $branch = Branch::find($id);
 
+        $all_branches = Branch::all();
+        $all_branches_IDs = [];
+        foreach ($all_branches_IDs as $all_branches) {
+            $all_branches_IDs[] = $all_branches->id;
+        }
 //        $branch_id = $branch->id;
 
 //
-        $all_child_branch = Branch::with('branches')->get();
+        $all_child_branch = Branch::with('branchesWithInternalBranches')->get();
         $all_child_branch_IDs = [];
         foreach ($all_child_branch as $all_child) {
             $all_child_branch_IDs[] = $all_child->id;
@@ -210,10 +215,11 @@ trait  UserTrait
             if ($all_child_branch_IDs[$i] != $branch_branch_id) {
                 $childIDS[] = $all_child_branch_IDs[$i];
             }
+            $result = array_diff($all_branches_IDs, $all_child_branch_IDs);
 
 //        }
         }
-        echo print_r($childIDS);
+        echo print_r($result);
     }
 
 
