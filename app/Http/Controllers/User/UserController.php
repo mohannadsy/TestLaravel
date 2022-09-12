@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use function Symfony\Component\ErrorHandler\reRegister;
 use function Symfony\Component\Mime\Header\all;
 use function Symfony\Component\String\u;
 
@@ -63,19 +64,52 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, $id)
     {
-         $old_data = User::find($id)->toJson();
-
+        $old_data = User::find($id)->toJson();
         $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data];
-            $user= User::find($id);
-            $user->update($request->all());
-            $this->callActivityMethod('update', $parameters);
-        return redirect()->route('branch.index')->with('message', __('common.update'));
+        $user = User::find($id);
+
+        $currentPermissions = $request->get('currentPermissions');
+
+        foreach ($currentPermissions as $groupPermission) {
+            foreach ($groupPermission['permissions'] as $permission) {
+                {
+                    if ($user->hasPermissionTo($permission['name'])) {
+
+                        $user->revokePermissionTo($request->get($permission['name']));
+                }
+                if ($permission['is_active'] == true) {
+                    echo $resultPermission = $permission['name'];
+                    $user->givePermissionTo($request->get($permission['name']));
+                    $user->update($request->all());
+
+//                } else {
+//                    $user->revokePermissionTo($request->get($permission['name']));
+                }
+            }
+
+        }}
+
+//             $user->givePermissionTo($request->get($permission['name']));
+//             if ($permission['is_active'] == true)
+//                      echo $resultPermission = $permission['name'];
+
+//             print_r($currentPermission) ;
+
+////        foreach ($groupPermission['permissions'] as $permission)
+//            $user->revokePermissionTo($userPrrmission);
+//            echo '----------------------------';
+//            $new =$user->permissions;
+//            echo $new;
+
+        $this->callActivityMethod('update', $parameters);
+//        return redirect()->route('branch.index')->with('message', __('common.update'));
+    }
 
 
 //        return inertia('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
 //        return redirect()->route('branch.index')->with('message',__('common.store'));
 
-    }
+//    }
 //    public function update(UpdateUserRequest $request, $id)
 //    {
 //        $old_data = User::find($id)->toJson();
