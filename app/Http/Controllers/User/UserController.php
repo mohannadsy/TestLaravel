@@ -72,16 +72,20 @@ class UserController extends Controller
         // $request->profile_photo_path = $url;
         $user = User::find($id);
         $currentPermissions = $request->get('currentPermissions');
+      echo   $userPrrmissions =    $user->permissions;
 
-        foreach ($currentPermissions as $groupPermission)
-            foreach ($groupPermission['permissions'] as $permission)
-                if ($permission['is_active'] == true)
-//                    echo $resultPermission = $permission['name'];
-
-                    $user->givePermissionTo($permission['name']);
-                else
-                    $user->revokePermissionTo($permission['name']);
-        $user->update($request->all());
+//         foreach ($userPrrmissions as $userPrrmission)
+//            echo $userPrrmission;
+//            foreach ($groupPermission['permissions'] as $permission)
+//                $user->revokePermissionTo($userPrrmission);
+//
+//
+//        if ($permission['is_active'] == true)
+////                    echo $resultPermission = $permission['name'];
+//
+//            $user->givePermissionTo($request->get($permission['name']));
+//
+//            $user->update($request->all());
 
 
 //...........................................................................................
@@ -118,7 +122,7 @@ class UserController extends Controller
         // }
         $this->callActivityMethod('update', $parameters);
 //        return __('common.update');
-        return redirect()->route('branch.index')->with('message', __('common.update'));
+//        return redirect()->route('branch.index')->with('message', __('common.update'));
 
 //return $data;
     }

@@ -376,4 +376,17 @@ trait  UserTrait
     }
 
 
+    public function assignPermissionAccordingRole($roleId)
+    {
+
+        $role = Role::find($roleId);
+        $user = $role->user;
+        $permissions = $role->permissions;
+
+
+        foreach ($permissions as $permission)
+            $user->givePermissionTo($permission);
+
+
+    }
 }
