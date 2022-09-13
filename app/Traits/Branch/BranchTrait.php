@@ -77,6 +77,15 @@ trait  BranchTrait
         return $next($request);
     }
 
+    public function getFatherBranch($branchId)
+    {
+        $branch = Branch::find($branchId);
+        if($branchId==1)
+            return redirect()->route('branch.index')->with('message', __('branch.rootBranch'));
+        if($branch->branch_id==null)
+                return redirect()->route('branch.index')->with('message', __('branch.mainBranch'));
+        return $branch->branch_id;
+    }
 
 
 ////////////////////////////////////////////////////////////////

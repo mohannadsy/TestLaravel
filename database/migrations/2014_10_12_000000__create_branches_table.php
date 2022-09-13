@@ -3,15 +3,18 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use  \App\Traits\Branch\BranchTrait;
 
 return new class extends Migration {
+
     public function up()
     {
+
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
             $table->string('name')->unique();
-            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(getFatherBranch('id'));
             $table->string('responsibility')->nullable()->default(null);
             $table->string('address')->nullable()->default(null);
             $table->string('website')->nullable()->default(null);

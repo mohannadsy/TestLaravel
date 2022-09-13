@@ -16,6 +16,7 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::get('Branch-code-name/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'BranchCodeName'])->name('branch.BranchCodeName');
 
     Route::get('permissionsAccordingLang', [\App\Http\Controllers\Branch\BranchController::class, 'permissionsAccordingLang'])->name('branch.permissionsAccordingLang');
+    Route::get('getFatherBranch/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'getFatherBranch'])->name('branch.getFatherBranch');
 
 
 });
