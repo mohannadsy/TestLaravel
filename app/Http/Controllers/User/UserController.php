@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use function Symfony\Component\ErrorHandler\reRegister;
 use function Symfony\Component\Mime\Header\all;
 use function Symfony\Component\String\u;
 
@@ -61,68 +62,119 @@ class UserController extends Controller
 
     }
 
-
     public function update(UpdateUserRequest $request, $id)
     {
         $old_data = User::find($id)->toJson();
         $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data];
-        // $parameters = ['request' => $request, 'id' => $id];
-        // $url = $this->getImageURL($request);
-        // $request->password = Hash::make($request['password']);
-        // $request->profile_photo_path = $url;
         $user = User::find($id);
+
         $currentPermissions = $request->get('currentPermissions');
 
-        foreach ($currentPermissions as $groupPermission)
-            foreach ($groupPermission['permissions'] as $permission)
-                if ($permission['is_active'] == true)
-//                    echo $resultPermission = $permission['name'];
+        foreach ($currentPermissions as $groupPermission) {
+            foreach ($groupPermission['permissions'] as $permission) {
+                {
+                    if ($user->hasPermissionTo($permission['name'])) {
 
-                    $user->givePermissionTo($permission['name']);
-                else
-                    $user->revokePermissionTo($permission['name']);
-        $user->update($request->all());
+                        $user->revokePermissionTo($request->get($permission['name']));
+                }
+                if ($permission['is_active'] == true) {
+                    echo $resultPermission = $permission['name'];
+                    $user->givePermissionTo($request->get($permission['name']));
+                    $user->update($request->all());
 
+//                } else {
+//                    $user->revokePermissionTo($request->get($permission['name']));
+                }
+            }
 
-//...........................................................................................
-//        $data = $request->all();
+        }}
 
-//        foreach($currentPermissions as $groupPermission)
-//            foreach($groupPermission as $Permission)
-//
-//
-//            if( $Permission->is_active ==true)
-//
+//             $user->givePermissionTo($request->get($permission['name']));
+//             if ($permission['is_active'] == true)
+//                      echo $resultPermission = $permission['name'];
 
+//             print_r($currentPermission) ;
 
-        $resultPermission = [];
-//        foreach ($currentPermissions as $groupPermission)
-//            foreach ($groupPermission['permissions'] as $permission)
-//                if ($permission['is_active'] == true)
-////                    echo $resultPermission = $permission['name'];
-//
-//                    $user->givePermissionTo($permission['name']);
-//                else
-//                    $user->revokePermissionTo($permission['name']);
+////        foreach ($groupPermission['permissions'] as $permission)
+//            $user->revokePermissionTo($userPrrmission);
+//            echo '----------------------------';
+//            $new =$user->permissions;
+//            echo $new;
 
-//                }
-//            }
-//        }
-//        return $groupPermissions;
-
-//...........................................................................................
-        // if ($this->isNotSuperAdmin($id)) {
-        //     $user = User::find($id)->update($request->all());
-        // } else {
-        //     $user = User::find($id)->update($request->except('branch_id'));
-        // }
         $this->callActivityMethod('update', $parameters);
-//        return __('common.update');
-        return redirect()->route('branch.index')->with('message', __('common.update'));
-
-//return $data;
+//        return redirect()->route('branch.index')->with('message', __('common.update'));
     }
 
+
+//        return inertia('BranchAndUser/Index', compact('user'))->with('message', __('common.store'));
+//        return redirect()->route('branch.index')->with('message',__('common.store'));
+
+//    }
+//    public function update(UpdateUserRequest $request, $id)
+//    {
+//        $old_data = User::find($id)->toJson();
+//        $parameters = ['request' => $request, 'id' => $id, 'old_data' => $old_data];
+//        // $parameters = ['request' => $request, 'id' => $id];
+//        // $url = $this->getImageURL($request);
+//        // $request->password = Hash::make($request['password']);
+//        // $request->profile_photo_path = $url;
+//        $user = User::find($id);
+//        $currentPermissions = $request->get('currentPermissions');
+//      echo   $userPrrmissions =    $user->permissions;
+//
+////         foreach ($userPrrmissions as $userPrrmission)
+////            echo $userPrrmission;
+////            foreach ($groupPermission['permissions'] as $permission)
+////                $user->revokePermissionTo($userPrrmission);
+////
+////
+////        if ($permission['is_active'] == true)
+//////                    echo $resultPermission = $permission['name'];
+////
+////            $user->givePermissionTo($request->get($permission['name']));
+////
+////            $user->update($request->all());
+//
+//
+////...........................................................................................
+////        $data = $request->all();
+//
+////        foreach($currentPermissions as $groupPermission)
+////            foreach($groupPermission as $Permission)
+////
+////
+////            if( $Permission->is_active ==true)
+////
+//
+//
+//        $resultPermission = [];
+////        foreach ($currentPermissions as $groupPermission)
+////            foreach ($groupPermission['permissions'] as $permission)
+////                if ($permission['is_active'] == true)
+//////                    echo $resultPermission = $permission['name'];
+////
+////                    $user->givePermissionTo($permission['name']);
+////                else
+////                    $user->revokePermissionTo($permission['name']);
+//
+////                }
+////            }
+////        }
+////        return $groupPermissions;
+//
+////...........................................................................................
+//        // if ($this->isNotSuperAdmin($id)) {
+//        //     $user = User::find($id)->update($request->all());
+//        // } else {
+//        //     $user = User::find($id)->update($request->except('branch_id'));
+//        // }
+//        $this->callActivityMethod('update', $parameters);
+////        return __('common.update');
+////        return redirect()->route('branch.index')->with('message', __('common.update'));
+//
+////return $data;
+//    }
+//
 
     public function delete($id)
     {
@@ -147,8 +199,7 @@ class UserController extends Controller
     }
 
 
-    public
-    function showUserPermissions($id)
+    public function showUserPermissions($id)
     {
         $parameters = ['id' => $id];
         $user = User::find($id);
@@ -178,8 +229,7 @@ class UserController extends Controller
     }
 
 
-    public
-    function showRole($id)
+    public function showRole($id)
     {
         $groupPermissions = PermissionGroup::select('caption_' . Config::get('app.locale') . ' as caption', 'id', 'name')->with(['permissions'])->get();
         $role = Role::find($id);
@@ -197,8 +247,7 @@ class UserController extends Controller
 
     }
 
-    public
-    function showUser($id)
+    public function showUser($id)
     {
         $parameters = ['id' => $id];
         $user = User::find($id);

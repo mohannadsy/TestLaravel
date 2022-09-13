@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Traits\User\UserTrait;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,7 @@ use Inertia\Testing\Concerns\Has;
 
 class UserSeeder extends Seeder
 {
+    use UserTrait;
     public function run()
     {
         // user 1
@@ -96,7 +98,7 @@ class UserSeeder extends Seeder
             'security_level' => 1
         ]);
         $userClauda->assignRole('Admin');
-
+//        $userClauda->this->assignPermissionAccordingRole(2);
 
         $userClauda->givePermissionTo('store-user');
 
