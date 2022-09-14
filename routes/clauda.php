@@ -50,7 +50,11 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('auto-complete/{id}', [UserController::class, 'autoComplete'])->name('user.autoComplete');
 
 
+
     Route::get('re-auto-complete/{id}', [UserController::class, 'reAutoComplete'])->name('user.reAutoComplete');
+
+    Route::get('generateBranchesCodes/{id}', [UserController::class, 'generateBranchesCodes'])->name('user.generateBranchesCodes');
+
 
 });
 

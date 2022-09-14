@@ -285,18 +285,26 @@ trait  UserTrait
 
     public  function generateBranchesCodes($id)
     {
-        $parentCode = Branch::with('branch')->find($id)->branch->code;
-        $mainBranch = Branch::with('branches')->find($id);
-        $branchesCodes = $mainBranch->branches->max('code');
-        $max = $branchesCodes;
-        for ($i = 0; $i <= strlen($max) - 1; $i++) {
-            preg_match_all('!\d+!', $max, $matches);
+        $parentBranch= Branch::find($id);
+        $parentCode = Branch::find($id)->code;
+        $childBranches =Branch::with('branchesDesc')->find($id);
+        return $childBranches;
+//        $totalElements = count($childBranches);
+//        $lastChild=$childBranches[count($childBranches) - 1];
+
+        $lastChildCode=last($childBranches);
+        echo $lastChildCode;
+        $result =$parentCode-$lastChildCode;
+
+        for ($i = 0; $i <= strlen($result) - 1; $i++) {
+            preg_match_all('!\d+!', $result, $matches);
             $num = $matches['0']['0'];
-            $max = substr($max, 0, -strlen($num));
+            $result = substr($result, 0, -strlen($num));
             $num = $num + 1;
-            $maxNumber = $max . $num;
+            $maxNumber = $result . $num;
             print('New Item Code =  ' . $parentCode . '' . $maxNumber);
         }
+
     }
 
     public  function generateUserCodes($id)

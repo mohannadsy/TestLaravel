@@ -55,37 +55,62 @@ trait  BranchTrait
         return $permissions;
     }
 
-
-
-
-    //switch between languages
-    public function handle($request , Closure $next)
-    {
-        if(request('change_language')) {
-            session()->put('language', request('change_language'));
-            $language = request("change_language");
-        }
-        elseif(session('language')){
-            $language=session('language');
-        }
-        elseif(config('app.locale')){
-            $language=config('app.locale');
-        }
-        if(isset($language)&& config('app.languages.' .$language)){
-            app()->setLocale($language);
-        }
-        return $next($request);
-    }
-
-    public function getFatherBranch($branchId)
+    public function getParentBranch($branchId)
     {
         $branch = Branch::find($branchId);
         if($branchId==1)
             return redirect()->route('branch.index')->with('message', __('branch.rootBranch'));
         if($branch->branch_id==null)
-                return redirect()->route('branch.index')->with('message', __('branch.mainBranch'));
+            return redirect()->route('branch.index')->with('message', __('branch.mainBranch'));
         return $branch->branch_id;
     }
+    public function mainBranchSuggestion($branchId)
+    {
+        return $branchId;
+    }
+    public function grtLastSon()
+    {
+        $permissions = PermissionGroup::select('caption_'.Config::get('app.locale').' as caption','id')->with(['permissions'])->get();
+        return $permissions;
+    }
+
+    public function codeSuggestion ($branchId)
+    {
+        $branch = Branch::find($branchId);
+        //if branch is root or main branch so no suggestion on code ,
+        // As for the rest of the branches cosde is fatherbranch code . (numOfSubBranches for fatherbranch +1)
+        if($branchId==1 || $branch->branch_id==null )
+           return null ;
+        $fatherbranch = Branch::find($branch->branch_id);
+        return $fatherbranch->code . ($this->numOfSubBranches($fatherbranch->id)+1);
+
+
+    }
+
+
+
+
+//
+//    //switch between languages
+//    public function handle($request , Closure $next)
+//    {
+//        if(request('change_language')) {
+//            session()->put('language', request('change_language'));
+//            $language = request("change_language");
+//        }
+//        elseif(session('language')){
+//            $language=session('language');
+//        }
+//        elseif(config('app.locale')){
+//            $language=config('app.locale');
+//        }
+//        if(isset($language)&& config('app.languages.' .$language)){
+//            app()->setLocale($language);
+//        }
+//        return $next($request);
+//    }
+
+
 
 
 ////////////////////////////////////////////////////////////////
