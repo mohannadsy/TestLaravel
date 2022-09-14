@@ -39,10 +39,7 @@ class Branch extends Model
     {
         return $this->hasMany(Branch::class, 'branch_id')->with('branches', 'users')->select('id', 'name', 'code', 'branch_id');
     }
-    public function branchesDesc()
-    {
-        return $this->hasMany(Branch::class, 'branch_id')->with('branches')->orderBy('id','desc')->first();
-    }
+
 
     public function users()
     {

@@ -288,23 +288,28 @@ trait  UserTrait
     {
         $parentBranch= Branch::find($id);
         $parentCode = Branch::find($id)->code;
-        $childBranches =Branch::with('branchesDesc')->find($id);
-        return $childBranches;
-//        $totalElements = count($childBranches);
-//        $lastChild=$childBranches[count($childBranches) - 1];
+        $SubBranches = Branch::where('branch_id', $id)->get();
 
-        $lastChildCode=last($childBranches);
-        echo $lastChildCode;
-        $result =$parentCode-$lastChildCode;
+            if (count($SubBranches) == 0)
+                return null;
 
-        for ($i = 0; $i <= strlen($result) - 1; $i++) {
-            preg_match_all('!\d+!', $result, $matches);
-            $num = $matches['0']['0'];
-            $result = substr($result, 0, -strlen($num));
-            $num = $num + 1;
-            $maxNumber = $result . $num;
-            print('New Item Code =  ' . $parentCode . '' . $maxNumber);
-        }
+            $lastChildCode = $SubBranches->last()->code;
+        $fullString=$parentCode.$lastChildCode;
+        $newChildCode= substr($lastChildCode,0,strlen($parentCode));
+//        return $newChildCode;
+        $result=substr($lastChildCode,strlen($parentCode));
+      if( $parentCode==$newChildCode) {
+
+          for ($i = 0; $i <= strlen($result) ; $i++) {
+              preg_match_all('!\d+!', $result, $matches);
+              $num = $matches['0']['0'];
+              $result = substr($result, 0, -strlen($num));
+              $num = $num + 1;
+              $newlastChildCode = $result . $num;
+//              return $newlastChildCode;
+                return $parentCode  . $newlastChildCode;
+          }
+      }
 
     }
 
