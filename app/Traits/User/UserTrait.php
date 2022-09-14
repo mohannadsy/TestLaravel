@@ -286,9 +286,9 @@ trait  UserTrait
     public
     function generateBranchesCodes($id)
     {
-        $parentBranch=Branch::find($id);
+        $parentBranch= Branch::find($id);
         $parentCode = Branch::find($id)->code;
-        $childBranches = $parentBranch->with('branches');
+        $childBranches =Branch::with('branchesDesc')->find($id);
         return $childBranches;
 //        $totalElements = count($childBranches);
 //        $lastChild=$childBranches[count($childBranches) - 1];
