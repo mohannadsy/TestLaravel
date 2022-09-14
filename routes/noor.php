@@ -11,12 +11,15 @@ Route::group(['namespace' => 'Branch', 'prefix' => 'branch'], function () {
     Route::post('update/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'update'])->name('branch.update');
     Route::get('delete/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'delete'])->name('branch.delete');
     Route::get('isActive/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'isActive'])->name('branch.isActive');
-
-
     Route::get('Branch-code-name/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'BranchCodeName'])->name('branch.BranchCodeName');
-
     Route::get('permissionsAccordingLang', [\App\Http\Controllers\Branch\BranchController::class, 'permissionsAccordingLang'])->name('branch.permissionsAccordingLang');
-    Route::get('getFatherBranch/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'getFatherBranch'])->name('branch.getFatherBranch');
+
+
+    Route::get('getParentBranch/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'getParentBranch'])->name('branch.getParentBranch');
+    Route::get('numOfSubBranches/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'numOfSubBranches'])->name('branch.numOfSubBranches');
+    Route::get('codeSuggestion/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'codeSuggestion'])->name('branch.codeSuggestion');
+    Route::get('mainBranchSuggestion/{id}', [\App\Http\Controllers\Branch\BranchController::class, 'mainBranchSuggestion'])->name('branch.mainBranchSuggestion');
+
 
 
 });
