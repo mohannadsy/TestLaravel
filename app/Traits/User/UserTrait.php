@@ -283,8 +283,7 @@ trait  UserTrait
 //    }
 
 
-    public
-    function generateBranchesCodes($id)
+    public  function generateBranchesCodes($id)
     {
         $parentCode = Branch::with('branch')->find($id)->branch->code;
         $mainBranch = Branch::with('branches')->find($id);
@@ -300,8 +299,7 @@ trait  UserTrait
         }
     }
 
-    public
-    function generateUserCodes($id)
+    public  function generateUserCodes($id)
     {
         $parentCode = Branch::with('branch')->find($id)->branch->code;
 

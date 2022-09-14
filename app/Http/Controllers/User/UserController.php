@@ -51,7 +51,7 @@ class UserController extends Controller
         // $request->role = $this->assignRole($request->get('roles'));
 //        $user->givePermissionTo($request->get('permissions'));
         $user = User::create($request->all());
-        $user->givePermissionTo($request->get('permissions'));
+        $user->givePermissi onTo($request->get('permissions'));
         $this->callActivityMethod('store', $parameters);
 //        return __('common.store');
         return redirect()->route('branch.index')->with('message', __('common.store'));
