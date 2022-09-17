@@ -283,68 +283,11 @@ trait  UserTrait
 //    }
 
 
-<<<<<<< HEAD
     public function codes($str)
     {
-<<<<<<< HEAD
-
-
-    }
-
-public function generateBranchesCodes($id)
-=======
-    public  function generateBranchesCodes($id)
->>>>>>> e4fdc3eeccc450eebaed55f44c9905806b253110
-    {
-        $parentBranch= Branch::find($id);
-        $parentCode = Branch::find($id)->code;
-        $SubBranches = Branch::where('branch_id', $id)->get();
-
-            if (count($SubBranches) == 0)
-                return null;
-<<<<<<< HEAD
-
-            $lastChildCode = $SubBranches->last()->code;
-        $fullString=$parentCode.$lastChildCode;
-        $newChildCode= substr($lastChildCode,0,strlen($parentCode));
-//        return $newChildCode;
-        $result=substr($lastChildCode,strlen($parentCode));
-      if( $parentCode==$newChildCode) {
-
-          for ($i = 0; $i <= strlen($result) ; $i++) {
-              preg_match_all('!\d+!', $result, $matches);
-              $num = $matches['0']['0'];
-              return $num;
-              $result = substr($result, 0, -strlen($num));
-              $num = $num + 1;
-              $newlastChildCode = $result . $num;
-//              return $newlastChildCode;
-                return $parentCode  . $newlastChildCode;
-=======
-        $lastChildCode = $SubBranches->last()->code;
-
-        //from Start : lastChildCodeExceptParentCodeLenght
-        $result1= substr($lastChildCode,0,strlen($parentCode));
-//        return $result1;
-        //from end : lastChildCodeExceptParentCodeLenght
-        $result2=substr($lastChildCode,strlen($parentCode));
-//                return $result2;
-
-        $newlastChildCode="";
-        if( $parentCode==$result1)
-            codes($result2);
-        else
-            codes($lastChildCode);
-
-
-          for ($i = 0; $i<=strlen($result2) ; $i++) {
-               preg_match_all('!\d+!', $result2, $matches);
-               $len = count($matches[0]);
-=======
         for ($i = 0; $i<=strlen($str) ; $i++) {
             preg_match_all('!\d+!', $str, $matches);
             $len = count($matches[0]);
->>>>>>> e1591445ec65751abac2f74259be105ea41a0d5f
 //               return  $len;
             $num = $matches['0'][$len-1];
 //              return $num;
@@ -398,14 +341,6 @@ public function generateBranchesCodes($id)
 ////             return  $newlastChildCode = $character . $num .$nonZeros;
 ////              return $newlastChildCode;
 //                return $parentCode  . $newlastChildCode;
-<<<<<<< HEAD
->>>>>>> 0e45b799d92c6bb7c0da63c102ddb7326f86f64d
-          }
-      }
-        return    $newlastChildCode;
-
-    }
-=======
 
         }
 
@@ -419,8 +354,8 @@ public function generateBranchesCodes($id)
         $parentCode = Branch::find($id)->code;
         $SubBranches = Branch::where('branch_id', $id)->get();
 
-            if (count($SubBranches) == 0)
-                return null;
+        if (count($SubBranches) == 0)
+            return null;
         $lastChildCode = $SubBranches->last()->code;
         //from Start : lastChildCodeExceptParentCodeLenght
         $result1= substr($lastChildCode,0,strlen($parentCode));
@@ -453,7 +388,6 @@ public function generateBranchesCodes($id)
 
 
 
->>>>>>> e1591445ec65751abac2f74259be105ea41a0d5f
 
     public  function generateUserCodes($id)
     {
