@@ -283,15 +283,17 @@ trait  UserTrait
 //    }
 
 
+<<<<<<< HEAD
     public function codes($str)
     {
 
 
     }
 
-
+public function generateBranchesCodes($id)
+=======
     public  function generateBranchesCodes($id)
-
+>>>>>>> e4fdc3eeccc450eebaed55f44c9905806b253110
     {
         $parentBranch= Branch::find($id);
         $parentCode = Branch::find($id)->code;
@@ -299,7 +301,7 @@ trait  UserTrait
 
             if (count($SubBranches) == 0)
                 return null;
-
+<<<<<<< HEAD
 
             $lastChildCode = $SubBranches->last()->code;
         $fullString=$parentCode.$lastChildCode;
@@ -317,7 +319,7 @@ trait  UserTrait
               $newlastChildCode = $result . $num;
 //              return $newlastChildCode;
                 return $parentCode  . $newlastChildCode;
-
+=======
         $lastChildCode = $SubBranches->last()->code;
 
         //from Start : lastChildCodeExceptParentCodeLenght
@@ -390,24 +392,12 @@ trait  UserTrait
 ////             return  $newlastChildCode = $character . $num .$nonZeros;
 ////              return $newlastChildCode;
 //                return $parentCode  . $newlastChildCode;
-
+>>>>>>> 0e45b799d92c6bb7c0da63c102ddb7326f86f64d
           }
       }
         return    $newlastChildCode;
 
-    }}
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
     public  function generateUserCodes($id)
     {
