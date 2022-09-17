@@ -37,7 +37,7 @@ class BranchSeeder extends Seeder
         ]);
 
         Branch::create([
-            'code' => 'A1111',
+            'code' => 'A00',
             'name' => 'Branch2',
             'branch_id' => 2,
             'responsibility' => '',
@@ -76,7 +76,7 @@ class BranchSeeder extends Seeder
             'security_degree' => 1 // سرية
         ]);
         Branch::create([
-            'code' => 'A1111b9',
+            'code' => 'A0099r902b099',
             'name' => 'Branch5',
             'branch_id' => 3,
             'responsibility' => '',

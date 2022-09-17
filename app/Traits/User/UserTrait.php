@@ -283,7 +283,17 @@ trait  UserTrait
 //    }
 
 
+<<<<<<< HEAD
+    public function codes($str)
+    {
+
+
+    }
+
+public function generateBranchesCodes($id)
+=======
     public  function generateBranchesCodes($id)
+>>>>>>> e4fdc3eeccc450eebaed55f44c9905806b253110
     {
         $parentBranch= Branch::find($id);
         $parentCode = Branch::find($id)->code;
@@ -291,6 +301,7 @@ trait  UserTrait
 
             if (count($SubBranches) == 0)
                 return null;
+<<<<<<< HEAD
 
             $lastChildCode = $SubBranches->last()->code;
         $fullString=$parentCode.$lastChildCode;
@@ -308,8 +319,83 @@ trait  UserTrait
               $newlastChildCode = $result . $num;
 //              return $newlastChildCode;
                 return $parentCode  . $newlastChildCode;
+=======
+        $lastChildCode = $SubBranches->last()->code;
+
+        //from Start : lastChildCodeExceptParentCodeLenght
+        $result1= substr($lastChildCode,0,strlen($parentCode));
+//        return $result1;
+        //from end : lastChildCodeExceptParentCodeLenght
+        $result2=substr($lastChildCode,strlen($parentCode));
+//                return $result2;
+
+        $newlastChildCode="";
+        if( $parentCode==$result1)
+            codes($result2);
+        else
+            codes($lastChildCode);
+
+
+          for ($i = 0; $i<=strlen($result2) ; $i++) {
+               preg_match_all('!\d+!', $result2, $matches);
+               $len = count($matches[0]);
+//               return  $len;
+              $num = $matches['0'][$len-1];
+//              return $num;
+              $character = substr($result2, 0, -strlen($num));
+//             return $character;
+              $zeros="";
+              for ($i = 0; $i <= strlen($num)-1 ; $i++) {
+                  if ($num[$i]==0)
+                      $zeros.='0';
+                  else
+                      break;
+              }
+//              return $zeros;
+//              return $num;
+              $check=false;
+              $nonZeros=substr($num,strlen($zeros));
+//              return $nonZeros;
+//              return $num;
+//              return $nonZeros[2];
+              $nines="";
+              for ($i = 0; $i <= strlen($nonZeros)-1 ; $i++) {
+                  if ($nonZeros[$i]==9)
+                      $nines.='9';
+                  else
+                      break;
+              }
+              if($nonZeros==$nines)
+              {
+                  $zeros=   substr_replace($zeros,"",-1)   ;
+                  $nonZeros=$nonZeros+1;
+              }
+              else
+                  $nonZeros = $nonZeros + 1;
+              $newlastChildCode=$parentCode.$character.$zeros.$nonZeros;
+                  return $newlastChildCode;
+//
+//              for ($i = 0; $i <= strlen($nonZeros) ; $i++) {
+//                  if ($nonZeros[$i] != 9) {
+//                      $nonZeros = $nonZeros + 1;
+//                      $check = true;
+//                      break;
+//                  }
+//              }
+//              if($check==false)
+//              {
+//                  $zeros=   substr_replace($zeros,"",-1)   ;
+//                  $nonZeros=$nonZeros+1;
+//              }
+//              return $num;
+//
+////             return  $newlastChildCode = $character . $num .$nonZeros;
+////              return $newlastChildCode;
+//                return $parentCode  . $newlastChildCode;
+>>>>>>> 0e45b799d92c6bb7c0da63c102ddb7326f86f64d
           }
       }
+        return    $newlastChildCode;
 
     }
 
