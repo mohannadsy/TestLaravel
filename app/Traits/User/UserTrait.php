@@ -285,93 +285,44 @@ trait  UserTrait
 
     public function codes($str)
     {
-
-
-    }
-
-
-    public  function generateBranchesCodes($id)
-
-    {
-        $parentBranch= Branch::find($id);
-        $parentCode = Branch::find($id)->code;
-        $SubBranches = Branch::where('branch_id', $id)->get();
-
-            if (count($SubBranches) == 0)
-                return null;
-
-
-            $lastChildCode = $SubBranches->last()->code;
-        $fullString=$parentCode.$lastChildCode;
-        $newChildCode= substr($lastChildCode,0,strlen($parentCode));
-//        return $newChildCode;
-        $result=substr($lastChildCode,strlen($parentCode));
-      if( $parentCode==$newChildCode) {
-
-          for ($i = 0; $i <= strlen($result) ; $i++) {
-              preg_match_all('!\d+!', $result, $matches);
-              $num = $matches['0']['0'];
-              return $num;
-              $result = substr($result, 0, -strlen($num));
-              $num = $num + 1;
-              $newlastChildCode = $result . $num;
-//              return $newlastChildCode;
-                return $parentCode  . $newlastChildCode;
-
-        $lastChildCode = $SubBranches->last()->code;
-
-        //from Start : lastChildCodeExceptParentCodeLenght
-        $result1= substr($lastChildCode,0,strlen($parentCode));
-//        return $result1;
-        //from end : lastChildCodeExceptParentCodeLenght
-        $result2=substr($lastChildCode,strlen($parentCode));
-//                return $result2;
-
-        $newlastChildCode="";
-        if( $parentCode==$result1)
-            codes($result2);
-        else
-            codes($lastChildCode);
-
-
-          for ($i = 0; $i<=strlen($result2) ; $i++) {
-               preg_match_all('!\d+!', $result2, $matches);
-               $len = count($matches[0]);
+        for ($i = 0; $i<=strlen($str) ; $i++) {
+            preg_match_all('!\d+!', $str, $matches);
+            $len = count($matches[0]);
 //               return  $len;
-              $num = $matches['0'][$len-1];
+            $num = $matches['0'][$len-1];
 //              return $num;
-              $character = substr($result2, 0, -strlen($num));
+            $character = substr($str, 0, -strlen($num));
 //             return $character;
-              $zeros="";
-              for ($i = 0; $i <= strlen($num)-1 ; $i++) {
-                  if ($num[$i]==0)
-                      $zeros.='0';
-                  else
-                      break;
-              }
+            $zeros="";
+            for ($i = 0; $i <= strlen($num)-1 ; $i++) {
+                if ($num[$i]==0)
+                    $zeros.='0';
+                else
+                    break;
+            }
 //              return $zeros;
 //              return $num;
-              $check=false;
-              $nonZeros=substr($num,strlen($zeros));
+            $nonZeros=substr($num,strlen($zeros));
 //              return $nonZeros;
 //              return $num;
 //              return $nonZeros[2];
-              $nines="";
-              for ($i = 0; $i <= strlen($nonZeros)-1 ; $i++) {
-                  if ($nonZeros[$i]==9)
-                      $nines.='9';
-                  else
-                      break;
-              }
-              if($nonZeros==$nines)
-              {
-                  $zeros=   substr_replace($zeros,"",-1)   ;
-                  $nonZeros=$nonZeros+1;
-              }
-              else
-                  $nonZeros = $nonZeros + 1;
-              $newlastChildCode=$parentCode.$character.$zeros.$nonZeros;
-                  return $newlastChildCode;
+            $nines="";
+            for ($i = 0; $i <= strlen($nonZeros)-1 ; $i++) {
+                if ($nonZeros[$i]==9)
+                    $nines.='9';
+                else
+                    break;
+            }
+            if($nonZeros==$nines)
+            {
+                $zeros=   substr_replace($zeros,"",-1)   ;
+                $nonZeros=$nonZeros+1;
+            }
+            else
+                $nonZeros = $nonZeros + 1;
+
+            $newlastChildCode=$character.$zeros.$nonZeros;
+            return $newlastChildCode;
 //
 //              for ($i = 0; $i <= strlen($nonZeros) ; $i++) {
 //                  if ($nonZeros[$i] != 9) {
@@ -391,11 +342,41 @@ trait  UserTrait
 ////              return $newlastChildCode;
 //                return $parentCode  . $newlastChildCode;
 
-          }
-      }
-        return    $newlastChildCode;
+        }
 
-    }}
+    }
+
+
+    public  function generateBranchesCodes($id)
+
+    {
+        $parentBranch= Branch::find($id);
+        $parentCode = Branch::find($id)->code;
+        $SubBranches = Branch::where('branch_id', $id)->get();
+
+            if (count($SubBranches) == 0)
+                return null;
+        $lastChildCode = $SubBranches->last()->code;
+        //from Start : lastChildCodeExceptParentCodeLenght
+        $result1= substr($lastChildCode,0,strlen($parentCode));
+//        return $result1;
+        //from end : lastChildCodeExceptParentCodeLenght
+        $result2=substr($lastChildCode,strlen($parentCode));
+//                return $result2;
+
+        $newlastChildCode="";
+        if( $parentCode==$result1)
+        {
+            $result=$this->codes($result2);
+            $result=$parentCode.$result;
+            return $result;
+        }
+        else {
+//            return $lastChildCode;
+            $result =$this->codes($lastChildCode);
+            return $result;
+        }
+    }
 
 
 
