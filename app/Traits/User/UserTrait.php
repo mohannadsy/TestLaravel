@@ -302,6 +302,7 @@ trait  UserTrait
           for ($i = 0; $i <= strlen($result) ; $i++) {
               preg_match_all('!\d+!', $result, $matches);
               $num = $matches['0']['0'];
+              return $num;
               $result = substr($result, 0, -strlen($num));
               $num = $num + 1;
               $newlastChildCode = $result . $num;
