@@ -10,7 +10,7 @@ class BranchSeeder extends Seeder
     public function run()
     {
         Branch::create([
-            'code' => 'A11',
+            'code' => '1',
             'name' => 'Main Branch',
             'branch_id' => null,
             'responsibility' => '',
@@ -23,7 +23,7 @@ class BranchSeeder extends Seeder
             'security_degree' => 1 // سرية
         ]);
         Branch::create([
-            'code' => 'A111',
+            'code' => '101',
             'name' => 'Branch1',
             'branch_id' => 1,
             'responsibility' => '',
@@ -37,9 +37,9 @@ class BranchSeeder extends Seeder
         ]);
 
         Branch::create([
-            'code' => 'A00',
+            'code' => '102',
             'name' => 'Branch2',
-            'branch_id' => 2,
+            'branch_id' => 1,
             'responsibility' => '',
             'address' => '',
             'website' => 'branch2.com',
@@ -50,9 +50,9 @@ class BranchSeeder extends Seeder
             'security_degree' => 3 // سرية
         ]);
         Branch::create([
-            'code' => 'A11112',
+            'code' => '10101',
             'name' => 'Branch3',
-            'branch_id' => 3,
+            'branch_id' => 2,
             'responsibility' => '',
             'address' => '',
             'website' => 'branch3.com',
@@ -63,9 +63,9 @@ class BranchSeeder extends Seeder
             'security_degree' => 1 // سرية
         ]);
         Branch::create([
-            'code' => 'A11115',
+            'code' => '101B9',
             'name' => 'Branch4',
-            'branch_id' => 3,
+            'branch_id' => 2,
             'responsibility' => '',
             'address' => '',
             'website' => 'branch4.com',
@@ -76,9 +76,9 @@ class BranchSeeder extends Seeder
             'security_degree' => 1 // سرية
         ]);
         Branch::create([
-            'code' => 'A0099r902b099',
+            'code' => '133',
             'name' => 'Branch5',
-            'branch_id' => 3,
+            'branch_id' => 1,
             'responsibility' => '',
             'address' => '',
             'website' => 'branch5.com',

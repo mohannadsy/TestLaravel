@@ -286,6 +286,7 @@ trait  UserTrait
 <<<<<<< HEAD
     public function codes($str)
     {
+<<<<<<< HEAD
 
 
     }
@@ -339,41 +340,46 @@ public function generateBranchesCodes($id)
           for ($i = 0; $i<=strlen($result2) ; $i++) {
                preg_match_all('!\d+!', $result2, $matches);
                $len = count($matches[0]);
+=======
+        for ($i = 0; $i<=strlen($str) ; $i++) {
+            preg_match_all('!\d+!', $str, $matches);
+            $len = count($matches[0]);
+>>>>>>> e1591445ec65751abac2f74259be105ea41a0d5f
 //               return  $len;
-              $num = $matches['0'][$len-1];
+            $num = $matches['0'][$len-1];
 //              return $num;
-              $character = substr($result2, 0, -strlen($num));
+            $character = substr($str, 0, -strlen($num));
 //             return $character;
-              $zeros="";
-              for ($i = 0; $i <= strlen($num)-1 ; $i++) {
-                  if ($num[$i]==0)
-                      $zeros.='0';
-                  else
-                      break;
-              }
+            $zeros="";
+            for ($i = 0; $i <= strlen($num)-1 ; $i++) {
+                if ($num[$i]==0)
+                    $zeros.='0';
+                else
+                    break;
+            }
 //              return $zeros;
 //              return $num;
-              $check=false;
-              $nonZeros=substr($num,strlen($zeros));
+            $nonZeros=substr($num,strlen($zeros));
 //              return $nonZeros;
 //              return $num;
 //              return $nonZeros[2];
-              $nines="";
-              for ($i = 0; $i <= strlen($nonZeros)-1 ; $i++) {
-                  if ($nonZeros[$i]==9)
-                      $nines.='9';
-                  else
-                      break;
-              }
-              if($nonZeros==$nines)
-              {
-                  $zeros=   substr_replace($zeros,"",-1)   ;
-                  $nonZeros=$nonZeros+1;
-              }
-              else
-                  $nonZeros = $nonZeros + 1;
-              $newlastChildCode=$parentCode.$character.$zeros.$nonZeros;
-                  return $newlastChildCode;
+            $nines="";
+            for ($i = 0; $i <= strlen($nonZeros)-1 ; $i++) {
+                if ($nonZeros[$i]==9)
+                    $nines.='9';
+                else
+                    break;
+            }
+            if($nonZeros==$nines)
+            {
+                $zeros=   substr_replace($zeros,"",-1)   ;
+                $nonZeros=$nonZeros+1;
+            }
+            else
+                $nonZeros = $nonZeros + 1;
+
+            $newlastChildCode=$character.$zeros.$nonZeros;
+            return $newlastChildCode;
 //
 //              for ($i = 0; $i <= strlen($nonZeros) ; $i++) {
 //                  if ($nonZeros[$i] != 9) {
@@ -392,12 +398,62 @@ public function generateBranchesCodes($id)
 ////             return  $newlastChildCode = $character . $num .$nonZeros;
 ////              return $newlastChildCode;
 //                return $parentCode  . $newlastChildCode;
+<<<<<<< HEAD
 >>>>>>> 0e45b799d92c6bb7c0da63c102ddb7326f86f64d
           }
       }
         return    $newlastChildCode;
 
     }
+=======
+
+        }
+
+    }
+
+
+    public  function generateBranchesCodes($id)
+
+    {
+        $parentBranch= Branch::find($id);
+        $parentCode = Branch::find($id)->code;
+        $SubBranches = Branch::where('branch_id', $id)->get();
+
+            if (count($SubBranches) == 0)
+                return null;
+        $lastChildCode = $SubBranches->last()->code;
+        //from Start : lastChildCodeExceptParentCodeLenght
+        $result1= substr($lastChildCode,0,strlen($parentCode));
+//        return $result1;
+        //from end : lastChildCodeExceptParentCodeLenght
+        $result2=substr($lastChildCode,strlen($parentCode));
+//                return $result2;
+
+        $newlastChildCode="";
+        if( $parentCode==$result1)
+        {
+            $result=$this->codes($result2);
+            $result=$parentCode.$result;
+            return $result;
+        }
+        else {
+            $result =$this->codes($lastChildCode);
+            return $result;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> e1591445ec65751abac2f74259be105ea41a0d5f
 
     public  function generateUserCodes($id)
     {
