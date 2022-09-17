@@ -283,6 +283,7 @@ trait  UserTrait
 //    }
 
 
+<<<<<<< HEAD
     public function codes($str)
     {
 
@@ -290,6 +291,9 @@ trait  UserTrait
     }
 
 public function generateBranchesCodes($id)
+=======
+    public  function generateBranchesCodes($id)
+>>>>>>> e4fdc3eeccc450eebaed55f44c9905806b253110
     {
         $parentBranch= Branch::find($id);
         $parentCode = Branch::find($id)->code;
@@ -375,8 +379,7 @@ public function generateBranchesCodes($id)
 
     }
 
-    public
-    function generateUserCodes($id)
+    public  function generateUserCodes($id)
     {
         $parentCode = Branch::with('branch')->find($id)->branch->code;
 

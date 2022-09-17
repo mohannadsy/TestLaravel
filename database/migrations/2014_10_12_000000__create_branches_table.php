@@ -15,9 +15,13 @@ return new class extends Migration {
             $table->id();
             $table->string('code')->unique();
             $table->string('name')->unique();
+<<<<<<< HEAD
+            $table->unsignedBigInteger('branch_id')->nullable()->default('1');
+=======
 //            $value=getFatherBranch($table->id());
 //            $table->unsignedBigInteger('branch_id')->nullable()->default($value);
             $table->unsignedBigInteger('branch_id')->nullable()->default(null);
+>>>>>>> b391c631ffc8f63df8ea319fb58deea308c93158
             $table->string('responsibility')->nullable()->default(null);
             $table->string('address')->nullable()->default(null);
             $table->string('website')->nullable()->default(null);
