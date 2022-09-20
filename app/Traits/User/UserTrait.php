@@ -424,9 +424,52 @@ trait  UserTrait
         }
     }
 
+    public function inArray($element,$arr)
+    {
+        $size=count($arr);
+        for($i=0;$i<$size;$i++)
+        {
+            if($element == $arr[$i])
+                return true;
+        }
+        return false;
+    }
+    public function notinArray($element,$arr)
+    {
+        $size=count($arr);
+        for($i=0;$i<$size;$i++)
+        {
+            if($element == $arr[$i])
+                return false;
+        }
+        return true;
+    }
 
     public function reAutoComplete($id)
     {
+
+//......all branches........................................
+        $all_branches = Branch::all();
+//      return $all_branches;
+        $branch1 = Branch::find($id);
+        $branch2 = Branch::find($id);
+
+//      return $branch;
+//......child branches........................................
+        $child_branches = $branch1->onlyBranches;
+//        return $child_branches;
+
+//        return  $this->inArray($branch2,$all_branches);
+
+        $arr = array();
+        foreach ($all_branches as $br) {
+            if ( !in_array($br, (array)$child_branches)) {
+                $arr[] = $br;
+            }
+        }
+        return $arr;
+
+
         //----all branches----//
 //        return $all_branches;
 
@@ -447,7 +490,7 @@ trait  UserTrait
         {
             if(is_int($array1[$i])&& is_int($array2[$i]))
             {
-                $arr3=$array1[$i]-$array1[$i];
+                $arr3=$array1[$i]-$array2[$i];
                 array_push($array3,$arr3);
             }
         }
