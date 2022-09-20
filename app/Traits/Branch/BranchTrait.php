@@ -16,6 +16,11 @@ trait  BranchTrait
         $SubBranches = Branch::where('branch_id', $id)->get();
         return count($SubBranches);
     }
+    public function SubBranches($id)
+    {
+        $SubBranches = Branch::where('branch_id', $id)->get();
+      return  $SubBranches;
+    }
 
     public function isRootBranch($id)
     {

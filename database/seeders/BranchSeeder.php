@@ -39,7 +39,7 @@ class BranchSeeder extends Seeder
         Branch::create([
             'code' => '102',
             'name' => 'Branch2',
-            'branch_id' => 1,
+            'branch_id' => 2,
             'responsibility' => '',
             'address' => '',
             'website' => 'branch2.com',
@@ -69,7 +69,7 @@ class BranchSeeder extends Seeder
             'responsibility' => '',
             'address' => '',
             'website' => 'branch4.com',
-            'email' => 'branch4@gmail.com',
+            'email' => 'brancwqfh4@gmail.com',
             'phone' => '041078875',
             'mobile' => '09944935736',
             'is_active' => true,
@@ -82,7 +82,91 @@ class BranchSeeder extends Seeder
             'responsibility' => '',
             'address' => '',
             'website' => 'branch5.com',
-            'email' => 'branch5@gmail.com',
+            'email' => 'branchece5@gmail.com',
+            'phone' => '04107855875',
+            'mobile' => '09944449',
+            'is_active' => false,
+            'security_degree' => 3,
+
+        ]);
+        Branch::create([
+            'code' => '13436',
+            'name' => 'Branch6',
+            'branch_id' => 5,
+            'responsibility' => '',
+            'address' => '',
+            'website' => 'branch5.com',
+            'email' => 'branwdwech5@gmail.com',
+            'phone' => '04107855875',
+            'mobile' => '09944449',
+            'is_active' => false,
+            'security_degree' => 3,
+
+        ]);
+        Branch::create([
+            'code' => '13336',
+            'name' => 'Branch7',
+            'branch_id' => 5,
+            'responsibility' => '',
+            'address' => '',
+            'website' => 'branch5.com',
+            'email' => 'branvvrch5@gmail.com',
+            'phone' => '04107855875',
+            'mobile' => '09944449',
+            'is_active' => false,
+            'security_degree' => 3,
+
+        ]);
+        Branch::create([
+            'code' => '132236',
+            'name' => 'Branch8',
+            'branch_id' => 7,
+            'responsibility' => '',
+            'address' => '',
+            'website' => 'branch5.com',
+            'email' => 'branvvch5@gmail.com',
+            'phone' => '04107855875',
+            'mobile' => '09944449',
+            'is_active' => false,
+            'security_degree' => 3,
+
+        ]);
+        Branch::create([
+            'code' => '1232336',
+            'name' => 'Branch9',
+            'branch_id' => 7,
+            'responsibility' => '',
+            'address' => '',
+            'website' => 'branch5.com',
+            'email' => 'brancrrh5@gmail.com',
+            'phone' => '04107855875',
+            'mobile' => '09944449',
+            'is_active' => false,
+            'security_degree' => 3,
+
+        ]);
+        Branch::create([
+            'code' => '13362332',
+            'name' => 'Branch10',
+            'branch_id' => 9,
+            'responsibility' => '',
+            'address' => '',
+            'website' => 'branch5.com',
+            'email' => 'brarrnch5@gmail.com',
+            'phone' => '04107855875',
+            'mobile' => '09944449',
+            'is_active' => false,
+            'security_degree' => 3,
+
+        ]);
+        Branch::create([
+            'code' => '133232036',
+            'name' => 'Branch11',
+            'branch_id' =>9,
+            'responsibility' => '',
+            'address' => '',
+            'website' => 'branch5.com',
+            'email' => 'brranch5@gmail.com',
             'phone' => '04107855875',
             'mobile' => '09944449',
             'is_active' => false,

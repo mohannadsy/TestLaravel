@@ -52,16 +52,23 @@ class Branch extends Model
     }
 
 
+//    public function onlyBranches()
+//    {
+//        return $this->hasMany(Branch::class, 'branch_id')->with('branches')->select('id', 'name', 'code', 'branch_id');
+//
+////        return $this->hasMany('App\Models\Branch', 'branch_id');
+//    }
+
+
     public function onlyBranches()
     {
-        return $this->hasMany('App\Models\Branch', 'branch_id');
+        return $this->hasMany(Branch::class, 'branch_id')->with('onlyBranches')->select('id' ,'branch_id');
     }
 
-
-    public function branchesWithInternalBranches()
-    {
-        return $this->hasMany(Branch::class, 'branch_id')->with('branches');
-    }
+//    public function branchesWithInternalBranches()
+//    {
+//        return $this->hasMany(Branch::class, 'branch_id')->with('onlyBranches');
+//    }
 
     public function clients()
     {

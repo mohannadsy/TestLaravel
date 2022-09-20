@@ -6,6 +6,7 @@ use App\Models\Branch;
 use App\Models\PermissionGroup;
 use App\Models\Trash;
 use App\Models\User;
+use App\Traits\Branch\BranchTrait;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -19,6 +20,7 @@ use function Symfony\Component\String\length;
 
 trait  UserTrait
 {
+    use BranchTrait;
 
     public function getAllPermissions()
     {
@@ -188,38 +190,47 @@ trait  UserTrait
     public function autoComplete($id)
     {
         $branch = Branch::find($id);
-
+        //return $branch;
         $all_branches = Branch::all();
+//        return $all_branches->id;
+
         $all_branches_IDs = [];
+
         foreach ($all_branches_IDs as $all_branches) {
             $all_branches_IDs[] = $all_branches->id;
+            print_r($all_branches_IDs);
+
         }
 //        $branch_id = $branch->id;
 
 //
-        $all_child_branch = Branch::with('branchesWithInternalBranches')->get();
-        $all_child_branch_IDs = [];
-        foreach ($all_child_branch as $all_child) {
-            $all_child_branch_IDs[] = $all_child->id;
-        }
-
+        $all_child_branch =$branch->onlyBranches;
+//        $all_child_branch_IDs = [];
+//        foreach ($all_child_branch as $all_child) {
+//            $all_child_branch_IDs[] = $all_child->id;
+//            if($all_child->onlyBranhces != null)
+//            foreach ($all_child->onlyBranhces as $child) {
+//                $all_child_branch_IDs[] = $child->id;
+//            }
+//        }
+//        return $all_child_branch_IDs;
         $branch_branch_id = $branch->branch_id;
         $childIDS = [];
 //        return $branch_branch_id;
-        for ($i = 0; $i < 6; $i++) {
+//        for ($i = 0; $i < 6; $i++) {
 
 
 //            print($all_child_branch_IDs[$i]);
 //            print($branch_branch_id);
 
-            if ($all_child_branch_IDs[$i] != $branch_branch_id) {
-                $childIDS[] = $all_child_branch_IDs[$i];
-            }
-            $result = array_diff($all_branches_IDs, $all_child_branch_IDs);
+//            if ($all_child_branch_IDs[$i] != $branch_branch_id) {
+//                $childIDS[] = $all_child_branch_IDs[$i];
+//            }
+            return $result = $all_branches->diff($all_child_branch);
 
 //        }
-        }
-        echo print_r($result);
+//        }
+//        echo print_r($result);
     }
 
 
@@ -285,43 +296,41 @@ trait  UserTrait
 
     public function codes($str)
     {
-        for ($i = 0; $i<=strlen($str) ; $i++) {
+        for ($i = 0; $i <= strlen($str); $i++) {
             preg_match_all('!\d+!', $str, $matches);
             $len = count($matches[0]);
 //               return  $len;
-            $num = $matches['0'][$len-1];
+            $num = $matches['0'][$len - 1];
 //              return $num;
             $character = substr($str, 0, -strlen($num));
 //             return $character;
-            $zeros="";
-            for ($i = 0; $i <= strlen($num)-1 ; $i++) {
-                if ($num[$i]==0)
-                    $zeros.='0';
+            $zeros = "";
+            for ($i = 0; $i <= strlen($num) - 1; $i++) {
+                if ($num[$i] == 0)
+                    $zeros .= '0';
                 else
                     break;
             }
 //              return $zeros;
 //              return $num;
-            $nonZeros=substr($num,strlen($zeros));
+            $nonZeros = substr($num, strlen($zeros));
 //              return $nonZeros;
 //              return $num;
 //              return $nonZeros[2];
-            $nines="";
-            for ($i = 0; $i <= strlen($nonZeros)-1 ; $i++) {
-                if ($nonZeros[$i]==9)
-                    $nines.='9';
+            $nines = "";
+            for ($i = 0; $i <= strlen($nonZeros) - 1; $i++) {
+                if ($nonZeros[$i] == 9)
+                    $nines .= '9';
                 else
                     break;
             }
-            if($nonZeros==$nines)
-            {
-                $zeros=   substr_replace($zeros,"",-1)   ;
-                $nonZeros=$nonZeros+1;
-            }
-            else
+            if ($nonZeros == $nines) {
+                $zeros = substr_replace($zeros, "", -1);
+                $nonZeros = $nonZeros + 1;
+            } else
                 $nonZeros = $nonZeros + 1;
 
-            $newlastChildCode=$character.$zeros.$nonZeros;
+            $newlastChildCode = $character . $zeros . $nonZeros;
             return $newlastChildCode;
 //
 //              for ($i = 0; $i <= strlen($nonZeros) ; $i++) {
@@ -347,10 +356,10 @@ trait  UserTrait
     }
 
 
-    public  function generateBranchesCodes($id)
+    public function generateBranchesCodes($id)
 
     {
-        $parentBranch= Branch::find($id);
+        $parentBranch = Branch::find($id);
         $parentCode = Branch::find($id)->code;
         $SubBranches = Branch::where('branch_id', $id)->get();
 
@@ -358,38 +367,25 @@ trait  UserTrait
             return null;
         $lastChildCode = $SubBranches->last()->code;
         //from Start : lastChildCodeExceptParentCodeLenght
-        $result1= substr($lastChildCode,0,strlen($parentCode));
+        $result1 = substr($lastChildCode, 0, strlen($parentCode));
 //        return $result1;
         //from end : lastChildCodeExceptParentCodeLenght
-        $result2=substr($lastChildCode,strlen($parentCode));
+        $result2 = substr($lastChildCode, strlen($parentCode));
 //                return $result2;
 
-        $newlastChildCode="";
-        if( $parentCode==$result1)
-        {
-            $result=$this->codes($result2);
-            $result=$parentCode.$result;
+        $newlastChildCode = "";
+        if ($parentCode == $result1) {
+            $result = $this->codes($result2);
+            $result = $parentCode . $result;
             return $result;
-        }
-        else {
-            $result =$this->codes($lastChildCode);
+        } else {
+            $result = $this->codes($lastChildCode);
             return $result;
         }
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-    public  function generateUserCodes($id)
+    public function generateUserCodes($id)
     {
         $parentCode = Branch::with('branch')->find($id)->branch->code;
 
@@ -406,21 +402,18 @@ trait  UserTrait
         }
     }
 
-    public
-    function getLastCharacterInString($string)
+    public function getLastCharacterInString($string)
     {
         return $string[strlen($string) - 1];
     }
 
-    public
-    function isLastCharacterInStringIsNumeric($string)
+    public function isLastCharacterInStringIsNumeric($string)
     {
         return is_numeric($this->getLastCharacterInString($string));
     }
 
 
-    public
-    function recursiveBranches($parent_id, $child_id)
+    public function recursiveBranches($parent_id, $child_id)
     {
         $parentBranch = Branch::find($parent_id);
         $child_branch = Branch::find($child_id);
@@ -435,32 +428,105 @@ trait  UserTrait
     public function reAutoComplete($id)
     {
         //----all branches----//
+//        return $all_branches;
+
+        $array1 = array();
         $all_branches = Branch::all();
-        $all_branches_IDs = [];
-        foreach ($all_branches as $all) {
-            $all_branches_IDs[] = $all->id;
-        }
-
+           $array1 = $all_branches ;
         $branch = Branch::find($id);
-        $all_child_branch = Branch::with('branchesWithInternalBranches')->get();
-        $all_child_branch_IDs = [];
-        foreach ($all_child_branch as $all_child) {
-            $all_child_branch_IDs[] = $all_child->id;
-        }
-        $branch_branch_id = $branch->branch_id;
-        $childIDS = [];
-        for ($i = 0; $i < 6; $i++) {
-            if ($all_child_branch_IDs[$i] != $branch_branch_id) {
-                $childIDS[] = $all_child_branch_IDs[$i];
-            }
 
+
+
+        $array2 = array() ;
+
+        $all_child_branch_and_childs =$branch->onlyBranches;
+           $array2 = $all_child_branch_and_childs;
+           $arr_length=sizeof($array1)-1;
+        $array3 = array() ;
+        for($i=0;$i<=$arr_length;$i++)
+        {
+            if(is_int($array1[$i])&& is_int($array2[$i]))
+            {
+                $arr3=$array1[$i]-$array1[$i];
+                array_push($array3,$arr3);
+            }
         }
-        $result = array_diff($all_branches_IDs, $childIDS);
-        print_r($result);
-        print('-----------');
-        print_r($childIDS);
-        print('-----------');
-        print_r($all_branches_IDs);
+        return $array3;
+
+
+//return $array1 - $array2;
+//        $all_branches_IDs = [];
+//        foreach ($all_branches as $all) {
+//            $all_branches_IDs[] = $all->id;
+//        }
+
+
+//        return $all_child_branch_and_childs;
+//       return  $all_branches- $all_child_branch_and_childs;
+//    $branches = Branch::whereNull('branch_id')->with('branches')->select('id', 'branch_id')->get();// for tree
+//return count($all_child_branch_and_childs);
+
+//        $a =  array();
+//
+//for( $i =0 ; $i<= count($all_child_branch_and_childs) ; $i++ ){
+//     $a[$i] = $all_child_branch_and_childs['name'];
+//}
+//return $a;
+
+
+
+//        $sss=[];
+//         $branch = Branch::find($id);
+//        $all_child_branch_and_childs=$this-> SubBranches($id);
+////        return         $all_child_branch_and_childs;
+//        foreach ($all_child_branch_and_childs as $all_child) {
+//            $all_child_Subbranch_and_childs = $this->SubBranches($all_child->id);
+//            foreach ($all_child_Subbranch_and_childs as $child){
+//                $sss[] =$child;
+//            }
+//
+//            }
+//        return $sss;
+//
+//
+////        $all_child_branch =  $branch->branches;
+////        $all_child_branch_and_childs =$branch->onlyBranches;
+////        return $all_child_branch_and_childs;
+//
+////        $all_child_branch_and_childs = $branch->whereNull('branch_id')->with('onlyBranches')->select('id', 'branch_id')->get();
+////        $all_child_branch_and_childs = $branch->with('branchesWithInternalBranches')->get();
+//
+// //        return $all_child_branch;
+//        $all_child_branch_IDs = [];
+//        foreach ($all_child_branch_and_childs as $all_child) {
+////             return $all_child  ;
+//
+//            foreach ($all_child as $child)
+//            {
+//                $all_child_branch_IDs[] = $child->id;
+////                print_r($child);
+//
+//            }
+//            return  $all_child_branch_IDs;
+//        }
+////        return $all_child_branch_IDs ;
+//
+//        $branch_branch_id = $branch->branch_id;
+////        return $branch_branch_id;
+////        $allowedChildIDS = [];
+////        for ($i = 0 ; $i < 11; $i++) {
+////            if ($all_child_branch_IDs[$i]!= $branch_branch_id) {
+////                $allowedChildIDS[] = $all_child_branch_IDs[$i];
+////            }
+//
+////        }
+////        $result = array_diff($all_branches_IDs, $childIDS);
+////        print_r($result);
+////        print('-----------');
+//////        print_r($allowedChildIDS);
+////        print('-----------');
+////        print_r($all_branches_IDs);
+        ////////////////////////////////////////////////
     }
 
 
